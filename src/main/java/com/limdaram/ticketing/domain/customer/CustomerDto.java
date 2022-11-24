@@ -2,6 +2,7 @@ package com.limdaram.ticketing.domain.customer;
 
 import lombok.Data;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 
@@ -14,7 +15,7 @@ public class CustomerDto {
     private String customerEmail;
     private String customerAddress;
     private int customerPhoneNumber;
-    private Data customerBirth;
+    private Date customerBirth;
 
 
     private LocalDateTime customerInserted;

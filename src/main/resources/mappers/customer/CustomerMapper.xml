@@ -10,8 +10,8 @@
         WHERE customerUniqueNumber = #{customerUniqueNumber}
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO Member (customerUniqueNumber, customerId, customerPassword, customerEmail, customerName, customerAddress, customerPhoneNumber, customerBirth)
+    <insert id="insert" useGeneratedKeys="true" keyProperty="customerUniqueNumber">
+        INSERT INTO Customer (customerUniqueNumber, customerId, customerPassword, customerEmail, customerName, customerAddress, customerPhoneNumber, customerBirth)
         VALUES (#{customerUniqueNumber}, #{customerId}, #{customerPassword}, #{customerEmail}, #{customerName}, #{customerAddress}, #{customerPhoneNumber}, #{customerBirth})
     </insert>
 

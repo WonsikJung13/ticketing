@@ -14,7 +14,97 @@
 </head>
 <body>
 
-<h1>회원가입 하기</h1>
+
+<div class="container-md">
+    <div class="row">
+        <div class="col">
+            <h1>회원가입 하기</h1>
+            <form action="" method="post">
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        이름
+                    </label>
+
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="customerName">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        생년월일
+                    </label>
+
+                    <div class="input-group">
+                        <input class="form-control" type="date" name="customerBirth">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        아이디
+                    </label>
+
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="customerId">
+                        <button class="btn btn-outline-secondary" type="button">중복확인</button>
+                    </div>
+
+                    <div class="form-text">어떤 메시지....</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        비밀번호
+                    </label>
+                    <input class="form-control" type="password" name="customerPassword">
+                    <div class="form-text">암호 확인 결과...</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        비밀번호 확인
+                    </label>
+                    <input class="form-control" type="password">
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        이메일
+                    </label>
+                    <div class="input-group">
+                        <input class="form-control" type="email" name="customerEmail">
+                        <button class="btn btn-outline-secondary" type="button">중복확인</button>
+                    </div>
+
+                    <div class="form-text">확인 메시지....</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        주소
+                    </label>
+
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="customerAddress">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        핸드폰 번호
+                    </label>
+
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="customerPhoneNumber">
+                    </div>
+                </div>
+
+                <input class="btn btn-primary" type="submit" value="가입">
+            </form>
+        </div>
+    </div>
 
 
 
