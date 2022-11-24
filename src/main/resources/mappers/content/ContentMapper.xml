@@ -5,7 +5,18 @@
 
 <mapper namespace="com.limdaram.ticketing.mapper.content.ContentMapper">
 
-
+    <select id="select" resultType="com.limdaram.ticketing.domain.content.ContentDto">
+        SELECT
+            contentId,
+            contentName,
+            contentRegion,
+            contentStartDate,
+            contentEndDate,
+            contentPrice,
+            contentBoard
+        FROM Content
+        WHERE contentId = #{id}
+    </select>
 
     <select id="list" resultType="com.limdaram.ticketing.domain.content.ContentDto">
     SELECT
@@ -21,7 +32,7 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO Content (contentName, contentRegion, contentStartDate, contentPrice, contentBoard)
-        VALUES (#{contentName}, #{contentRegion}, #{contentStartDate}, #{contentPrice}, #{contentBoard})
+        INSERT INTO Content (contentName, contentRegion, contentStartDate, contentEndDate, contentPrice, contentBoard)
+        VALUES (#{contentName}, #{contentRegion}, #{contentStartDate}, #{contentEndDate}, #{contentPrice}, #{contentBoard})
     </insert>
 </mapper>

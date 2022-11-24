@@ -45,16 +45,21 @@
             <c:forEach items="${contentList}" var="content">
               <tr>
                 <td class="contentImage">
-                  <a href="/content/" title="상세정보 이동">
-                    <img src="" alt="">
+                  <a href="" title="상세정보 이동">
+                    <img src="" alt="사진">
                   </a>
                 </td>
                 <td class="contentName">
                   <span class="fw_bold">
-                      <a href="">${content.contentName}</a>
+                      <c:url value="/content/get" var="getLink">
+                        <c:param name="contentId" value="${content.contentId}"></c:param>
+                      </c:url>
+                      <a href="${getLink}">
+                          ${content.contentName}
+                      </a>
                   </span><br>
                 </td>
-                <td class="contentRegion"><a href="">${content.contentRegion}</a></td>
+                <td class="contentRegion">${content.contentRegion}</td>
                 <td class="contentStartDate">${content.contentStartDate}</td>
                 <td class="contentStartDate">${content.contentEndDate}</td>
                 <td class="contentPrice">${content.contentPrice}</td>

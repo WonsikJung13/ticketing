@@ -20,4 +20,9 @@ public class ContentService {
     public List<ContentDto> listContent() {
         return mapper.list();
     }
+
+    public ContentDto get(int contentId) {
+
+        return mapper.select(contentId);
+    }
 }

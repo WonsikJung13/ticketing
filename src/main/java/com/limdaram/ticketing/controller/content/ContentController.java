@@ -38,4 +38,12 @@ public class ContentController {
 
         model.addAttribute("contentList", list);
     }
+
+    @GetMapping("get")
+    public void get(int contentId, Model model) {
+        ContentDto content = service.get(contentId);
+        System.out.println(contentId);
+        model.addAttribute("content", content);
+
+    }
 }

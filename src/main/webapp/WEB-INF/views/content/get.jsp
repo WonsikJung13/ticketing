@@ -13,9 +13,15 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
+    상품명 <input type="text" value="${content.contentName}" readonly> <br>
+    장소 <input type="text" value="${content.contentRegion}" readonly> <br>
+    시작 <input type="date" value="${content.contentStartDate}" readonly> <br>
+    종료 <input type="date" value="${content.contentEndDate}" readonly> <br>
+    가격 <input type="number" value="${content.contentPrice}" readonly> <br>
+    정보 <textarea name="contentBoard" readonly></textarea>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
 </script>

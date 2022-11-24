@@ -8,4 +8,6 @@ public interface ContentMapper {
     int insert(ContentDto content);
 
     List<ContentDto> list();
+
+    ContentDto select(int contentId);
 }
