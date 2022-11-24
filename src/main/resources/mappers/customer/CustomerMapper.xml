@@ -11,8 +11,26 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="customerUniqueNumber">
-        INSERT INTO Customer (customerUniqueNumber, customerId, customerPassword, customerEmail, customerName, customerAddress, customerPhoneNumber, customerBirth)
-        VALUES (#{customerUniqueNumber}, #{customerId}, #{customerPassword}, #{customerEmail}, #{customerName}, #{customerAddress}, #{customerPhoneNumber}, #{customerBirth})
+        INSERT INTO Customer (customerId, customerPassword, customerEmail, customerName, customerAddress, customerPhoneNumber, customerBirth)
+        VALUES (#{customerId}, #{customerPassword}, #{customerEmail}, #{customerName}, #{customerAddress}, #{customerPhoneNumber}, #{customerBirth})
     </insert>
+
+    <select id="getByCustomerId" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
+        SELECT *
+        FROM Customer
+        WHERE customerUniqueNumber = #{customerUniqueNumber}
+    </select>
+
+    <update id="update">
+        UPDATE Customer
+        SET
+        customerPassword = #{customerPassword},
+        customerEmail = #{customerEmail},
+        customerAddress = #{customerAddress},
+        customerPhoneNumber = #{customerPhoneNumber},
+        customerBirth = #{customerBirth}
+        WHERE customerUniqueNumber = #{customerUniqueNumber}
+    </update>
+
 
 </mapper>

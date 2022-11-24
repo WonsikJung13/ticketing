@@ -14,6 +14,20 @@ public class CustomerService {
     @Setter(onMethod_ = @Autowired)
     private CustomerMapper customerMapper;
 
+    public int modify(CustomerDto customer) {
+        int cnt = 0;
+        try {
+            return customerMapper.update(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cnt;
+    }
+
+    public CustomerDto getByCustomerId(int customerUniqueNumber) {
+        return customerMapper.getByCustomerId(customerUniqueNumber);
+    }
+
     public CustomerDto getCustomer(int customerUniqueNumber) {
         return customerMapper.select(customerUniqueNumber);
     }

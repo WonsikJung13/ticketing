@@ -13,7 +13,11 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-
+<c:if test="${not empty message }">
+    <div class="alert alert-success">
+            ${message }
+    </div>
+</c:if>
 <div class="container-md">
     <div class="row">
         <div class="col">
@@ -29,6 +33,13 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">
+                    생년월일
+                </label>
+                <input class="form-control" type="date" value="${customer.customerBirth}" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">
                     아이디
                 </label>
                 <input class="form-control" type="text" value="${customer.customerId}" readonly>
@@ -38,7 +49,7 @@
                 <label for="" class="form-label">
                     비밀번호
                 </label>
-                <input class="form-control" type="text" value="${customer.customerPassword}" readonly>
+                <input class="form-control" type="password" value="${customer.customerPassword}" readonly>
             </div>
 
             <div class="mb-3">
@@ -66,7 +77,7 @@
                 <label for="" class="form-label">
                     가입일시
                 </label>
-                <input class="form-control" type="text" value="${customer.customerInserted}" readonly>
+                <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
             </div>
 
         </div>
@@ -75,6 +86,13 @@
 
 <br>
 
+<c:url value="/customer/modify" var="modifyLink">
+    <c:param name="customerUniqueNumber" value="${customer.customerUniqueNumber}"></c:param>
+</c:url>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <a class = "btn btn-warning " href="${modifyLink}">수정하기</a>
+    <input class="btn btn-danger" type="submit" value="삭제하기" data-bs-toggle="modal" data-bs-target="#removeModal">
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
