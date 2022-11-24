@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
 @Transactional
 public class CustomerService {
     @Setter(onMethod_ = @Autowired)
     private CustomerMapper customerMapper;
 
-    public String getCustomer(int customerUniqueNumber) {
+    public CustomerDto getCustomer(int customerUniqueNumber) {
         return customerMapper.select(customerUniqueNumber);
     }
 

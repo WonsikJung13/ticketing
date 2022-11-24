@@ -83,21 +83,21 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">
-                        주소
-                    </label>
-
-                    <div class="input-group">
-                        <input class="form-control" type="text" name="customerAddress">
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
                         핸드폰 번호
                     </label>
 
                     <div class="input-group">
                         <input class="form-control" type="text" name="customerPhoneNumber">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        주소
+                    </label>
+
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="customerAddress">
                     </div>
                 </div>
 

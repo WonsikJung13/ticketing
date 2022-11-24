@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 @Controller
 @RequestMapping("customer")
 public class CustomerController {
@@ -21,7 +22,7 @@ public class CustomerController {
 
     @RequestMapping("get")
     public void method(@RequestParam(name = "customerUniqueNumber", defaultValue = "1") int customerUniqueNumber, Model model) {
-        String customer = customerService.getCustomer(customerUniqueNumber);
+        CustomerDto customer = customerService.getCustomer(customerUniqueNumber);
         System.out.println(customer);
 
         model.addAttribute("customer", customer);
