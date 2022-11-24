@@ -7,4 +7,21 @@
 
 
 
+    <select id="list" resultType="com.limdaram.ticketing.domain.content.ContentDto">
+    SELECT
+        contentId,
+        contentName,
+        contentRegion,
+        contentStartDate,
+        contentEndDate,
+        contentPrice,
+        contentBoard
+    FROM Content
+    ORDER BY contentId DESC
+    </select>
+
+    <insert id="insert">
+        INSERT INTO Content (contentName, contentRegion, contentStartDate, contentPrice, contentBoard)
+        VALUES (#{contentName}, #{contentRegion}, #{contentStartDate}, #{contentPrice}, #{contentBoard})
+    </insert>
 </mapper>
