@@ -24,8 +24,8 @@ public class CustomerService {
         return cnt;
     }
 
-    public CustomerDto getByCustomerId(int customerUniqueNumber) {
-        return customerMapper.getByCustomerId(customerUniqueNumber);
+    public CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber) {
+        return customerMapper.getByCustomerUniqueNumber(customerUniqueNumber);
     }
 
     public CustomerDto getCustomer(int customerUniqueNumber) {
@@ -34,5 +34,9 @@ public class CustomerService {
 
     public int insert(CustomerDto customer) {
         return customerMapper.insert(customer);
+    }
+
+    public int remove(CustomerDto customer) {
+        return customerMapper.delete(customer);
     }
 }

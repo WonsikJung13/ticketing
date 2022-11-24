@@ -8,7 +8,9 @@ public interface CustomerMapper {
 
     int insert(CustomerDto customer);
 
-    CustomerDto getByCustomerId(int customerUniqueNumber);
+    CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber);
 
     int update(CustomerDto customer);
+
+    int delete(CustomerDto customer);
 }

@@ -15,7 +15,7 @@
         VALUES (#{customerId}, #{customerPassword}, #{customerEmail}, #{customerName}, #{customerAddress}, #{customerPhoneNumber}, #{customerBirth})
     </insert>
 
-    <select id="getByCustomerId" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
+    <select id="getByCustomerUniqueNumber" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
         SELECT *
         FROM Customer
         WHERE customerUniqueNumber = #{customerUniqueNumber}
@@ -32,5 +32,9 @@
         WHERE customerUniqueNumber = #{customerUniqueNumber}
     </update>
 
+    <delete id="delete">
+        DELETE FROM Customer
+        WHERE customerUniqueNumber = #{customerUniqueNumber}
+    </delete>
 
 </mapper>

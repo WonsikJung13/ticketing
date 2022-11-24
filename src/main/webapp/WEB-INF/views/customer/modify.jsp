@@ -81,6 +81,13 @@
                     <input class="form-control" type="text" value="${customer.customerAddress }" name="customerAddress">
                 </div>
 
+                <div class="mb-3">
+                    <label for="" class="form-label">
+                        등급
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerGrade }" readonly>
+                </div>
+
                 <div class="mb-3" >
                     <label for="" class="form-label">
                         가입일시

@@ -75,6 +75,13 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">
+                    등급
+                </label>
+                <input class="form-control" type="text" value="${customer.customerGrade}" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">
                     가입일시
                 </label>
                 <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
@@ -89,14 +96,56 @@
 <c:url value="/customer/modify" var="modifyLink">
     <c:param name="customerUniqueNumber" value="${customer.customerUniqueNumber}"></c:param>
 </c:url>
+<c:url value="/customer/remove" var="removeLink">
+    <%--     <c:param name="id" value="${member.id}"></c:param>--%>
+</c:url>
+
+<form id="form2" action="${removeLink }" method="post">
+    <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+    <input type="hidden" name="oldPassword">
+</form>
+
 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
     <a class = "btn btn-warning " href="${modifyLink}">수정하기</a>
     <input class="btn btn-danger" type="submit" value="삭제하기" data-bs-toggle="modal" data-bs-target="#removeModal">
 </div>
 
+<br>
+
+<!-- remove Modal -->
+<div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">기존 암호 입력</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="oldPasswordInput2" type="text" class="form-control">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="modalConfirmButton2" type="button" class="btn btn-danger">탈퇴</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
+</script>
+
+<script>
+    document.querySelector("#modalConfirmButton2").addEventListener("click", function() {
+        const form = document.forms.form2;
+        const modalInput = document.querySelector("#oldPasswordInput2");
+        const formOldPasswordInput = document.querySelector(`#form2 input[name="oldPassword"]`)
+
+        formOldPasswordInput.value = modalInput.value;
+
+        form.submit();
+    });
 </script>
 
 </body>

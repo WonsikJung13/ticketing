@@ -44,13 +44,13 @@ public class CustomerController {
 
     @GetMapping({ "modify"})
     public void customer(int customerUniqueNumber, Model model) {
-        model.addAttribute("customer", customerService.getByCustomerId(customerUniqueNumber));
+        model.addAttribute("customer", customerService.getByCustomerUniqueNumber(customerUniqueNumber));
     }
 
     @PostMapping("modify")
     public String modify(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
 
-        CustomerDto oldCustomer = customerService.getByCustomerId(customer.getCustomerUniqueNumber());
+        CustomerDto oldCustomer = customerService.getByCustomerUniqueNumber(customer.getCustomerUniqueNumber());
 
         rttr.addAttribute("customerUniqueNumber", customer.getCustomerUniqueNumber());
         if (oldCustomer.getCustomerPassword().equals(oldPassword)) {
@@ -66,6 +66,25 @@ public class CustomerController {
         } else {
             rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되지 않았습니다.");
             return "redirect:/customer/modify";
+        }
+    }
+
+    @PostMapping("remove")
+    public String remove(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
+
+        CustomerDto oldCustomer = customerService.getByCustomerUniqueNumber(customer.getCustomerUniqueNumber());
+
+        if (oldCustomer.getCustomerPassword().equals(oldPassword)) {
+            int cnt = customerService.remove(customer);
+
+            rttr.addFlashAttribute("message", "회원 탈퇴하였습니다.");
+
+            return "redirect:/customer/get";
+
+        } else {
+            rttr.addAttribute("customerUniqueNumber", customer);
+            rttr.addFlashAttribute("message", "암호가 일치하지 않습니다.");
+            return "redirect:/customer/get";
         }
     }
 
