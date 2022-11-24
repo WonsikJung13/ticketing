@@ -4,9 +4,5 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.limdaram.ticketing.mapper.customer.CustomerMapper">
-    <select id="select" resultType="string">
-        SELECT customerName
-        FROM Customer
-        WHERE id = #{id}
-    </select>
+
 </mapper>
