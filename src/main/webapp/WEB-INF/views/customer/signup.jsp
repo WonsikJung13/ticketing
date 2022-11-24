@@ -14,9 +14,10 @@
 </head>
 <body>
 
-${customer}님의 회원정보
+<h1>회원가입 하기</h1>
 
-<h1>회원 정보 보기</h1>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
