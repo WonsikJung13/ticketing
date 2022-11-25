@@ -47,26 +47,26 @@
                     </label>
 
                     <div class="input-group">
-                        <input class="form-control" type="text" name="customerId">
-                        <button class="btn btn-outline-secondary" type="button">중복확인</button>
+                        <input id="customerIdInput" class="form-control" type="text" name="customerId">
+                        <button id="customerIdButton" class="btn btn-outline-secondary" type="button">중복확인</button>
                     </div>
 
-                    <div class="form-text">어떤 메시지....</div>
+                    <div id="customerIdText" class="form-text"></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">
                         비밀번호
                     </label>
-                    <input class="form-control" type="password" name="customerPassword">
-                    <div class="form-text">암호 확인 결과...</div>
+                    <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword">
+                    <div id="customerPasswordText" class="form-text">암호 확인 결과...</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">
                         비밀번호 확인
                     </label>
-                    <input class="form-control" type="password">
+                    <input id="customerPasswordInput2" class="form-control" type="password">
                 </div>
 
                 <div class="mb-3">
@@ -74,11 +74,11 @@
                         이메일
                     </label>
                     <div class="input-group">
-                        <input class="form-control" type="email" name="customerEmail">
-                        <button class="btn btn-outline-secondary" type="button">중복확인</button>
+                        <input id="customerEmailInput" class="form-control" type="email" name="customerEmail">
+                        <button id="customerEmailButton" class="btn btn-outline-secondary" type="button">중복확인</button>
                     </div>
 
-                    <div class="form-text">확인 메시지....</div>
+                    <div id="customerEmailText" class="form-text"></div>
                 </div>
 
                 <div class="mb-3">
@@ -87,8 +87,11 @@
                     </label>
 
                     <div class="input-group">
-                        <input class="form-control" type="text" name="customerPhoneNumber">
+                        <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber">
+                        <button id="customerPhoneNumberButton" class="btn btn-outline-secondary" type="button">중복확인</button>
                     </div>
+                    <div id="customerPhoneNumberText" class="form-text">확인 메시지....</div>
+
                 </div>
 
                 <div class="mb-3">
@@ -105,12 +108,50 @@
             </form>
         </div>
     </div>
-
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
+</script>
+<script>
+    const ctx = "${pageContext.request.contextPath}";
+
+    // 1. 아이디 중복 확인
+    document.querySelector("#customerIdButton").addEventListener("click", function () {
+        const insertCustomerId = document.querySelector("#customerIdInput").value;
+
+        fetch(ctx + "/customer/checkId/" + insertCustomerId)
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector("#customerIdText").innerText = data.message;
+
+                if (data.status == "not exist") {
+
+                }
+            })
+    })
+
+    // 2. 이메일 중복 확인
+    document.querySelector("#customerEmailButton").addEventListener("click", function () {
+        const insertCustomerEmail = document.querySelector("#customerEmailInput").value;
+
+        fetch(ctx + "/customer/checkEmail/" + insertCustomerEmail)
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector("#customerEmailText").innerText = data.message;
+
+                if (data.status == "not exist") {
+
+                }
+            })
+    })
+
+    // 3. 핸드폰 번호 중복 확인
+    document.querySelector("customer")
+
+
 </script>
 
 </body>

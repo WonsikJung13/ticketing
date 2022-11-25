@@ -13,4 +13,8 @@ public interface CustomerMapper {
     int update(CustomerDto customer);
 
     int delete(CustomerDto customer);
+
+    CustomerDto getByCustomerId(String customerId);
+
+    CustomerDto getByCustomerEmail(String customerEmail);
 }
