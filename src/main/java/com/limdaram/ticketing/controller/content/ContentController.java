@@ -48,7 +48,7 @@ public class ContentController {
     @GetMapping("get")
     public void get(int contentId, Model model) {
         ContentDto content = service.get(contentId);
-        System.out.println("조회창" + contentId);
+        System.out.println("조회창 " + contentId);
         model.addAttribute("content", content);
 
     }
@@ -56,7 +56,7 @@ public class ContentController {
     @GetMapping("modify")
     public void modify(int contentId, Model model) {
         ContentDto content = service.get(contentId);
-
+        System.out.println("수정창 " + contentId);
         model.addAttribute("content", content);
     }
 
@@ -64,6 +64,7 @@ public class ContentController {
     @PostMapping("modify")
     public String modify(ContentDto content, RedirectAttributes rttr) {
         int cnt = service.update(content);
+        System.out.println("수정완료 " + content);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 수정 완료");
@@ -76,8 +77,9 @@ public class ContentController {
 
 //    삭제
     @PostMapping("remove")
-    public String remove(int id, RedirectAttributes rttr) {
-        int cnt = service.remove(id);
+    public String remove(int contentId, RedirectAttributes rttr) {
+        int cnt = service.remove(contentId);
+        System.out.println("삭제완료 " + contentId);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 삭제 완료");
