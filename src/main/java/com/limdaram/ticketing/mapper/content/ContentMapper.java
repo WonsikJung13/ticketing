@@ -10,4 +10,8 @@ public interface ContentMapper {
     List<ContentDto> list();
 
     ContentDto select(int contentId);
+
+    int update(ContentDto content);
+
+    int delete(int contentId);
 }

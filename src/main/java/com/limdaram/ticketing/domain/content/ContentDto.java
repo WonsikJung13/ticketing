@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Data
 public class ContentDto {
-    private Integer contentId;
+    private int contentId;
     private String contentName;
     private String contentRegion;
     private String contentBoard;
@@ -17,7 +17,7 @@ public class ContentDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contentEndDate;
 
-    private Integer contentPrice;
+    private int contentPrice;
 
     }
 

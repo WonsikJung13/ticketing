@@ -13,8 +13,8 @@ public class ContentService {
     @Autowired
     private ContentMapper mapper;
 
-    public void register(ContentDto content) {
-        mapper.insert(content);
+    public int register(ContentDto content) {
+        return mapper.insert(content);
     }
 
     public List<ContentDto> listContent() {
@@ -22,7 +22,16 @@ public class ContentService {
     }
 
     public ContentDto get(int contentId) {
-
         return mapper.select(contentId);
+    }
+
+//    컨텐츠수정
+    public int update(ContentDto content) {
+        return mapper.update(content);
+    }
+
+//    컨텐츠삭제
+    public int remove(int contentId) {
+        return mapper.delete(contentId);
     }
 }

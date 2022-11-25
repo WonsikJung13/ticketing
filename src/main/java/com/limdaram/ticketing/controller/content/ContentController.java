@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -24,10 +25,15 @@ public class ContentController {
     }
 
     @PostMapping("register")
-    public String register(ContentDto content) {
-        System.out.println(content);
+    public String register(ContentDto content, RedirectAttributes rttr) {
+        System.out.println("등록" + content);
+        int cnt = service.register(content);
 
-        service.register(content);
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message", "상품 등록 완료");
+        } else {
+            rttr.addFlashAttribute("message", "상품 등록 실패");
+        }
 
         return "redirect:/content/list";
     }
@@ -42,8 +48,43 @@ public class ContentController {
     @GetMapping("get")
     public void get(int contentId, Model model) {
         ContentDto content = service.get(contentId);
-        System.out.println(contentId);
+        System.out.println("조회창" + contentId);
         model.addAttribute("content", content);
 
+    }
+
+    @GetMapping("modify")
+    public void modify(int contentId, Model model) {
+        ContentDto content = service.get(contentId);
+
+        model.addAttribute("content", content);
+    }
+
+//    수정
+    @PostMapping("modify")
+    public String modify(ContentDto content, RedirectAttributes rttr) {
+        int cnt = service.update(content);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message", "상품 수정 완료");
+        } else {
+            rttr.addFlashAttribute("message", "상품 수정 실패");
+        }
+
+        return "redirect:/content/list";
+    }
+
+//    삭제
+    @PostMapping("remove")
+    public String remove(int id, RedirectAttributes rttr) {
+        int cnt = service.remove(id);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message", "상품 삭제 완료");
+        } else {
+            rttr.addFlashAttribute("message", "상품 삭제 실패");
+        }
+
+        return "redirect:/content/list";
     }
 }
