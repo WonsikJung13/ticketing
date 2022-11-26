@@ -35,12 +35,12 @@ public class ContentController {
             rttr.addFlashAttribute("message", "상품 등록 실패");
         }
 
-        return "redirect:/content/list";
+        return "redirect:/content/get?{contentId}";
     }
 
     @GetMapping("list")
-    public void list(Model model) {
-        List<ContentDto> list = service.listContent();
+    public void list(Model model, ContentDto contentDto) {
+        List<ContentDto> list = service.listContent(contentDto);
 
         model.addAttribute("contentList", list);
     }

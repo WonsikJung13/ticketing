@@ -56,4 +56,13 @@
         DELETE FROM Content
         WHERE contentID = #{contentId}
     </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM Content
+    </select>
+
+<!--    <insert id="insertFile">-->
+<!--        INSERT INTO File (contentId, contentName)-->
+<!--        VALUES (${contentId}, #{fileName})-->
+<!--    </insert>-->
 </mapper>

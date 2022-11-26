@@ -25,6 +25,7 @@
 <body>
 
 
+</div>
     <h1>상품 등록</h1>
     <form action="" method="post">
         상품명 <input type="text" name="contentName">
@@ -42,6 +43,10 @@
         <input type="submit" value="등록">
     </form>
 
+    <div class="posterBox">
+        <label for="" class="form-label">파일</label>
+        <input type="file" accept=""imag*" class="form-control" name="file">
+    </div>
     <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

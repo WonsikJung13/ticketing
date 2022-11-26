@@ -18,6 +18,6 @@ public class ContentDto {
     private LocalDate contentEndDate;
 
     private int contentPrice;
-
+    private int countContent;
     }
 

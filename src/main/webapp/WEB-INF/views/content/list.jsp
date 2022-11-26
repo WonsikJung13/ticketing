@@ -35,6 +35,7 @@
 <%--      <div><a href="javascript:Sort('1')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_01.gif" alt="금일랭킹순"></a><a href="javascript:Sort('2')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_02.gif" alt="주간랭킹순"></a><a href="javascript:Sort('3')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_03.gif" alt="월간랭킹순"></a><a href="javascript:Sort('4')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_04_on.gif" alt="상품명순"></a><a href="javascript:Sort('5')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_05.gif" alt="공연종료임박순"></a></div>--%>
 <%--      <div class="RK_total2"> <span class="Rkper">총 140개</span>의 상품이 있습니다. </div>--%>
 <%--    </div>--%>
+  <p>총 ${contentDto.countContent} 개의 상품이 있습니다.</p>
     <div class="container-md">
       <div class="stit">
         <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered align-middle">

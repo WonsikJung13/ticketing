@@ -17,7 +17,11 @@ public class ContentService {
         return mapper.insert(content);
     }
 
-    public List<ContentDto> listContent() {
+    public List<ContentDto> listContent(ContentDto contentDto) {
+        int countAll = mapper.countAll();
+
+        contentDto.setCountContent(countAll);
+
         return mapper.list();
     }
 

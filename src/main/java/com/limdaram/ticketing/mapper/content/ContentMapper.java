@@ -14,4 +14,8 @@ public interface ContentMapper {
     int update(ContentDto content);
 
     int delete(int contentId);
+
+    int countAll();
+
+    int insertFile(int contentId);
 }

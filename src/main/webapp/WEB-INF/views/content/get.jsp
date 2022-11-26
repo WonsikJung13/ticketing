@@ -54,6 +54,8 @@
         </div>
     </div>
 
+
+
     <!-- 삭제버튼 누르면 -->
     <script>
         document.querySelector("#removeConfirmButton").addEventListener("click", function() {
