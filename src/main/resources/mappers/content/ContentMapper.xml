@@ -5,7 +5,7 @@
 
 <mapper namespace="com.limdaram.ticketing.mapper.content.ContentMapper">
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="contentId">
         INSERT INTO Content (contentName, contentRegion, contentStartDate, contentEndDate, contentPrice, contentBoard)
         VALUES (#{contentName}, #{contentRegion}, #{contentStartDate}, #{contentEndDate}, #{contentPrice}, #{contentBoard})
     </insert>
@@ -61,8 +61,8 @@
         SELECT COUNT(*) FROM Content
     </select>
 
-<!--    <insert id="insertFile">-->
-<!--        INSERT INTO File (contentId, contentName)-->
-<!--        VALUES (${contentId}, #{fileName})-->
-<!--    </insert>-->
+    <insert id="insertFile">
+        INSERT INTO ContentPoster (contentId, contentPosterName)
+        VALUES (${contentId}, #{fileName})
+    </insert>
 </mapper>
