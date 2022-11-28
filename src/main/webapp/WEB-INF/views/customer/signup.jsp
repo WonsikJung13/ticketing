@@ -30,7 +30,7 @@
                         <input id="customerNameInput" class="form-control" type="text" name="customerName">
                     </div>
 
-                    <div style="color: red" id="customerNameText" class="form-text">이름을 작성해주세요</div>
+                    <div style="color: red" id="customerNameText" class="form-text"></div>
                 </div>
 
                 <div class="mb-3">
@@ -92,8 +92,7 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber"
-                               value="" placeholder="숫자만 입력" autocomplete="off">
+                        <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber" placeholder="숫자만 입력">
                     </div>
 
                     <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
@@ -125,6 +124,8 @@
 <script>
     const ctx = "${pageContext.request.contextPath}";
 
+    let checkedDoubleId = false;
+    let checkedDoubleEmail = false;
     let checkedId = false;
     let checkedEmail = false;
     let checkedPassword = false;
@@ -137,7 +138,7 @@
 
     // 1. 아이디 중복 확인
     document.querySelector("#customerIdButton").addEventListener("click", function () {
-        checkedId = false;
+        checkedDoubleId = false;
         const insertCustomerId = document.querySelector("#customerIdInput").value;
 
         fetch(ctx + "/customer/checkId/" + insertCustomerId)
@@ -147,14 +148,14 @@
 
                 if (data.statusId == "not exist") {
                     customerIdText.removeAttribute("style");
-                    checkedId = true;
+                    checkedDoubleId = true;
                 }
             })
     })
 
     // 2. 이메일 중복 확인
     document.querySelector("#customerEmailButton").addEventListener("click", function () {
-        checkedEmail = false;
+        checkedDoubleEmail = false;
         const insertCustomerEmail = document.querySelector("#customerEmailInput").value;
 
         fetch(ctx + "/customer/checkEmail/" + insertCustomerEmail)
@@ -164,7 +165,7 @@
 
                 if (data.statusEmail == "not exist") {
                     customerEmailText.removeAttribute("style");
-                    checkedEmail = true;
+                    checkedDoubleEmail = true;
                 }
             })
     })
@@ -173,28 +174,47 @@
     document.querySelector("#submitButton").addEventListener("click", function (e) {
         e.preventDefault();
 
-        if (checkedId && checkedEmail && checkedPassword && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress) {
+        console.log(checkedBirth)
+
+
+        if (checkedId && checkedDoubleId && checkedDoubleEmail && checkedEmail && checkedPassword && checkedPassword1 && checkedPassword2 && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress) {
             document.getElementById('formId').submit();
         } else {
-            if (checkedId == false) {
-                alert("아이디 중복확인 해주세요")
-            } else if (checkedEmail == false) {
-                alert("이메일 중복확인 해주세요")
+            if (checkedName == false) {
+                customerNameText.innerText = "이름을 작성해주세요"
+                document.getElementById("customerNameInput").focus();
+            } else if (checkedBirth == false) {
+                customerBirthText.innerText = "생년월일을 선택해주세요"
+                document.getElementById("customerBirthInput").focus();
+            } else if (checkedId == false) {
+                customerIdText.innerText = "아이디를 작성해주세요"
+                document.getElementById("customerIdInput").focus();
+            } else if (checkedDoubleId == false) {
+                customerIdText.innerText = "아이디 중복확인 해주세요"
+                document.getElementById("customerIdInput").focus();
+            } else if (checkedPassword1 == false) {
+                customerPasswordText1.innerText = "비밀번호를 작성해주세요"
+                document.getElementById("customerPasswordInput1").focus();
+            } else if (checkedPassword2 == false) {
+                customerPasswordText2.innerText = "비밀번호를 한번 더 작성해주세요"
+                document.getElementById("customerPasswordInput2").focus();
             } else if (checkedPassword == false) {
-                alert("패스워드가 일치하지 않습니다")
+                customerPasswordText.innerText = "비밀번호가 일치하지 않습니다"
+                document.getElementById("customerPasswordInput2").focus();
+            } else if (checkedEmail == false) {
+                customerEmailText.innerText = "이메일을 작성해주세요"
+                document.getElementById("customerEmailInput").focus();
+            } else if (checkedDoubleEmail == false) {
+                customerEmailText.innerText = "이메일 중복확인 해주세요"
+                document.getElementById("customerEmailInput").focus();
+            } else if (checkedPhoneNumber == false) {
+                customerPhoneNumberText.innerText = "핸드폰 번호를 입력해주세요"
+                document.getElementById("customerPhoneNumberInput").focus();
+            } else if (checkedAddress == false) {
+                customerAddressText.innerText = "주소를 입력해주세요"
+                document.getElementById("customerAddressInput").focus();
             }
         }
-    })
-
-    // 3-2. 아이디 수정하고 다시 중복확인 해야 가입 가능
-    document.querySelector("#customerIdInput").addEventListener("keyup", function () {
-        checkedId = false;
-
-    })
-
-    // 3-3. 이메일 수정하고 다시 중복확인 해야 가입 가능
-    document.querySelector("#customerEmailInput").addEventListener("keyup", function () {
-        checkedEmail = false;
     })
 
     // 4. 비밀번호 일치하는지 확인
@@ -209,11 +229,12 @@
         const samePassword2 = customerPasswordInput2.value;
 
         if (samePassword1 == samePassword2) {
-            customerPasswordText.innerText = "패스워드가 일치합니다"
+            customerPasswordText.innerText = "비밀번호가 일치합니다"
             customerPasswordText.removeAttribute("style");
             checkedPassword = true;
         } else {
-            customerPasswordText.innerText = "패스워드가 일치하지 않습니다"
+            customerPasswordText.innerText = "비밀번호가 일치하지 않습니다"
+            customerPasswordText.setAttribute("style", "color: red")
         }
     }
 
@@ -244,9 +265,9 @@
 
         if (name == "") {
             customerNameText.innerText = "이름을 작성해주세요"
-            checkedName = true;
         } else {
             customerNameText.innerText = ""
+            checkedName = true;
         }
     }
 
@@ -259,13 +280,13 @@
 
         if (birth == "") {
             customerBirthText.innerText = "생년월일을 선택해주세요"
-            checkedBirth = true;
         } else {
             customerBirthText.innerText = ""
+            checkedBirth = true;
         }
     }
 
-    document.querySelector("#customerBirthInput").addEventListener("keyup", matchBirth);
+    document.querySelector("#customerBirthInput").addEventListener("change", matchBirth);
 
     function matchId() {
         checkedId = false;
@@ -274,9 +295,9 @@
 
         if (id == "") {
             customerIdText.innerText = "아이디를 작성해주세요"
-            checkedId = true;
         } else {
             customerIdText.innerText = ""
+            checkedId = true;
         }
     }
 
@@ -289,9 +310,10 @@
 
         if (password1 == "") {
             customerPasswordText1.innerText = "패스워드를 작성해주세요"
-            checkedPassword1 = true;
+            customerPasswordText1.setAttribute("style", "color:red");
         } else {
             customerPasswordText1.innerText = ""
+            checkedPassword1 = true;
         }
     }
 
@@ -304,9 +326,9 @@
 
         if (password2 == "") {
             customerPasswordText2.innerText = "패스워드를 한번 더 작성해주세요"
-            checkedPassword2 = true;
         } else {
             customerPasswordText2.innerText = ""
+            checkedPassword2 = true;
         }
     }
 
@@ -319,9 +341,9 @@
 
         if (email == "") {
             customerEmailText.innerText = "이메일을 작성해주세요"
-            checkedEmail = true;
         } else {
             customerEmailText.innerText = ""
+            checkedEmail = true;
         }
     }
 
@@ -334,13 +356,13 @@
 
         if (phoneNumber == "") {
             customerPhoneNumberText.innerText = "핸드폰 번호를 작성해주세요"
-            checkedPhoneNumber = true;
         } else {
             customerPhoneNumberText.innerText = ""
+            checkedPhoneNumber = true;
         }
     }
 
-    document.querySelector("#customerPhoneNumberText").addEventListener("keyup", matchPhoneNumber);
+    document.querySelector("#customerPhoneNumberInput").addEventListener("keyup", matchPhoneNumber);
 
     function matchAddress() {
         checkedAddress = false;
@@ -349,69 +371,15 @@
 
         if (address == "") {
             customerAddressText.innerText = "주소를 작성해주세요"
-            checkedAddress = true;
         } else {
             customerAddressText.innerText = ""
+            checkedAddress = true;
         }
     }
 
-    document.querySelector("#customerAddressText").addEventListener("keyup", matchAddress);
+    document.querySelector("#customerAddressInput").addEventListener("keyup", matchAddress);
 
-    // function checkForm() {
-    //     console.log("------------------------------------------")
-    //
-    //     if (customerNameInput == "") {
-    //         // customerNameInput.focus();
-    //         customerNameText.innerText = "이름을 입력해주세요";
-    //         return false;
-    //     } else {
-    //         customerNameText.innerText = "";
-    //     }
-    //     // else if (!customerBirthInput == "") {
-    //     //     customerBirthText.innerText = "생년월일을 선택해주세요"
-    //     // }
-    //     if (customerIdInput == "") {
-    //         customerIdText.innerText = "아이디를 입력해주세요";
-    //
-    //     }
-    //
-    //     if (!customerPasswordInput1 == "") {
-    //         customerPasswordText1.innerText = "비밀번호를 입력해주세요";
-    //
-    //     }
-    //
-    //     if (!customerPasswordInput2 == "") {
-    //         customerPasswordText2.innerText = "비밀번호를 한번 더 입력해주세요";
-    //
-    //     }
-    //
-    //     if (!customerEmailInput == "") {
-    //         customerEmailText.innerText = "이메일을 입력해주세요";
-    //
-    //     }
-    //
-    //     if (!customerPhoneNumberInput == "") {
-    //         customerPhoneNumberText.innerText = "핸드폰 번호를 입력해주세요";
-    //
-    //     }
-    //
-    //     if (!customerAddressInput == "") {
-    //         customerAddressText.innerText = "주소를 입력해주세요";
-    //
-    //     }
-    //     // else if (checkedId == false) {
-    //     //     alert("아이디 중복확인 해주세요")
-    //     // } else if (checkedEmail == false) {
-    //     //     alert("이메일 중복확인 해주세요")
-    //     // } else if (checkedPassword == false) {
-    //     //     alert("패스워드가 일치하지 않습니다")
-    //     // }
-    //
-    //
-    //     if (checkedId && checkedEmail && checkedPassword) {
-    //         document.getElementById('formId').submit();
-    //     }
-    // }
+
 
 </script>
 
