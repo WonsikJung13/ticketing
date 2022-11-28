@@ -37,4 +37,16 @@
         WHERE customerUniqueNumber = #{customerUniqueNumber}
     </delete>
 
+    <select id="getByCustomerId" resultType="com.limdaram.ticketing.domain.customer.CustomerDto" >
+        SELECT *
+        FROM Customer
+        WHERE customerId = #{customerId}
+    </select>
+
+    <select id="getByCustomerEmail" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
+        SELECT *
+        FROM Customer
+        WHERE customerEmail = #{customerEmail}
+    </select>
+
 </mapper>
