@@ -70,19 +70,7 @@ public class ReplyController {
     @PostMapping("register")
     public String register(ReplyDto reply,
                            RedirectAttributes rttr) {
-        // * 파일업로드
-        // 1. web.xml
-        //    dispatcherServlet 설정에 multipart-config 추가
-        // 2. form 에 enctype="multipart/form-data" 속성 추가
-        // 3. Controller의 메소드 argument type : MultipartFile
 
-        // request param 수집/가공
-//        System.out.println(files.length);
-//        for (MultipartFile file : files) {
-//            System.out.println(file.getOriginalFilename());
-//        }
-        // busines  logic
-        // int cnt = service.register(board, files);
         int cnt = replyService.register(reply);
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "새 게시물이 등록되었습니다.");
@@ -94,4 +82,26 @@ public class ReplyController {
         return "redirect:/reply/list";
     }
 
+    @PostMapping("modify")
+    public String modify(ReplyDto replyDto, RedirectAttributes rttr) {
+        System.out.println("zjsxmfhffj"+replyDto);
+
+//        replyDto.setReplyContent(rttr.getAttribute());
+
+        int cnt = replyService.update(replyDto);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message", replyDto.getReplyId() + "번 게시물을 수정하였습니다.");
+        } else {
+            rttr.addFlashAttribute("message", replyDto.getReplyId() + "번 게시물을 수정하지 못했습니다.");
+        }
+
+        return "redirect:/reply/list";
+    }
+
+    @GetMapping("modify")
+    public void modify(int id, Model model) {
+        ReplyDto replyDto = replyService.get(id);
+        model.addAttribute("Reply", replyDto);
+    }
 }

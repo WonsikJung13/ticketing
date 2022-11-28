@@ -20,7 +20,16 @@
 </head>
 <body>
 
+
+
 <table class="table">
+    <tr>
+        <td>후기 번호</td>
+        <td>작성자</td>
+        <td>제목</td>
+        <td>작성일자</td>
+        <td>게시물 번호</td>
+    </tr>
     <c:forEach items="${replyList}" var="Reply">
         <tr>
             <td>${Reply.replyId }</td>
@@ -41,8 +50,6 @@
             </td>
             <td>${Reply.replyContent }</td>
             <td>${Reply.time }</td>
-        </tr>
-        <tr>
             <td>${Reply.contentId }</td>
         </tr>
     </c:forEach>

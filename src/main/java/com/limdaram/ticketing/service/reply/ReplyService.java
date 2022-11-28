@@ -33,6 +33,10 @@ public class ReplyService {
     }
 
 
+    public int update(ReplyDto reply) {
+        System.out.println("서비스" + reply);
+        return replyMapper.updateReply(reply); }
+
     public int register(ReplyDto reply) {
         // db에 게시물 정보 저장
         int cnt = replyMapper.insert(reply);
