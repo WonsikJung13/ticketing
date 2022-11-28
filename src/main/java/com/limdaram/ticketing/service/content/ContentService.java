@@ -22,7 +22,7 @@ public class ContentService {
         int cnt = mapper.insert(content);
 
         if (file != null && file.getSize() > 0) {
-            // db에 파일 정보 저장(id, filename)
+            // db에 파일 정보 저장(contentid, filename)
             mapper.insertFile(content.getContentId(), file.getOriginalFilename());
 
             // 파일 저장// board id 이름의 새폴더 만들기
@@ -39,7 +39,8 @@ public class ContentService {
                 throw new RuntimeException(e);
             }
         }
-        return mapper.insert(content, file);
+        System.out.println(content);
+        return cnt;
     }
 
     public List<ContentDto> listContent(ContentDto contentDto) {

@@ -32,7 +32,8 @@ public class ContentController {
             MultipartFile file,
             RedirectAttributes rttr) {
         System.out.println("등록" + content);
-        System.out.println(file.getOriginalFilename());
+        System.out.println(content.getContentId());
+//        System.out.println(file);
 
         int cnt = service.register(content, file);
 

@@ -7,6 +7,8 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -23,6 +25,8 @@
     <title>상품 수정</title>
 </head>
 <body>
+<my:navBar/>
+
 <h1>${content.contentName} 상품 수정</h1>
 <form id="modifyForm" action="" method="post">
     상품명 <input type="text" name="contentName" value="${content.contentName}" > <br>
