@@ -96,10 +96,10 @@ public class CustomerController {
         CustomerDto customer = customerService.getByCustomerId(customerId);
 
         if (customer == null) {
-            map.put("status", "not exist");
+            map.put("statusId", "not exist");
             map.put("message", "사용 가능한 아이디입니다");
         } else {
-            map.put("status", "exist");
+            map.put("statusId", "exist");
             map.put("message", "이미 존재하는 아이디입니다");
         }
 
@@ -113,10 +113,10 @@ public class CustomerController {
         CustomerDto customer = customerService.getByCustomerEmail(customerEmail);
 
         if (customer == null) {
-            map.put("status", "not exist");
+            map.put("statusEmail", "not exist");
             map.put("message", "사용 가능한 이메일입니다");
         } else {
-            map.put("status", "exist");
+            map.put("statusEmail", "exist");
             map.put("message", "이미 존재하는 이메일입니다");
         }
         return map;
