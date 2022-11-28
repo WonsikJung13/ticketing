@@ -12,7 +12,8 @@
             replyContent,
             replyInserted,
             contentId
-        FROM Reply
+        FROM
+            Reply
     </select>
 
     <select id="select" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
@@ -22,8 +23,10 @@
             replyContent,
             replyInserted,
             replyMainText
-        FROM Reply
-        WHERE replyId = #{id}
+        FROM
+            Reply
+        WHERE
+            replyId = #{id}
     </select>
 
     <insert id="addReply">
@@ -31,7 +34,7 @@
             replyName,
             replyContent,
             replyInserted
-            )
+        )
         VALUES (
             #{replyName},
             #{replyContent},
@@ -48,18 +51,26 @@
 
     <insert id="insert">
         INSERT INTO Reply(
-            contentId,
             replyName,
-            replyContent
+            replyContent,
+            replyMainText
         )
         VALUES(
-            #{contentId},
             #{replyName},
-            #{replyContent}
+            #{replyContent},
+            #{replyMainText}
         )
     </insert>
 
-
+    <update id="updateReply">
+        UPDATE
+            Reply
+        SET
+            replyContent = #{replyContent},
+            replyMainText = #{replyMainText}
+        WHERE
+            replyId = #{replyId}
+    </update>
 
 
 </mapper>

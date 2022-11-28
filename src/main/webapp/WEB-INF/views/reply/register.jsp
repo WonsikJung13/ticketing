@@ -24,13 +24,6 @@
 <form action="" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label class="form-label">
-            아이디
-        </label>
-        <input class="form-control" type="text" name="contentId">
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">
             작성자
         </label>
         <input class="form-control" type="text" name="replyName">
@@ -38,9 +31,16 @@
 
     <div class="mb-3">
         <label class="form-label">
+            제목
+        </label>
+        <input class="form-control" type="text" name="replyContent">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">
             본문
         </label>
-        <textarea class="form-control" name="replyContent"></textarea>
+        <textarea class="form-control" name="replyMainText"></textarea>
     </div>
 
     <input class="btn btn-primary" type="submit" value="등록">
