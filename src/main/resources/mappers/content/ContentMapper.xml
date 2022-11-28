@@ -5,6 +5,64 @@
 
 <mapper namespace="com.limdaram.ticketing.mapper.content.ContentMapper">
 
+    <insert id="insert" useGeneratedKeys="true" keyProperty="contentId">
+        INSERT INTO Content (contentName, contentRegion, contentStartDate, contentEndDate, contentPrice, contentBoard)
+        VALUES (#{contentName}, #{contentRegion}, #{contentStartDate}, #{contentEndDate}, #{contentPrice}, #{contentBoard})
+    </insert>
 
+    <select id="list" resultType="com.limdaram.ticketing.domain.content.ContentDto">
+        SELECT
+            contentId,
+            contentName,
+            contentRegion,
+            contentStartDate,
+            contentEndDate,
+            contentPrice,
+            contentBoard
+        FROM
+            Content
+        ORDER BY contentId DESC
+    </select>
 
+    <select id="select" resultType="com.limdaram.ticketing.domain.content.ContentDto">
+        SELECT
+            contentId,
+            contentName,
+            contentRegion,
+            contentStartDate,
+            contentEndDate,
+            contentPrice,
+            contentBoard
+        FROM
+            Content
+        WHERE
+            contentId = #{id}
+    </select>
+
+    <update id="update">
+        UPDATE Content
+        SET
+            contentName = #{contentName},
+            contentRegion = #{contentRegion},
+            contentStartDate = #{contentStartDate},
+            contentEndDate = #{contentEndDate},
+            contentPrice = #{contentPrice},
+            contentBoard = #{contentBoard}
+        WHERE
+            contentId = #{contentId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM Content
+        WHERE contentID = #{contentId}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM Content
+    </select>
+
+    <insert id="insertFile">
+        INSERT INTO ContentPoster (contentId, contentPosterName)
+        VALUES (${contentId}, #{fileName})
+    </insert>
 </mapper>
