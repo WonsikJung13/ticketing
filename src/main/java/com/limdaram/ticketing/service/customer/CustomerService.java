@@ -39,4 +39,12 @@ public class CustomerService {
     public int remove(CustomerDto customer) {
         return customerMapper.delete(customer);
     }
+
+    public CustomerDto getByCustomerId(String customerId) {
+        return customerMapper.getByCustomerId(customerId);
+    }
+
+    public CustomerDto getByCustomerEmail(String customerEmail) {
+        return customerMapper.getByCustomerEmail(customerEmail);
+    }
 }
