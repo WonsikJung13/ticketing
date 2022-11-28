@@ -24,34 +24,34 @@
         <div class="col">
             <form method="post" id="modifyForm">
                 <h1>수정</h1>
-                <input type="hidden" name="rId" value="${Reply.replyId}">
-                <input type="hidden" name="cId" value="${Reply.contentId}">
+                <input type="hidden" name="replyId" value="${Reply.replyId}">
+                <input type="hidden" name="contentId" value="${Reply.contentId}">
                 <div class="mb-3" id="content">
                     <label class="form-label">
                         제목
                     </label>
-                    <input class="form-control" type="text" value="${Reply.replyContent}">
+                    <input name="replyContent" class="form-control" type="text" value="${Reply.replyContent}">
                 </div>
 
                 <div class="mb-3" id="text">
                     <label class="form-label">
                         본문
                     </label>
-                    <textarea class="form-control">${Reply.replyMainText}</textarea>
+                    <textarea name="replyMainText" class="form-control">${Reply.replyMainText}</textarea>
                 </div>
 
                 <div class="mb-3" id="name">
                     <label class="form-label">
                         작성자
                     </label>
-                    <input class="form-control" type="text" value="${Reply.replyName}" readonly>
+                    <input class="form-control" name="replyName" type="text" value="${Reply.replyName}" readonly>
                 </div>
 
                 <div class="mb-3" id="time">
                     <label class="form-label">
                         작성일시
                     </label>
-                    <input class="form-control" type="datetime-local" value="${Reply.time}" readonly>
+                    <input class="form-control" name="time" type="datetime-local" value="${Reply.time}" readonly>
                 </div>
             </form>
 
