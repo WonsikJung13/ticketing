@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class ContentDto {
@@ -12,8 +13,8 @@ public class ContentDto {
     private String contentRegion;
     private String contentBoard;
 
-    private String uuid;
-    private String uuid2;
+    private String contentPosterName;
+    private List<String> contentDetailName;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contentStartDate;

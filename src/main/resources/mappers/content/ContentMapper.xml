@@ -24,7 +24,7 @@
         ORDER BY contentId DESC
     </select>
 
-    <select id="select" resultType="com.limdaram.ticketing.domain.content.ContentDto">
+    <select id="select" resultMap="contentMap">
         SELECT
             c.contentId,
             c.contentName,
@@ -33,14 +33,30 @@
             c.contentEndDate,
             c.contentPrice,
             c.contentBoard,
-            p.contentPosterName uuid,
-            d.contentDetailName uuid2
+            p.contentPosterName,
+<!--            d.contentDetailId,-->
+            d.contentDetailName
         FROM
             Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
                            JOIN ContentDetail d ON c.contentId = d.contentId
         WHERE
             c.contentId = #{contentId}
     </select>
+
+    <resultMap type="com.limdaram.ticketing.domain.content.ContentDto" id="contentMap">
+        <id column="contentId" property="contentId"></id>
+        <result column="contentName" property="contentName"></result>
+        <result column="contentRegion" property="contentRegion"></result>
+        <result column="contentStartDate" property="contentStartDate"></result>
+        <result column="contentEndDate" property="contentEndDate"></result>
+        <result column="contentPrice" property="contentPrice"></result>
+        <result column="contentBoard" property="contentBoard"></result>
+        <result column="contentPosterName" property="contentPosterName"></result>
+<!--        <result column="contentDetailId" property="contentDetailId"></result>-->
+        <collection property="contentDetailName" ofType="string">
+            <result property="contentDetailName" column="contentDetailName"></result>
+        </collection>
+    </resultMap>
 
     <update id="update">
         UPDATE Content

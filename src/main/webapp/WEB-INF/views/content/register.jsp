@@ -49,7 +49,7 @@
         </div>
         <div class="DetailBox">
             <label for="" class="form-label">세부내용</label>
-            <input type="file" accept="image/*" class="form-control" name="file2">
+            <input multiple type="file" accept="image/*" class="form-control" name="file2">
         </div>
         <input type="submit" value="등록">
     </form>

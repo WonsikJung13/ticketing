@@ -20,17 +20,22 @@
     상품명 <input type="text" value="${content.contentName}" readonly> <br>
     <%-- 이미지 출력 --%>
     <div>
-        <img src="/images/${content.contentId}/${content.uuid}" alt="">
+        <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
     </div>
     장소 <input type="text" value="${content.contentRegion}" readonly> <br>
     시작 <input type="date" value="${content.contentStartDate}" readonly> <br>
     종료 <input type="date" value="${content.contentEndDate}" readonly> <br>
     가격 <input type="number" value="${content.contentPrice}" readonly> <br>
     정보 <textarea name="contentBoard" readonly>${content.contentBoard}</textarea>
-    <div>
-        <img src="/images/${content.contentId}/${content.uuid2}" alt="">
-    </div>
     <br>
+<%-- 이미지 출력2 --%>
+<div>
+    <c:forEach items="${content.contentDetailName}" var="name">
+        <div>
+            <img src="/images/${content.contentId}/${name}" alt="">
+        </div>
+    </c:forEach>
+</div>
 
 <%--    수정버튼--%>
     <c:url value="/content/modify" var="modifyLink">
