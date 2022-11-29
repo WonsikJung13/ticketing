@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
@@ -103,5 +102,16 @@ public class ReplyController {
     public void modify(int id, Model model) {
         ReplyDto replyDto = replyService.get(id);
         model.addAttribute("Reply", replyDto);
+    }
+
+    @PostMapping("remove")
+    public String remove(int id, RedirectAttributes rttr) {
+        int cnt = replyService.remove(id);
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message", id + "번 게시물이 삭제되었습니다.");
+        } else {
+            rttr.addFlashAttribute("message", id + "번 게시물이 삭제되지 않았습니다.");
+        }
+        return "redirect:/reply/list";
     }
 }

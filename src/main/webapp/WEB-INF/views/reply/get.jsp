@@ -66,7 +66,7 @@
 </c:url>
 
 <form id="removeForm" action="${removeLink }" method="post">
-    <input type="hidden" name="id" value="${Reply.replyId }">
+    <input type="hidden" name="replyId" value="${Reply.replyId }">
 </form>
 <div>
     <a class = "btn btn-warning " href="${modifyLink}">수정하기</a>
@@ -104,22 +104,7 @@
 
     const ctx = "${pageContext.request.contextPath}";
 
-    document.querySelector("#removeConfirmModalSubmitButton").addEventListener("click", function() {
-        removeReply(this.dataset.replyId);
-    });
 
-    function removeReply(replyId) {
-        // /reply/remove/{id}, method : "delete"
-        fetch(ctx + "/reply/remove/" + replyId, {
-            method: "delete"
-        })
-            .then(res => res.json())
-            .then(data => {
-                document.querySelector("#replyMessage1").innerText = data.message;
-                toast.show();
-            })
-            .then(() => listReply());
-    }
 </script>
 </body>
 </html>
