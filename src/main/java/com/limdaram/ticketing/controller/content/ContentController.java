@@ -30,12 +30,12 @@ public class ContentController {
     public String register(
             ContentDto content,
             MultipartFile file1,
-            MultipartFile[] files,
+            MultipartFile[] file2,
             RedirectAttributes rttr) {
         System.out.println("등록" + content);
         System.out.println(content.getContentId());
 
-        int cnt = service.register(content, file1, files);
+        int cnt = service.register(content, file1, file2);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 등록 완료");
