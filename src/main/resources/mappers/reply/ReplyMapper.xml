@@ -72,5 +72,11 @@
             replyId = #{replyId}
     </update>
 
+    <delete id="removeById">
+        DELETE FROM
+            Reply
+        WHERE
+        replyId = #{replyId}
+    </delete>
 
 </mapper>
