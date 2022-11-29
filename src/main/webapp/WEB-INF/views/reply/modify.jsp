@@ -40,7 +40,7 @@
                     <label class="form-label">
                         본문
                     </label>
-                  
+                    
                     <textarea name="replyMainText" class="form-control">${Reply.replyMainText}</textarea>
               </div>
                 <div class="mb-3" id="name">
