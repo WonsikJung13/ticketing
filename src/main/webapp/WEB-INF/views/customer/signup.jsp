@@ -80,7 +80,7 @@
                     </label>
                     <div class="input-group">
                         <input id="customerEmailInput" class="form-control" type="email" name="customerEmail" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
-                        <button id="customerEmailButton" class="btn btn-outline-secondary" type="button">중복확인</button>
+                        <button id="customerEmailButton" disabled class="btn btn-outline-secondary" type="button">중복확인</button>
                     </div>
 
                     <div style="color: red" id="customerEmailText" class="form-text"></div>
@@ -175,7 +175,6 @@
     document.querySelector("#submitButton").addEventListener("click", function (e) {
         e.preventDefault();
 
-
         if (checkedId && checkedDoubleId && checkedDoubleEmail && checkedEmail && checkedPassword && checkedPassword1 && checkedPassword2 && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress) {
             document.getElementById('formId').submit();
         } else {
@@ -226,31 +225,6 @@
         const samePassword1 = customerPasswordInput1.value;
         const samePassword2 = customerPasswordInput2.value;
 
-        console.log(samePassword1)
-        console.log(samePassword2)
-        console.log("------------")
-
-
-        if (samePassword1 == samePassword2) {
-            customerPasswordText2.innerText = "비밀번호가 일치합니다"
-            customerPasswordText2.removeAttribute("style");
-            checkedPassword = true;
-        } else {
-            customerPasswordText2.innerText = "비밀번호가 일치하지 않습니다"
-            customerPasswordText2.setAttribute("style", "color:red");
-        }
-    }
-
-    function matchPassword22() {
-        checkedPassword = false;
-
-        const samePassword1 = customerPasswordInput1.value;
-        const samePassword2 = customerPasswordInput2.value;
-
-        console.log(samePassword1)
-        console.log(samePassword2)
-        console.log("------------")
-
         if (samePassword1 == samePassword2) {
             customerPasswordText2.innerText = "비밀번호가 일치합니다"
             customerPasswordText2.removeAttribute("style");
@@ -262,7 +236,7 @@
     }
 
     document.querySelector("#customerPasswordInput1").addEventListener("keyup", matchPassword);
-    document.querySelector("#customerPasswordInput2").addEventListener("keyup", matchPassword22);
+    document.querySelector("#customerPasswordInput2").addEventListener("keyup", matchPassword);
 
     // 5. input 값이 모두 입력되었는지 확인
     const customerNameInput = document.querySelector("#customerNameInput");
@@ -287,13 +261,13 @@
 
         if (name == "") {
             customerNameText.innerText = "이름을 작성해주세요"
+            customerNameText.setAttribute("style", "color:red");
+
         } else {
             customerNameText.innerText = ""
             checkedName = true;
         }
     }
-
-
 
     document.querySelector("#customerNameInput").addEventListener("keyup", matchName);
 
@@ -304,6 +278,7 @@
 
         if (birth == "") {
             customerBirthText.innerText = "생년월일을 선택해주세요"
+            customerBirthText.setAttribute("style", "color:red");
         } else {
             customerBirthText.innerText = ""
             checkedBirth = true;
@@ -319,7 +294,9 @@
 
         if (id == "") {
             customerIdText.innerText = "아이디를 작성해주세요"
+            customerIdText.setAttribute("style", "color:red");
         } else {
+            checkedDoubleId = false;
             customerIdText.innerText = ""
             checkedId = true;
         }
@@ -327,13 +304,17 @@
 
     document.querySelector("#customerIdInput").addEventListener("keyup", matchId);
 
+
     function matchPassword1() {
+
         checkedPassword1 = false;
 
         const password1 = customerPasswordInput1.value;
 
         if (password1 == "") {
             customerPasswordText1.innerText = "비밀번호를 작성해주세요"
+            customerPasswordText1.setAttribute("style", "color:red");
+            customerPasswordText2.innerText = ""
         } else {
             customerPasswordText1.innerText = ""
             checkedPassword1 = true;
@@ -351,22 +332,32 @@
                 customerPasswordText2.innerText = "비밀번호를 한번 더 작성해주세요"
                 customerPasswordText2.setAttribute("style", "color:red");
             } else {
-            customerPasswordText2.innerText = ""
             checkedPassword2 = true;
         }
     }
 
     document.querySelector("#customerPasswordInput2").addEventListener("keyup", matchPassword2);
 
+
     function matchEmail() {
         checkedEmail = false;
 
         const email = customerEmailInput.value;
+        const emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        const emailButtonAbled = document.querySelector("#customerEmailButton");
 
         if (email == "") {
             customerEmailText.innerText = "이메일을 작성해주세요"
+            customerEmailText.setAttribute("style", "color:red");
+            emailButtonAbled.setAttribute("disabled","");
+        } else if (!emailRule.test(email)) {
+            customerEmailText.innerText = "이메일 형식에 맞게 작성해주세요"
+            customerEmailText.setAttribute("style", "color:red");
+            emailButtonAbled.setAttribute("disabled","");
         } else {
+            checkedDoubleEmail = false;
             customerEmailText.innerText = ""
+            emailButtonAbled.removeAttribute("disabled");
             checkedEmail = true;
         }
     }
@@ -380,6 +371,7 @@
 
         if (phoneNumber == "") {
             customerPhoneNumberText.innerText = "핸드폰 번호를 작성해주세요"
+            customerPhoneNumberText.setAttribute("style", "color:red");
         } else {
             customerPhoneNumberText.innerText = ""
             checkedPhoneNumber = true;
@@ -395,6 +387,7 @@
 
         if (address == "") {
             customerAddressText.innerText = "주소를 작성해주세요"
+            customerAddressText.setAttribute("style", "color:red");
         } else {
             customerAddressText.innerText = ""
             checkedAddress = true;
@@ -412,6 +405,8 @@
             return false;
         }
     }
+
+
 
 
 </script>
