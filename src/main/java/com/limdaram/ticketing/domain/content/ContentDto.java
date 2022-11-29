@@ -12,6 +12,9 @@ public class ContentDto {
     private String contentRegion;
     private String contentBoard;
 
+    private String uuid;
+    private String uuid2;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contentStartDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

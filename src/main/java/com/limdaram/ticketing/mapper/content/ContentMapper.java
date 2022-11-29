@@ -19,5 +19,5 @@ public interface ContentMapper {
 
     int insertFile(int contentId, String fileName);
 
-
+    int insertFile2(int contentId, String fileName);
 }

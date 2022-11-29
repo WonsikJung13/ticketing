@@ -44,8 +44,12 @@
         정보 <textarea name="contentBoard"></textarea>
         <br>
         <div class="posterBox">
-            <label for="" class="form-label">파일</label>
-            <input type="file" accept="image/*" class="form-control" name="file">
+            <label for="" class="form-label">포스터</label>
+            <input type="file" accept="image/*" class="form-control" name="file1">
+        </div>
+        <div class="DetailBox">
+            <label for="" class="form-label">세부내용</label>
+            <input type="file" accept="image/*" class="form-control" name="file2">
         </div>
         <input type="submit" value="등록">
     </form>

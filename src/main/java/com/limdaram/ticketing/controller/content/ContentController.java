@@ -29,13 +29,13 @@ public class ContentController {
     @PostMapping("register")
     public String register(
             ContentDto content,
-            MultipartFile file,
+            MultipartFile file1,
+            MultipartFile file2,
             RedirectAttributes rttr) {
         System.out.println("등록" + content);
         System.out.println(content.getContentId());
-//        System.out.println(file);
 
-        int cnt = service.register(content, file);
+        int cnt = service.register(content, file1, file2);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 등록 완료");

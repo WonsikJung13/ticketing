@@ -26,17 +26,20 @@
 
     <select id="select" resultType="com.limdaram.ticketing.domain.content.ContentDto">
         SELECT
-            contentId,
-            contentName,
-            contentRegion,
-            contentStartDate,
-            contentEndDate,
-            contentPrice,
-            contentBoard
+            c.contentId,
+            c.contentName,
+            c.contentRegion,
+            c.contentStartDate,
+            c.contentEndDate,
+            c.contentPrice,
+            c.contentBoard,
+            p.contentPosterName uuid,
+            d.contentDetailName uuid2
         FROM
-            Content
+            Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+                           JOIN ContentDetail d ON c.contentId = d.contentId
         WHERE
-            contentId = #{id}
+            c.contentId = #{contentId}
     </select>
 
     <update id="update">
@@ -63,6 +66,11 @@
 
     <insert id="insertFile">
         INSERT INTO ContentPoster (contentId, contentPosterName)
+        VALUES (${contentId}, #{fileName})
+    </insert>
+
+    <insert id="insertFile2">
+        INSERT INTO ContentDetail (contentId, contentDetailName)
         VALUES (${contentId}, #{fileName})
     </insert>
 </mapper>

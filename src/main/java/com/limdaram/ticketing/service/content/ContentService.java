@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ContentService {
@@ -17,22 +18,48 @@ public class ContentService {
 
     public int register(
             ContentDto content,
-            MultipartFile file) {
+            MultipartFile file1, MultipartFile file2) {
         // db에 게시물 정보 저장
         int cnt = mapper.insert(content);
 
-        if (file != null && file.getSize() > 0) {
+        if (file1 != null && file1.getSize() > 0) {
+            File folder1 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+
+            String uuid = UUID.randomUUID().toString()+".jpg";
+
             // db에 파일 정보 저장(contentid, filename)
-            mapper.insertFile(content.getContentId(), file.getOriginalFilename());
+            mapper.insertFile(content.getContentId(), uuid);
 
             // 파일 저장// board id 이름의 새폴더 만들기
-            File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
-            folder.mkdirs();
+//            File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+            folder1.mkdirs();
+            File dest = new File(folder1, uuid);
 
-            File dest = new File(folder, file.getOriginalFilename());
-
+            // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
             try {
-                file.transferTo(dest);
+                file1.transferTo(dest); // checkException을 발생시킴
+            } catch (Exception e) {
+                // @Transactional은 RuntimeException에서만 rollback 됨
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (file2!= null && file2.getSize() > 0) {
+            File folder2 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+
+            String uuid2 = UUID.randomUUID().toString()+".jpg";
+
+            // db에 파일 정보 저장(contentid, filename)
+            mapper.insertFile2(content.getContentId(), uuid2);
+
+            // 파일 저장// board id 이름의 새폴더 만들기
+            folder2.mkdirs();
+            File dest2 = new File(folder2, uuid2);
+
+            // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
+            try {
+                file2.transferTo(dest2); // checkException을 발생시킴
             } catch (Exception e) {
                 // @Transactional은 RuntimeException에서만 rollback 됨
                 e.printStackTrace();
