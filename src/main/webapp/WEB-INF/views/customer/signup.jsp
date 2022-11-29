@@ -27,7 +27,7 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerNameInput" class="form-control" type="text" name="customerName">
+                        <input id="customerNameInput" class="form-control" type="text" name="customerName" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
                     <div style="color: red" id="customerNameText" class="form-text"></div>
@@ -39,7 +39,7 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerBirthInput" class="form-control" type="date" name="customerBirth">
+                        <input id="customerBirthInput" class="form-control" type="date" name="customerBirth" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
                     <div style="color: red" id="customerBirthText" class="form-text"></div>
@@ -51,7 +51,7 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerIdInput" class="form-control" type="text" name="customerId">
+                        <input id="customerIdInput" class="form-control" type="text" name="customerId" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <button id="customerIdButton" class="btn btn-outline-secondary" type="button">중복확인</button>
                     </div>
 
@@ -62,7 +62,7 @@
                     <label for="" class="form-label">
                         비밀번호
                     </label>
-                    <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword">
+                    <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     <div style="color: red" id="customerPasswordText1" class="form-text"></div>
                 </div>
 
@@ -70,7 +70,7 @@
                     <label for="" class="form-label">
                         비밀번호 확인
                     </label>
-                    <input id="customerPasswordInput2" class="form-control" type="password">
+                    <input id="customerPasswordInput2" class="form-control" type="password" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     <div style="color: red" id="customerPasswordText2" class="form-text"></div>
                 </div>
 
@@ -79,7 +79,7 @@
                         이메일
                     </label>
                     <div class="input-group">
-                        <input id="customerEmailInput" class="form-control" type="email" name="customerEmail">
+                        <input id="customerEmailInput" class="form-control" type="email" name="customerEmail" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <button id="customerEmailButton" class="btn btn-outline-secondary" type="button">중복확인</button>
                     </div>
 
@@ -92,7 +92,8 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber" placeholder="숫자만 입력">
+                        <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber"
+                               placeholder="숫자만 입력" maxlength="11" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
                     <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
@@ -104,7 +105,7 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerAddressInput" class="form-control" type="text" name="customerAddress">
+                        <input id="customerAddressInput" class="form-control" type="text" name="customerAddress" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
                     <div style="color: red" id="customerAddressText" class="form-text"></div>
@@ -174,8 +175,6 @@
     document.querySelector("#submitButton").addEventListener("click", function (e) {
         e.preventDefault();
 
-        console.log(checkedBirth)
-
 
         if (checkedId && checkedDoubleId && checkedDoubleEmail && checkedEmail && checkedPassword && checkedPassword1 && checkedPassword2 && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress) {
             document.getElementById('formId').submit();
@@ -199,7 +198,7 @@
                 customerPasswordText2.innerText = "비밀번호를 한번 더 작성해주세요"
                 document.getElementById("customerPasswordInput2").focus();
             } else if (checkedPassword == false) {
-                customerPasswordText.innerText = "비밀번호가 일치하지 않습니다"
+                customerPasswordText2.innerText = "비밀번호가 일치하지 않습니다"
                 document.getElementById("customerPasswordInput2").focus();
             } else if (checkedEmail == false) {
                 customerEmailText.innerText = "이메일을 작성해주세요"
@@ -220,7 +219,6 @@
     // 4. 비밀번호 일치하는지 확인
     const customerPasswordInput1 = document.querySelector("#customerPasswordInput1");
     const customerPasswordInput2 = document.querySelector("#customerPasswordInput2");
-    const customerPasswordText = document.querySelector("#customerPasswordText1");
 
     function matchPassword() {
         checkedPassword = false;
@@ -228,18 +226,43 @@
         const samePassword1 = customerPasswordInput1.value;
         const samePassword2 = customerPasswordInput2.value;
 
+        console.log(samePassword1)
+        console.log(samePassword2)
+        console.log("------------")
+
+
         if (samePassword1 == samePassword2) {
-            customerPasswordText.innerText = "비밀번호가 일치합니다"
-            customerPasswordText.removeAttribute("style");
+            customerPasswordText2.innerText = "비밀번호가 일치합니다"
+            customerPasswordText2.removeAttribute("style");
             checkedPassword = true;
         } else {
-            customerPasswordText.innerText = "비밀번호가 일치하지 않습니다"
-            customerPasswordText.setAttribute("style", "color: red")
+            customerPasswordText2.innerText = "비밀번호가 일치하지 않습니다"
+            customerPasswordText2.setAttribute("style", "color:red");
+        }
+    }
+
+    function matchPassword22() {
+        checkedPassword = false;
+
+        const samePassword1 = customerPasswordInput1.value;
+        const samePassword2 = customerPasswordInput2.value;
+
+        console.log(samePassword1)
+        console.log(samePassword2)
+        console.log("------------")
+
+        if (samePassword1 == samePassword2) {
+            customerPasswordText2.innerText = "비밀번호가 일치합니다"
+            customerPasswordText2.removeAttribute("style");
+            checkedPassword = true;
+        } else {
+            customerPasswordText2.innerText = "비밀번호가 일치하지 않습니다"
+            customerPasswordText2.setAttribute("style", "color:red");
         }
     }
 
     document.querySelector("#customerPasswordInput1").addEventListener("keyup", matchPassword);
-    document.querySelector("#customerPasswordInput2").addEventListener("keyup", matchPassword);
+    document.querySelector("#customerPasswordInput2").addEventListener("keyup", matchPassword22);
 
     // 5. input 값이 모두 입력되었는지 확인
     const customerNameInput = document.querySelector("#customerNameInput");
@@ -260,7 +283,6 @@
 
     function matchName() {
         checkedName = false;
-
         const name = customerNameInput.value;
 
         if (name == "") {
@@ -270,6 +292,8 @@
             checkedName = true;
         }
     }
+
+
 
     document.querySelector("#customerNameInput").addEventListener("keyup", matchName);
 
@@ -309,8 +333,7 @@
         const password1 = customerPasswordInput1.value;
 
         if (password1 == "") {
-            customerPasswordText1.innerText = "패스워드를 작성해주세요"
-            customerPasswordText1.setAttribute("style", "color:red");
+            customerPasswordText1.innerText = "비밀번호를 작성해주세요"
         } else {
             customerPasswordText1.innerText = ""
             checkedPassword1 = true;
@@ -324,9 +347,10 @@
 
         const password2 = customerPasswordInput2.value;
 
-        if (password2 == "") {
-            customerPasswordText2.innerText = "패스워드를 한번 더 작성해주세요"
-        } else {
+            if (password2 == "") {
+                customerPasswordText2.innerText = "비밀번호를 한번 더 작성해주세요"
+                customerPasswordText2.setAttribute("style", "color:red");
+            } else {
             customerPasswordText2.innerText = ""
             checkedPassword2 = true;
         }
@@ -379,6 +403,15 @@
 
     document.querySelector("#customerAddressInput").addEventListener("keyup", matchAddress);
 
+    function noSpaceForm(obj) { // 공백사용못하게
+        var str_space = /\s/;  // 공백체크
+        if(str_space.exec(obj.value)) { //공백 체크
+            //alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+            obj.focus();
+            obj.value = obj.value.replace(/\s| /gi,''); // 공백제거
+            return false;
+        }
+    }
 
 
 </script>
