@@ -100,4 +100,9 @@
         DELETE FROM ContentDetail
         WHERE contentId = #{contentId}
     </delete>
+
+    <delete id="deleteByContentIdAndDetailName">
+        DELETE FROM ContentDetail
+        WHERE contentId = #{contentId} AND contentDetailName = #{fileName}
+    </delete>
 </mapper>

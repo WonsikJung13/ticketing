@@ -51,8 +51,15 @@
     <%-- 이미지 출력2 --%>
     <div>
         <c:forEach items="${content.contentDetailName}" var="name">
-            <div>
-                <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
+            <div class="row">
+                <div class="col-2">
+                    <%-- 삭제여부 체크박스 --%>
+                    삭제
+                    <input type="checkbox" name="removeDetailFiles" value="${name}">
+                </div>
+                <div class="col-10">
+                    <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
+                </div>
             </div>
         </c:forEach>
     </div>

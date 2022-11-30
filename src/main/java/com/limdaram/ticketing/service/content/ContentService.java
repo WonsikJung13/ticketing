@@ -5,6 +5,7 @@ import com.limdaram.ticketing.mapper.content.ContentMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class ContentService {
 
     @Setter(onMethod_ = @Autowired)
@@ -88,7 +90,64 @@ public class ContentService {
     }
 
 //    컨텐츠수정
-    public int update(ContentDto content) {
+    public int update(
+            ContentDto content,
+            MultipartFile addPosterFile,
+            MultipartFile[] addDetailFiles,
+            List<String> removeDetailFiles) {
+        System.out.println("removeDetailFile: " + removeDetailFiles);
+
+        int contentId = content.getContentId();
+        // removeDetailFiles에 있는 파일명으로
+
+        if (removeDetailFiles != null) {
+            for (String DetailFileName : removeDetailFiles) {
+                // 1. contentDetail 테이블에서 record 지우기
+//                System.out.println("contentId, DetailFileName: " + contentId + ", " + DetailFileName);
+                mapper.deleteByContentIdAndDetailName(contentId, DetailFileName);
+                // 2. 저장소에 있는 실제 파일 지우기
+                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + DetailFileName;
+                File file = new File(path);
+//                System.out.println("path: " + file);
+                file.delete();
+            }
+        }
+
+        for (MultipartFile DetailFile : addDetailFiles) {
+            System.out.println("addDetailFiles: " + addDetailFiles);
+            for (String DetailFileName : removeDetailFiles) {
+                System.out.println("contentId, DetailFileName: " + contentId + ", " + DetailFileName);
+                // 1. contentDetail 테이블에서 record 지우기
+                mapper.deleteByContentIdAndDetailName(contentId, DetailFileName);
+                // 2. 저장소에 있는 실제 파일 지우기
+                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + DetailFileName;
+                File file = new File(path);
+                System.out.println("path: " + file);
+
+                file.delete();
+            }
+
+            if (DetailFile != null && DetailFile.getSize() > 0) {
+                // 파일 테이블에 파일명 추가
+                String uuid = UUID.randomUUID().toString() + ".jpg";
+                mapper.insertFile2(content.getContentId(), uuid);
+
+                // 저장소에 실제 파일 추가
+                File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+                folder.mkdirs();
+                File dest = new File(folder, uuid);
+
+                // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
+                try {
+                    DetailFile.transferTo(dest); // checkException을 발생시킴
+                } catch (Exception e) {
+                    // @Transactional은 RuntimeException에서만 rollback 됨
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
         return mapper.update(content);
     }
 
