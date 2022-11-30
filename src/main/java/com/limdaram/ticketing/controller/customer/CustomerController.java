@@ -122,4 +122,14 @@ public class CustomerController {
         return map;
     }
 
+    @GetMapping("jusoPopup")
+    public void jusoPopup1() {
+
+    }
+
+    @PostMapping("jusoPopup")
+    public void jusoPopup2() {
+
+    }
+
 }
