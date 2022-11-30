@@ -94,6 +94,25 @@ public class ContentService {
 
 //    컨텐츠삭제
     public int remove(int contentId) {
+        // 저장소의 이미지 파일 지우기
+        String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId;
+        File folder = new File(path);   // 폴더 만들기
+
+        File[] listFiles = folder.listFiles();  // 폴더안의 파일들
+
+        for (File file : listFiles) {
+            file.delete();  // 파일 지우기
+        }
+        folder.delete();    // 폴더 지우기
+
+        // db의 이미지 파일 records 지우기
+        mapper.deletePosterByContentId(contentId);
+        mapper.deleteDetailByContentId(contentId);
+
+        // 게시물의 댓글 지우기
+        // replyMapper.deleteByContentId(ContentId);
+
+        // 게시글 지우기
         return mapper.delete(contentId);
     }
 }
