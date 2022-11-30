@@ -39,7 +39,7 @@
             d.contentDetailName
         FROM
             Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
-                           JOIN ContentDetail d ON c.contentId = d.contentId
+                      LEFT JOIN ContentDetail d ON c.contentId = d.contentId
         WHERE
             c.contentId = #{contentId}
     </select>

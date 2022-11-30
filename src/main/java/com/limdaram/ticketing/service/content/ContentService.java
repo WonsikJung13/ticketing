@@ -100,11 +100,12 @@ public class ContentService {
 
         File[] listFiles = folder.listFiles();  // 폴더안의 파일들
 
-        for (File file : listFiles) {
-            file.delete();  // 파일 지우기
+        if(listFiles != null) {
+            for (File file : listFiles) {
+                file.delete();  // 파일 지우기
+            }
+            folder.delete();    // 폴더 지우기
         }
-        folder.delete();    // 폴더 지우기
-
         // db의 이미지 파일 records 지우기
         mapper.deletePosterByContentId(contentId);
         mapper.deleteDetailByContentId(contentId);
