@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.limdaram.ticketing.mapper.admin.AdminMapper">
+
+    <select id="getCustomerList" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
+        SELECT * FROM Customer
+    </select>
+
+    <select id="getGradeCountForSilver" resultType="int">
+        SELECT count(*) from Customer WHERE customerGrade = 'SILVER'
+    </select>
+    <select id="getGradeCountForGold" resultType="int">
+        SELECT count(*) from Customer WHERE customerGrade = 'GOLD'
+    </select>
+    <select id="getGradeList" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
+        SELECT DISTINCT customerGrade
+        FROM Customer;
+    </select>
+</mapper>

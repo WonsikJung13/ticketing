@@ -22,7 +22,7 @@
             <form action="" method="post" id="formId">
 
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         이름
                     </label>
 
@@ -172,6 +172,11 @@
     // 3-1. 아이디, 이메일, 패스워드 중복확인 + 모든 input값 입력해야 가입 가능
     document.querySelector("#submitButton").addEventListener("click", function (e) {
         e.preventDefault();
+
+        console.log(checkedId)
+        console.log(checkedEmail)
+        console.log(checkedPassword)
+
 
         if (checkedId && checkedEmail && checkedPassword && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress) {
             document.getElementById('formId').submit();
@@ -413,6 +418,18 @@
     //     }
     // }
 
+</script>
+
+<script>
+    function noSpaceForm(obj) { // 공백사용못하게
+        const str_space = /\s/;  // 공백체크
+        if(str_space.exec(obj.value)) { //공백 체크
+            //alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+            obj.focus();
+            obj.value = obj.value.replace(/\s| /gi,''); // 공백제거
+            return false;
+        }
+    }
 </script>
 
 </body>
