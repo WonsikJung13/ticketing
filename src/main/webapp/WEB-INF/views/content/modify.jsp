@@ -29,12 +29,24 @@
 
 <h1>${content.contentName} 상품 수정</h1>
 <form id="modifyForm" action="" method="post">
+    <%-- 이미지 출력 --%>
+    <div>
+        <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
+    </div>
     상품명 <input type="text" name="contentName" value="${content.contentName}" > <br>
     장소 <input type="text" name="contentRegion" value="${content.contentRegion}" > <br>
     시작 <input type="date" name="contentStartDate" value="${content.contentStartDate}" > <br>
     종료 <input type="date" name="contentEndDate" value="${content.contentEndDate}" > <br>
     가격 <input type="number" name="contentPrice" value="${content.contentPrice}" > <br>
-    정보 <textarea name="contentBoard" ></textarea>
+    정보 <textarea name="contentBoard" >${content.contentBoard}</textarea>
+    <%-- 이미지 출력2 --%>
+    <div>
+        <c:forEach items="${content.contentDetailName}" var="name">
+            <div>
+                <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
+            </div>
+        </c:forEach>
+    </div>
 </form>
 <input type="submit" value="수정" data-bs-toggle="modal" data-bs-target="#modifyModal">
 
