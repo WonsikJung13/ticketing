@@ -20,6 +20,6 @@ public class ContentDto {
     private int contentPrice;
     private int countContent;
 
-    private List<contentPosterDto>
+//    private List<contentPosterDto>
     }
 

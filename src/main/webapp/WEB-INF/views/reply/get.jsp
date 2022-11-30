@@ -117,6 +117,7 @@
 
     const ctx = "${pageContext.request.contextPath}";
 
+
     // Kakao.init('9c69650c14dccf7d58695456e5f600e2'); // 사용하려는 앱의 JavaScript 키 입력
     //
     // function addChannel() {
@@ -130,6 +131,7 @@
     //         channelPublicId: '_WAlfxj'
     //     });
     //}
+
 </script>
 </body>
 </html>

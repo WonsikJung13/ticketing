@@ -101,7 +101,9 @@ public class ReplyController {
 
     @PostMapping("remove")
     public String remove(int id, RedirectAttributes rttr) {
+
         System.out.println(id);
+
         int cnt = replyService.remove(id);
         if (cnt == 1) {
             rttr.addFlashAttribute("message", id + "번 게시물이 삭제되었습니다.");
