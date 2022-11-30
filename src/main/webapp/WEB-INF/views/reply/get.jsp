@@ -56,6 +56,15 @@
 </div>
 
 <br>
+<a href="http://pf.kakao.com/_WAlfxj/chat">
+    카카오 채팅
+</a>
+<br>
+<a href="http://pf.kakao.com/_WAlfxj">
+    카카오 채널추가
+</a>
+
+<br>
 
 <c:url value="/reply/modify" var="modifyLink">
     <c:param name="id" value="${Reply.replyId}"></c:param>
@@ -69,7 +78,7 @@
     <input type="hidden" name="replyId" value="${Reply.replyId }">
 </form>
 <div>
-    <a class = "btn btn-warning " href="${modifyLink}">수정하기</a>
+    <a class="btn btn-warning " href="${modifyLink}">수정하기</a>
     <input class="btn btn-warning" type="submit" value="삭제하기" data-bs-toggle="modal" data-bs-target="#removeModal">
 </div>
 <%--<a class = "btn btn-warning" href="${removeLink}">삭제하기</a>--%>
@@ -96,15 +105,31 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.1/kakao.min.js"
+        integrity="sha384-eKjgHJ9+vwU/FCSUG3nV1RKFolUXLsc6nLQ2R1tD0t4YFPCvRmkcF8saIfOZNWf/"
+        crossorigin="anonymous"></script>
+
 <script>
     // 삭제확인 버튼 클릭하면 삭제 form 전송
-    document.querySelector("#removeConfirmButton").addEventListener("click", function() {
+    document.querySelector("#removeConfirmButton").addEventListener("click", function () {
         document.querySelector("#removeForm").submit();
     })
 
     const ctx = "${pageContext.request.contextPath}";
 
-
+    // Kakao.init('9c69650c14dccf7d58695456e5f600e2'); // 사용하려는 앱의 JavaScript 키 입력
+    //
+    // function addChannel() {
+    //     Kakao.Channel.createAddChannelButton({
+    //         container: '#add-channel-button',
+    //         channelPublicId: '_WAlfxj',
+    //     });
+    // }
+    // function chatChannel() {
+    //     Kakao.Channel.chat({
+    //         channelPublicId: '_WAlfxj'
+    //     });
+    //}
 </script>
 </body>
 </html>

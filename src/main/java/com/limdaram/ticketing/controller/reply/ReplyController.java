@@ -56,11 +56,6 @@ public class ReplyController {
         return map;
     }
 
-    @RequestMapping("test")
-    public void test(){
-        System.out.println("게시판");
-    }
-
     @RequestMapping("register")
     public void register() {
         System.out.println("register");
@@ -106,6 +101,7 @@ public class ReplyController {
 
     @PostMapping("remove")
     public String remove(int id, RedirectAttributes rttr) {
+        System.out.println(id);
         int cnt = replyService.remove(id);
         if (cnt == 1) {
             rttr.addFlashAttribute("message", id + "번 게시물이 삭제되었습니다.");
@@ -113,5 +109,15 @@ public class ReplyController {
             rttr.addFlashAttribute("message", id + "번 게시물이 삭제되지 않았습니다.");
         }
         return "redirect:/reply/list";
+    }
+
+    @RequestMapping("test")
+    public void test(){
+        System.out.println("게시판");
+    }
+
+    @RequestMapping("rr")
+    public void rr(){
+        System.out.println("rr");
     }
 }
