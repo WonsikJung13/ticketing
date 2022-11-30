@@ -21,16 +21,16 @@
         WHERE customerUniqueNumber = #{customerUniqueNumber}
     </select>
 
-    <update id="update">
-        UPDATE Customer
-        SET
-        customerPassword = #{customerPassword},
-        customerEmail = #{customerEmail},
-        customerAddress = #{customerAddress},
-        customerPhoneNumber = #{customerPhoneNumber},
-        customerBirth = #{customerBirth}
-        WHERE customerUniqueNumber = #{customerUniqueNumber}
-    </update>
+<!--    <update id="update">-->
+<!--        UPDATE Customer-->
+<!--        SET-->
+<!--        customerPassword = #{customerPassword},-->
+<!--        customerEmail = #{customerEmail},-->
+<!--        customerAddress = #{customerAddress},-->
+<!--        customerPhoneNumber = #{customerPhoneNumber},-->
+<!--        customerBirth = #{customerBirth}-->
+<!--        WHERE customerUniqueNumber = #{customerUniqueNumber}-->
+<!--    </update>-->
 
     <delete id="delete">
         DELETE FROM Customer
@@ -48,5 +48,11 @@
         FROM Customer
         WHERE customerEmail = #{customerEmail}
     </select>
+
+    <update id="passwordModify">
+        UPDATE Customer
+        SET customerPassword = #{customerPassword}
+        WHERE customerUniqueNumber = #{customerUniqueNumber}
+    </update>
 
 </mapper>

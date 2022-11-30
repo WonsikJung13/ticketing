@@ -10,11 +10,13 @@ public interface CustomerMapper {
 
     CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber);
 
-    int update(CustomerDto customer);
+//    int update(CustomerDto customer);
 
     int delete(CustomerDto customer);
 
     CustomerDto getByCustomerId(String customerId);
 
     CustomerDto getByCustomerEmail(String customerEmail);
+
+    int passwordModify(int customerUniqueNumber, String customerPassword);
 }
