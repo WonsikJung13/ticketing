@@ -7,8 +7,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
-
 <html>
 <head>
 <meta charset="UTF-8">
@@ -25,8 +23,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<my:navBar/>
-
 <%--Alert--%>
 <c:if test="${not empty message}">
   <div class="alert alert-success">
@@ -61,7 +57,7 @@
                     <c:param name="contentId" value="${content.contentId}"></c:param>
                   </c:url>
                   <a href="${getLink}" title="상세정보 이동">
-                    <img width="100" src="/images/${content.contentId}/${content.contentPosterName}" alt="썸네일">
+                    <img src="" alt="사진">
                   </a>
                 </td>
                 <td class="contentName">
