@@ -90,4 +90,14 @@
         INSERT INTO ContentDetail (contentId, contentDetailName)
         VALUES (${contentId}, #{fileName})
     </insert>
+
+    <delete id="deletePosterByContentId">
+        DELETE FROM ContentPoster
+        WHERE contentId = #{contentId}
+    </delete>
+
+    <delete id="deleteDetailByContentId">
+        DELETE FROM ContentDetail
+        WHERE contentId = #{contentId}
+    </delete>
 </mapper>

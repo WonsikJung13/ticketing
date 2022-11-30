@@ -94,6 +94,16 @@ public class ContentService {
 
 //    컨텐츠삭제
     public int remove(int contentId) {
+        // 저장소의 이미지 파일 지우기
+
+        // db의 이미지 파일 records 지우기
+        mapper.deletePosterByContentId(contentId);
+        mapper.deleteDetailByContentId(contentId);
+
+        // 게시물의 댓글 지우기
+        // replyMapper.deleteByContentId(ContentId);
+
+        // 게시글 지우기
         return mapper.delete(contentId);
     }
 }
