@@ -32,7 +32,7 @@
 <div>
     <c:forEach items="${content.contentDetailName}" var="name">
         <div>
-            <img src="/images/${content.contentId}/${name}" alt="">
+            <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
         </div>
     </c:forEach>
 </div>

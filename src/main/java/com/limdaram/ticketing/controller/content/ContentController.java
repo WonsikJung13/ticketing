@@ -47,9 +47,10 @@ public class ContentController {
     }
 
     @GetMapping("list")
-    public void list(Model model, ContentDto contentDto) {
-        List<ContentDto> list = service.listContent(contentDto);
-
+    public void list(Model model, ContentDto content) {
+        List<ContentDto> list = service.listContent(content);
+        System.out.println("list"+list);
+        System.out.println("content"+content);
         model.addAttribute("contentList", list);
     }
 

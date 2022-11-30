@@ -12,16 +12,17 @@
 
     <select id="list" resultType="com.limdaram.ticketing.domain.content.ContentDto">
         SELECT
-            contentId,
-            contentName,
-            contentRegion,
-            contentStartDate,
-            contentEndDate,
-            contentPrice,
-            contentBoard
+            c.contentId,
+            c.contentName,
+            c.contentRegion,
+            c.contentStartDate,
+            c.contentEndDate,
+            c.contentPrice,
+            c.contentBoard,
+            p.contentPosterName
         FROM
-            Content
-        ORDER BY contentId DESC
+            Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+        ORDER BY c.contentId DESC
     </select>
 
     <select id="select" resultMap="contentMap">
