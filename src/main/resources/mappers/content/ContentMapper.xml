@@ -12,32 +12,52 @@
 
     <select id="list" resultType="com.limdaram.ticketing.domain.content.ContentDto">
         SELECT
-            contentId,
-            contentName,
-            contentRegion,
-            contentStartDate,
-            contentEndDate,
-            contentPrice,
-            contentBoard
+            c.contentId,
+            c.contentName,
+            c.contentRegion,
+            c.contentStartDate,
+            c.contentEndDate,
+            c.contentPrice,
+            c.contentBoard,
+            p.contentPosterName
         FROM
-            Content
-        ORDER BY contentId DESC
+            Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+        ORDER BY c.contentId DESC
     </select>
 
-    <select id="select" resultType="com.limdaram.ticketing.domain.content.ContentDto">
+    <select id="select" resultMap="contentMap">
         SELECT
-            contentId,
-            contentName,
-            contentRegion,
-            contentStartDate,
-            contentEndDate,
-            contentPrice,
-            contentBoard
+            c.contentId,
+            c.contentName,
+            c.contentRegion,
+            c.contentStartDate,
+            c.contentEndDate,
+            c.contentPrice,
+            c.contentBoard,
+            p.contentPosterName,
+<!--            d.contentDetailId,-->
+            d.contentDetailName
         FROM
-            Content
+            Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+                           JOIN ContentDetail d ON c.contentId = d.contentId
         WHERE
-            contentId = #{id}
+            c.contentId = #{contentId}
     </select>
+
+    <resultMap type="com.limdaram.ticketing.domain.content.ContentDto" id="contentMap">
+        <id column="contentId" property="contentId"></id>
+        <result column="contentName" property="contentName"></result>
+        <result column="contentRegion" property="contentRegion"></result>
+        <result column="contentStartDate" property="contentStartDate"></result>
+        <result column="contentEndDate" property="contentEndDate"></result>
+        <result column="contentPrice" property="contentPrice"></result>
+        <result column="contentBoard" property="contentBoard"></result>
+        <result column="contentPosterName" property="contentPosterName"></result>
+<!--        <result column="contentDetailId" property="contentDetailId"></result>-->
+        <collection property="contentDetailName" ofType="string">
+            <result property="contentDetailName" column="contentDetailName"></result>
+        </collection>
+    </resultMap>
 
     <update id="update">
         UPDATE Content
@@ -63,6 +83,11 @@
 
     <insert id="insertFile">
         INSERT INTO ContentPoster (contentId, contentPosterName)
+        VALUES (${contentId}, #{fileName})
+    </insert>
+
+    <insert id="insertFile2">
+        INSERT INTO ContentDetail (contentId, contentDetailName)
         VALUES (${contentId}, #{fileName})
     </insert>
 </mapper>

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +20,16 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
+<my:navBar/>
 
 <table class="table">
+    <tr>
+        <td>후기 번호</td>
+        <td>작성자</td>
+        <td>제목</td>
+        <td>작성일자</td>
+        <td>게시물 번호</td>
+    </tr>
     <c:forEach items="${replyList}" var="Reply">
         <tr>
             <td>${Reply.replyId }</td>
@@ -41,12 +50,9 @@
             </td>
             <td>${Reply.replyContent }</td>
             <td>${Reply.time }</td>
-        </tr>
-        <tr>
             <td>${Reply.contentId }</td>
         </tr>
     </c:forEach>
-    </tbody>
 </table>
 
 <button type="button" onclick="location.href='register'">후기작성</button>
