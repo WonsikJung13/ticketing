@@ -53,7 +53,6 @@
             <td>${Reply.contentId }</td>
         </tr>
     </c:forEach>
-    </tbody>
 </table>
 
 <button type="button" onclick="location.href='register'">후기작성</button>
