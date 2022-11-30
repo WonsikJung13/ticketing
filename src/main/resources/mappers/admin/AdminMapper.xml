@@ -4,6 +4,11 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.limdaram.ticketing.mapper.admin.AdminMapper">
+    <update id="updateGrade">
+        UPDATE Customer
+        SET customerGrade = #{customerGrade}
+        WHERE customerUniqueNumber = #{customerUniqueNumber}
+    </update>
 
     <select id="getCustomerList" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
         SELECT * FROM Customer

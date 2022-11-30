@@ -29,4 +29,8 @@ public class AdminService {
     public List<CustomerDto> getGradeList() {
         return adminMapper.getGradeList();
     }
+
+    public int updateGrade(int customerUniqueNumber, String customerGrade) {
+        return adminMapper.updateGrade(customerUniqueNumber, customerGrade);
+    }
 }

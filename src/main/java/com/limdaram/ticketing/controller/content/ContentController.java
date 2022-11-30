@@ -57,7 +57,7 @@ public class ContentController {
     @GetMapping("get")
     public void get(int contentId, Model model) {
         ContentDto content = service.get(contentId);
-        System.out.println("조회창 " + contentId);
+        System.out.println("조회창 " + content);
         model.addAttribute("content", content);
 
     }
