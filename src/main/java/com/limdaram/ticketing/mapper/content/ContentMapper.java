@@ -24,4 +24,6 @@ public interface ContentMapper {
     int deletePosterByContentId(int contentId);
 
     int deleteDetailByContentId(int contentId);
+
+    int deleteByContentIdAndDetailName(int contentId, String fileName);
 }

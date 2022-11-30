@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -63,7 +64,10 @@ public class ContentController {
     }
 
     @GetMapping("modify")
-    public void modify(int contentId, Model model) {
+    public void modify(
+            int contentId,
+            Model model) {
+
         ContentDto content = service.get(contentId);
         System.out.println("수정창 " + contentId);
         model.addAttribute("content", content);
@@ -71,8 +75,22 @@ public class ContentController {
 
 //    수정
     @PostMapping("modify")
-    public String modify(ContentDto content, RedirectAttributes rttr) {
-        int cnt = service.update(content);
+    public String modify(
+            ContentDto content,
+            MultipartFile addPosterFile,
+            MultipartFile[] addDetailFiles,
+            @RequestParam(name = "removeDetailFiles", required = false) List<String> removeDetailFiles,
+            RedirectAttributes rttr) {
+
+        // 지울 파일명 들어오는지 확인
+//        System.out.println("지울 파일명###");
+//        if (removeDetailFiles != null) {
+//            for(String name : removeDetailFiles) {
+//                System.out.println(name);
+//            }
+//        }
+
+        int cnt = service.update(content, addPosterFile, addDetailFiles, removeDetailFiles);
         System.out.println("수정완료 " + content);
 
         if (cnt == 1) {
