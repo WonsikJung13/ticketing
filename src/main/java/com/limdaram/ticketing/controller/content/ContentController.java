@@ -29,12 +29,13 @@ public class ContentController {
     @PostMapping("register")
     public String register(
             ContentDto content,
-            MultipartFile file,
+            MultipartFile file1,
+            MultipartFile[] file2,
             RedirectAttributes rttr) {
         System.out.println("등록" + content);
-        System.out.println(file.getOriginalFilename());
+        System.out.println(content.getContentId());
 
-        int cnt = service.register(content, file);
+        int cnt = service.register(content, file1, file2);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 등록 완료");
@@ -46,9 +47,10 @@ public class ContentController {
     }
 
     @GetMapping("list")
-    public void list(Model model, ContentDto contentDto) {
-        List<ContentDto> list = service.listContent(contentDto);
-
+    public void list(Model model, ContentDto content) {
+        List<ContentDto> list = service.listContent(content);
+        System.out.println("list"+list);
+        System.out.println("content"+content);
         model.addAttribute("contentList", list);
     }
 
