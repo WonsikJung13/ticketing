@@ -387,6 +387,7 @@
         const address = document.form.customerAddressInput.value;
 
         if (address == "") {
+
             customerAddressText.innerText = "주소를 입력해주세요"
             customerAddressText.setAttribute("style", "color:red");
         } else {

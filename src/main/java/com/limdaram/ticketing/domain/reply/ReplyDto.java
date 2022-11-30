@@ -20,4 +20,5 @@ public class ReplyDto {
         result = replyInserted.toLocalDate().toString() + " " + replyInserted.toLocalTime().toString();
         return result;
     }
+
 }

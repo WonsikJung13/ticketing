@@ -5,9 +5,6 @@ import com.limdaram.ticketing.mapper.reply.ReplyMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 import java.util.List;
 
 @Service
@@ -32,6 +29,10 @@ public class ReplyService {
         return replyMapper.addReply(reply);
     }
 
+
+    public int update(ReplyDto reply) {
+        System.out.println("서비스" + reply);
+        return replyMapper.updateReply(reply); }
 
     public int register(ReplyDto reply) {
         // db에 게시물 정보 저장
@@ -60,6 +61,10 @@ public class ReplyService {
 //        }
 
         return cnt;
+    }
+
+    public int remove(int id) {
+        return replyMapper.removeById(id);
     }
 }
 

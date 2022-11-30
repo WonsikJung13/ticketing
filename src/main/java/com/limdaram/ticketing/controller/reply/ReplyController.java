@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
@@ -70,19 +69,7 @@ public class ReplyController {
     @PostMapping("register")
     public String register(ReplyDto reply,
                            RedirectAttributes rttr) {
-        // * 파일업로드
-        // 1. web.xml
-        //    dispatcherServlet 설정에 multipart-config 추가
-        // 2. form 에 enctype="multipart/form-data" 속성 추가
-        // 3. Controller의 메소드 argument type : MultipartFile
 
-        // request param 수집/가공
-//        System.out.println(files.length);
-//        for (MultipartFile file : files) {
-//            System.out.println(file.getOriginalFilename());
-//        }
-        // busines  logic
-        // int cnt = service.register(board, files);
         int cnt = replyService.register(reply);
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "새 게시물이 등록되었습니다.");
@@ -94,4 +81,37 @@ public class ReplyController {
         return "redirect:/reply/list";
     }
 
+    @PostMapping("modify")
+    public String modify(ReplyDto replyDto, RedirectAttributes rttr) {
+        System.out.println("zjsxmfhffj"+replyDto);
+
+//        replyDto.setReplyContent(rttr.getAttribute());
+
+        int cnt = replyService.update(replyDto);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message", replyDto.getReplyId() + "번 게시물을 수정하였습니다.");
+        } else {
+            rttr.addFlashAttribute("message", replyDto.getReplyId() + "번 게시물을 수정하지 못했습니다.");
+        }
+
+        return "redirect:/reply/list";
+    }
+
+    @GetMapping("modify")
+    public void modify(int id, Model model) {
+        ReplyDto replyDto = replyService.get(id);
+        model.addAttribute("Reply", replyDto);
+    }
+
+    @PostMapping("remove")
+    public String remove(int id, RedirectAttributes rttr) {
+        int cnt = replyService.remove(id);
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message", id + "번 게시물이 삭제되었습니다.");
+        } else {
+            rttr.addFlashAttribute("message", id + "번 게시물이 삭제되지 않았습니다.");
+        }
+        return "redirect:/reply/list";
+    }
 }

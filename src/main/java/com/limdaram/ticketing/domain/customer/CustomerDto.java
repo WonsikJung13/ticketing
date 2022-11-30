@@ -17,6 +17,7 @@ public class CustomerDto {
     private String customerPhoneNumber;
     private Date customerBirth;
     private String customerGrade;
+    private int customerTotalPaid;
 
 
     private LocalDateTime customerInserted;
