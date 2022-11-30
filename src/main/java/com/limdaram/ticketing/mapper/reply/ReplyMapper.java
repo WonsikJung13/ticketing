@@ -18,4 +18,6 @@ public interface ReplyMapper {
     int insert(ReplyDto reply);
 
     int updateReply(ReplyDto reply);
+
+    int removeById(int id);
 }
