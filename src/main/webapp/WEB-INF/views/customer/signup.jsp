@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col">
             <h1>회원가입 하기</h1>
-            <form action="" method="post" id="formId">
+            <form action="" method="post" id="formId" name="form">
 
                 <div class="mb-3">
                     <label for="" class="form-label">
@@ -105,9 +105,9 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerAddressInput" class="form-control" type="text" name="customerAddress" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerAddressInput" readonly class="form-control" type="text" name="customerAddress">
+                        <input id="customerAddressButton" type="button" onClick="goPopup();" value="검색"/>
                     </div>
-
                     <div style="color: red" id="customerAddressText" class="form-text"></div>
                 </div>
 
@@ -173,6 +173,7 @@
 
     // 3-1. 아이디, 이메일, 패스워드 중복확인 + 모든 input값 입력해야 가입 가능
     document.querySelector("#submitButton").addEventListener("click", function (e) {
+        matchAddress();
         e.preventDefault();
 
         if (checkedId && checkedDoubleId && checkedDoubleEmail && checkedEmail && checkedPassword && checkedPassword1 && checkedPassword2 && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress) {
@@ -383,10 +384,11 @@
     function matchAddress() {
         checkedAddress = false;
 
-        const address = customerAddressInput.value;
+        const address = document.form.customerAddressInput.value;
 
         if (address == "") {
-            customerAddressText.innerText = "주소를 작성해주세요"
+
+            customerAddressText.innerText = "주소를 입력해주세요"
             customerAddressText.setAttribute("style", "color:red");
         } else {
             customerAddressText.innerText = ""
@@ -406,8 +408,27 @@
         }
     }
 
+    function goPopup(){
+        // 주소검색을 수행할 팝업 페이지를 호출합니다.
+        // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+        var pop = window.open("/customer/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
 
+        // 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes");
+    }
 
+    function jusoCallBack(customerAddressInput){
+        // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+        document.form.customerAddressInput.value = customerAddressInput;
+
+    }
+
+    var now_utc = Date.now() // 지금 날짜를 밀리초로
+    // getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+    var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+    // new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
+    var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+    document.getElementById("customerBirthInput").setAttribute("max", today);
 
 </script>
 
