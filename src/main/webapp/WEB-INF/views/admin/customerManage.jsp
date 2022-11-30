@@ -151,21 +151,21 @@
 <script>
 
     const ctx = "${pageContext.request.contextPath}";
-    const ccc = "${pageContext.request.contextPath}"
     // 좋아요 버튼 클릭시
     document.querySelector("#gradeUpdate").addEventListener("click", function () {
         const customerUniqueNumber = document.querySelector("#customerUniqueNumber").value;
         const customerGrade = document.querySelector("#customerGrade option:checked").value;
         const data = {customerUniqueNumber, customerGrade}
 
-        fetch(`\${ccc}/admin/updateGrade`, {
+        fetch(`\${ctx}/admin/updateGrade`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
-        }).then(res => res.json())
-
+        })
+            .then(res => res.json())
+            .then((data) => console.log(data));
     })
 </script>
 

@@ -26,7 +26,7 @@ public class ContentService {
         // db에 게시물 정보 저장
         int cnt = mapper.insert(content);
 
-        File folder1 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+        File folder1 = new File("C:\\Users\\Wonsik\\Desktop\\study\\" + content.getContentId());
 
         if (file1 != null && file1.getSize() > 0) {
 
@@ -109,7 +109,7 @@ public class ContentService {
                 System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
                 mapper.deleteByContentIdAndDetailName(contentId, removeDetailFile);
                 // 2. 저장소에 있는 실제 파일 지우기
-                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removeDetailFile;
+                String path = "C:\\Users\\Wonsik\\Desktop\\study\\" + contentId + "/" + removeDetailFile;
                 File file = new File(path);
                 System.out.println("path: " + file);
                 file.delete();
@@ -128,7 +128,7 @@ public class ContentService {
                         // 1. contentDetail 테이블에서 record 지우기
                         mapper.deleteByContentIdAndDetailName(contentId, DetailFileName);
                         // 2. 저장소에 있는 실제 파일 지우기
-                        String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + DetailFileName;
+                        String path = "C:\\Users\\Wonsik\\Desktop\\study\\" + contentId + "/" + DetailFileName;
                         File file = new File(path);
                         System.out.println("path: " + file);
 
@@ -142,7 +142,7 @@ public class ContentService {
                     mapper.insertFile2(content.getContentId(), uuid);
 
                     // 저장소에 실제 파일 추가
-                    File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+                    File folder = new File("C:\\Users\\Wonsik\\Desktop\\study\\" + content.getContentId());
                     folder.mkdirs();
                     File dest = new File(folder, uuid);
 
@@ -164,7 +164,7 @@ public class ContentService {
     //    컨텐츠삭제
     public int remove(int contentId) {
         // 저장소의 이미지 파일 지우기
-        String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId;
+        String path = "C:\\Users\\Wonsik\\Desktop\\study\\" + contentId;
         File folder = new File(path);   // 폴더 만들기
 
         File[] listFiles = folder.listFiles();  // 폴더안의 파일들
