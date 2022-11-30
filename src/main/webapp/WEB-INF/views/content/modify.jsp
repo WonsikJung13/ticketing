@@ -38,11 +38,11 @@
     정보 <textarea name="contentBoard" >${content.contentBoard}</textarea>
     <div class="posterBox">
         <label for="" class="form-label">포스터</label>
-        <input type="file" accept="image/*" class="form-control" name="file1">
+        <input type="file" accept="image/*" class="form-control" name="addDetailFile">
     </div>
     <div class="DetailBox">
         <label for="" class="form-label">세부내용</label>
-        <input multiple type="file" accept="image/*" class="form-control" name="file2">
+        <input multiple type="file" accept="image/*" class="form-control" name="addDetailFiles">
     </div>
     <%-- 이미지 출력 --%>
     <div>

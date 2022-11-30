@@ -30,7 +30,7 @@ public class ContentService {
 
         if (file1 != null && file1.getSize() > 0) {
 
-            String uuid = UUID.randomUUID().toString()+".jpg";
+            String uuid = UUID.randomUUID().toString() + ".jpg";
 
             // db에 파일 정보 저장(contentid, filename)
             mapper.insertFile(content.getContentId(), uuid);
@@ -89,69 +89,79 @@ public class ContentService {
         return mapper.select(contentId);
     }
 
-//    컨텐츠수정
+    //    컨텐츠수정
     public int update(
             ContentDto content,
             MultipartFile addPosterFile,
             MultipartFile[] addDetailFiles,
             List<String> removeDetailFiles) {
-        System.out.println("removeDetailFile: " + removeDetailFiles);
+        System.out.println("removeDetailFiles: " + removeDetailFiles);
+        System.out.println("addDetailFiles: " + addDetailFiles);
+//        System.out.println("addPosterFile: " + addPosterFile);
 
         int contentId = content.getContentId();
-        // removeDetailFiles에 있는 파일명으로
 
+        // removeDetailFiles에 있는 파일명으로
+        // 파일 체크O 일 때
         if (removeDetailFiles != null) {
-            for (String DetailFileName : removeDetailFiles) {
+            for (String removeDetailFile : removeDetailFiles) {
                 // 1. contentDetail 테이블에서 record 지우기
-//                System.out.println("contentId, DetailFileName: " + contentId + ", " + DetailFileName);
-                mapper.deleteByContentIdAndDetailName(contentId, DetailFileName);
+                System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
+                mapper.deleteByContentIdAndDetailName(contentId, removeDetailFile);
                 // 2. 저장소에 있는 실제 파일 지우기
-                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + DetailFileName;
+                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removeDetailFile;
                 File file = new File(path);
-//                System.out.println("path: " + file);
+                System.out.println("path: " + file);
                 file.delete();
             }
         }
+        List<String> DetailFileNames = content.getContentDetailName();
+        System.out.println("detailFileNames: " + DetailFileNames);
+        // 파일 추가 할 때
+        if (addDetailFiles != null) {
+            for (MultipartFile DetailFile : addDetailFiles) {
+                System.out.println("addDetailFiles: " + addDetailFiles);
+                System.out.println("DetailFile: " + DetailFile);
+                if (removeDetailFiles != null) {
+                    for (String DetailFileName : removeDetailFiles) {
+                        System.out.println("contentId, DetailFileName: " + contentId + ", " + DetailFileName);
+                        // 1. contentDetail 테이블에서 record 지우기
+                        mapper.deleteByContentIdAndDetailName(contentId, DetailFileName);
+                        // 2. 저장소에 있는 실제 파일 지우기
+                        String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + DetailFileName;
+                        File file = new File(path);
+                        System.out.println("path: " + file);
 
-        for (MultipartFile DetailFile : addDetailFiles) {
-            System.out.println("addDetailFiles: " + addDetailFiles);
-            for (String DetailFileName : removeDetailFiles) {
-                System.out.println("contentId, DetailFileName: " + contentId + ", " + DetailFileName);
-                // 1. contentDetail 테이블에서 record 지우기
-                mapper.deleteByContentIdAndDetailName(contentId, DetailFileName);
-                // 2. 저장소에 있는 실제 파일 지우기
-                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + DetailFileName;
-                File file = new File(path);
-                System.out.println("path: " + file);
+                        file.delete();
+                    }
+                }
 
-                file.delete();
-            }
+                if (DetailFile != null && DetailFile.getSize() > 0) {
+                    // 파일 테이블에 파일명 추가
+                    String uuid = UUID.randomUUID().toString() + ".jpg";
+                    mapper.insertFile2(content.getContentId(), uuid);
 
-            if (DetailFile != null && DetailFile.getSize() > 0) {
-                // 파일 테이블에 파일명 추가
-                String uuid = UUID.randomUUID().toString() + ".jpg";
-                mapper.insertFile2(content.getContentId(), uuid);
+                    // 저장소에 실제 파일 추가
+                    File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+                    folder.mkdirs();
+                    File dest = new File(folder, uuid);
 
-                // 저장소에 실제 파일 추가
-                File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
-                folder.mkdirs();
-                File dest = new File(folder, uuid);
-
-                // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
-                try {
-                    DetailFile.transferTo(dest); // checkException을 발생시킴
-                } catch (Exception e) {
-                    // @Transactional은 RuntimeException에서만 rollback 됨
-                    e.printStackTrace();
-                    throw new RuntimeException(e);
+                    // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
+                    try {
+                        DetailFile.transferTo(dest); // checkException을 발생시킴
+                    } catch (Exception e) {
+                        // @Transactional은 RuntimeException에서만 rollback 됨
+                        e.printStackTrace();
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         }
-
+        System.out.println("dasnlasgn;l");
         return mapper.update(content);
     }
 
-//    컨텐츠삭제
+    //    컨텐츠삭제
     public int remove(int contentId) {
         // 저장소의 이미지 파일 지우기
         String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId;
@@ -159,7 +169,7 @@ public class ContentService {
 
         File[] listFiles = folder.listFiles();  // 폴더안의 파일들
 
-        if(listFiles != null) {
+        if (listFiles != null) {
             for (File file : listFiles) {
                 file.delete();  // 파일 지우기
             }
