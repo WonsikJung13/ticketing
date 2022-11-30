@@ -19,4 +19,6 @@ public interface CustomerMapper {
     CustomerDto getByCustomerEmail(String customerEmail);
 
     int passwordModify(int customerUniqueNumber, String customerPassword);
+
+    int phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber);
 }

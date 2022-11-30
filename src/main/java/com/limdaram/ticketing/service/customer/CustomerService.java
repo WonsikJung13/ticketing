@@ -51,4 +51,8 @@ public class CustomerService {
     public int passwordModify(int customerUniqueNumber, String customerPassword) {
         return customerMapper.passwordModify(customerUniqueNumber, customerPassword);
     }
+
+    public int phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber) {
+        return customerMapper.phoneNumberModify(customerUniqueNumber, customerPhoneNumber);
+    }
 }

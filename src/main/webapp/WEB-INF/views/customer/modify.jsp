@@ -77,7 +77,9 @@
                     </div>
 
                 </div>
-                <button type="button" class="btn btn-outline-secondary">핸드폰 번호 변경하기</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
+                    핸드폰 번호 변경하기
+                </button>
 
 
                 <div class="mb-3">
@@ -147,6 +149,34 @@
     </div>
 </div>
 
+<%-- 핸드폰 변경 모달창 --%>
+<div class="modal fade" id="phoneNumberModal" tabindex="-1" aria-labelledby="phoneNumberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="phoneNumberModalLabel">핸드폰 번호 변경하기</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="phoneNumberForm" action="phoneNumberModify" method="post">
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            핸드폰 번호
+                        </label>
+                        <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
+                        <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="modalConfirmPhoneNumberButton" type="button" class="btn btn-primary">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
@@ -176,6 +206,10 @@
             customerPasswordText2.innerText = "비밀번호가 일치하지 않습니다"
             document.getElementById("customerPasswordInput2").focus();
         }
+    })
+
+    document.querySelector("#modalConfirmPhoneNumberButton").addEventListener("click", function() {
+        document.getElementById('phoneNumberForm').submit();
     })
 
     // input 값이 모두 입력되었는지 확인

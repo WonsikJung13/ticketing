@@ -144,4 +144,17 @@ public class CustomerController {
             return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
         }
     }
+
+    @PostMapping("phoneNumberModify")
+    public String phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber, RedirectAttributes rttr) {
+        int cnt = customerService.phoneNumberModify(customerUniqueNumber, customerPhoneNumber);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message",  "핸드폰 번호가 수정되었습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        } else {
+            rttr.addFlashAttribute("message", "핸드폰 번호가 수정되지 않았습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        }
+    }
 }

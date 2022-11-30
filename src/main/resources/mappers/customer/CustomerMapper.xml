@@ -55,4 +55,9 @@
         WHERE customerUniqueNumber = #{customerUniqueNumber}
     </update>
 
+    <update id="phoneNumberModify">
+        UPDATE Customer
+        SET customerPhoneNumber = #{customerPhoneNumber}
+        WHERE customerUniqueNumber = #{customerUniqueNumber}
+    </update>
 </mapper>
