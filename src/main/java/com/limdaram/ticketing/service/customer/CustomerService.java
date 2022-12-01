@@ -14,15 +14,15 @@ public class CustomerService {
     @Setter(onMethod_ = @Autowired)
     private CustomerMapper customerMapper;
 
-    public int modify(CustomerDto customer) {
-        int cnt = 0;
-        try {
-            return customerMapper.update(customer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return cnt;
-    }
+//    public int modify(CustomerDto customer) {
+//        int cnt = 0;
+//        try {
+//            return customerMapper.update(customer);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return cnt;
+//    }
 
     public CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber) {
         return customerMapper.getByCustomerUniqueNumber(customerUniqueNumber);
@@ -46,5 +46,17 @@ public class CustomerService {
 
     public CustomerDto getByCustomerEmail(String customerEmail) {
         return customerMapper.getByCustomerEmail(customerEmail);
+    }
+
+    public int passwordModify(int customerUniqueNumber, String customerPassword) {
+        return customerMapper.passwordModify(customerUniqueNumber, customerPassword);
+    }
+
+    public int phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber) {
+        return customerMapper.phoneNumberModify(customerUniqueNumber, customerPhoneNumber);
+    }
+
+    public int addressModify(int customerUniqueNumber, String customerAddress) {
+        return customerMapper.addressModify(customerUniqueNumber, customerAddress);
     }
 }

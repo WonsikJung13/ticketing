@@ -47,27 +47,27 @@ public class CustomerController {
         model.addAttribute("customer", customerService.getByCustomerUniqueNumber(customerUniqueNumber));
     }
 
-    @PostMapping("modify")
-    public String modify(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
-
-        CustomerDto oldCustomer = customerService.getByCustomerUniqueNumber(customer.getCustomerUniqueNumber());
-
-        rttr.addAttribute("customerUniqueNumber", customer.getCustomerUniqueNumber());
-        if (oldCustomer.getCustomerPassword().equals(oldPassword)) {
-            int cnt = customerService.modify(customer);
-
-            if (cnt == 1) {
-                rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되었습니다");
-                return "redirect:/customer/get";
-            } else {
-                rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되지 않았습니다");
-                return "redirect:/customer/modify";
-            }
-        } else {
-            rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되지 않았습니다.");
-            return "redirect:/customer/modify";
-        }
-    }
+//    @PostMapping("modify")
+//    public String modify(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
+//
+//        CustomerDto oldCustomer = customerService.getByCustomerUniqueNumber(customer.getCustomerUniqueNumber());
+//
+//        rttr.addAttribute("customerUniqueNumber", customer.getCustomerUniqueNumber());
+//        if (oldCustomer.getCustomerPassword().equals(oldPassword)) {
+//            int cnt = customerService.modify(customer);
+//
+//            if (cnt == 1) {
+//                rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되었습니다");
+//                return "redirect:/customer/get";
+//            } else {
+//                rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되지 않았습니다");
+//                return "redirect:/customer/modify";
+//            }
+//        } else {
+//            rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되지 않았습니다.");
+//            return "redirect:/customer/modify";
+//        }
+//    }
 
     @PostMapping("remove")
     public String remove(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
@@ -132,4 +132,43 @@ public class CustomerController {
 
     }
 
+    @PostMapping("passwordModify")
+    public String passwordModify(int customerUniqueNumber, String customerPassword, RedirectAttributes rttr) {
+        int cnt = customerService.passwordModify(customerUniqueNumber, customerPassword);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message",  "비밀번호가 수정되었습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        } else {
+            rttr.addFlashAttribute("message", "비밀번호가 수정되지 않았습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        }
+    }
+
+    @PostMapping("phoneNumberModify")
+    public String phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber, RedirectAttributes rttr) {
+        int cnt = customerService.phoneNumberModify(customerUniqueNumber, customerPhoneNumber);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message",  "핸드폰 번호가 수정되었습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        } else {
+            rttr.addFlashAttribute("message", "핸드폰 번호가 수정되지 않았습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        }
+    }
+
+    @PostMapping("addressModify")
+    public String addressModify(int customerUniqueNumber, String customerAddress, RedirectAttributes rttr) {
+        int cnt = customerService.addressModify(customerUniqueNumber, customerAddress);
+        String newAddress = customerService.getByCustomerUniqueNumber(customerUniqueNumber).getCustomerAddress();
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message",  newAddress + "주소로 수정되었습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        } else {
+            rttr.addFlashAttribute("message", "주소가 수정되지 않았습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        }
+    }
 }
