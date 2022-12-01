@@ -58,7 +58,7 @@ public class ReplyController {
 
     @RequestMapping("register")
     public void register() {
-        System.out.println("register");
+
     }
 
     @PostMapping("register")
@@ -120,4 +120,5 @@ public class ReplyController {
     public void rr(){
         System.out.println("rr");
     }
+
 }
