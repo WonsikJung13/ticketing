@@ -157,4 +157,18 @@ public class CustomerController {
             return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
         }
     }
+
+    @PostMapping("addressModify")
+    public String addressModify(int customerUniqueNumber, String customerAddress, RedirectAttributes rttr) {
+        int cnt = customerService.addressModify(customerUniqueNumber, customerAddress);
+        String newAddress = customerService.getByCustomerUniqueNumber(customerUniqueNumber).getCustomerAddress();
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message",  newAddress + "주소로 수정되었습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        } else {
+            rttr.addFlashAttribute("message", "주소가 수정되지 않았습니다");
+            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+        }
+    }
 }

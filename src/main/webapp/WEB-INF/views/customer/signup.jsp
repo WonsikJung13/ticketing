@@ -396,7 +396,7 @@
         }
     }
 
-    document.querySelector("#customerAddressInput").addEventListener("keyup", matchAddress);
+    // document.querySelector("#customerAddressInput").addEventListener("keyup", matchAddress);
 
     function noSpaceForm(obj) { // 공백사용못하게
         var str_space = /\s/;  // 공백체크
@@ -418,6 +418,7 @@
     }
 
     function jusoCallBack(customerAddressInput){
+        console.log(customerAddressInput)
         // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
         document.form.customerAddressInput.value = customerAddressInput;
 

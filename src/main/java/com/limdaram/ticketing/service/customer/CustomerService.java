@@ -55,4 +55,8 @@ public class CustomerService {
     public int phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber) {
         return customerMapper.phoneNumberModify(customerUniqueNumber, customerPhoneNumber);
     }
+
+    public int addressModify(int customerUniqueNumber, String customerAddress) {
+        return customerMapper.addressModify(customerUniqueNumber, customerAddress);
+    }
 }

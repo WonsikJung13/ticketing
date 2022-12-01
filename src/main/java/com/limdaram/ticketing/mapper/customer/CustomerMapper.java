@@ -21,4 +21,6 @@ public interface CustomerMapper {
     int passwordModify(int customerUniqueNumber, String customerPassword);
 
     int phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber);
+
+    int addressModify(int customerUniqueNumber, String customerAddress);
 }

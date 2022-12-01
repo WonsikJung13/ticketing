@@ -60,4 +60,10 @@
         SET customerPhoneNumber = #{customerPhoneNumber}
         WHERE customerUniqueNumber = #{customerUniqueNumber}
     </update>
+
+    <update id="addressModify">
+        UPDATE Customer
+        SET customerAddress = #{customerAddress}
+        WHERE customerUniqueNumber = #{customerUniqueNumber}
+    </update>
 </mapper>

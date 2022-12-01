@@ -86,12 +86,17 @@
                     <label for="" class="form-label">
                         주소
                     </label>
-
-                    <div>
-                        <input class="form-control" type="text" value="${customer.customerAddress }" readonly>
-                    </div>
+                    <form id="addressForm" action="addressModify" method="post">
+                        <div class="input-group">
+                            <input id="customerAddressInput" name="customerAddress" class="form-control" type="text" value="${customer.customerAddress }" readonly>
+                            <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                            <input id="customerAddressButton" type="button" onClick="goPopup();" value="검색"/>
+                        </div>
+                    </form>
                 </div>
-                <button type="button" class="btn btn-outline-secondary">주소 변경하기</button>
+                <button id="modalConfirmAddressButton" type="button" class="btn btn-outline-secondary" onclick="test()">
+                    주소 변경하기
+                </button>
 
 
                 <div class="mb-3">
@@ -129,7 +134,7 @@
                         </label>
                         <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerPasswordText1" class="form-text"></div>
-                        <input id="test" type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                        <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
                     </div>
                 </form>
 
@@ -149,7 +154,7 @@
     </div>
 </div>
 
-<%-- 핸드폰 변경 모달창 --%>
+<%-- 핸드폰 번호 변경 모달창 --%>
 <div class="modal fade" id="phoneNumberModal" tabindex="-1" aria-labelledby="phoneNumberModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -176,6 +181,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -209,8 +216,18 @@
     })
 
     document.querySelector("#modalConfirmPhoneNumberButton").addEventListener("click", function() {
-        document.getElementById('phoneNumberForm').submit();
+        if (checkedPhoneNumber) {
+            document.getElementById('phoneNumberForm').submit();
+        } else if (checkedPhoneNumber == false) {
+            customerPhoneNumberText.innerText = "핸드폰 번호를 작성해주세요"
+            document.getElementById("customerPhoneNumberInput").focus();
+        }
     })
+
+    function test () {
+        document.getElementById('addressForm').submit();
+
+    }
 
     // input 값이 모두 입력되었는지 확인
     const customerPasswordInput1 = document.querySelector("#customerPasswordInput1");
@@ -306,8 +323,6 @@
         }
     }
 
-    document.querySelector("#customerAddressInput").addEventListener("keyup", matchAddress);
-
     function noSpaceForm(obj) { // 공백사용못하게
         var str_space = /\s/;  // 공백체크
         if(str_space.exec(obj.value)) { //공백 체크
@@ -329,8 +344,7 @@
 
     function jusoCallBack(customerAddressInput){
         // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-        document.form.customerAddressInput.value = customerAddressInput;
-
+        document.querySelector("#customerAddressInput").value = customerAddressInput;
     }
 
 
