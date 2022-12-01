@@ -1,6 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ page import="java.net.*" %>
 
 <!doctype html>
 <html lang="en">
@@ -16,40 +17,47 @@
 </head>
 <body>
 <my:navBar/>
+<h1>${content.contentName}
 
+<%--    수정버튼--%>
+<c:url value="/content/modify" var="modifyLink">
+    <c:param name="contentId" value="${content.contentId}"></c:param>
+</c:url>
+<a class="btn btn-warning" href="${modifyLink}">수정</a>
+<input type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal" class="btn btn-danger">
 
-    상품명 <input type="text" value="${content.contentName}" readonly> <br>
-    장소 <input type="text" value="${content.contentRegion}" readonly> <br>
-    시작 <input type="date" value="${content.contentStartDate}" readonly> <br>
-    종료 <input type="date" value="${content.contentEndDate}" readonly> <br>
-    가격 <input type="number" value="${content.contentPrice}" readonly> <br>
-    정보 <textarea name="contentBoard" readonly>${content.contentBoard}</textarea>
-    <br>
+<%--    삭제버튼--%>
+<c:url value="/content/remove" var="removeLink"></c:url>
+<form id="removeForm" action="${removeLink }" method="post">
+    <input type="hidden" name="contentId" value="${content.contentId }">
+</form>
+</h1>
 <%-- 이미지 출력 --%>
 <div>
     <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
-</div>
-    <%-- 이미지 출력2 --%>
+<%--    상품명 <input type="text" value="${content.contentName}" readonly> <br>--%>
+    <p>장소 <input type="text" value="${content.contentRegion}" readonly></p>
+    기간 <input type="date" value="${content.contentStartDate}" readonly>
+    ~ <input type="date" value="${content.contentEndDate}" readonly> <br>
+    가격 <input type="number" value="${content.contentPrice}" readonly> <br>
     <div>
-        <c:forEach items="${content.contentDetailName}" var="name">
-            <div>
-                <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
-            </div>
-        </c:forEach>
-    </div>
+    이용정보 <br>
+        <textarea name="contentBoard" readonly>${content.contentBoard}</textarea>
+    <br>
+        <%-- 이미지 출력2 --%>
+        <div>
+            <c:forEach items="${content.contentDetailName}" var="name">
+                <div>
+                    <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
+                </div>
+            </c:forEach>
+        </div>
+</div>
 
-<%--    수정버튼--%>
-    <c:url value="/content/modify" var="modifyLink">
-        <c:param name="contentId" value="${content.contentId}"></c:param>
-    </c:url>
-    <a class="btn btn-warning" href="${modifyLink}">수정</a>
-    <input type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal" class="btn btn-danger">
 
-<%--    삭제버튼--%>
-    <c:url value="/content/remove" var="removeLink"></c:url>
-    <form id="removeForm" action="${removeLink }" method="post">
-        <input type="hidden" name="contentId" value="${content.contentId }">
-    </form>
+
+
+
 
     <!-- remove Modal -->
     <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

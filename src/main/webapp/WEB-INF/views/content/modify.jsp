@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ page import="java.net.*" %>
 
 <html>
 <head>
@@ -23,11 +24,19 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>상품 수정</title>
+    <style>
+        .custom-check .form-check-input:checked{
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    </style>
 </head>
 <body>
 <my:navBar/>
 
-<h1>${content.contentName} 상품 수정</h1>
+<h1>${content.contentName} 상품 수정
+    <input type="submit" value="수정" data-bs-toggle="modal" data-bs-target="#modifyModal">
+</h1>
 <form id="modifyForm" action="" method="post" enctype="multipart/form-data">
 
     상품명 <input type="text" name="contentName" value="${content.contentName}" > <br>
@@ -44,13 +53,16 @@
         <label for="" class="form-label">세부내용</label>
         <input multiple type="file" accept="image/*" class="form-control" name="addDetailFiles">
     </div>
+    <br>
 
     <%-- Poster 이미지 출력 --%>
     <div class="row">
-        <div class="col-2">
+        <div class="col-2 d-flex justify-content-center align-items-center">
             <%-- 삭제여부 체크박스 --%>
-            삭제
-            <input type="checkbox" name="removePosterFile" value="${content.contentPosterName}">
+                <div class="custom-check form-check form-switch text-danger">
+                    <input name="removePosterFile" value="${content.contentPosterName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                    <label class="form-check-label" for="flexSwitchCheckChecked"><i class="fa-regular fa-trash-can"></i></label>
+                </div>
         </div>
         <div class="col-10">
             <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
@@ -59,12 +71,14 @@
 
     <%-- Detail 이미지 출력 --%>
     <div>
-        <c:forEach items="${content.contentDetailName}" var="contentDetailName">
+        <c:forEach items="${content.contentDetailName}" var="contentDetailName" varStatus="status">
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 d-flex justify-content-center align-items-center">
                     <%-- 삭제여부 체크박스 --%>
-                    삭제
-                    <input type="checkbox" name="removeDetailFiles" value="${contentDetailName}">
+                        <div class="custom-check form-check form-switch text-danger">
+                            <input name="removeDetailFiles" value="${contentDetailName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked${status.count}">
+                            <label class="form-check-label" for="flexSwitchCheckChecked${status.count}"><i class="fa-regular fa-trash-can"></i></label>
+                        </div>
                 </div>
                 <div class="col-10">
                     <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${contentDetailName}" alt="">
@@ -73,7 +87,6 @@
         </c:forEach>
     </div>
 </form>
-<input type="submit" value="수정" data-bs-toggle="modal" data-bs-target="#modifyModal">
 
 <!-- Modal -->
 <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
