@@ -162,11 +162,14 @@ public class CustomerController {
     public String addressModify(int customerUniqueNumber, String customerAddress, RedirectAttributes rttr) {
         int cnt = customerService.addressModify(customerUniqueNumber, customerAddress);
         String newAddress = customerService.getByCustomerUniqueNumber(customerUniqueNumber).getCustomerAddress();
+        System.out.println(customerUniqueNumber);
 
         if (cnt == 1) {
-            rttr.addFlashAttribute("message",  newAddress + "주소로 수정되었습니다");
+            System.out.println(customerAddress);
+            rttr.addFlashAttribute("message",  newAddress + " 주소로 수정되었습니다");
             return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
         } else {
+            System.out.println(customerAddress);
             rttr.addFlashAttribute("message", "주소가 수정되지 않았습니다");
             return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
         }
