@@ -38,27 +38,36 @@
     정보 <textarea name="contentBoard" >${content.contentBoard}</textarea>
     <div class="posterBox">
         <label for="" class="form-label">포스터</label>
-        <input type="file" accept="image/*" class="form-control" name="addDetailFile">
+        <input type="file" accept="image/*" class="form-control" name="addPosterFile">
     </div>
     <div class="DetailBox">
         <label for="" class="form-label">세부내용</label>
         <input multiple type="file" accept="image/*" class="form-control" name="addDetailFiles">
     </div>
-    <%-- 이미지 출력 --%>
-    <div>
-        <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
+
+    <%-- Poster 이미지 출력 --%>
+    <div class="row">
+        <div class="col-2">
+            <%-- 삭제여부 체크박스 --%>
+            삭제
+            <input type="checkbox" name="removePosterFile" value="${content.contentPosterName}">
+        </div>
+        <div class="col-10">
+            <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
+        </div>
     </div>
-    <%-- 이미지 출력2 --%>
+
+    <%-- Detail 이미지 출력 --%>
     <div>
-        <c:forEach items="${content.contentDetailName}" var="name">
+        <c:forEach items="${content.contentDetailName}" var="contentDetailName">
             <div class="row">
                 <div class="col-2">
                     <%-- 삭제여부 체크박스 --%>
                     삭제
-                    <input type="checkbox" name="removeDetailFiles" value="${name}">
+                    <input type="checkbox" name="removeDetailFiles" value="${contentDetailName}">
                 </div>
                 <div class="col-10">
-                    <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
+                    <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${contentDetailName}" alt="">
                 </div>
             </div>
         </c:forEach>
