@@ -79,6 +79,7 @@ public class ContentController {
             ContentDto content,
             MultipartFile addPosterFile,
             MultipartFile[] addDetailFiles,
+            @RequestParam(name = "removePosterFile", required = false) String removePosterFile,
             @RequestParam(name = "removeDetailFiles", required = false) List<String> removeDetailFiles,
             RedirectAttributes rttr) {
 
@@ -90,7 +91,7 @@ public class ContentController {
 //            }
 //        }
 
-        int cnt = service.update(content, addPosterFile, addDetailFiles, removeDetailFiles);
+        int cnt = service.update(content, addPosterFile, addDetailFiles, removePosterFile, removeDetailFiles);
         System.out.println("수정완료 " + content);
 
         if (cnt == 1) {
