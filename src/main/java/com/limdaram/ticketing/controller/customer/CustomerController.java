@@ -47,28 +47,6 @@ public class CustomerController {
         model.addAttribute("customer", customerService.getByCustomerUniqueNumber(customerUniqueNumber));
     }
 
-//    @PostMapping("modify")
-//    public String modify(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
-//
-//        CustomerDto oldCustomer = customerService.getByCustomerUniqueNumber(customer.getCustomerUniqueNumber());
-//
-//        rttr.addAttribute("customerUniqueNumber", customer.getCustomerUniqueNumber());
-//        if (oldCustomer.getCustomerPassword().equals(oldPassword)) {
-//            int cnt = customerService.modify(customer);
-//
-//            if (cnt == 1) {
-//                rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되었습니다");
-//                return "redirect:/customer/get";
-//            } else {
-//                rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되지 않았습니다");
-//                return "redirect:/customer/modify";
-//            }
-//        } else {
-//            rttr.addFlashAttribute("message", oldCustomer.getCustomerName() + "님의 정보가 수정되지 않았습니다.");
-//            return "redirect:/customer/modify";
-//        }
-//    }
-
     @PostMapping("remove")
     public String remove(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
 

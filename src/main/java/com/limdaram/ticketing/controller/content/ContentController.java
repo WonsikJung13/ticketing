@@ -3,6 +3,7 @@ package com.limdaram.ticketing.controller.content;
 import com.limdaram.ticketing.domain.content.ContentDto;
 import com.limdaram.ticketing.service.content.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ public class ContentController {
     @Autowired
     private ContentService service;
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("register")
     public void register() {
 

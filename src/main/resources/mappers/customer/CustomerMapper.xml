@@ -21,17 +21,6 @@
         WHERE customerUniqueNumber = #{customerUniqueNumber}
     </select>
 
-<!--    <update id="update">-->
-<!--        UPDATE Customer-->
-<!--        SET-->
-<!--        customerPassword = #{customerPassword},-->
-<!--        customerEmail = #{customerEmail},-->
-<!--        customerAddress = #{customerAddress},-->
-<!--        customerPhoneNumber = #{customerPhoneNumber},-->
-<!--        customerBirth = #{customerBirth}-->
-<!--        WHERE customerUniqueNumber = #{customerUniqueNumber}-->
-<!--    </update>-->
-
     <delete id="delete">
         DELETE FROM Customer
         WHERE customerUniqueNumber = #{customerUniqueNumber}
