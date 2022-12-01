@@ -32,7 +32,15 @@
     </tr>
     <c:forEach items="${replyList}" var="Reply">
         <tr>
-            <td>${Reply.replyId }</td>
+            <td>
+                <c:url value="/reply/get" var="getLink">
+                    <c:param name="id" value="${Reply.replyId}" />
+
+                </c:url>
+                <a href="${getLink}">
+                        ${Reply.replyId}
+                </a>
+            </td>
             <td>
                 <c:url value="/reply/get" var="getLink">
                     <c:param name="id" value="${Reply.replyId}" />
@@ -64,3 +72,5 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+
+
