@@ -33,11 +33,11 @@
 
 
 <c:url value="/admin/customerList" var="adminLink"/>
+<c:url value="/admin/customerManage" var="manageLink"/>
 <c:url value="/reply/list" var="replyLink"/>
 <c:url value="/customer/signup" var="signupLink"/>
 <c:url value="/customer/get" var="getLink"/>
 <c:url value="/content/list" var="contentLink"/>
-
 
 <nav class="navbar navbar-expand-md bg-light mb-3">
     <div class="container-md">
@@ -51,7 +51,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link ${active eq 'admin' ? 'active' : '' }" href="${adminLink }">어드민</a>
+                    <a class="nav-link ${active eq 'customerList' ? 'active' : '' }" href="${adminLink }">어드민</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link ${active eq 'customerManage' ? 'active' : '' }" href="${manageLink }">회원관리</a>
                 </li>
 
                 <li class="nav-item">

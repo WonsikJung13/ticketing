@@ -12,7 +12,6 @@ public class WebMvcConfig  implements WebMvcConfigurer {
         registry.addResourceHandler("/images/**")
                 .addResourceLocations("file:/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/");
 
-        System.out.println("컨피그"+registry.getClass());
     }
 
 }

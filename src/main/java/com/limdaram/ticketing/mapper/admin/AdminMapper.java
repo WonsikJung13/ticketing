@@ -12,4 +12,6 @@ public interface AdminMapper {
     int getGradeCountForGold();
 
     List<CustomerDto> getGradeList();
+
+    int updateGrade(int customerUniqueNumber, String customerGrade);
 }

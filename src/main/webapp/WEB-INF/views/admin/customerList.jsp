@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<my:navBar/>
+<my:navBar active="customerList"/>
 
 
 <div class="container-md">
@@ -39,8 +39,8 @@
                 <tbody>
                 <c:forEach items="${customerList }" var="customer">
                     <tr>
-                        <td>
-                            <c:url value="/customer/get" var="infoLink">
+                        <td id="id">
+                            <c:url value="/admin/modify" var="infoLink">
                                 <c:param value="${customer.customerUniqueNumber }" name="customerUniqueNumber"/>
                             </c:url>
                             <a href="${infoLink }">
@@ -48,20 +48,26 @@
                             </a>
                         </td>
                         <td>${customer.customerName }</td>
-                            <%--								<td>${member.password }</td>--%>
                         <td>${customer.customerEmail }</td>
                         <td>${customer.customerGrade }</td>
                         <td>
-                            <div>
-                                <select id="customerGrade" class="form-control">
+                            <form name="grade">
+                                    <select id="customerGrade" class="form-control">
+                                        <c:forEach items="${gradeList}" var="grade">
+                                            <option id="${customer.customerUniqueNumber }"><c:out value="${grade.customerGrade}" /></option>
+                                        </c:forEach>
+                                    </select>
+                                <input type="button" id="testBtn" class="test">
+                            </form>
+
+                            <form name="grade2">
+                                <select id="customerGrade2" class="form-control">
                                     <c:forEach items="${gradeList}" var="grade">
-                                        <option><c:out value="${grade.customerGrade}"/></option>
+                                        <option id="${customer.customerUniqueNumber }"><c:out value="${grade.customerGrade}" /></option>
                                     </c:forEach>
                                 </select>
-                            </div>
-                            <div>
-                                <input type="button" value="반영">
-                            </div>
+                                <input type="button" id="testBtn2" class="test">
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>
@@ -73,7 +79,18 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+</script>
+
+<script>
+    document.querySelector(".test").addEventListener("click", function () {
+        console.log(document.grade.value)
+    })
+
+    document.querySelector(".test").addEventListener("click", function () {
+        console.log(document.grade)
+    })
+</script>
 </body>
 </html>
 
