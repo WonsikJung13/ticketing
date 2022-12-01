@@ -17,7 +17,6 @@
 <div class="container-md">
     <div class="row">
         <div class="col">
-
             <c:if test="${not empty message }">
                 <div class="alert alert-success">
                         ${message }
@@ -26,94 +25,91 @@
 
             <h1>${customer.customerName}님의 회원 정보 수정하기</h1>
 
-            <form id="form1" action="" method="post">
 
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        이름
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerName }" readonly>
+            <div class="mb-3">
+                <label for="" class="form-label">
+                    이름
+                </label>
+                <input class="form-control" type="text" value="${customer.customerName }" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">
+                    생년월일
+                </label>
+                <input class="form-control" type="text" value="${customer.customerBirth }" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">
+                    아이디
+                </label>
+                <input class="form-control" type="text" value="${customer.customerId }" readonly>
+            </div>
+
+            <div class="mb-3" class="form-label">
+                <label for="" class="form-label">
+                    비밀번호
+                </label>
+                <input class="form-control" type="password" value="${customer.customerPassword}" readonly>
+            </div>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                비밀번호 변경하기
+            </button>
+
+            <div class="mb-3">
+                <label for="" class="form-label">
+                    이메일
+                </label>
+                <div>
+                    <input class="form-control" type="email" value="${customer.customerEmail }" readonly>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">
+                    핸드폰 번호
+                </label>
+                <div>
+                    <input class="form-control" type="text" value="${customer.customerPhoneNumber }" readonly>
                 </div>
 
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        생년월일
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerBirth }" readonly>
-                </div>
+            </div>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
+                핸드폰 번호 변경하기
+            </button>
 
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        아이디
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerId }" readonly>
-                </div>
 
-                <div class="mb-3" class="form-label">
-                    <label for="" class="form-label">
-                        비밀번호
-                    </label>
-                    <input class="form-control" type="password" value="${customer.customerPassword}" readonly>
-                </div>
-                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                    비밀번호 변경하기
-                </button>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        이메일
-                    </label>
-                    <div>
-                        <input class="form-control" type="email" value="${customer.customerEmail }" readonly>
+            <div class="mb-3">
+                <label for="" class="form-label">
+                    주소
+                </label>
+                <form id="addressForm" action="addressModify" method="post">
+                    <div class="input-group">
+                        <input id="customerAddressInput" name="customerAddress" class="form-control" type="text" value="${customer.customerAddress }" readonly>
+                        <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                        <input id="customerAddressButton" type="button" onClick="goPopup();" value="검색"/>
                     </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        핸드폰 번호
-                    </label>
-                    <div>
-                        <input class="form-control" type="text" value="${customer.customerPhoneNumber }" readonly>
-                    </div>
-
-                </div>
-                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
-                    핸드폰 번호 변경하기
-                </button>
+                </form>
+            </div>
+            <button id="modalConfirmAddressButton" type="button" class="btn btn-outline-secondary">
+                주소 변경하기
+            </button>
 
 
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        주소
-                    </label>
-                    <form id="addressForm" action="addressModify" method="post">
-                        <div class="input-group">
-                            <input id="customerAddressInput" name="customerAddress" class="form-control" type="text" value="${customer.customerAddress }" readonly>
-                            <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
-                            <input id="customerAddressButton" type="button" onClick="goPopup();" value="검색"/>
-                        </div>
-                    </form>
-                </div>
-                <button id="modalConfirmAddressButton" type="button" class="btn btn-outline-secondary" onclick="test()">
-                    주소 변경하기
-                </button>
+            <div class="mb-3">
+                <label for="" class="form-label">
+                    등급
+                </label>
+                <input class="form-control" type="text" value="${customer.customerGrade }" readonly>
+            </div>
 
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        등급
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerGrade }" readonly>
-                </div>
-
-                <div class="mb-3" >
-                    <label for="" class="form-label">
-                        가입일시
-                    </label>
-                    <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
-                </div>
-            </form>
-
+            <div class="mb-3" >
+                <label for="" class="form-label">
+                    가입일시
+                </label>
+                <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
+            </div>
         </div>
     </div>
 </div>
@@ -224,10 +220,11 @@
         }
     })
 
-    function test () {
+    document.querySelector("#modalConfirmAddressButton").addEventListener("click", function() {
         document.getElementById('addressForm').submit();
 
-    }
+    })
+
 
     // input 값이 모두 입력되었는지 확인
     const customerPasswordInput1 = document.querySelector("#customerPasswordInput1");
