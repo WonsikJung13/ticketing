@@ -8,6 +8,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 
 <html>
 <head>
@@ -31,6 +33,8 @@
 </div>
     <h1>상품 등록</h1>
     <form action="" method="post" enctype="multipart/form-data">
+        작성자 <input value="<sec:authentication property="name"/>"  type="text" name="contentName" readonly>
+        <br>
         상품명 <input type="text" name="contentName">
         <br>
         장소 <input type="text" name="contentRegion">

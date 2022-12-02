@@ -4,6 +4,8 @@ import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.service.customer.CustomerService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,8 @@ public class CustomerController {
     private CustomerService customerService;
 
     @RequestMapping("get")
-    public void method(@RequestParam(name = "customerUniqueNumber", defaultValue = "1") int customerUniqueNumber, Model model) {
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
+    public void method(int customerUniqueNumber, Model model) {
         CustomerDto customer = customerService.getCustomer(customerUniqueNumber);
         System.out.println(customer);
 
@@ -43,11 +46,13 @@ public class CustomerController {
     }
 
     @GetMapping({ "modify"})
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
     public void customer(int customerUniqueNumber, Model model) {
         model.addAttribute("customer", customerService.getByCustomerUniqueNumber(customerUniqueNumber));
     }
 
     @PostMapping("remove")
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customer.customerUniqueNumber)")
     public String remove(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
 
         CustomerDto oldCustomer = customerService.getByCustomerUniqueNumber(customer.getCustomerUniqueNumber());
@@ -111,6 +116,7 @@ public class CustomerController {
     }
 
     @PostMapping("passwordModify")
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
     public String passwordModify(int customerUniqueNumber, String customerPassword, RedirectAttributes rttr) {
         int cnt = customerService.passwordModify(customerUniqueNumber, customerPassword);
 
@@ -124,6 +130,7 @@ public class CustomerController {
     }
 
     @PostMapping("phoneNumberModify")
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
     public String phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber, RedirectAttributes rttr) {
         int cnt = customerService.phoneNumberModify(customerUniqueNumber, customerPhoneNumber);
 
@@ -137,6 +144,7 @@ public class CustomerController {
     }
 
     @PostMapping("addressModify")
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
     public String addressModify(int customerUniqueNumber, String customerAddress, RedirectAttributes rttr) {
         int cnt = customerService.addressModify(customerUniqueNumber, customerAddress);
         String newAddress = customerService.getByCustomerUniqueNumber(customerUniqueNumber).getCustomerAddress();

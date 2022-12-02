@@ -57,6 +57,7 @@ public class ContentController {
         model.addAttribute("contentList", list);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("get")
     public void get(int contentId, Model model) {
         ContentDto content = service.get(contentId);

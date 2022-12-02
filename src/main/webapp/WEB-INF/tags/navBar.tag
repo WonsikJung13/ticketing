@@ -1,5 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ attribute name="active" %>
 
@@ -36,7 +37,10 @@
 <c:url value="/admin/customerManage" var="manageLink"/>
 <c:url value="/reply/list" var="replyLink"/>
 <c:url value="/customer/signup" var="signupLink"/>
-<c:url value="/customer/get" var="getLink"/>
+<sec:authentication property="name" var="user"/>
+<c:url value="/customer/get" var="getLink">
+    <c:param name="customerUniqueNumber" value="${user}"/>
+</c:url>
 <c:url value="/content/list" var="contentLink"/>
 
 <nav class="navbar navbar-expand-md bg-light mb-3">

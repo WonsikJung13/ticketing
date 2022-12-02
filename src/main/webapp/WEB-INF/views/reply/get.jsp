@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,10 +78,14 @@
 <form id="removeForm" action="${removeLink }" method="post">
     <input type="hidden" name="replyId" value="${Reply.replyId }">
 </form>
-<div>
-    <a class="btn btn-warning " href="${modifyLink}">수정하기</a>
-    <input class="btn btn-warning" type="submit" value="삭제하기" data-bs-toggle="modal" data-bs-target="#removeModal">
-</div>
+
+<sec:authentication property="name" var="username"/>
+<c:if test="${Reply.replyName == username}">
+    <div>
+        <a class="btn btn-warning " href="${modifyLink}">수정하기</a>
+        <input class="btn btn-warning" type="submit" value="삭제하기" data-bs-toggle="modal" data-bs-target="#removeModal">
+    </div>
+</c:if>
 <%--<a class = "btn btn-warning" href="${removeLink}">삭제하기</a>--%>
 
 <!-- Modal -->

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -19,6 +20,7 @@ public class CustomerDto {
     private String customerGrade;
     private int customerTotalPaid;
 
+    private List<String> auth;
 
     private LocalDateTime customerInserted;
 
