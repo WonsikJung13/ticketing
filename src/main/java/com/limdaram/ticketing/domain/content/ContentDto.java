@@ -12,7 +12,6 @@ public class ContentDto {
     private String contentName;
     private String contentRegion;
     private String contentBoard;
-
     private String contentPosterName;
     private List<String> contentDetailName;
 
