@@ -11,9 +11,9 @@ public class CustomerSecurity {
     @Autowired
     private CustomerMapper customerMapper;
 
-    public boolean checkCustomerId(String username, int customerUniqueNumber) {
+    public boolean checkCustomerId(String username, String customerId) {
         CustomerDto customer = customerMapper
-                .getByCustomerUniqueNumber(customerUniqueNumber);
+                .getByCustomerId(customerId);
 
         return customer.getCustomerId().equals(username);
     }

@@ -9,19 +9,20 @@ import java.util.List;
 
 @Data
 public class CustomerDto {
-    private String customerId;
-    private String customerName;
     private int customerUniqueNumber;
+    private String customerName;
+    private Date customerBirth;
+    private String customerAddress;
+    private String customerId;
     private String customerPassword;
     private String customerEmail;
-    private String customerAddress;
     private String customerPhoneNumber;
-    private Date customerBirth;
     private String customerGrade;
+    private LocalDateTime customerInserted;
+
     private int customerTotalPaid;
 
     private List<String> auth;
 
-    private LocalDateTime customerInserted;
 
 }

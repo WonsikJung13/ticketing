@@ -4,26 +4,27 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.limdaram.ticketing.mapper.customer.CustomerMapper">
-    <select id="select" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
-        SELECT *
-        FROM Customer
-        WHERE customerUniqueNumber = #{customerUniqueNumber}
-    </select>
+<!--    <select id="select" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">-->
+<!--        SELECT *-->
+<!--        FROM Customer-->
+<!--        WHERE customerUniqueNumber = #{customerUniqueNumber}-->
+<!--    </select>-->
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="customerUniqueNumber">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="customerId">
         INSERT INTO Customer (customerId, customerPassword, customerEmail, customerName, customerAddress, customerPhoneNumber, customerBirth)
         VALUES (#{customerId}, #{customerPassword}, #{customerEmail}, #{customerName}, #{customerAddress}, #{customerPhoneNumber}, #{customerBirth})
+
     </insert>
 
-    <select id="getByCustomerUniqueNumber" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
-        SELECT *
-        FROM Customer
-        WHERE customerUniqueNumber = #{customerUniqueNumber}
-    </select>
+    <!--    <select id="getByCustomerUniqueNumber" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">-->
+<!--        SELECT *-->
+<!--        FROM Customer-->
+<!--        WHERE customerUniqueNumber = #{customerUniqueNumber}-->
+<!--    </select>-->
 
     <delete id="delete">
         DELETE FROM Customer
-        WHERE customerUniqueNumber = #{customerUniqueNumber}
+        WHERE customerId = #{customerId}
     </delete>
 
     <select id="getByCustomerId" resultType="com.limdaram.ticketing.domain.customer.CustomerDto" >
@@ -41,18 +42,18 @@
     <update id="passwordModify">
         UPDATE Customer
         SET customerPassword = #{customerPassword}
-        WHERE customerUniqueNumber = #{customerUniqueNumber}
+        WHERE customerId = #{customerId}
     </update>
 
     <update id="phoneNumberModify">
         UPDATE Customer
         SET customerPhoneNumber = #{customerPhoneNumber}
-        WHERE customerUniqueNumber = #{customerUniqueNumber}
+        WHERE customerId = #{customerId}
     </update>
 
     <update id="addressModify">
         UPDATE Customer
         SET customerAddress = #{customerAddress}
-        WHERE customerUniqueNumber = #{customerUniqueNumber}
+        WHERE customerId = #{customerId}
     </update>
 </mapper>

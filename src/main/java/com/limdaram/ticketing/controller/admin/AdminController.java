@@ -40,8 +40,8 @@ public class AdminController {
     }
 
     @RequestMapping("customerManage")
-    public void method(@RequestParam(name = "customerUniqueNumber", defaultValue = "0") int customerUniqueNumber, Model model) {
-        CustomerDto customer = customerService.getCustomer(customerUniqueNumber);
+    public void method(@RequestParam(name = "customerId", defaultValue = "0") String customerId, Model model) {
+        CustomerDto customer = customerService.getByCustomerId(customerId);
         List<CustomerDto> gradeList = adminService.getGradeList();
 
         model.addAttribute("gradeList", gradeList);
@@ -52,8 +52,6 @@ public class AdminController {
     @PutMapping("updateGrade")
     @ResponseBody
     public int updateGrade(@RequestBody CustomerDto customer) {
-        System.out.println(customer.getCustomerUniqueNumber());
-        System.out.println(customer.getCustomerGrade());
 
         int updateGrade = adminService.updateGrade(customer.getCustomerUniqueNumber(), customer.getCustomerGrade());
 

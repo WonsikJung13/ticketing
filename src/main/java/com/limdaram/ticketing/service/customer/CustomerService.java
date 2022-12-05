@@ -4,6 +4,7 @@ import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.mapper.customer.CustomerMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerService {
     @Setter(onMethod_ = @Autowired)
     private CustomerMapper customerMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 //    public int modify(CustomerDto customer) {
 //        int cnt = 0;
@@ -24,15 +28,17 @@ public class CustomerService {
 //        return cnt;
 //    }
 
-    public CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber) {
-        return customerMapper.getByCustomerUniqueNumber(customerUniqueNumber);
-    }
+//    public CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber) {
+//        return customerMapper.getByCustomerUniqueNumber(customerUniqueNumber);
+//    }
 
-    public CustomerDto getCustomer(int customerUniqueNumber) {
-        return customerMapper.select(customerUniqueNumber);
-    }
+//    public CustomerDto getCustomer(int customerUniqueNumber) {
+//        return customerMapper.select(customerUniqueNumber);
+//    }
 
     public int insert(CustomerDto customer) {
+        String password = customer.getCustomerPassword();
+        customer.setCustomerPassword(passwordEncoder.encode(password));
         return customerMapper.insert(customer);
     }
 
@@ -48,15 +54,16 @@ public class CustomerService {
         return customerMapper.getByCustomerEmail(customerEmail);
     }
 
-    public int passwordModify(int customerUniqueNumber, String customerPassword) {
-        return customerMapper.passwordModify(customerUniqueNumber, customerPassword);
+    public int passwordModify(String customerId, String customerPassword) {
+        return customerMapper.passwordModify(customerId, customerPassword);
     }
 
-    public int phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber) {
-        return customerMapper.phoneNumberModify(customerUniqueNumber, customerPhoneNumber);
+    public int phoneNumberModify(String customerId, String customerPhoneNumber) {
+        return customerMapper.phoneNumberModify(customerId, customerPhoneNumber);
     }
 
-    public int addressModify(int customerUniqueNumber, String customerAddress) {
-        return customerMapper.addressModify(customerUniqueNumber, customerAddress);
+    public int addressModify(String customerId, String customerAddress) {
+        return customerMapper.addressModify(customerId, customerAddress);
     }
+
 }

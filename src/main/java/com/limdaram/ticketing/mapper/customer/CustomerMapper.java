@@ -4,11 +4,11 @@ import com.limdaram.ticketing.domain.customer.CustomerDto;
 
 
 public interface CustomerMapper {
-    CustomerDto select(int customerUniqueNumber);
+//    CustomerDto select(int customerUniqueNumber);
 
     int insert(CustomerDto customer);
 
-    CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber);
+//    CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber);
 
 //    int update(CustomerDto customer);
 
@@ -18,9 +18,10 @@ public interface CustomerMapper {
 
     CustomerDto getByCustomerEmail(String customerEmail);
 
-    int passwordModify(int customerUniqueNumber, String customerPassword);
+    int passwordModify(String customerId, String customerPassword);
 
-    int phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber);
+    int phoneNumberModify(String customerId, String customerPhoneNumber);
 
-    int addressModify(int customerUniqueNumber, String customerAddress);
+    int addressModify(String customerId, String customerAddress);
+
 }

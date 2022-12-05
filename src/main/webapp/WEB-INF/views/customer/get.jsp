@@ -94,14 +94,14 @@
 <br>
 
 <c:url value="/customer/modify" var="modifyLink">
-    <c:param name="customerUniqueNumber" value="${customer.customerUniqueNumber}"></c:param>
+    <c:param name="customerId" value="${customer.customerId}"></c:param>
 </c:url>
 <c:url value="/customer/remove" var="removeLink">
     <%--     <c:param name="id" value="${member.id}"></c:param>--%>
 </c:url>
 
 <form id="form2" action="${removeLink }" method="post">
-    <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+    <input type="hidden" name="customerId" value="${customer.customerId}">
     <input type="hidden" name="oldPassword">
 </form>
 

@@ -87,7 +87,7 @@
                 <form id="addressForm" action="addressModify" method="post">
                     <div class="input-group">
                         <input id="customerAddressInput" name="customerAddress" class="form-control" type="text" value="${customer.customerAddress }" readonly>
-                        <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                        <input type="hidden" name="customerId" value="${customer.customerId}">
                         <input id="customerAddressButton" type="button" onClick="goPopup();" value="검색"/>
                     </div>
                 </form>
@@ -130,7 +130,7 @@
                         </label>
                         <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerPasswordText1" class="form-text"></div>
-                        <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                        <input type="hidden" name="customerId" value="${customer.customerId}">
                     </div>
                 </form>
 
@@ -166,7 +166,7 @@
                         </label>
                         <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
-                        <input type="hidden" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                        <input type="hidden" name="customerId" value="${customer.customerId}">
                     </div>
                 </form>
             </div>

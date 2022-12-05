@@ -4,7 +4,6 @@ import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.service.customer.CustomerService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +22,9 @@ public class CustomerController {
     private CustomerService customerService;
 
     @RequestMapping("get")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
-    public void method(int customerUniqueNumber, Model model) {
-        CustomerDto customer = customerService.getCustomer(customerUniqueNumber);
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    public void method(String customerId, Model model) {
+        CustomerDto customer = customerService.getByCustomerId(customerId);
         System.out.println(customer);
 
         model.addAttribute("customer", customer);
@@ -46,16 +45,16 @@ public class CustomerController {
     }
 
     @GetMapping({ "modify"})
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
-    public void customer(int customerUniqueNumber, Model model) {
-        model.addAttribute("customer", customerService.getByCustomerUniqueNumber(customerUniqueNumber));
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    public void customer(String customerId, Model model) {
+        model.addAttribute("customer", customerService.getByCustomerId(customerId));
     }
 
     @PostMapping("remove")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customer.customerUniqueNumber)")
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customer.customerId)")
     public String remove(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
 
-        CustomerDto oldCustomer = customerService.getByCustomerUniqueNumber(customer.getCustomerUniqueNumber());
+        CustomerDto oldCustomer = customerService.getByCustomerId(customer.getCustomerId());
 
         if (oldCustomer.getCustomerPassword().equals(oldPassword)) {
             int cnt = customerService.remove(customer);
@@ -65,7 +64,7 @@ public class CustomerController {
             return "redirect:/customer/get";
 
         } else {
-            rttr.addAttribute("customerUniqueNumber", customer);
+            rttr.addAttribute("customerId", customer);
             rttr.addFlashAttribute("message", "암호가 일치하지 않습니다.");
             return "redirect:/customer/get";
         }
@@ -116,48 +115,48 @@ public class CustomerController {
     }
 
     @PostMapping("passwordModify")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
-    public String passwordModify(int customerUniqueNumber, String customerPassword, RedirectAttributes rttr) {
-        int cnt = customerService.passwordModify(customerUniqueNumber, customerPassword);
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    public String passwordModify(String customerId, String customerPassword, RedirectAttributes rttr) {
+        int cnt = customerService.passwordModify(customerId, customerPassword);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message",  "비밀번호가 수정되었습니다");
-            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+            return "redirect:/customer/modify?customerId=" + customerId;
         } else {
             rttr.addFlashAttribute("message", "비밀번호가 수정되지 않았습니다");
-            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+            return "redirect:/customer/modify?customerUId=" + customerId;
         }
     }
 
     @PostMapping("phoneNumberModify")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
-    public String phoneNumberModify(int customerUniqueNumber, String customerPhoneNumber, RedirectAttributes rttr) {
-        int cnt = customerService.phoneNumberModify(customerUniqueNumber, customerPhoneNumber);
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    public String phoneNumberModify(String customerId, String customerPhoneNumber, RedirectAttributes rttr) {
+        int cnt = customerService.phoneNumberModify(customerId, customerPhoneNumber);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message",  "핸드폰 번호가 수정되었습니다");
-            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+            return "redirect:/customer/modify?customerId=" + customerId;
         } else {
             rttr.addFlashAttribute("message", "핸드폰 번호가 수정되지 않았습니다");
-            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+            return "redirect:/customer/modify?customerId=" + customerId;
         }
     }
 
     @PostMapping("addressModify")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerUniqueNumber)")
-    public String addressModify(int customerUniqueNumber, String customerAddress, RedirectAttributes rttr) {
-        int cnt = customerService.addressModify(customerUniqueNumber, customerAddress);
-        String newAddress = customerService.getByCustomerUniqueNumber(customerUniqueNumber).getCustomerAddress();
-        System.out.println(customerUniqueNumber);
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    public String addressModify(String customerId, String customerAddress, RedirectAttributes rttr) {
+        int cnt = customerService.addressModify(customerId, customerAddress);
+        String newAddress = customerService.getByCustomerId(customerId).getCustomerAddress();
+        System.out.println(customerId);
 
         if (cnt == 1) {
             System.out.println(customerAddress);
             rttr.addFlashAttribute("message",  newAddress + " 주소로 수정되었습니다");
-            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+            return "redirect:/customer/modify?customerId=" + customerId;
         } else {
             System.out.println(customerAddress);
             rttr.addFlashAttribute("message", "주소가 수정되지 않았습니다");
-            return "redirect:/customer/modify?customerUniqueNumber=" + customerUniqueNumber;
+            return "redirect:/customer/modify?customerId=" + customerId;
         }
     }
 }
