@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class memberController {
 
     @GetMapping("/login")
-    public void login(String errorCode, String logout) {
+    public void login(String logout) {
         log.info("login get ................");
         log.info("logout : " + logout);
 

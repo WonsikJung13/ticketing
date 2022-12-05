@@ -27,11 +27,41 @@
         WHERE customerId = #{customerId}
     </delete>
 
-    <select id="getByCustomerId" resultType="com.limdaram.ticketing.domain.customer.CustomerDto" >
-        SELECT *
-        FROM Customer
-        WHERE customerId = #{customerId}
+    <select id="getByCustomerId" resultMap="customerMap" >
+        SELECT
+            c.customerName,
+            c.customerBirth,
+            c.customerAddress,
+            c.customerId,
+            c.customerPassword,
+            c.customerEmail,
+            c.customerPhoneNumber,
+            c.customerGrade,
+            c.customerTotalPaid,
+            c.customerInserted,
+            c.social,
+            a.auth
+        FROM Customer c LEFT JOIN Authority a ON c.customerId = a.customerId
+        WHERE c.customerId = #{customerId}
+
     </select>
+
+    <resultMap id="customerMap" type="com.limdaram.ticketing.domain.customer.CustomerDto">
+        <id column="customerId" property="customerId"></id>
+        <result column="customerName" property="customerName"></result>
+        <result column="customerBirth" property="customerBirth"></result>
+        <result column="customerAddress" property="customerAddress"></result>
+        <result column="customerPassword" property="customerPassword"></result>
+        <result column="customerEmail" property="customerEmail"></result>
+        <result column="customerPhoneNumber" property="customerPhoneNumber"></result>
+        <result column="customerGrade" property="customerGrade"></result>
+        <result column="customerTotalPaid" property="customerTotalPaid"></result>
+        <result column="customerInserted" property="customerInserted"></result>
+        <result column="social" property="social"></result>
+        <collection property="auth" ofType="string">
+            <result column="auth" property="auth"></result>
+        </collection>
+    </resultMap>
 
     <select id="getByCustomerEmail" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
         SELECT *

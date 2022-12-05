@@ -34,13 +34,16 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">패스워드</span>
-                        <input type="text" name="password" class="form-control" placeholder="PASSWORD">
+                        <input type="password" name="password" class="form-control" placeholder="PASSWORD">
                     </div>
                     <div class="input-group mb-3 ">
                         <input class="form-check-input" type="checkbox" name="remember-me">
                         <label class="form-check-label">
                             자동 로그인
                         </label>
+                    </div>
+                    <div>
+                        <a href="/oauth2/authorization/kakao">KAKAO</a>
                     </div>
                     <div class="my-4">
                         <div class="float-end">

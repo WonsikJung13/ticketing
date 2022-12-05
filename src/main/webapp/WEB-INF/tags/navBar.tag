@@ -39,7 +39,7 @@
 <c:url value="/customer/signup" var="signupLink"/>
 <sec:authentication property="name" var="user"/>
 <c:url value="/customer/get" var="getLink">
-    <c:param name="customerUniqueNumber" value="${user}"/>
+    <c:param name="customerId" value="${user}"/>
 </c:url>
 <c:url value="/content/list" var="contentLink"/>
 

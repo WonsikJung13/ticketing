@@ -24,5 +24,6 @@ public class CustomerDto {
 
     private List<String> auth;
 
+    private String social;
 
 }

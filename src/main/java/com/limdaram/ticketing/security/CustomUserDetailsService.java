@@ -43,8 +43,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CustomerDto customerDto = customerMapper.getByCustomerId(username);
+        System.out.println("=========================" + customerDto);
 
         if (customerDto == null) {
+            return null;
+        }
+
+        if (customerDto.getSocial().equals("true")) {
             return null;
         }
 
