@@ -23,5 +23,10 @@ public class ContentDto {
     private int contentPrice;
     private int countContent;
 
+    private String contentAddress;
+    private float contentMapEntX;
+    private float contentMapEntY;
+    private String contentAddrDetail;
+
     }
 

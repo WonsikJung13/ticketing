@@ -26,7 +26,7 @@ public class ContentService {
         // db에 게시물 정보 저장
         int cnt = mapper.insert(content);
 
-        File folder1 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+        File folder1 = new File("/Users/hyeonjong/Desktop/test/" + content.getContentId());
 
         if (file1 != null && file1.getSize() > 0) {
 
@@ -107,7 +107,7 @@ public class ContentService {
             // db에서 파일 이름 제거
             mapper.deletePosterByContentId(contentId);
             // 저장소에서 파일 제거
-            String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removePosterFile;
+            String path = "/Users/hyeonjong/Desktop/test/" + contentId + "/" + removePosterFile;
             File file = new File(path);
             file.delete();
         }
@@ -117,7 +117,7 @@ public class ContentService {
             String posterName = mapper.select(contentId).getContentPosterName();
             System.out.println("posterName: " + posterName);
             // 저장소에서 제거
-            String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + posterName;
+            String path = "/Users/hyeonjong/Desktop/test/" + contentId + "/" + posterName;
             File file = new File(path);
             file.delete();
             // db에서 파일 이름 제거
@@ -127,7 +127,7 @@ public class ContentService {
 
             // 2. 파일 추가 실행
             // 경로 설정
-            File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+            File folder = new File("/Users/hyeonjong/Desktop/test/" + content.getContentId());
 
             // 파일 이름 uuid로 설정
             String PosterNameUuid = UUID.randomUUID().toString() + ".jpg";
@@ -158,7 +158,7 @@ public class ContentService {
 //                System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
                 mapper.deleteByContentIdAndDetailName(contentId, removeDetailFile);
                 // 2. 저장소에 있는 실제 파일 지우기
-                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removeDetailFile;
+                String path = "/Users/hyeonjong/Desktop/test/" + contentId + "/" + removeDetailFile;
                 File file = new File(path);
 //                System.out.println("path: " + file);
                 file.delete();
@@ -173,7 +173,7 @@ public class ContentService {
                     mapper.insertFile2(content.getContentId(), uuid);
 
                     // 저장소에 실제 파일 추가
-                    File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+                    File folder = new File("/Users/hyeonjong/Desktop/test/" + content.getContentId());
                     folder.mkdirs();
                     File dest = new File(folder, uuid);
 
@@ -194,7 +194,7 @@ public class ContentService {
     //    컨텐츠삭제
     public int remove(int contentId) {
         // 저장소의 이미지 파일 지우기
-        String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId;
+        String path = "/Users/hyeonjong/Desktop/test/" + contentId;
         File folder = new File(path);   // 폴더 만들기
 
         File[] listFiles = folder.listFiles();  // 폴더안의 파일들

@@ -221,9 +221,13 @@
         <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
         <%--    상품명 <input type="text" value="${content.contentName}" readonly> <br>--%>
         <p>장소 <input type="text" value="${content.contentRegion}" readonly></p>
+        <p>장소<input type="text" readonly value="${content.contentAddrDetail}" id='addrDetail'></p>
         기간 <input type="date" value="${content.contentStartDate}" readonly>
         ~ <input type="date" value="${content.contentEndDate}" readonly> <br>
         가격 <input type="number" value="${content.contentPrice}" readonly> <br>
+        <input type="hidden" readonly value="${content.contentMapEntX }" id="entX">
+        <input type="hidden" readonly value="${content.contentMapEntY }" id="entY">
+        <input type="hidden" readonly value="${content.contentAddress}" id='address'>
 
         <nav class="nav">
             <div class="navSticky">
@@ -272,10 +276,15 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
+    <div id="map" style="width:100%;height:350px;"></div>
+    <c:url value="https://map.kakao.com/link/to/" var="after">
+        <c:param name="" value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
+    </c:url>
+    <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">
+        길찾기
+    </a>
 
     <!-- 삭제버튼 누르면 -->
     <script>
@@ -289,6 +298,38 @@
             crossorigin="anonymous">
     </script>
 
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9c69650c14dccf7d58695456e5f600e2"></script>
+    <script>
+        // document.addEventListener("DOMContentLoaded", function () {
+
+        // Handler when the DOM is fully loaded
+
+
+        var a = parseFloat(document.querySelector('#entX').value);
+        var b = parseFloat(document.querySelector('#entY').value);
+
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(a, b), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 마커가 표시될 위치입니다
+        var markerPosition = new kakao.maps.LatLng(a, b);
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+
+        // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+        // marker.setMap(null);
+
+    </script>
 
 </body>
 </html>

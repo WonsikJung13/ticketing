@@ -6,42 +6,68 @@
 <mapper namespace="com.limdaram.ticketing.mapper.content.ContentMapper">
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="contentId">
-        INSERT INTO Content (contentName, contentRegion, contentStartDate, contentEndDate, contentPrice, contentBoard)
-        VALUES (#{contentName}, #{contentRegion}, #{contentStartDate}, #{contentEndDate}, #{contentPrice}, #{contentBoard})
+        INSERT INTO Content (
+        contentName,
+        contentRegion,
+        contentStartDate,
+        contentEndDate,
+        contentPrice,
+        contentBoard,
+        contentAddress,
+        contentMapEntX,
+        contentMapEntY,
+        contentAddrDetail
+        )
+        VALUES (
+        #{contentName},
+        #{contentRegion},
+        #{contentStartDate},
+        #{contentEndDate},
+        #{contentPrice},
+        #{contentBoard},
+        #{contentAddress},
+        #{contentMapEntX},
+        #{contentMapEntY},
+        #{contentAddrDetail}
+        )
     </insert>
 
     <select id="list" resultType="com.limdaram.ticketing.domain.content.ContentDto">
         SELECT
-            c.contentId,
-            c.contentName,
-            c.contentRegion,
-            c.contentStartDate,
-            c.contentEndDate,
-            c.contentPrice,
-            c.contentBoard,
-            p.contentPosterName
+        c.contentId,
+        c.contentName,
+        c.contentRegion,
+        c.contentStartDate,
+        c.contentEndDate,
+        c.contentPrice,
+        c.contentBoard,
+        p.contentPosterName
         FROM
-            Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+        Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
         ORDER BY c.contentId DESC
     </select>
 
     <select id="select" resultMap="contentMap">
         SELECT
-            c.contentId,
-            c.contentName,
-            c.contentRegion,
-            c.contentStartDate,
-            c.contentEndDate,
-            c.contentPrice,
-            c.contentBoard,
-            p.contentPosterName,
-<!--            d.contentDetailId,-->
-            d.contentDetailName
+        c.contentId,
+        c.contentName,
+        c.contentRegion,
+        c.contentStartDate,
+        c.contentEndDate,
+        c.contentPrice,
+        c.contentBoard,
+        c.contentMapEntX,
+        c.contentMapEntY,
+        c.contentAddress,
+        c.contentAddrDetail,
+        p.contentPosterName,
+        <!--            d.contentDetailId,-->
+        d.contentDetailName
         FROM
-            Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
-                      LEFT JOIN ContentDetail d ON c.contentId = d.contentId
+        Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+        LEFT JOIN ContentDetail d ON c.contentId = d.contentId
         WHERE
-            c.contentId = #{contentId}
+        c.contentId = #{contentId}
     </select>
 
     <resultMap type="com.limdaram.ticketing.domain.content.ContentDto" id="contentMap">
@@ -52,8 +78,12 @@
         <result column="contentEndDate" property="contentEndDate"></result>
         <result column="contentPrice" property="contentPrice"></result>
         <result column="contentBoard" property="contentBoard"></result>
+        <result column="contentMapEntX" property="contentMapEntX"></result>
+        <result column="contentMapEntY" property="contentMapEntY"></result>
+        <result column="contentAddress" property="contentAddress"></result>
+        <result column="contentAddrDetail" property="contentAddrDetail"></result>
         <result column="contentPosterName" property="contentPosterName"></result>
-<!--        <result column="contentDetailId" property="contentDetailId"></result>-->
+        <!--        <result column="contentDetailId" property="contentDetailId"></result>-->
         <collection property="contentDetailName" ofType="string">
             <result property="contentDetailName" column="contentDetailName"></result>
         </collection>
@@ -62,14 +92,14 @@
     <update id="update">
         UPDATE Content
         SET
-            contentName = #{contentName},
-            contentRegion = #{contentRegion},
-            contentStartDate = #{contentStartDate},
-            contentEndDate = #{contentEndDate},
-            contentPrice = #{contentPrice},
-            contentBoard = #{contentBoard}
+        contentName = #{contentName},
+        contentRegion = #{contentRegion},
+        contentStartDate = #{contentStartDate},
+        contentEndDate = #{contentEndDate},
+        contentPrice = #{contentPrice},
+        contentBoard = #{contentBoard}
         WHERE
-            contentId = #{contentId}
+        contentId = #{contentId}
     </update>
 
     <delete id="delete">
@@ -105,4 +135,15 @@
         DELETE FROM ContentDetail
         WHERE contentId = #{contentId} AND contentDetailName = #{fileName}
     </delete>
+
+    <select id="listMap" resultType="com.limdaram.ticketing.domain.content.ContentDto">
+        SELECT
+        replyMapId,
+        replyMapAddress,
+        replyMapEntX,
+        replyMapEntY
+        FROM
+        ReplyMap
+    </select>
+
 </mapper>

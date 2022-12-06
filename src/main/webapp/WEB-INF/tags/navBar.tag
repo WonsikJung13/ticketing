@@ -9,7 +9,7 @@
         width: auto;
     }
     #myBtn {
-          display: none; /* Hidden by default */
+        display: none; /* Hidden by default */
         position: fixed; /* Fixed/sticky position */
         bottom: 20px; /* Place the button at the bottom of the page */
         right: 30px; /* Place the button 30px from the right */
@@ -25,7 +25,7 @@
     }
 
     #myBtn:hover {
-          background-color: #555; /* Add a dark-grey background on hover */
+        background-color: #555; /* Add a dark-grey background on hover */
     }
 </style>
 
@@ -94,6 +94,9 @@
 
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+
 
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
