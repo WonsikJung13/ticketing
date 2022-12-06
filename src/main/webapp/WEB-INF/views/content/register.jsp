@@ -23,12 +23,10 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js" integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 <my:navBar/>
-
-
-</div>
     <h1>상품 등록</h1>
     <form id="contentRegisterForm" action="" method="post" enctype="multipart/form-data">
         상품명 <input required="required" type="text" name="contentName">
@@ -51,6 +49,37 @@
             <label for="" class="form-label">세부내용</label>
             <input multiple type="file" accept="image/*" class="form-control" name="file2">
         </div>
+
+        <br>
+
+<%--      주소 검색  --%>
+        <table >
+            <colgroup>
+                <col style="width:20%"><col>
+            </colgroup>
+            <tbody>
+            <tr>
+                <%--            도로명주소--%>
+                <td><input type="hidden" id="contentAddress" name="contentAddress" style="width:85%"></td>
+                <input type="hidden" id="confmKey" name="confmKey" value=""  >
+                <input type="button"  value="주소검색" onclick="goPopup();">
+            </tr>
+            <tr>
+                <td>
+                    <%--             경위도--%>
+                    <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="">
+                    <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="">
+                </td>
+            </tr>
+            <tr>
+                <td>
+<%--                    상세정보--%>
+                    <input type="text" id="contentAddrDetail" name="contentAddrDetail" style="width:40%" value="" readonly>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
         <input id="submitButton1" type="submit" value="등록">
     </form>
 
@@ -89,5 +118,30 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
+
+<script language="javascript">
+
+    function goPopup(){
+        // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrCoordUrl.do)를 호출하게 됩니다.
+        var pop = window.open("/content/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+    }
+    function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
+        , detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno
+        , emdNo, entX, entY){
+        // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+        document.querySelector('#contentAddress').value = roadAddrPart1;
+        document.querySelector('#contentAddrDetail').value = addrDetail;
+
+        var a = parseFloat(entX);
+        var b = parseFloat(entY);
+
+        const grs80UtmK = '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs ';
+        const wgs84 = '+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees';
+        const result = proj4(grs80UtmK, wgs84, [parseFloat(a.toFixed(6)), parseFloat(b.toFixed(6))]);
+
+        document.querySelector('#contentMapEntY').value = result[0];
+        document.querySelector('#contentMapEntX').value = result[1];
+    }
+</script>
 </body>
 </html>

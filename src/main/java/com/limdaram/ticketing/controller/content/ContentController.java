@@ -117,4 +117,9 @@ public class ContentController {
 
         return "redirect:/content/list";
     }
+
+    @RequestMapping("jusoPopup")
+    public void jusoPopup() {
+
+    }
 }
