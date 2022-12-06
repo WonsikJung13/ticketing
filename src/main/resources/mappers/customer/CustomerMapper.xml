@@ -11,8 +11,8 @@
 <!--    </select>-->
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="customerId">
-        INSERT INTO Customer (customerId, customerPassword, customerEmail, customerName, customerAddress, customerPhoneNumber, customerBirth)
-        VALUES (#{customerId}, #{customerPassword}, #{customerEmail}, #{customerName}, #{customerAddress}, #{customerPhoneNumber}, #{customerBirth})
+        INSERT INTO Customer (customerId, customerPassword, customerEmail, customerName, customerAddress, customerPhoneNumber, customerBirth, social)
+        VALUES (#{customerId}, #{customerPassword}, #{customerEmail}, #{customerName}, #{customerAddress}, #{customerPhoneNumber}, #{customerBirth}, #{social})
 
     </insert>
 
