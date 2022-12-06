@@ -25,25 +25,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    public CustomUserDetailsService() {
-//        this.passwordEncoder = new BCryptPasswordEncoder();
-//    }
-
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        log.info("loadUserByUsername:" + username);
-//
-//        UserDetails userDetails = User.builder().username("user1")
-//                .password(passwordEncoder.encode("1111")).authorities("ROLE_USER").build();
-//        log.info(userDetails.toString());
-//        return userDetails;
-//    }
-
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CustomerDto customerDto = customerMapper.getByCustomerId(username);
-        System.out.println("=========================" + customerDto);
 
         if (customerDto == null) {
             return null;
@@ -60,8 +44,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 authorityList.add(new SimpleGrantedAuthority(auth));
             }
         }
-
-//        String customerUniqueNumber = Integer.toString(customerDto.getCustomerUniqueNumber());
 
         User user = new User(customerDto.getCustomerId(), customerDto.getCustomerPassword(), authorityList);
         return user;

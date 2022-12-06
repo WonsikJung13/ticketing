@@ -19,8 +19,13 @@
 <my:navBar active="login"/>
 <body class="align-middle">
 <div class="container-fluid d-flex justify-content-center" style="height: 100vh">
-
     <div class="card align-self-center">
+        <c:if test="${not empty exception }">
+            <div class="alert alert-danger">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                    ${exception }
+            </div>
+        </c:if>
         <div class="card-header">
             LOGIN Page
         </div>
@@ -48,6 +53,10 @@
                         <a href="/oauth2/authorization/kakao">KAKAO</a>
                     </div>
                     <div class="my-4">
+                        <div class="float-first">
+                            아직도 회원이 아니세요? <a href="/customer/signup">회원가입</a>
+                        </div>
+                        <br>
                         <div class="float-end">
                             <button type="submit" class="btn btn-primary submitBtn">LOGIN</button>
                         </div>

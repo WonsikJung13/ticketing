@@ -3,8 +3,10 @@ package com.limdaram.ticketing.controller.customer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/member")
@@ -12,13 +14,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class memberController {
 
-    @GetMapping("/login")
-    public void login(String logout) {
-        log.info("login get ................");
-        log.info("logout : " + logout);
+//    @GetMapping("/login")
+//    public void login(String logout) {
+//        log.info("login get ................");
+//        log.info("logout : " + logout);
+//
+//        if(logout != null) {
+//            log.info("user logout .............");
+//        }
+//    }
 
-        if(logout != null) {
-            log.info("user logout .............");
-        }
+//    @GetMapping("/login")
+//    public void login() {
+//        System.out.println("------------------------작동~!?----");
+//    }
+
+    @GetMapping("/login")
+    public void login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "exception", required = false) String exception,
+                        Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+        System.out.println("모데레에에엥에에에에에에에에에에에엥ㅇㅇ"+model);
+
     }
 }
