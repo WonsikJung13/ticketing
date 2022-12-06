@@ -8,8 +8,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
 
 <html>
 <head>
@@ -32,18 +30,16 @@
 
 </div>
     <h1>상품 등록</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        작성자 <input value="<sec:authentication property="name"/>"  type="text" name="contentName" readonly>
+    <form id="contentRegisterForm" action="" method="post" enctype="multipart/form-data">
+        상품명 <input required="required" type="text" name="contentName">
         <br>
-        상품명 <input type="text" name="contentName">
+        장소 <input required="required" type="text" name="contentRegion">
         <br>
-        장소 <input type="text" name="contentRegion">
+        시작 <input required="required" type="date" name="contentStartDate">
         <br>
-        시작 <input type="date" name="contentStartDate">
+        종료 <input required="required" type="date" name="contentEndDate">
         <br>
-        종료 <input type="date" name="contentEndDate">
-        <br>
-        가격 <input type="number" name="contentPrice">
+        가격 <input required="required" type="number" name="contentPrice">
         <br>
         정보 <textarea name="contentBoard"></textarea>
         <br>
@@ -55,9 +51,39 @@
             <label for="" class="form-label">세부내용</label>
             <input multiple type="file" accept="image/*" class="form-control" name="file2">
         </div>
-        <input type="submit" value="등록">
+        <input id="submitButton1" type="submit" value="등록">
     </form>
 
+<script>
+    // document.querySelector("#submitButton1").addEventListener("click", function(e) {
+    //     // submit 진행 중지
+    //     e.preventDefault();
+    //
+    //     // input 입력한 값 가져오기
+    //     let NameValue = document.querySelector(`#registerForm input[name="contentName"]`).value
+    //     let RegionValue = document.querySelector(`#registerForm input[name="contentRegion"]`).value
+    //     let StartDateValue = document.querySelector(`#registerForm input[name="contentStartDate"]`).value
+    //     let EndDateValue = document.querySelector(`#registerForm input[name="contentEndDate"]`).value
+    //     let PriceValue = document.querySelector(`#registerForm input[name="contentPrice"]`).value
+    //     let BoardValue = document.querySelector(`#registerForm input[name="contentBoard"]`).value
+    //     // 빈칸만 있는지 확인
+    //
+    //     // 위 테스트 모두 통과하면 submit
+    //     if (NameValue.trim() != ""
+    //         && RegionValue.trim() != ""
+    //         && StartDateValue.trim() != ""
+    //         && EndDateValue.trim() !=""
+    //         && PriceValue.trim()!= ""
+    //         && BoardValue.trim()!= "") {
+    //
+    //         document.querySelector("#contentRegisterForm").submit();
+    //     } else {
+    //         // 적절한 메세지 표시
+    //
+    //
+    //     }
+    // });
+</script>
 
     <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
