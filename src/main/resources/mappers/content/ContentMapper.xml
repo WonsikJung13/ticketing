@@ -136,14 +136,4 @@
         WHERE contentId = #{contentId} AND contentDetailName = #{fileName}
     </delete>
 
-    <select id="listMap" resultType="com.limdaram.ticketing.domain.content.ContentDto">
-        SELECT
-        replyMapId,
-        replyMapAddress,
-        replyMapEntX,
-        replyMapEntY
-        FROM
-        ReplyMap
-    </select>
-
 </mapper>
