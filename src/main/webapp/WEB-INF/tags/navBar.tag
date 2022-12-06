@@ -36,6 +36,7 @@
 <c:url value="/admin/customerList" var="adminLink"/>
 <c:url value="/admin/customerManage" var="manageLink"/>
 <c:url value="/reply/list" var="replyLink"/>
+
 <c:url value="/customer/signup" var="signupLink"/>
 <sec:authentication property="name" var="user"/>
 <c:url value="/customer/get" var="getLink">
