@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("admin")
@@ -53,7 +52,7 @@ public class AdminController {
     @ResponseBody
     public int updateGrade(@RequestBody CustomerDto customer) {
 
-        int updateGrade = adminService.updateGrade(customer.getCustomerUniqueNumber(), customer.getCustomerGrade());
+        int updateGrade = adminService.updateGrade(customer.getCustomerId(), customer.getCustomerGrade());
 
         System.out.println(updateGrade);
         return updateGrade;

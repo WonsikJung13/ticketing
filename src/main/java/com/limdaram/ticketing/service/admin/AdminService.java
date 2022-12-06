@@ -30,7 +30,7 @@ public class AdminService {
         return adminMapper.getGradeList();
     }
 
-    public int updateGrade(int customerUniqueNumber, String customerGrade) {
-        return adminMapper.updateGrade(customerUniqueNumber, customerGrade);
+    public int updateGrade(String customerId, String customerGrade) {
+        return adminMapper.updateGrade(customerId, customerGrade);
     }
 }

@@ -13,5 +13,5 @@ public interface AdminMapper {
 
     List<CustomerDto> getGradeList();
 
-    int updateGrade(int customerUniqueNumber, String customerGrade);
+    int updateGrade(String customerId, String customerGrade);
 }

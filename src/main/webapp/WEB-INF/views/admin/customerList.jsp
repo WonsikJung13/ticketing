@@ -30,45 +30,25 @@
                 <tr>
                     <th>아이디</th>
                     <th>별명</th>
-                    <%--							<th>패스워드</th>--%>
+                    <th>아이디</th>
                     <th>이메일</th>
                     <th>등급</th>
-                    <th>어드민 기능</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${customerList }" var="customer">
                     <tr>
                         <td id="id">
-                            <c:url value="/admin/modify" var="infoLink">
-                                <c:param value="${customer.customerUniqueNumber }" name="customerUniqueNumber"/>
+                            <c:url value="/admin/customerManage" var="infoLink">
+                                <c:param value="${customer.customerId }" name="customerId"/>
                             </c:url>
                             <a href="${infoLink }">
-                                    ${customer.customerUniqueNumber  }
+                                    ${customer.customerId  }
                             </a>
                         </td>
                         <td>${customer.customerName }</td>
                         <td>${customer.customerEmail }</td>
                         <td>${customer.customerGrade }</td>
-                        <td>
-                            <form name="grade">
-                                    <select id="customerGrade" class="form-control">
-                                        <c:forEach items="${gradeList}" var="grade">
-                                            <option id="${customer.customerUniqueNumber }"><c:out value="${grade.customerGrade}" /></option>
-                                        </c:forEach>
-                                    </select>
-                                <input type="button" id="testBtn" class="test">
-                            </form>
-
-                            <form name="grade2">
-                                <select id="customerGrade2" class="form-control">
-                                    <c:forEach items="${gradeList}" var="grade">
-                                        <option id="${customer.customerUniqueNumber }"><c:out value="${grade.customerGrade}" /></option>
-                                    </c:forEach>
-                                </select>
-                                <input type="button" id="testBtn2" class="test">
-                            </form>
-                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

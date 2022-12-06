@@ -42,6 +42,7 @@
     <c:param name="customerId" value="${user}"/>
 </c:url>
 <c:url value="/content/list" var="contentLink"/>
+<c:url value="/member/login" var="loginLink"/>
 
 <nav class="navbar navbar-expand-md bg-light mb-3">
     <div class="container-md">
@@ -76,6 +77,10 @@
 
                 <li class="nav-item">
                     <a class="nav-link ${active eq 'content' ? 'active' : '' }" href="${contentLink }">콘텐츠 목록</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link ${active eq 'login' ? 'active' : '' }" href="${loginLink }">로그인</a>
                 </li>
 
             </ul>

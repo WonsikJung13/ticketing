@@ -2,6 +2,7 @@
          pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 
 <!doctype html>
 <html lang="en">
@@ -15,6 +16,7 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
+<my:navBar active="login"/>
 <body class="align-middle">
 <div class="container-fluid d-flex justify-content-center" style="height: 100vh">
 

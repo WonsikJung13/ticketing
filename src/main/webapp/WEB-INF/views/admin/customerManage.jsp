@@ -94,21 +94,21 @@
                 </div>
                 <form action="" name="customerGradeSelect">
 
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        등급
-                    </label>
-                    <div class="input-group">
-                        <select id="customerGrade" class="form-control">
-                            <c:forEach items="${gradeList}" var="grade">
-                                <option><c:out
-                                        value="${grade.customerGrade}"/></option>
-                            </c:forEach>
-                        </select>
-                        <input type="hidden" id="customerUniqueNumber" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
-                        <button id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영</button>
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            등급
+                        </label>
+                        <div class="input-group">
+                            <select id="customerGrade" class="form-control">
+                                <c:forEach items="${gradeList}" var="grade">
+                                    <option><c:out
+                                            value="${grade.customerGrade}"/></option>
+                                </c:forEach>
+                            </select>
+                            <input type="hidden" id="customerUniqueNumber" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                            <button id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영</button>
+                        </div>
                     </div>
-                </div>
                 </form>
 
                 <div class="mb-3">
