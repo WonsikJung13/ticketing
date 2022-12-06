@@ -28,12 +28,18 @@
 <my:navBar/>
 
 <%--Alert--%>
+<script>
+  function alert();
+
+function alert(${message}) {
 <c:if test="${not empty message}">
   <div class="alert alert-success">
       ${message}
   </div>
+  setTimeout(alert, 500); // 홍길동 님, 안녕하세요.
 </c:if>
-
+}
+</script>
   <div class="contentAllList">
 <%--    <div class="tab">--%>
 <%--      <div><a href="javascript:Sort('1')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_01.gif" alt="금일랭킹순"></a><a href="javascript:Sort('2')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_02.gif" alt="주간랭킹순"></a><a href="javascript:Sort('3')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_03.gif" alt="월간랭킹순"></a><a href="javascript:Sort('4')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_04_on.gif" alt="상품명순"></a><a href="javascript:Sort('5')"><img src="http://ticketimage.interpark.com/TicketImage/main/100506_sub/image/mt_btn_05.gif" alt="공연종료임박순"></a></div>--%>
