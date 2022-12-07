@@ -22,10 +22,10 @@ public class CustomerController {
     private CustomerService customerService;
 
     @RequestMapping("get")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    @PreAuthorize("authentication.name == #customerId")
     public void method(String customerId, Model model) {
         CustomerDto customer = customerService.getByCustomerId(customerId);
-        System.out.println(customer);
+        System.out.println(customer.getCustomerId());
 
         model.addAttribute("customer", customer);
 
@@ -45,13 +45,13 @@ public class CustomerController {
     }
 
     @GetMapping({ "modify"})
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    @PreAuthorize("authentication.name == #customerId")
     public void customer(String customerId, Model model) {
         model.addAttribute("customer", customerService.getByCustomerId(customerId));
     }
 
     @PostMapping("remove")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customer.customerId)")
+    @PreAuthorize("authentication.name == #customer.customerId")
     public String remove(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
 
         CustomerDto oldCustomer = customerService.getByCustomerId(customer.getCustomerId());
@@ -114,6 +114,35 @@ public class CustomerController {
 
     }
 
+    @PostMapping("nameModify")
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    public String nameModify(String customerId, String customerName, RedirectAttributes rttr) {
+        int cnt = customerService.nameModify(customerId, customerName);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message",  "이름이 수정되었습니다");
+            return "redirect:/customer/modify?customerId=" + customerId;
+        } else {
+            rttr.addFlashAttribute("message", "이름이 수정되지 않았습니다");
+            return "redirect:/customer/modify?customerId=" + customerId;
+        }
+    }
+
+    @PostMapping("birthModify")
+    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    public String birthModify(String customerId, String customerBirth, RedirectAttributes rttr) {
+        System.out.println("고객생년월일 : " + customerBirth);
+        int cnt = customerService.birthModify(customerId, customerBirth);
+
+        if (cnt == 1) {
+            rttr.addFlashAttribute("message",  "생년월일이 수정되었습니다");
+            return "redirect:/customer/modify?customerId=" + customerId;
+        } else {
+            rttr.addFlashAttribute("message", "생년월일이 수정되지 않았습니다");
+            return "redirect:/customer/modify?customerId=" + customerId;
+        }
+    }
+
     @PostMapping("passwordModify")
     @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
     public String passwordModify(String customerId, String customerPassword, RedirectAttributes rttr) {
@@ -151,7 +180,7 @@ public class CustomerController {
 
         if (cnt == 1) {
             System.out.println(customerAddress);
-            rttr.addFlashAttribute("message",  newAddress + " 주소로 수정되었습니다");
+            rttr.addFlashAttribute("message",  "[" + newAddress + "] 주소로 수정되었습니다");
             return "redirect:/customer/modify?customerId=" + customerId;
         } else {
             System.out.println(customerAddress);

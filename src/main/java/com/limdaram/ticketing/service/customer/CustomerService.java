@@ -66,4 +66,11 @@ public class CustomerService {
         return customerMapper.addressModify(customerId, customerAddress);
     }
 
+    public int nameModify(String customerId, String customerName) {
+        return customerMapper.nameModify(customerId, customerName);
+    }
+
+    public int birthModify(String customerId, String customerBirth) {
+        return customerMapper.birthModify(customerId, customerBirth);
+    }
 }

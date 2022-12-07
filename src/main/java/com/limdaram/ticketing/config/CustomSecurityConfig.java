@@ -21,9 +21,6 @@ public class CustomSecurityConfig {
 
     private final AuthenticationFailureHandler customFailureHandler;
 
-//    private final DataSource dataSource;
-//    private final CustomUserDetailsService userDetailsService;
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -35,38 +32,16 @@ public class CustomSecurityConfig {
 
         // 커스텀 로그인 페이지
         http.formLogin().loginPage("/member/login").failureHandler(customFailureHandler);
+        http.logout().logoutSuccessUrl("/member/login");
 
         // CSRF 토큰 비활성화
         http.csrf().disable();
 
         http.rememberMe();
-//                .key("12345678")
-//                .tokenRepository(persistentTokenRepository())
-//                .userDetailsService(userDetailsService)
-//                .tokenValiditySeconds(60*60*24*30);
 
         http.oauth2Login().loginPage("/member/login");
-
-//        http.oauth2Login().
 
         return http.build();
 
     }
-
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        log.info("----------web configure-------------");
-//
-//        return (web) -> web.ignoring().requestMatchers(PathRequest.
-//                toStaticResources().atCommonLocations());
-//    }
-//
-//
-//    @Bean
-//    public PersistentTokenRepository persistentTokenRepository() {
-//        JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
-//        repo.setDataSource(dataSource);
-//        return repo;
-//    }
-
 }
