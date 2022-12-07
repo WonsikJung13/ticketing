@@ -26,23 +26,23 @@
 //        String userEmail = Customer.customerEmail;
 
         // share detail data
-        ContentDto content = (ContentDto)request.getAttribute("content");
+//        ContentDto content = (ContentDto)request.getAttribute("content");
         //JSON 형식으로 달의 날자별 예약현황을 전송받음
 //        JSONArray thisMonthResData = (JSONArray)request.getAttribute("thisMonthResData");
 //        JSONArray nextMonthResData = (JSONArray)request.getAttribute("nextMonthResData");
 
         //예약가능 요일 제한. 형식은 0000000 (순서대로 일월화수목금토 의 예약가능여부 표현, 0이면 예약불가, 1이면 예약가능)
-        char[] possibleDay = (content.getDayLimit()).toCharArray();
-        //예약가능 시간 (start time~end time) end - start = 이용가능시간
-        int startTime = content.getStartTime();
-        int endTime = content.getEndTime();
-        //총 이용 가능 시간
-        int totalUsingTime = endTime - startTime;
-        //시간당 가격
-        int price = content.getContentPrice();
-
+//        char[] possibleDay = content.getDayLimit().toCharArray();
+//        //예약가능 시간 (start time~end time) end - start = 이용가능시간
+//        int startTime = content.getStartTime();
+//        int endTime = content.getEndTime();
+//        //총 이용 가능 시간
+//        int totalUsingTime = endTime - startTime;
+//        //시간당 가격
+//        int price = content.getContentPrice();
         %>
     <script>
+
         <%--//예약이 가득찬 날들의 배열--%>
         <%--let thisMonthFullDateList = new Array();--%>
         <%--<c:forEach items="${thisMonthFullDateList}" var = "date">--%>
@@ -192,7 +192,7 @@
                     // noCount가 0일 경우에만 클릭이벤트 생성되도록 esle구문에 클릭이벤트 함수 작성
                     cell.onclick = function () {
                         // 클릭마다 타임테이블 초기화
-                        // selectedTimeAndTotalPriceInit();
+                        selectedTimeAndTotalPriceInit();
                         // 선택된 날의 연, 월, 일을 전역변수에 저장 (일자의 경우 id속성 참조)
                         let clickedYear = today.getFullYear();
                         let clickedMonth = (1 + today.getMonth());
@@ -270,82 +270,101 @@
             }
             return result;
         }
-        // ---------------- time table --------------------------
-        <%--var price = "<%=price%>";--%>
-        <%--var startTime = "<%=startTime%>";--%>
-        <%--var endTime = "<%=endTime%>";--%>
-        // //선택된 시간중 가장 빠른/늦은 시간;
-        // var selectedFirstTime = 24*1;
-        // var selectedFinalTime = 0*1;
-        //예약시간표를 만들 table객체 획득
+        // ---------------- time table ------------------------------------------------------------
+        const price = ${content.contentPrice};
+        const startTime = ${content.startTime};
+        const endTime = ${content.endTime};
+        let totalUsingTime = endTime - startTime;
+        <%--const dayLimit = ${content.dayLimit};--%>
+        //선택된 시간중 가장 빠른/늦은 시간;
+        let selectedFirstTime = 24*1;
+        let selectedFinalTime = 0*1;
 
+        //예약시간표를 만들 table객체 획득
+        // 달력에서 선택한 셀의 달과 날자를 받아오고, 시간표를 출력할 테이블을 가져오는것부터 시작
         function timeTableMaker(selectedMonth, selectedDate){
-          row = null
-          month = selectedMonth;
+          let i;
+          let row = null
+          let cell = null
+          let month = selectedMonth;
           date = selectedDate;
-          var timeTable = document.getElementById("timeTable");
+          const timeTable = document.getElementById("timeTable");
+          console.log("selectedMonth: " + selectedMonth);
+          console.log("selectedDate: " + selectedDate);
 
           //테이블 초기화
           while(timeTable.rows.length > 0){
             timeTable.deleteRow(timeTable.rows.length-1);
           }
 
+          // 시작시간부터 1시간씩 순차적으로 셀을 생성
           for (i = 0; i < endTime - startTime; i++){
             //곱해서 숫자타입으로 변환
-            cellTime = startTime*1 + i;
+            let cellTime = startTime*1 + i;
 
-            cellStartTimeText = cellTime + ":00";
-            cellEndTimeText = (cellTime + 1) + ":00";
-            inputCellText = cellStartTimeText + " ~ " +  cellEndTimeText;
+            let cellStartTimeText = cellTime + ":00";
+            let cellEndTimeText = (cellTime + 1) + ":00";
+            let inputCellText = cellStartTimeText + " ~ " +  cellEndTimeText;
 
             //셀 입력을 위해 테이블 개행
             row = timeTable.insertRow();
             //해당 row의 셀 생성
             cell = row.insertCell();
-            //cell에 id 부여
+            //cell에 id 부여(id는 행의 시작시간)
             cell.setAttribute('id', cellTime);
             //셀에 입력
             cell.innerHTML = inputCellText;
             //selectedCell.bgColor = "#FFFFFF";
             //cell.innerHTML = "<font color='#C6C6C6' >" + inputCellText + "</font>";
+
             //클릭이벤
-            cell.onclick = function(){
-              cellTime = this.getAttribute('id');
-              cellTime = cellTime*1;
-              console.log("first : " + selectedFirstTime + ", selectedFinalTime : " + selectedFinalTime + ", selected : " + cellTime);
-              //예약일시 입력처리
-              if (selectedFirstTime != 24 && selectedFinalTime != 0){
-                if(cellTime < selectedFirstTime - 1){
-                  alert("연속한 시간만 예약가능합니다.");
-                  return false;
-                }
-                if (cellTime > selectedFinalTime + 1){
-                  alert("연속한 시간만 예약가능합니다.");
-                  console.log(cellTime + ">" + selectedFinalTime + 1)
-                  return false;
-                }
+              cell.onclick = function () {
+                  selectedTimeInit();
+
+                  cellTime = this.getAttribute('id');
+                  cellTime = cellTime * 1;
+
+                  console.log("first : " + selectedFirstTime + ", selectedFinalTime : " + selectedFinalTime + ", selected : " + cellTime);
+                  //예약일시 입력처리
+                  // if (selectedFirstTime != 24 && selectedFinalTime != 0){
+                  //   if(cellTime < selectedFirstTime - 1){
+                  //     // alert("연속한 시간만 예약가능합니다.");
+                  //     return false;
+                  //   }
+                  //   if (cellTime > selectedFinalTime + 1){
+                  //     // alert("연속한 시간만 예약가능합니다.");
+                  //     console.log(cellTime + ">" + selectedFinalTime + 1)
+                  //     return false;
+                  //   }
+                  // }
+                  if (selectedCell != null) {
+                      selectedCell.bgColor = "#FFFFFF";
+                  }
+                  selectedCell = this;
+                  this.bgColor = "#fbedaa";
+
+
+                  if (cellTime < selectedFirstTime) {
+                      selectedFirstTime = cellTime
+                  }
+                  if (cellTime > selectedFinalTime) {
+                      selectedFinalTime = cellTime
+                  }
+
+                  //하단의 예약일시에 시간 표시
+                  resTime = selectedFirstTime + ":00 ~ " + (selectedFinalTime + 1) + ":00";
+
+                  resTimeForm = document.getElementById("selectedTime");
+                  resTimeForm.value = resTime;
+
+                  //하단의 결제정보에 가격정보 표시
+                  useTime = (selectedFinalTime + 1) - selectedFirstTime;
+
+                  useTimeForm = document.getElementById("totalPrice");
+                  useTimeForm.value = useTime * price;
+
+
               }
-              this.bgColor = "#fbedaa";
-              if (cellTime < selectedFirstTime) {
-                selectedFirstTime = cellTime
-              }
-              if (cellTime > selectedFinalTime) {
-                selectedFinalTime = cellTime
-              }
-
-              //하단의 예약일시에 시간 표시
-              resTime  = selectedFirstTime + ":00 ~ " + (selectedFinalTime + 1) + ":00";
-
-              resTimeForm = document.getElementById("selectedTime");
-              resTimeForm.value = resTime;
-
-              //하단의 결제정보에 가격정보 표시
-              useTime = (selectedFinalTime + 1) - selectedFirstTime;
-
-              useTimeForm = document.getElementById("totalPrice");
-              useTimeForm.value = useTime * price;
-
-            }
           }
           //JSON으로 테이블 td 핸들링
           //이번달 0 다음달 1
@@ -374,7 +393,7 @@
             }
           }
         }
-        //시간효 초기화
+        //시간표 초기화
         function tableinit(){
           timeTableMaker(selectedMonth, selectedDate);
           selectedTimeAndTotalPriceInit();
@@ -393,6 +412,12 @@
 
           selectedFirstTime = 24*1;
           selectedFinalTime = 0*1;
+        }
+
+        function selectedTimeInit(){
+
+            selectedFirstTime = 24*1;
+            selectedFinalTime = 0*1;
         }
 
         //체크박스 이벤트
@@ -513,7 +538,6 @@
             <%-- 선택한 예약일시를 출력할 위치--%>
             <input id="selectedDate" style="border:none; width:100px" name="selectedDate" value=""
                    readonly="readonly">
-            <%-- 총 예약금액을 출력할 위치--%>
             <input id="selectedTime" style="border:none" name="selectedTime" value="" readonly="readonly">
         </td>
     </tr>
@@ -522,7 +546,8 @@
     </tr>
     <tr>
         <td class="content" align="left" colspan="2">
-            <input id="totalPrice" style="border:none; text-align:right; width:100px" name="totalPrice" value=""
+            <%-- 총 예약금액을 출력할 위치--%>
+            <input id="totalPrice" style="border:none; text-align:right; width:100px" name="totalPrice" value="price"
                    readonly="readonly">원
         </td>
     </tr>

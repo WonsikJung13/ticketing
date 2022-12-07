@@ -34,8 +34,10 @@
             c.contentEndDate,
             c.contentPrice,
             c.contentBoard,
+            c.startTime,
+            c.endTime,
+            c.dayLimit,
             p.contentPosterName,
-<!--            d.contentDetailId,-->
             d.contentDetailName
         FROM
             Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
@@ -51,9 +53,11 @@
         <result column="contentStartDate" property="contentStartDate"></result>
         <result column="contentEndDate" property="contentEndDate"></result>
         <result column="contentPrice" property="contentPrice"></result>
+        <result column="startTime" property="startTime"></result>
+        <result column="endTime" property="endTime"></result>
+        <result column="dayLimit" property="dayLimit"></result>
         <result column="contentBoard" property="contentBoard"></result>
         <result column="contentPosterName" property="contentPosterName"></result>
-<!--        <result column="contentDetailId" property="contentDetailId"></result>-->
         <collection property="contentDetailName" ofType="string">
             <result property="contentDetailName" column="contentDetailName"></result>
         </collection>

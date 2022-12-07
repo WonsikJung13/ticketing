@@ -97,7 +97,8 @@
 
 
     <%-- 이미지 출력 --%>
-    <div>
+    <div class="row">
+    <div class="cal">
         <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
         <%--    상품명 <input type="text" value="${content.contentName}" readonly> <br>--%>
         <p>장소 <input type="text" value="${content.contentRegion}" readonly></p>
@@ -105,6 +106,14 @@
         ~ <input type="date" value="${content.contentEndDate}" readonly> <br>
         가격 <input type="number" value="${content.contentPrice}" readonly> <br>
 
+        <c:url value="/content/reservation" var="reservLink">
+            <c:param name="contentId" value="${content.contentId}"></c:param>
+        </c:url>
+<%--        <a href="${getLink}">--%>
+<%--            ${content.contentName}--%>
+<%--        </a>--%>
+        <button type="submit" class="btn btn-danger" value="" onclick="location.href='${reservLink}'">예약</button>
+    </div>
         <nav class="nav">
             <div class="navSticky">
                 <div class="stickyWrap">
