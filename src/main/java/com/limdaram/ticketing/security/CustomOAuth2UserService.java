@@ -53,15 +53,16 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         log.info("====================");
         log.info(email);
+        log.info(oAuth2User.getName());
         log.info("====================");
 
-        if (customerMapper.getByCustomerId(email) == null) {
+        if (customerMapper.getByCustomerId(oAuth2User.getName()) == null) {
             CustomerDto customerDto = new CustomerDto();
 
             customerDto.setCustomerEmail(email);
             customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
             customerDto.setSocial("true");
-            customerDto.setCustomerId(email);
+            customerDto.setCustomerId(oAuth2User.getName());
 
             customerMapper.insert(customerDto);
         }
