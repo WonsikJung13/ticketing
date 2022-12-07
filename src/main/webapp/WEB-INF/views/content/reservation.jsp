@@ -59,7 +59,8 @@
         // today 보조. 고정
         let date = new Date();
         // 사용자가 클릭한 셀 객체 저장
-        let selectedCell;
+        let dateSelectedCell;
+        let timeSelectedCell;
         // 오늘에 해당하는 월, 일 객체
         let realMonth = date.getMonth() + 1;
         let realToDay = date.getDate();
@@ -211,10 +212,11 @@
 
                         // 선택된 셀 색 변화
                         // 클릭한 셀을 전역변수에 저장 후 색 변경 및 기존 선택된 셀의 색 복구
-                        if (selectedCell != null) {
-                            selectedCell.bgColor = "#FFFFFF";
+                        if (dateSelectedCell != null) {
+                            dateSelectedCell.bgColor = "#FFFFFF";
                         }
-                        selectedCell = this;
+
+                        dateSelectedCell = this;
                         this.bgColor = "#fbedaa";
 
                         //timetable 생성
@@ -337,12 +339,11 @@
                   //     return false;
                   //   }
                   // }
-                  if (selectedCell != null) {
-                      selectedCell.bgColor = "#FFFFFF";
+                  if (timeSelectedCell != null) {
+                      timeSelectedCell.bgColor = "#FFFFFF";
                   }
-                  selectedCell = this;
+                  timeSelectedCell = this;
                   this.bgColor = "#fbedaa";
-
 
                   if (cellTime < selectedFirstTime) {
                       selectedFirstTime = cellTime
@@ -400,7 +401,7 @@
           buildCalendar();
         }
 
-        //날자 클릭시 예약시간 및 결제정보 초기화
+        //날짜 클릭시 예약시간 및 결제정보 초기화
         function selectedTimeAndTotalPriceInit(){
           resDateForm = document.getElementById("selectedDate");
           resTimeForm = document.getElementById("selectedTime");
