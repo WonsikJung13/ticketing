@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -13,6 +14,8 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
+<my:navBar active="get"/>
+
 <c:if test="${not empty message }">
     <div class="alert alert-success">
             ${message }
@@ -22,7 +25,7 @@
     <div class="row">
         <div class="col">
 
-            <h1>${customer.customerName}님의 회원 정보</h1>
+            <h1>회원 정보</h1>
 
             <div class="mb-3">
                 <label for="" class="form-label">

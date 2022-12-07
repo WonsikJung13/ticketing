@@ -69,6 +69,18 @@
         WHERE customerEmail = #{customerEmail}
     </select>
 
+    <update id="nameModify">
+        UPDATE Customer
+        SET customerName = #{customerName}
+        WHERE customerId = #{customerId}
+    </update>
+
+    <update id="birthModify">
+        UPDATE Customer
+        SET customerBirth = #{customerBirth}
+        WHERE customerId = #{customerId}
+    </update>
+
     <update id="passwordModify">
         UPDATE Customer
         SET customerPassword = #{customerPassword}
@@ -86,4 +98,6 @@
         SET customerAddress = #{customerAddress}
         WHERE customerId = #{customerId}
     </update>
+
+
 </mapper>

@@ -24,4 +24,7 @@ public interface CustomerMapper {
 
     int addressModify(String customerId, String customerAddress);
 
+    int nameModify(String customerId, String customerName);
+
+    int birthModify(String customerId, String customerBirth);
 }
