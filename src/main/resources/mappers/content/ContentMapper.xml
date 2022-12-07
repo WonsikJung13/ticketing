@@ -105,4 +105,10 @@
         DELETE FROM ContentDetail
         WHERE contentId = #{contentId} AND contentDetailName = #{fileName}
     </delete>
+
+    <select id="reserv" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
+        SELECT FROM CustomerDto
+        WHERE customerId = #{customerId}
+    </select>
+
 </mapper>

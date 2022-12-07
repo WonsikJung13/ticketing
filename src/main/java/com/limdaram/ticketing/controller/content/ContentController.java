@@ -117,4 +117,11 @@ public class ContentController {
 
         return "redirect:/content/list";
     }
+
+    @GetMapping("reservation")
+    public void reservation(int contentId, Model model){
+        ContentDto content = service.reserv(contentId);
+        System.out.println("reservation : " + content);
+        model.addAttribute("content", content);
+    }
 }

@@ -26,4 +26,5 @@ public interface ContentMapper {
     int deleteDetailByContentId(int contentId);
 
     int deleteByContentIdAndDetailName(int contentId, String fileName);
+
 }
