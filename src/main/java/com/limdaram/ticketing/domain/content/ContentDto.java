@@ -23,5 +23,8 @@ public class ContentDto {
     private int contentPrice;
     private int countContent;
 
+    private int startTime;
+    private int endTime;
+    private int dayLimit;
     }
 

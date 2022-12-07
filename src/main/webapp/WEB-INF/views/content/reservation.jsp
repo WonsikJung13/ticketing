@@ -26,7 +26,7 @@
 //        String userEmail = Customer.customerEmail;
 
         // share detail data
-        ContentDto content = (ContentDto)request.getAttribute("DETAIL");
+        ContentDto content = (ContentDto)request.getAttribute("content");
         //JSON 형식으로 달의 날자별 예약현황을 전송받음
 //        JSONArray thisMonthResData = (JSONArray)request.getAttribute("thisMonthResData");
 //        JSONArray nextMonthResData = (JSONArray)request.getAttribute("nextMonthResData");
