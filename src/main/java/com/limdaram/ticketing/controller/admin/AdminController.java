@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("admin")
@@ -50,11 +52,24 @@ public class AdminController {
 
     @PutMapping("updateGrade")
     @ResponseBody
-    public int updateGrade(@RequestBody CustomerDto customer) {
+    public Map<String, Object> updateGrade(@RequestBody CustomerDto customer) {
 
         int updateGrade = adminService.updateGrade(customer.getCustomerId(), customer.getCustomerGrade());
 
-        System.out.println(updateGrade);
-        return updateGrade;
+
+        Map<String, Object> map = new HashMap<>();
+
+
+        if (updateGrade == 1) {
+            map.put("status", "success");
+            map.put("message", "등급 반영이 완료되었습니다");
+        } else {
+            map.put("status", "fail");
+            map.put("message", "등급 반영이 완료되지 않았습니다");
+        }
+
+        System.out.println(map);
+
+        return map;
     }
 }
