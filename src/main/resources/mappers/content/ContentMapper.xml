@@ -8,10 +8,9 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="contentId">
         INSERT INTO Content (
         contentName,
-        contentRegion,
         contentStartDate,
         contentEndDate,
-        contentPrice,
+<!--        contentPrice,-->
         contentBoard,
         contentAddress,
         contentMapEntX,
@@ -20,10 +19,9 @@
         )
         VALUES (
         #{contentName},
-        #{contentRegion},
         #{contentStartDate},
         #{contentEndDate},
-        #{contentPrice},
+<!--        #{contentPrice},-->
         #{contentBoard},
         #{contentAddress},
         #{contentMapEntX},
@@ -60,8 +58,8 @@
         c.contentMapEntY,
         c.contentAddress,
         c.contentAddrDetail,
+        c.contentInserted,
         p.contentPosterName,
-        <!--            d.contentDetailId,-->
         d.contentDetailName
         FROM
         Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
@@ -83,6 +81,7 @@
         <result column="contentAddress" property="contentAddress"></result>
         <result column="contentAddrDetail" property="contentAddrDetail"></result>
         <result column="contentPosterName" property="contentPosterName"></result>
+        <result column="contentInserted" property="contentInserted"></result>
         <!--        <result column="contentDetailId" property="contentDetailId"></result>-->
         <collection property="contentDetailName" ofType="string">
             <result property="contentDetailName" column="contentDetailName"></result>
@@ -97,7 +96,11 @@
         contentStartDate = #{contentStartDate},
         contentEndDate = #{contentEndDate},
         contentPrice = #{contentPrice},
-        contentBoard = #{contentBoard}
+        contentBoard = #{contentBoard},
+        contentAddress = #{contentAddress},
+        contentMapEntX = #{contentMapEntX},
+        contentMapEntY = #{contentMapEntY},
+        contentAddrDetail = #{contentAddrDetail}
         WHERE
         contentId = #{contentId}
     </update>
@@ -135,5 +138,24 @@
         DELETE FROM ContentDetail
         WHERE contentId = #{contentId} AND contentDetailName = #{fileName}
     </delete>
+
+    <select id="selectContent" resultType="com.limdaram.ticketing.domain.content.ContentDto">
+        SELECT
+        c.contentId,
+        c.contentName,
+        c.contentRegion,
+        c.contentStartDate,
+        c.contentEndDate,
+        c.contentPrice,
+        c.contentBoard,
+        c.contentMapEntX,
+        c.contentMapEntY,
+        c.contentAddress,
+        c.contentAddrDetail,
+        p.contentPosterName
+        FROM
+        Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+        ORDER BY c.contentId DESC
+    </select>
 
 </mapper>

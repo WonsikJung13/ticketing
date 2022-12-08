@@ -27,23 +27,43 @@
     #myBtn:hover {
         background-color: #555; /* Add a dark-grey background on hover */
     }
+
+    .font25{
+        font-size: 25px;
+    }
+
+    .apple{
+        font-size: 25px;
+        margin-right: 15px;
+    }
+    
+    .mar100 {
+        margin-right: 110px;
+    }
+
+    .mar10{
+        margin-right: 10px;
+    }
 </style>
 
 <%-- authorize tag --%>
 <%-- spring security expressions, 책 673,674 --%>
+
+
+<c:url value="/" var="indexLink"/>
 
 <sec:authorize access="isAuthenticated()" var="loggedIn" />
 
 <c:url value="/admin/customerList" var="adminLink"/>
 <c:url value="/admin/customerManage" var="manageLink"/>
 <c:url value="/reply/list" var="replyLink"/>
+<c:url value="https://blog.naver.com/limdaram-ing" var="blogLink"/>
 
 <c:url value="/customer/signup" var="signupLink"/>
 <sec:authentication property="name" var="user"/>
 <c:url value="/customer/get" var="getLink">
     <c:param name="customerId" value="${user}"/>
 </c:url>
-<c:url value="/content/list" var="contentLink"/>
 <c:url value="/member/login" var="loginLink"/>
 <c:url value="/logout" var="logoutLink"/>
 
@@ -58,6 +78,14 @@
 <%--        </button>--%>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link ${active eq 'contentList' ? 'active' : '' } apple" href="${indexLink }">
+<%--                        <i class="fa-brands fa-apple"></i>--%>
+                        <img src="/images/oo.ico"/>
+                    </a>
+                </li>
+
 
                 <sec:authorize access="hasAuthority('admin')">
                     <li class="nav-item">
@@ -81,18 +109,18 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link ${active eq 'reply' ? 'active' : '' }" href="${replyLink }">후기 목록</a>
-                    </li>
+                    <a class="nav-link ${active eq 'reply' ? 'active' : '' } font25" href="${replyLink }">후기 목록</a>
+                </li>
                 </c:if>
 
                 <li class="nav-item">
-                    <a class="nav-link ${active eq 'content' ? 'active' : '' }" href="${contentLink }">콘텐츠 목록</a>
+                    <a class="nav-link ${active eq 'get' ? 'active' : '' } font25" href="${blogLink }">파워블로거</a>
                 </li>
 
                 <c:if test="${not loggedIn}">
-                    <li class="nav-item">
-                        <a class="nav-link ${active eq 'login' ? 'active' : '' }" href="${loginLink }">로그인</a>
-                    </li>
+                    <li class="nav-item position-absolute top-50 end-0 translate-middle-y mar100">
+                    <a class="nav-link ${active eq 'login' ? 'active' : '' } font25" href="${loginLink }">로그인</a>
+                </li>
                 </c:if>
 
                 <c:if test="${loggedIn}">
@@ -105,6 +133,15 @@
         </div>
     </div>
 </nav>
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">메인 페이지</h1>
+            <p class="lead fw-normal text-white-50 mb-0">일 지 도 ?</p>
+        </div>
+    </div>
+</header>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <script>
     // Get the button:
