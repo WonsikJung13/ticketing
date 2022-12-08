@@ -120,7 +120,7 @@ public class ContentController {
 
     @GetMapping("reservation")
     public void reservation(int contentId, Model model){
-        ContentDto content = service.reserv(contentId);
+        ContentDto content = service.reservation(contentId);
         System.out.println("reservation : " + content);
         model.addAttribute("content", content);
     }

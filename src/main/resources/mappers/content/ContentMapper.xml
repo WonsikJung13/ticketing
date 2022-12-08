@@ -6,8 +6,8 @@
 <mapper namespace="com.limdaram.ticketing.mapper.content.ContentMapper">
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="contentId">
-        INSERT INTO Content (contentName, contentRegion, contentStartDate, contentEndDate, contentPrice, contentBoard)
-        VALUES (#{contentName}, #{contentRegion}, #{contentStartDate}, #{contentEndDate}, #{contentPrice}, #{contentBoard})
+        INSERT INTO Content (contentName, contentRegion, contentStartDate, contentEndDate, startTime, endTime, contentPrice, dayLimit, contentBoard)
+        VALUES (#{contentName}, #{contentRegion}, #{contentStartDate}, #{contentEndDate}, #{startTime}, #{endTime}, #{dayLimit}, #{contentPrice}, #{contentBoard})
     </insert>
 
     <select id="list" resultType="com.limdaram.ticketing.domain.content.ContentDto">

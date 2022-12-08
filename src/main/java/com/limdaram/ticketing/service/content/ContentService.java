@@ -216,7 +216,7 @@ public class ContentService {
         return mapper.delete(contentId);
     }
 
-    public ContentDto reserv(int contentId) {
+    public ContentDto reservation(int contentId) {
 
         return mapper.select(contentId);
     }

@@ -1,4 +1,5 @@
-<%@ page import="com.limdaram.ticketing.domain.content.ContentDto" %><%--
+<%@ page import="com.limdaram.ticketing.domain.content.ContentDto" %>
+<%@ page import="java.time.LocalDate" %><%--
   Created by IntelliJ IDEA.
   User: sunggyu-lim
   Date: 2022/12/05
@@ -26,13 +27,26 @@
 //        String userEmail = Customer.customerEmail;
 
         // share detail data
-//        ContentDto content = (ContentDto)request.getAttribute("content");
+        ContentDto content = (ContentDto)request.getAttribute("content");
         //JSON 형식으로 달의 날자별 예약현황을 전송받음
 //        JSONArray thisMonthResData = (JSONArray)request.getAttribute("thisMonthResData");
 //        JSONArray nextMonthResData = (JSONArray)request.getAttribute("nextMonthResData");
 
         //예약가능 요일 제한. 형식은 0000000 (순서대로 일월화수목금토 의 예약가능여부 표현, 0이면 예약불가, 1이면 예약가능)
-//        char[] possibleDay = content.getDayLimit().toCharArray();
+        char[] possibleDay = content.getDayLimit().toCharArray();
+        // 시작날짜 종료날짜 불러오기
+        LocalDate startDate = content.getContentStartDate();
+        LocalDate endDate = content.getContentEndDate();
+
+        Integer startYear = startDate.getYear();
+        Integer startMonth = startDate.getMonthValue();
+        Integer startDay = startDate.getDayOfMonth();
+        Integer endYear = endDate.getYear();
+        Integer endMonth = endDate.getMonthValue();
+        Integer endDay = endDate.getDayOfMonth();
+
+//        Integer endDate = endDate.getTime();
+
 //        //예약가능 시간 (start time~end time) end - start = 이용가능시간
 //        int startTime = content.getStartTime();
 //        int endTime = content.getEndTime();
@@ -42,7 +56,6 @@
 //        int price = content.getContentPrice();
         %>
     <script>
-
         <%--//예약이 가득찬 날들의 배열--%>
         <%--let thisMonthFullDateList = new Array();--%>
         <%--<c:forEach items="${thisMonthFullDateList}" var = "date">--%>
@@ -64,12 +77,14 @@
         // 오늘에 해당하는 월, 일 객체
         let realMonth = date.getMonth() + 1;
         let realToDay = date.getDate();
+        console.log("realMonth: " + realMonth + "realToDay: " + realToDay);
         // 사용자가 클릭한 월, 일 객체
         let selectedMonth = null;
         let selectedDate = null;
 
         // 예약가능 요일 계산해 배열 (일~월, 가능0 불가능1)
-        <%--const possibleDay = "<%=possibleDay%>";--%>
+        const possibleDay = "<%=possibleDay%>";
+        // console.log(possibleDay);
 
         // 이전달, 다음달로 이동
         // today의 월을 더하거나 뺀 후 buildCalendar를 호출
@@ -81,7 +96,6 @@
           today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
           buildCalendar();
         }
-
         // 달력 생성(이번달 기준)--------------------------------------------------------
         function buildCalendar() {
             let row = null
@@ -171,18 +185,64 @@
                 //     self.close();
                 // }
 
+
+                // 예약 불가일 설정을 위한 시작, 종료 날짜 설정
+                let startYear = "<%=startYear%>";
+                let startMonth = "<%=startMonth%>";
+                let startDay = "<%=startDay%>";
+                let endYear = "<%=endYear%>";
+                let endMonth = "<%=endMonth%>";
+                let endDay = "<%=endDay%>";
+                let endDate = "<%=endDate%>";
+
+                // console.log(endDate.getTime());
+
                 // 예약불가일 색상변경 및 사용자가 직접 지정한 경우------------------------
                 let etp = exchangeToPossibleDay(cnt) * 1; // etp의 값 범위: 0 ~ 6 (0일...6토)
                 // 기능 : cnt를 매개변수로 넣어 현재일이 '무슨 요일' 인지 반환(1:일,2:월,3:화,4:수,5:목,6:금,7:토)
 
                 if (nowMonth == realMonth && i <= realToDay) {  // 이번달이고 오늘을 포한한 지난날
                     noCount += 1;
-                } else if (nowMonth > realMonth && i > realToDay) { // 다음달이고 오늘보다 일이 높은 수일떄
+                    // } else if (nowMonth < realMonth) {
+                    //     noCount += 1;
+                    // }
+                    // else if (nowMonth > realMonth && i > realToDay) { // 다음달이고 오늘보다 일이 높은 수일떄
+                    //     noCount += 1;
+                } else if (possibleDay[etp] == 1) { // 해당 일이 예약불가 요일일 경우
                     noCount += 1;
+                } else if (today.getFullYear() > endYear) {
+                    noCount += 1;
+                } else if (today.getFullYear() == endYear) {
+                    if ((today.getMonth()+1) > endMonth) {
+                        noCount += 1;
+                        console.log("getMonth: " + today.getMonth() + "endMonth: " + endMonth);
+                    } else if (today.getMonth()+1 == endMonth) {
+                        if (i > endDay) {
+                            noCount += 1;
+                        }
+                    }
+                } else if (today.getFullYear() > startYear) {
+                    noCount += 1;
+                } else if (today.getFullYear() == startYear) {
+                    if (today.getMonth()+1 < startMonth) {
+                        noCount += 1;
+                    }
+                    else if (today.getMonth()+1 == startMonth) {
+                        if (i < startDay) {
+                            noCount += 1;
+                        }
+                    }
                 }
-                // else if (possibleDay[etp] == 1) { // 해당 일이 예약불가 요일일 경우
-                //     noCount += 1;
-                // }
+
+
+
+
+                // } && today.getMonth() >= endMonth && i >= endDay ) {
+                //     noCount+= 1;
+
+                <%--const contentStartDate = ${content.contentStartDate};--%>
+                <%--const contentEndDate = ${content.contentEndDate};--%>
+                <%--console.log("startDate: " + contentStartDate + "EndDate: " + contentEndDate);--%>
 
                 // 예약불가일 예외처리---------------------- ------------
                 if (noCount > 0) {
@@ -257,7 +317,6 @@
                 }
             }
         }
-
         // 사용자가 입력한 예약불가능 일자와 대조하기 위해 0~7의 환형 계산구조
         // cnt를 매개변수로 넣어 현재 일이 '무슨 요일'인지 반환
         // (1: 일, 2: 월, 3:화, 4:수, 5:목, 6:금, 7:토)
@@ -277,7 +336,6 @@
         const startTime = ${content.startTime};
         const endTime = ${content.endTime};
         let totalUsingTime = endTime - startTime;
-        <%--const dayLimit = ${content.dayLimit};--%>
         //선택된 시간중 가장 빠른/늦은 시간;
         let selectedFirstTime = 24*1;
         let selectedFinalTime = 0*1;
@@ -293,7 +351,6 @@
           const timeTable = document.getElementById("timeTable");
           console.log("selectedMonth: " + selectedMonth);
           console.log("selectedDate: " + selectedDate);
-
           //테이블 초기화
           while(timeTable.rows.length > 0){
             timeTable.deleteRow(timeTable.rows.length-1);
@@ -339,6 +396,8 @@
                   //     return false;
                   //   }
                   // }
+
+                  // 선택된 셀의 색상 변경하기
                   if (timeSelectedCell != null) {
                       timeSelectedCell.bgColor = "#FFFFFF";
                   }
@@ -370,7 +429,7 @@
           //JSON으로 테이블 td 핸들링
           //이번달 0 다음달 1
           nowMonth = today.getMonth()+1;
-          checkMonth = thisMonth(nowMonth, realMonth);
+          // checkMonth = thisMonth(nowMonth, realMonth);
           var json = [];
           <%--if(checkMonth == 0){--%>
           <%--  json = <%=thisMonthResData%>;--%>
@@ -548,7 +607,7 @@
     <tr>
         <td class="content" align="left" colspan="2">
             <%-- 총 예약금액을 출력할 위치--%>
-            <input id="totalPrice" style="border:none; text-align:right; width:100px" name="totalPrice" value="price"
+            <input id="totalPrice" style="border:none; text-align:right; width:100px" name="totalPrice" value=""
                    readonly="readonly">원
         </td>
     </tr>

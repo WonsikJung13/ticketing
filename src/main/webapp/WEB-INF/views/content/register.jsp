@@ -23,6 +23,36 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+<%--    <script>--%>
+<%--        function checkDay() {--%>
+<%--            &lt;%&ndash;let obj = ${"[name"};&ndash;%&gt;--%>
+<%--            const checkArray = new Array();--%>
+
+<%--            $('input:checkBox[name=checkMon]:checked').each(function(){--%>
+<%--                checkArray.push(this.value);--%>
+<%--            });--%>
+<%--            $('input:checkBox[name=checkTues]:checked').each(function(){--%>
+<%--                checkArray.push(this.value);--%>
+<%--            });--%>
+<%--            $('input:checkBox[name=checkWednes]:checked').each(function(){--%>
+<%--                checkArray.push(this.value);--%>
+<%--            });--%>
+<%--            $('input:checkBox[name=checkThurs]:checked').each(function(){--%>
+<%--                checkArray.push(this.value);--%>
+<%--            });--%>
+<%--            $('input:checkBox[name=checkFri]:checked').each(function(){--%>
+<%--                checkArray.push(this.value);--%>
+<%--            });--%>
+<%--            $('input:checkBox[name=checkSatur]:checked').each(function(){--%>
+<%--                checkArray.push(this.value);--%>
+<%--            });--%>
+<%--            $('input:checkBox[name=checkSun]:checked').each(function(){--%>
+<%--                checkArray.push(this.value);--%>
+<%--            });--%>
+<%--            $('#hiddenValue').val(checkArray);--%>
+<%--            console.log($('#hiddenValue').val());--%>
+<%--        };--%>
+<%--    </script>--%>
 </head>
 <body>
 <my:navBar/>
@@ -35,11 +65,40 @@
         <br>
         장소 <input required="required" type="text" name="contentRegion">
         <br>
-        시작 <input required="required" type="date" name="contentStartDate">
+        기간 <input required="required" type="date" name="contentStartDate">
+        ~ <input required="required" type="date" name="contentEndDate">
         <br>
-        종료 <input required="required" type="date" name="contentEndDate">
+        <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkMon" value="1" id="checkMon" class="checkSelect"/>월
+            <input type="hidden" name="checkMon" value="0" id="checkMonHidden" class="checkSelect"/>
+
+            <input type="checkbox" name="checkTues" value="1" id="checkTues" class="checkSelect"/>화
+            <input type="hidden" name="checkTues" value="0" id="checkTuesHidden" class="checkSelect"/>
+
+            <input type="checkbox" name="checkWednes" value="1" id="checkWednes" class="checkSelect"/>수
+            <input type="hidden" name="checkWednes" value="0" id="checkWednesHidden" class="checkSelect"/>
+
+            <input type="checkbox" name="checkThurs" value="1" id="checkThurs" class="checkSelect"/>목
+            <input type="hidden" name="checkThurs" value="0" id="checkThursHidden" class="checkSelect"/>
+
+            <input type="checkbox" name="checkFri" value="1" id="checkFri" class="checkSelect"/>금
+            <input type="hidden" name="checkFri" value="0" id="checkFriHidden" class="checkSelect"/>
+
+            <input type="checkbox" name="checkSatur" value="1" id="checkSatur" class="checkSelect"/>토
+            <input type="hidden" name="checkSatur" value="0" id="checkSaturHidden" class="checkSelect"/>
+
+            <input type="checkbox" name="checkSun" value="1" id="checkSun" class="checkSelect"/>일
+            <input type="hidden" name="checkSun" value="0" id="checkSunHidden" class="checkSelect"/>
+
+            <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
+            <button type="button" onClick="checkFun()" ></button>
+        </div>
         <br>
-        가격 <input required="required" type="number" name="contentPrice">
+        시작시간 <input required="required" type="number" name="startTime" min="0" max="24">
+        ~
+        종료시간 <input required="required" type="number" name="endTime" min="0" max="24">
+        <br>
+        가격 <input required="required" type="number" name="contentPrice" min="0">
         <br>
         정보 <textarea name="contentBoard"></textarea>
         <br>
@@ -53,7 +112,47 @@
         </div>
         <input id="submitButton1" type="submit" value="등록">
     </form>
+<script>
+    // 요일 체크박스 선택하면 1, 선택 안하면 0
+    if(document.getElementById("checkMon").checked) {
+        document.querySelector("checkMonHidden").disabled = true;
+    }
+    if(document.getElementById("checkTues").checked) {
+        document.querySelector("checkTuesHidden").disabled = true;
+    }
+    if(document.getElementById("checkWednes").checked) {
+        document.querySelector("checkWednesHidden").disabled = true;
+    }
+    if(document.getElementById("checkThurs").checked) {
+        document.querySelector("checkThursHidden").disabled = true;
+    }
+    if(document.getElementById("checkFri").checked) {
+        document.querySelector("checkFriHidden").disabled = true;
+    }
+    if(document.getElementById("checkSatur").checked) {
+        document.querySelector("checkSaturHidden").disabled = true;
+    }
+    if(document.getElementById("checkSun").checked) {
+        document.querySelector("checkSunHidden").disabled = true;
+    }
 
+    checkFun();
+    function checkFun() {
+        let checkArray = Array();
+        let cnt = false;
+        let chkBox = document.querySelector(".checkSelect").value;
+        console.log(chkBox);
+        for (i=0; i<chkBox.length; i++ ){
+            if(chkBox[i].checked == true){
+                checkArray[i] = chkBox[i].value;
+            }
+        }
+        console.log(checkArray);
+    }
+
+    // $("#array").val(checkArray);
+
+</script>
 <script>
     // document.querySelector("#submitButton1").addEventListener("click", function(e) {
     //     // submit 진행 중지
