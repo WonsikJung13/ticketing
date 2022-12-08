@@ -54,6 +54,12 @@
                 <div>
                     <a href="/oauth2/authorization/kakao">KAKAO</a>
                 </div>
+                <div>
+                    <a href="/oauth2/authorization/google">GOOGLE</a>
+                </div>
+                <div>
+                    <a href="/oauth2/authorization/naver">NAVER</a>
+                </div>
                 <div class="my-4">
                     <div class="float-first">
                         아직도 회원이 아니세요? <a href="/customer/signup">회원가입</a>
