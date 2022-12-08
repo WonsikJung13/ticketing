@@ -38,27 +38,6 @@ public class ReplyService {
         // db에 게시물 정보 저장
         int cnt = replyMapper.insert(reply);
 
-//        for (MultipartFile file : files) {
-//            if (file != null && file.getSize() > 0) {
-//                // db에 파일 정보 저장
-//                boardMapper.insertFile(board.getId(), file.getOriginalFilename());
-//
-//                // 파일 저장
-//                // board id 이름의 새폴더 만들기
-//                File folder = new File("C:\\Users\\user\\Desktop\\study\\upload\\prj1\\board\\" + board.getId());
-//                folder.mkdirs();
-//
-//                File dest = new File(folder, file.getOriginalFilename());
-//
-//                try {
-//                    file.transferTo(dest);
-//                } catch (Exception e) {
-//                    // @Transactional은 RuntimeException에서만 rollback 됨
-//                    e.printStackTrace();
-//                    throw new RuntimeException(e);
-//                }
-//            }
-//        }
 
         return cnt;
     }

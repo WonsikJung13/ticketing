@@ -50,26 +50,28 @@ public class ContentService {
             }
         }
 
-        for (MultipartFile file : file2) {
-            if (file != null && file.getSize() > 0) {
+        if (file2 != null) {
+            for (MultipartFile file : file2) {
+                if (file != null && file.getSize() > 0) {
 //                File folder2 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
 
-                String uuid2 = UUID.randomUUID().toString() + ".jpg";
+                    String uuid2 = UUID.randomUUID().toString() + ".jpg";
 
-                // db에 파일 정보 저장(contentid, filename)
-                mapper.insertFile2(content.getContentId(), uuid2);
+                    // db에 파일 정보 저장(contentid, filename)
+                    mapper.insertFile2(content.getContentId(), uuid2);
 
-                // 파일 저장// board id 이름의 새폴더 만들기
-                folder1.mkdirs();
-                File dest2 = new File(folder1, uuid2);
+                    // 파일 저장// board id 이름의 새폴더 만들기
+                    folder1.mkdirs();
+                    File dest2 = new File(folder1, uuid2);
 
-                // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
-                try {
-                    file.transferTo(dest2); // checkException을 발생시킴
-                } catch (Exception e) {
-                    // @Transactional은 RuntimeException에서만 rollback 됨
-                    e.printStackTrace();
-                    throw new RuntimeException(e);
+                    // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
+                    try {
+                        file.transferTo(dest2); // checkException을 발생시킴
+                    } catch (Exception e) {
+                        // @Transactional은 RuntimeException에서만 rollback 됨
+                        e.printStackTrace();
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         }
@@ -87,6 +89,10 @@ public class ContentService {
 
     public ContentDto get(int contentId) {
         return mapper.select(contentId);
+    }
+
+    public List<ContentDto> selectContent() {
+        return mapper.selectContent();
     }
 
     //    컨텐츠수정
@@ -122,7 +128,6 @@ public class ContentService {
             file.delete();
             // db에서 파일 이름 제거
             mapper.deletePosterByContentId(contentId);
-
 
 
             // 2. 파일 추가 실행
