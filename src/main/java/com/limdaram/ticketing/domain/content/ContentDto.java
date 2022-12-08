@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -27,6 +28,14 @@ public class ContentDto {
     private float contentMapEntX;
     private float contentMapEntY;
     private String contentAddrDetail;
+    private int contentPosterId;
+    private LocalDateTime contentInserted;
+    public String getTime(){
+        String result = "";
+
+        result = contentInserted.toLocalDate().toString() + " " + contentInserted.toLocalTime().toString();
+        return result;
+    }
 
     }
 
