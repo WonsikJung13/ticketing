@@ -120,7 +120,8 @@
                            readonly placeholder="${content.contentAddrDetail}">
                     <input type="button" value="주소검색" onclick="goPopup();">
                 </article>
-                <input id="submitButton1" type="submit" value="등록">
+                <input id="submitButton1" type="submit" class="btn btn-warning" value="수정">
+<%--                <a class="btn btn-warning" href="${modifyLink}">수정</a>--%>
             </div>
         </div>
     </div>

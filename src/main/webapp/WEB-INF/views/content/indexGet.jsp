@@ -11,20 +11,66 @@
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>Blog Post - Start Bootstrap Template</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="src/main/resources/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="src/main/resources/assets/favicon.ico"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="src/main/resources/css/styles.css" rel="stylesheet" />
+    <link href="src/main/resources/css/styles.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        .nav {
+            display: block;
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+        }
+
+        .navSticky {
+            width: 83rem;
+            z-index: 5;
+            /*position: -webkit-sticky;*/
+            background: #ffffff;
+        }
+
+        .navList {
+            border-bottom: 0.1rem solid #b6bdc7;
+        }
+
+        .navItem {
+            position: relative;
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-left: 1.5rem;
+        }
+
+        .navItem.is-active:before {
+            display: block;
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #333;
+        }
+
+        .navLink {
+            display: block;
+            padding: 0.7rem;
+            color: inherit;
+            text-decoration: none;
+            /*line-height: 2.5rem;*/
+        }
+    </style>
 </head>
 <body>
 <my:navBar/>
@@ -43,13 +89,39 @@
                     <div class="text-muted fst-italic mb-2">${content.time}</div>
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="/images/${content.contentId}/${content.contentPosterName}" alt="..." /></figure>
+                <figure class="mb-4"><img class="img-fluid rounded"
+                                          src="/images/${content.contentId}/${content.contentPosterName}" alt="..."/>
+                </figure>
+                <nav class="nav">
+                    <div class="navSticky">
+                        <div class="stickyWrap">
+                            <ul class="navList">
+                                <li class="navItem  is-active"><a class="navLink" href="#" data-target="INFO">이용정보</a></li>
+                                <li class="navItem "><a class="navLink" href="#" data-target="ADDITIONAL">판매정보</a></li>
+                                <li class="navItem "><a class="navLink" href="#" data-target="REVIEW">이용후기</a></li>
+                                <li class="navItem "><a class="navLink" href="#" data-target="EXPECT">기대평</a></li>
+                                <li class="navItem "><a class="navLink" href="#" data-target="QNA">Q&amp;A</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div>
+                    <c:forEach items="${content.contentDetailName}" var="name">
+                        <div>
+                            <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
+                        </div>
+                    </c:forEach>
+                </div>
                 <!-- Post content-->
                 <section class="mb-5">
                     <p class="fs-5 mb-4">${content.contentBoard}</p>
                     <h2 class="fw-bolder mb-4 mt-5">I have odd cosmic thoughts every day</h2>
-                    <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
-                    <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
+                    <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts
+                        every day and I realized I could hold them to myself or share them with people who might be
+                        interested.</p>
+                    <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened
+                        there because we're twirling knobs here on Earth without knowing the consequences of it. Mars
+                        once had running water. It's bone dry today. Something bad happened there as well.</p>
                 </section>
             </article>
 
@@ -65,7 +137,8 @@
             <form id="removeForm" action="${removeLink }" method="post">
                 <input type="hidden" name="contentId" value="${content.contentId }">
             </form>
-            <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -88,25 +161,36 @@
                 <div class="card bg-light">
                     <div class="card-body">
                         <!-- Comment form-->
-                        <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+                        <form class="mb-4"><textarea class="form-control" rows="3"
+                                                     placeholder="Join the discussion and leave a comment!"></textarea>
+                        </form>
                         <!-- Comment with nested comments-->
                         <div class="d-flex mb-4">
                             <!-- Parent comment-->
-                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                            <div class="flex-shrink-0"><img class="rounded-circle"
+                                                            src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
+                                                            alt="..."/></div>
                             <div class="ms-3">
                                 <div class="fw-bold">Commenter Name</div>
-                                If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+                                If you're going to lead a space frontier, it has to be government; it'll never be
+                                private enterprise. Because the space frontier is dangerous, and it's expensive, and it
+                                has unquantified risks.
                                 <!-- Child comment 1-->
                                 <div class="d-flex mt-4">
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    <div class="flex-shrink-0"><img class="rounded-circle"
+                                                                    src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
+                                                                    alt="..."/></div>
                                     <div class="ms-3">
                                         <div class="fw-bold">Commenter Name</div>
-                                        And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
+                                        And under those conditions, you cannot establish a capital-market evaluation of
+                                        that enterprise. You can't get investors.
                                     </div>
                                 </div>
                                 <!-- Child comment 2-->
                                 <div class="d-flex mt-4">
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    <div class="flex-shrink-0"><img class="rounded-circle"
+                                                                    src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
+                                                                    alt="..."/></div>
                                     <div class="ms-3">
                                         <div class="fw-bold">Commenter Name</div>
                                         When you put money directly to a problem, it makes a good headline.
@@ -116,10 +200,13 @@
                         </div>
                         <!-- Single comment-->
                         <div class="d-flex">
-                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                            <div class="flex-shrink-0"><img class="rounded-circle"
+                                                            src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
+                                                            alt="..."/></div>
                             <div class="ms-3">
                                 <div class="fw-bold">Commenter Name</div>
-                                When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+                                When I look at the universe and all the ways the universe wants to kill us, I find it
+                                hard to reconcile that with statements of beneficence.
                             </div>
                         </div>
                     </div>
@@ -139,7 +226,8 @@
                 </div>
                 <div id="map" style="width:400px;height:350px;"></div>
                 <c:url value="https://map.kakao.com/link/to/" var="after">
-                    <c:param name="" value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
+                    <c:param name=""
+                             value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
                 </c:url>
                 <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">
                     길찾기
@@ -175,7 +263,7 @@
 
     var a = "${content.contentMapEntX }";
     var b = "${content.contentMapEntY }";
-    console.log(a,b);
+    console.log(a, b);
 
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
