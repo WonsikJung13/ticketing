@@ -1,15 +1,12 @@
 package com.limdaram.ticketing.mapper.customer;
 
 import com.limdaram.ticketing.domain.customer.CustomerDto;
-import com.limdaram.ticketing.domain.customer.GoogleUser;
 
 
 public interface CustomerMapper {
 //    CustomerDto select(int customerUniqueNumber);
 
     int insert(CustomerDto customer);
-
-    int insert(GoogleUser user);
 
 //    CustomerDto getByCustomerUniqueNumber(int customerUniqueNumber);
 

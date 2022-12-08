@@ -25,10 +25,9 @@ public class CustomerController {
     @PreAuthorize("authentication.name == #customerId")
     public void method(String customerId, Model model) {
         CustomerDto customer = customerService.getByCustomerId(customerId);
-        System.out.println(customer.getCustomerId());
+        System.out.println("아이디 " + customer.getCustomerId());
 
         model.addAttribute("customer", customer);
-
     }
 
     @GetMapping("signup")
