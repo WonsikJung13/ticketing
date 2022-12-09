@@ -44,7 +44,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         Map<String, Object> paramMap = oAuth2User.getAttributes();
 
         String email = null;
+
         String name= null;
+
 
         switch (clientName) {
             case "kakao":
@@ -67,9 +69,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return generateDTO(email, name, paramMap);
     }
-
-
-
 
     private MemberSecurityDTO generateDTO(String email, String name, Map<String, Object> params) {
         // 소셜로그인으로 받아온 이메일로 중복 체크 with 우리 DB
@@ -160,6 +159,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return email;
     }
+    
+    // 네이버 이름 
 
     private String getNaverName(Map<String, Object> paramMap) {
 
@@ -174,6 +175,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return name;
     }
+
 }
 
 

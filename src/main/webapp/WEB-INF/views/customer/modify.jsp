@@ -234,7 +234,7 @@
                             핸드폰 번호
                         </label>
                         <input id="customerPhoneNumberInput" class="form-control" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="customerPhoneNumber"
-                               placeholder="010부터 숫자만 입력" maxlength="11" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                               placeholder="010 부터 숫자만 입력 (ex. 01011112222)" maxlength="11" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
                         <input type="hidden" name="customerId" value="${customer.customerId}">
                     </div>
