@@ -42,26 +42,60 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2User oAuth2User = super.loadUser(userRequest);
         Map<String, Object> paramMap = oAuth2User.getAttributes();
 
+
+
         String email = null;
         String social = null;
+        String name = null;
 
         switch (clientName) {
             case "kakao" :
                 email = getKakaoEmail(paramMap);
                 break;
+            case "Google" :
+                email = getGoogleEmail(paramMap);
+                break;
+            case "Naver" :
+                email = getNaverEmail(paramMap);
+                name = getNaverName(paramMap);
+                break;
         }
 
         log.info("====================");
         log.info(email);
+        log.info(name);
+        log.info(oAuth2User.getName());
         log.info("====================");
 
-        if (customerMapper.getByCustomerId(email) == null) {
+        if (clientName.equals("kakao")  && customerMapper.getByCustomerId(oAuth2User.getName()) == null) {
             CustomerDto customerDto = new CustomerDto();
 
             customerDto.setCustomerEmail(email);
             customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
             customerDto.setSocial("true");
-            customerDto.setCustomerId(email);
+            customerDto.setCustomerId(oAuth2User.getName());
+
+            customerMapper.insert(customerDto);
+
+        }
+        if (clientName.equals("Google")  && customerMapper.getByCustomerId(oAuth2User.getName()) == null) {
+            CustomerDto customerDto = new CustomerDto();
+
+            customerDto.setCustomerEmail(email);
+            customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
+            customerDto.setSocial("true");
+            customerDto.setCustomerId(oAuth2User.getName());
+
+            customerMapper.insert(customerDto);
+        }
+        if (clientName.equals("Naver") && customerMapper.getByCustomerId(getNaverId(paramMap)) == null) {
+            CustomerDto customerDto = new CustomerDto();
+
+            customerDto.setCustomerEmail(email);
+            customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
+            customerDto.setSocial("true");
+            customerDto.setCustomerId(getNaverId(paramMap));
+            customerDto.setCustomerName(name);
 
             customerMapper.insert(customerDto);
         }
@@ -87,4 +121,36 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return email;
     }
+
+    private String getGoogleEmail(Map<String, Object> paramMap) {
+
+        String email = (String) paramMap.get("email");
+
+        return email;
+    }
+
+    private String getNaverEmail(Map<String, Object> paramMap) {
+        Object value = paramMap.get("response");
+        LinkedHashMap responseMap = (LinkedHashMap) value;
+        String email = (String) responseMap.get("email");
+
+        return email;
+    }
+
+    private String getNaverName(Map<String, Object> paramMap) {
+        Object value = paramMap.get("response");
+        LinkedHashMap responseMap = (LinkedHashMap) value;
+        String name = (String) responseMap.get("name");
+
+        return name;
+    }
+
+    private String getNaverId(Map<String, Object> paramMap) {
+        Object value = paramMap.get("response");
+        LinkedHashMap responseMap = (LinkedHashMap) value;
+        String id = (String) responseMap.get("id");
+
+        return id;
+    }
+
 }

@@ -30,39 +30,46 @@
             LOGIN Page
         </div>
         <div class="card-body">
-            <c:if test="${param.logout != null}">
-                <h1>Logout........</h1>
-            </c:if>
-            <c:if test="${param.logout == null}">
-                <form id="registerForm" action="/member/login" method="post" >
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">아이디</span>
-                        <input type="text" name="username" class="form-control" placeholder="USER ID">
+<%--            <c:if test="${param.logout != null}">--%>
+<%--                <div class="alert alert-danger">--%>
+<%--                    <i class="fa-solid fa-triangle-exclamation"></i>--%>
+<%--                        로그아웃 되었습니다--%>
+<%--                </div>--%>
+<%--            </c:if>--%>
+            <form id="registerForm" action="/member/login" method="post" >
+                <div class="input-group mb-3">
+                    <span class="input-group-text">아이디</span>
+                    <input type="text" name="username" class="form-control" placeholder="USER ID">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">패스워드</span>
+                    <input type="password" name="password" class="form-control" placeholder="PASSWORD">
+                </div>
+                <div class="input-group mb-3 ">
+                    <input class="form-check-input" type="checkbox" name="remember-me">
+                    <label class="form-check-label">
+                        자동 로그인
+                    </label>
+                </div>
+                <div>
+                    <a href="/oauth2/authorization/kakao">KAKAO</a>
+                </div>
+                <div>
+                    <a href="/oauth2/authorization/google">GOOGLE</a>
+                </div>
+<%--                <div>--%>
+<%--                    <a href="/oauth2/authorization/naver">NAVER</a>--%>
+<%--                </div>--%>
+                <div class="my-4">
+                    <div class="float-first">
+                        아직도 회원이 아니세요? <a href="/customer/signup">회원가입</a>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">패스워드</span>
-                        <input type="password" name="password" class="form-control" placeholder="PASSWORD">
+                    <br>
+                    <div class="float-end">
+                        <button type="submit" class="btn btn-primary submitBtn">LOGIN</button>
                     </div>
-                    <div class="input-group mb-3 ">
-                        <input class="form-check-input" type="checkbox" name="remember-me">
-                        <label class="form-check-label">
-                            자동 로그인
-                        </label>
-                    </div>
-                    <div>
-                        <a href="/oauth2/authorization/kakao">KAKAO</a>
-                    </div>
-                    <div class="my-4">
-                        <div class="float-first">
-                            아직도 회원이 아니세요? <a href="/customer/signup">회원가입</a>
-                        </div>
-                        <br>
-                        <div class="float-end">
-                            <button type="submit" class="btn btn-primary submitBtn">LOGIN</button>
-                        </div>
-                    </div>
-                </form>
-            </c:if>
+                </div>
+            </form>
         </div><!--end card body-->
     </div><!--end card-->
 </div>

@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -13,7 +14,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-
+<my:navBar active="get"/>
 <div class="container-md">
     <div class="row">
         <div class="col">
@@ -23,7 +24,7 @@
                 </div>
             </c:if>
 
-            <h1>${customer.customerName}님의 회원 정보 수정하기</h1>
+            <h1>회원 정보 수정하기</h1>
 
 
             <div class="mb-3">
@@ -32,13 +33,19 @@
                 </label>
                 <input class="form-control" type="text" value="${customer.customerName }" readonly>
             </div>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#nameModal">
+                이름 변경하기
+            </button>
 
             <div class="mb-3">
                 <label for="" class="form-label">
                     생년월일
                 </label>
-                <input class="form-control" type="text" value="${customer.customerBirth }" readonly>
+                <input class="form-control" type="date" value="${customer.customerBirth }" readonly>
             </div>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#birthModal">
+                생년월일 변경하기
+            </button>
 
             <div class="mb-3">
                 <label for="" class="form-label">
@@ -110,6 +117,68 @@
                 </label>
                 <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
             </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button id="exitButton" type="button" class="btn btn-warning">
+                    나가기
+                </button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+<%-- 이름 변경 모달창 --%>
+<div class="modal fade" id="nameModal" tabindex="-1" aria-labelledby="nameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="nameModalLabel">이름 변경하기</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="nameForm" action="nameModify" method="post">
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            이름
+                        </label>
+                        <input id="customerNameInput" class="form-control" type="text" name="customerName" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <div style="color: red" id="customerNameText" class="form-text"></div>
+                        <input type="hidden" name="customerId" value="${customer.customerId}">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="modalConfirmNameButton" type="button" class="btn btn-primary">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-- 생년월일 변경 모달창 --%>
+<div class="modal fade" id="birthModal" tabindex="-1" aria-labelledby="birthModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="birthModalLabel">생년월일 변경하기</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="birthForm" action="birthModify" method="post">
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            생년월일
+                        </label>
+                        <input id="customerBirthInput" class="form-control" type="date" name="customerBirth" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <div style="color: red" id="customerBirthText" class="form-text"></div>
+                        <input type="hidden" name="customerId" value="${customer.customerId}">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="modalConfirmBirthButton" type="button" class="btn btn-primary">수정</button>
+            </div>
         </div>
     </div>
 </div>
@@ -164,7 +233,8 @@
                         <label for="" class="form-label">
                             핸드폰 번호
                         </label>
-                        <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerPhoneNumberInput" class="form-control" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="customerPhoneNumber"
+                               placeholder="010부터 숫자만 입력" maxlength="11" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
                         <input type="hidden" name="customerId" value="${customer.customerId}">
                     </div>
@@ -177,6 +247,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -193,6 +264,28 @@
     let checkedPassword2 = false;
     let checkedPhoneNumber = false;
     let checkedAddress = false;
+    let checkedName = false;
+    let checkedBirth = false;
+
+    document.querySelector("#modalConfirmNameButton").addEventListener("click", function() {
+        if (checkedName) {
+            document.getElementById('nameForm').submit();
+        } else if (checkedName == false) {
+            customerNameText.innerText = "이름을 작성해주세요"
+            document.getElementById("customerNameInput").focus();
+        }
+
+    })
+
+    document.querySelector("#modalConfirmBirthButton").addEventListener("click", function() {
+        if (checkedBirth) {
+            document.getElementById('birthForm').submit();
+        } else if (checkedBirth == false) {
+            customerBirthText.innerText = "생년월일을 입력해주세요"
+            document.getElementById("customerBirthInput").focus();
+        }
+
+    })
 
     document.querySelector("#modalConfirmPasswordButton").addEventListener("click", function(e) {
         e.preventDefault();
@@ -225,17 +318,57 @@
 
     })
 
+    document.querySelector("#exitButton").addEventListener("click", function() {
+        window.location.href = "/";
+    })
+
 
     // input 값이 모두 입력되었는지 확인
     const customerPasswordInput1 = document.querySelector("#customerPasswordInput1");
     const customerPasswordInput2 = document.querySelector("#customerPasswordInput2");
     const customerPhoneNumberInput = document.querySelector("#customerPhoneNumberInput");
     const customerAddressInput = document.querySelector("#customerAddressInput");
+    const customerNameInput = document.querySelector("#customerNameInput");
+    const customerBirthInput = document.querySelector("#customerBirthInput");
 
     const customerPasswordText1 = document.querySelector("#customerPasswordText1");
     const customerPasswordText2 = document.querySelector("#customerPasswordText2");
     const customerPhoneNumberText = document.querySelector("#customerPhoneNumberText");
     const customerAddressText = document.querySelector("#customerAddressText");
+    const customerNameText = document.querySelector("#customerNameText");
+    const customerBirthText = document.querySelector("#customerBirthText");
+
+    function matchName() {
+        checkedName = false;
+
+        const name = customerNameInput.value;
+
+        if (name == "") {
+            customerNameText.innerText = "이름을 작성해주세요"
+            customerNameText.setAttribute("style", "color:red");
+        } else {
+            customerNameText.innerText = ""
+            checkedName = true;
+        }
+    }
+
+    document.querySelector("#customerNameInput").addEventListener("keyup", matchName);
+
+    function matchBirth() {
+        checkedBirth = false;
+
+        const birth = customerBirthInput.value;
+
+        if (birth == "") {
+            customerBirthText.innerText = "생년월일을 입력해주세요"
+            customerBirthText.setAttribute("style", "color:red");
+        } else {
+            customerBirthText.innerText = ""
+            checkedBirth = true;
+        }
+    }
+
+    document.querySelector("#customerBirthInput").addEventListener("change", matchBirth);
 
     // 비밀번호 일치하는지 확인
     function matchPassword() {
@@ -344,6 +477,12 @@
         document.querySelector("#customerAddressInput").value = customerAddressInput;
     }
 
+    var now_utc = Date.now() // 지금 날짜를 밀리초로
+    // getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+    var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+    // new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
+    var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+    document.getElementById("customerBirthInput").setAttribute("max", today);
 
 </script>
 

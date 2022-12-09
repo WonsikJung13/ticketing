@@ -39,3 +39,4 @@ custom.properties
 
 
 static\
+application-oauth.properties

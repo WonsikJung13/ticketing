@@ -105,9 +105,11 @@
                                             value="${grade.customerGrade}"/></option>
                                 </c:forEach>
                             </select>
-                            <input type="hidden" id="customerUniqueNumber" name="customerUniqueNumber" value="${customer.customerUniqueNumber}">
+                            <input type="hidden" id="customerId" name="customerId" value="${customer.customerId}">
                             <button id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영</button>
                         </div>
+                        <div id="gradeUpdateResult" class="form-text"></div>
+
                     </div>
                 </form>
 
@@ -151,11 +153,10 @@
 <script>
 
     const ctx = "${pageContext.request.contextPath}";
-    // 좋아요 버튼 클릭시
     document.querySelector("#gradeUpdate").addEventListener("click", function () {
-        const customerUniqueNumber = document.querySelector("#customerUniqueNumber").value;
+        const customerId = document.querySelector("#customerId").value;
         const customerGrade = document.querySelector("#customerGrade option:checked").value;
-        const data = {customerUniqueNumber, customerGrade}
+        const data = {customerId, customerGrade}
 
         fetch(`\${ctx}/admin/updateGrade`, {
             method: "PUT",
@@ -165,7 +166,9 @@
             body: JSON.stringify(data)
         })
             .then(res => res.json())
-            .then((data) => console.log(data));
+            .then(data => {
+                document.querySelector("#gradeUpdateResult").innerText = data.message;
+            });
     })
 </script>
 

@@ -1,4 +1,5 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -93,8 +94,8 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerPhoneNumberInput" class="form-control" type="text" name="customerPhoneNumber"
-                               placeholder="숫자만 입력" maxlength="11" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerPhoneNumberInput" class="form-control" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="customerPhoneNumber"
+                               placeholder="010부터 숫자만 입력" maxlength="11" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
                     <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
