@@ -114,7 +114,7 @@ public class CustomerController {
     }
 
     @PostMapping("nameModify")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    @PreAuthorize("authentication.name == #customerId")
     public String nameModify(String customerId, String customerName, RedirectAttributes rttr) {
         int cnt = customerService.nameModify(customerId, customerName);
 
@@ -128,7 +128,7 @@ public class CustomerController {
     }
 
     @PostMapping("birthModify")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    @PreAuthorize("authentication.name == #customerId")
     public String birthModify(String customerId, String customerBirth, RedirectAttributes rttr) {
         System.out.println("고객생년월일 : " + customerBirth);
         int cnt = customerService.birthModify(customerId, customerBirth);
@@ -143,7 +143,7 @@ public class CustomerController {
     }
 
     @PostMapping("passwordModify")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    @PreAuthorize("authentication.name == #customerId")
     public String passwordModify(String customerId, String customerPassword, RedirectAttributes rttr) {
         int cnt = customerService.passwordModify(customerId, customerPassword);
 
@@ -157,7 +157,7 @@ public class CustomerController {
     }
 
     @PostMapping("phoneNumberModify")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    @PreAuthorize("authentication.name == #customerId")
     public String phoneNumberModify(String customerId, String customerPhoneNumber, RedirectAttributes rttr) {
         int cnt = customerService.phoneNumberModify(customerId, customerPhoneNumber);
 
@@ -171,7 +171,7 @@ public class CustomerController {
     }
 
     @PostMapping("addressModify")
-    @PreAuthorize("@customerSecurity.checkCustomerId(authentication.name, #customerId)")
+    @PreAuthorize("authentication.name == #customerId")
     public String addressModify(String customerId, String customerAddress, RedirectAttributes rttr) {
         int cnt = customerService.addressModify(customerId, customerAddress);
         String newAddress = customerService.getByCustomerId(customerId).getCustomerAddress();
