@@ -16,6 +16,21 @@
             Reply
     </select>
 
+    <select id="selectDuo" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
+        SELECT
+            replyId,
+            replyName,
+            replyContent,
+            replyInserted,
+            replyMainText
+        FROM
+            Reply
+        WHERE
+            replyId = #{replyId}
+        AND
+            replyName = #{replyName}
+    </select>
+
     <select id="select" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
         SELECT
             replyId,
@@ -26,7 +41,7 @@
         FROM
             Reply
         WHERE
-            replyId = #{id}
+            replyId = #{replyId}
     </select>
 
     <insert id="addReply">
@@ -46,7 +61,7 @@
         DELETE FROM
             Reply
         WHERE
-            replyId = #{id}
+            replyName = #{replyName}
     </delete>
 
     <insert id="insert">
@@ -76,7 +91,7 @@
         DELETE FROM
             Reply
         WHERE
-        replyId = #{replyId}
+            replyId = #{replyId}
     </delete>
 
 </mapper>

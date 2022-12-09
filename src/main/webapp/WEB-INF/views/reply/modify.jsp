@@ -25,7 +25,7 @@
             <form method="post" id="modifyForm">
                 <h1>수정</h1>
 
-                <input type="hidden" name="replyId" value="${Reply.replyId}">
+                <input type="hidden" name="replyName" value="${Reply.replyName}">
                 <input type="hidden" name="contentId" value="${Reply.contentId}">
 
                 <div class="mb-3" id="content">

@@ -69,15 +69,16 @@
 <br>
 
 <c:url value="/reply/modify" var="modifyLink">
-    <c:param name="id" value="${Reply.replyId}"></c:param>
+    <c:param name="replyName" value="${Reply.replyName}"></c:param>
+    <c:param name="replyId" value="${Reply.replyId}"></c:param>
 </c:url>
 
 <c:url value="/reply/remove" var="removeLink">
-    <c:param name="id" value="${Reply.replyId}"></c:param>
+    <c:param name="replyId" value="${Reply.replyId}"></c:param>
 </c:url>
 
 <form id="removeForm" action="${removeLink }" method="post">
-    <input type="hidden" name="replyId" value="${Reply.replyId }">
+    <input type="hidden" name="replyName" value="${Reply.replyName }">
 </form>
 
 <%--<sec:authentication property="name" var="username"/>--%>

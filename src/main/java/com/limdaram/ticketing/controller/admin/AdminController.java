@@ -4,6 +4,7 @@ import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.service.admin.AdminService;
 import com.limdaram.ticketing.service.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ public class AdminController {
     private CustomerService customerService;
 
     @GetMapping("customerList")
+    @PreAuthorize("authentication.name == 'admin'")
     public void getCustomerList(Model model) {
         List<CustomerDto> customerList = adminService.getCustomerList();
         List<CustomerDto> gradeList = adminService.getGradeList();
@@ -41,6 +43,7 @@ public class AdminController {
     }
 
     @RequestMapping("customerManage")
+    @PreAuthorize("authentication.name == 'admin'")
     public void method(@RequestParam(name = "customerId", defaultValue = "0") String customerId, Model model) {
         CustomerDto customer = customerService.getByCustomerId(customerId);
         List<CustomerDto> gradeList = adminService.getGradeList();
@@ -52,6 +55,7 @@ public class AdminController {
 
     @PutMapping("updateGrade")
     @ResponseBody
+    @PreAuthorize("authentication.name == 'admin'")
     public Map<String, Object> updateGrade(@RequestBody CustomerDto customer) {
 
         int updateGrade = adminService.updateGrade(customer.getCustomerId(), customer.getCustomerGrade());

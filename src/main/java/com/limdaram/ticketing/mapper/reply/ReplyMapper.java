@@ -9,9 +9,9 @@ public interface ReplyMapper {
 
     List<ReplyDto> list();
 
-    ReplyDto select(int id);
+    ReplyDto selectDuo(String replyName, int replyId);
 
-    int deleteById(int id);
+    int deleteById(String replyName);
 
     int addReply(ReplyDto reply);
 
@@ -19,5 +19,7 @@ public interface ReplyMapper {
 
     int updateReply(ReplyDto reply);
 
-    int removeById(int id);
+    int removeById(int replyId);
+
+    ReplyDto select(int replyId);
 }
