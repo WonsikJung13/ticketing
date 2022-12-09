@@ -44,6 +44,10 @@
     .mar10{
         margin-right: 10px;
     }
+    
+    a{
+        text-decoration: none;
+    }
 </style>
 
 <%-- authorize tag --%>
