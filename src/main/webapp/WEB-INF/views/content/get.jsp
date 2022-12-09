@@ -99,8 +99,10 @@
     <%-- 이미지 출력 --%>
     <div class="row">
     <div class="cal">
-        <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
-        <%--    상품명 <input type="text" value="${content.contentName}" readonly> <br>--%>
+<%--        <img src="/image/${content.contentId}/${contentPosterName}" alt="">--%>
+        <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(content.contentPosterName, 'utf-8')}" alt="">
+
+    <%--    상품명 <input type="text" value="${content.contentName}" readonly> <br>--%>
         <p>장소 <input type="text" value="${content.contentRegion}" readonly></p>
         <p>장소<input type="text" readonly value="${content.contentAddrDetail}" id='addrDetail'></p>
         기간 <input type="date" value="${content.contentStartDate}" readonly>
@@ -140,7 +142,7 @@
             <div>
                 <c:forEach items="${content.contentDetailName}" var="name">
                     <div>
-                        <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${name}" alt="">
+                        <img class="img-fluid img-thumbnail" src="${imgUrl}/${content.contentId}/${URLEncoder.encode(name, 'utf-8')}" alt="">
                     </div>
                 </c:forEach>
             </div>

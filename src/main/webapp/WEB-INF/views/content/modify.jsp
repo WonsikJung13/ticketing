@@ -65,7 +65,7 @@
                 </div>
         </div>
         <div class="col-10">
-            <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
+            <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(content.contentPosterName, 'utf-8')}" alt="">
         </div>
     </div>
 
@@ -81,7 +81,7 @@
                         </div>
                 </div>
                 <div class="col-10">
-                    <img class="img-fluid img-thumbnail" src="/images/${content.contentId}/${contentDetailName}" alt="">
+                    <img class="img-fluid img-thumbnail" src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}" alt="">
                 </div>
             </div>
         </c:forEach>
