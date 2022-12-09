@@ -38,11 +38,15 @@
 <%--            </c:if>--%>
             <form id="registerForm" action="/member/login" method="post" >
                 <div class="input-group mb-3">
-                    <span class="input-group-text">아이디</span>
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
                     <input type="text" name="username" class="form-control" placeholder="USER ID">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text">패스워드</span>
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-key"></i>
+                    </span>
                     <input type="password" name="password" class="form-control" placeholder="PASSWORD">
                 </div>
                 <div class="input-group mb-3 ">
@@ -52,10 +56,16 @@
                     </label>
                 </div>
                 <div>
-                    <a href="/oauth2/authorization/kakao">KAKAO</a>
-                </div>
-                <div>
-                    <a href="/oauth2/authorization/google">GOOGLE</a>
+                    <a href="/oauth2/authorization/kakao" style="text-decoration: none">
+                        <c:url value="kakaoLogo.png" var="kakaoLogoLink" />
+                        <img src="/images/${kakaoLogoLink}" alt="" >
+                    </a>
+
+                    <a href="/oauth2/authorization/google">
+                        <c:url value="googleLogo.png" var="googleLogoLink" />
+                        <img src="/images/${googleLogoLink}" alt="" >
+                    </a>
+
                 </div>
 <%--                <div>--%>
 <%--                    <a href="/oauth2/authorization/naver">NAVER</a>--%>

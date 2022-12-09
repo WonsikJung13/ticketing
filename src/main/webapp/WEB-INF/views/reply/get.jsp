@@ -80,13 +80,13 @@
     <input type="hidden" name="replyId" value="${Reply.replyId }">
 </form>
 
-<sec:authentication property="name" var="username"/>
-<c:if test="${Reply.replyName == username}">
+<%--<sec:authentication property="name" var="username"/>--%>
+<%--<c:if test="${Reply.replyName == username}">--%>
     <div>
         <a class="btn btn-warning " href="${modifyLink}">수정하기</a>
         <input class="btn btn-warning" type="submit" value="삭제하기" data-bs-toggle="modal" data-bs-target="#removeModal">
     </div>
-</c:if>
+<%--</c:if>--%>
 <%--<a class = "btn btn-warning" href="${removeLink}">삭제하기</a>--%>
 
 <!-- Modal -->

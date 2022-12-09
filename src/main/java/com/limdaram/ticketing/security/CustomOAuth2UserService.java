@@ -5,6 +5,7 @@ import com.limdaram.ticketing.mapper.customer.CustomerMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -13,8 +14,8 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
+
 
 @Log4j2
 @Service
@@ -29,10 +30,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        log.info("userRequest: ....");
+        log.info("userRequest.....");
         log.info(userRequest);
 
-        log.info("oauth2 user ..................");
+        log.info("oauth2 user.............................");
 
         ClientRegistration clientRegistration = userRequest.getClientRegistration();
         String clientName = clientRegistration.getClientName();
@@ -42,115 +43,139 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2User oAuth2User = super.loadUser(userRequest);
         Map<String, Object> paramMap = oAuth2User.getAttributes();
 
-
-
         String email = null;
-        String social = null;
-        String name = null;
+
+        String name= null;
+
 
         switch (clientName) {
-            case "kakao" :
+            case "kakao":
                 email = getKakaoEmail(paramMap);
                 break;
+
             case "Google" :
                 email = getGoogleEmail(paramMap);
                 break;
+
             case "Naver" :
                 email = getNaverEmail(paramMap);
                 name = getNaverName(paramMap);
                 break;
         }
-
-        log.info("====================");
+        log.info("=========================");
         log.info(email);
-        log.info(name);
-        log.info(oAuth2User.getName());
-        log.info("====================");
+        log.info("=========================");
 
-        if (clientName.equals("kakao")  && customerMapper.getByCustomerId(oAuth2User.getName()) == null) {
-            CustomerDto customerDto = new CustomerDto();
 
-            customerDto.setCustomerEmail(email);
-            customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
-            customerDto.setSocial("true");
-            customerDto.setCustomerId(oAuth2User.getName());
-
-            customerMapper.insert(customerDto);
-
-        }
-        if (clientName.equals("Google")  && customerMapper.getByCustomerId(oAuth2User.getName()) == null) {
-            CustomerDto customerDto = new CustomerDto();
-
-            customerDto.setCustomerEmail(email);
-            customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
-            customerDto.setSocial("true");
-            customerDto.setCustomerId(oAuth2User.getName());
-
-            customerMapper.insert(customerDto);
-        }
-        if (clientName.equals("Naver") && customerMapper.getByCustomerId(getNaverId(paramMap)) == null) {
-            CustomerDto customerDto = new CustomerDto();
-
-            customerDto.setCustomerEmail(email);
-            customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
-            customerDto.setSocial("true");
-            customerDto.setCustomerId(getNaverId(paramMap));
-            customerDto.setCustomerName(name);
-
-            customerMapper.insert(customerDto);
-        }
-
-        return oAuth2User;
-
+        return generateDTO(email, name, paramMap);
     }
 
+    private MemberSecurityDTO generateDTO(String email, String name, Map<String, Object> params) {
+        // 소셜로그인으로 받아온 이메일로 중복 체크 with 우리 DB
+        CustomerDto result = customerMapper.getByCustomerEmail(email);
 
+        if (result == null) {
+            CustomerDto customerDto = new CustomerDto();
 
+            customerDto.setCustomerName(name);
+            customerDto.setCustomerEmail(email);
+            customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
+            customerDto.setSocial("true");
+            customerDto.setCustomerId(email);
+
+            customerMapper.insert(customerDto);
+
+            List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
+
+            if (customerDto.getAuth() != null) {
+                for (String auth : customerDto.getAuth()) {
+                    authorityList.add(new SimpleGrantedAuthority(auth));
+                }
+            }
+
+            MemberSecurityDTO memberSecurityDTO =
+                    new MemberSecurityDTO(email, "1111", email, "true", name, authorityList);
+            memberSecurityDTO.setProps(params);
+
+            return memberSecurityDTO;
+
+        } else {
+            CustomerDto customerDto = result;
+
+            List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
+
+            if (customerDto.getAuth() != null) {
+                for (String auth : customerDto.getAuth()) {
+                    authorityList.add(new SimpleGrantedAuthority(auth));
+                }
+            }
+            MemberSecurityDTO memberSecurityDTO =
+                    new MemberSecurityDTO(
+                            customerDto.getCustomerId(),
+                            customerDto.getCustomerPassword(),
+                            customerDto.getCustomerEmail(),
+                            customerDto.getSocial(),
+                            customerDto.getCustomerName(),
+                            authorityList
+                    );
+
+            return memberSecurityDTO;
+        }
+    }
+
+    // 카카오 이메일 추출
     private String getKakaoEmail(Map<String, Object> paramMap) {
-        log.info("KAKAO -------------------------");
+
 
         Object value = paramMap.get("kakao_account");
 
-        log.info(value);
 
         LinkedHashMap accountMap = (LinkedHashMap) value;
 
         String email = (String) accountMap.get("email");
 
-        log.info("email..." + email);
 
         return email;
     }
 
+    // 구글 이메일 추출
     private String getGoogleEmail(Map<String, Object> paramMap) {
-
         String email = (String) paramMap.get("email");
 
         return email;
     }
 
+    // 네이버 이메일 추출
     private String getNaverEmail(Map<String, Object> paramMap) {
+
+
         Object value = paramMap.get("response");
-        LinkedHashMap responseMap = (LinkedHashMap) value;
-        String email = (String) responseMap.get("email");
+
+
+        LinkedHashMap accountMap = (LinkedHashMap) value;
+
+        String email = (String) accountMap.get("email");
+
 
         return email;
     }
+    
+    // 네이버 이름 
 
     private String getNaverName(Map<String, Object> paramMap) {
+
+
         Object value = paramMap.get("response");
-        LinkedHashMap responseMap = (LinkedHashMap) value;
-        String name = (String) responseMap.get("name");
+
+
+        LinkedHashMap accountMap = (LinkedHashMap) value;
+
+        String name = (String) accountMap.get("name");
+
 
         return name;
     }
 
-    private String getNaverId(Map<String, Object> paramMap) {
-        Object value = paramMap.get("response");
-        LinkedHashMap responseMap = (LinkedHashMap) value;
-        String id = (String) responseMap.get("id");
-
-        return id;
-    }
-
 }
+
+
