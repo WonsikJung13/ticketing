@@ -57,19 +57,20 @@
                 </div>
                 <div>
                     <a href="/oauth2/authorization/kakao" style="text-decoration: none">
-                        <c:url value="kakaoLogo.png" var="kakaoLogoLink" />
-                        <img src="/images/${kakaoLogoLink}" alt="" >
+                        <c:url value="/kakaoLogo.png" var="kakaoLogoLink" />
+                        <img src="${kakaoLogoLink}" alt="" >
                     </a>
 
-                    <a href="/oauth2/authorization/google">
-                        <c:url value="googleLogo.png" var="googleLogoLink" />
-                        <img src="/images/${googleLogoLink}" alt="" >
+                    <a href="/oauth2/authorization/google" style="text-decoration: none">
+                        <c:url value="/googleLogo.png" var="googleLogoLink" />
+                        <img src="${googleLogoLink}" alt="" >
                     </a>
 
+                    <a href="/oauth2/authorization/naver">
+                        <c:url value="/naverLogo.png" var="naverLogoLink" />
+                        <img src="${naverLogoLink}" alt="" style="height: 48px" >
+                    </a>
                 </div>
-<%--                <div>--%>
-<%--                    <a href="/oauth2/authorization/naver">NAVER</a>--%>
-<%--                </div>--%>
                 <div class="my-4">
                     <div class="float-first">
                         아직도 회원이 아니세요? <a href="/customer/signup">회원가입</a>
