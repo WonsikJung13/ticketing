@@ -29,8 +29,7 @@
                 <thead>
                 <tr>
                     <th>아이디</th>
-                    <th>별명</th>
-                    <th>아이디</th>
+                    <th>고객명</th>
                     <th>이메일</th>
                     <th>등급</th>
                 </tr>

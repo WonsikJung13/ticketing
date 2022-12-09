@@ -22,9 +22,6 @@ public class ReplyController {
     @Setter(onMethod_ = @Autowired)
     private ReplyService replyService;
 
-    @Setter(onMethod_ = @Autowired)
-    private ReplyMapper replyMapper;
-
     @GetMapping("list")
     public void list(Model model){
         List<ReplyDto> list = replyService.listReply();
@@ -64,7 +61,6 @@ public class ReplyController {
     @PostMapping("register")
     public String register(ReplyDto reply,
                            RedirectAttributes rttr) {
-
         int cnt = replyService.register(reply);
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "새 게시물이 등록되었습니다.");
@@ -78,10 +74,8 @@ public class ReplyController {
 
     @PostMapping("modify")
     public String modify(ReplyDto replyDto, RedirectAttributes rttr) {
-        System.out.println("zjsxmfhffj"+replyDto);
 
 //        replyDto.setReplyContent(rttr.getAttribute());
-
         int cnt = replyService.update(replyDto);
 
         if (cnt == 1) {
@@ -101,7 +95,6 @@ public class ReplyController {
 
     @PostMapping("remove")
     public String remove(int id, RedirectAttributes rttr) {
-        System.out.println(id);
         int cnt = replyService.remove(id);
         if (cnt == 1) {
             rttr.addFlashAttribute("message", id + "번 게시물이 삭제되었습니다.");
