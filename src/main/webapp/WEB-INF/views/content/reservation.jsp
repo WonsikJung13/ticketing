@@ -596,8 +596,7 @@
     <tr>
         <td class="content" colspan="2" align="left">
             <%-- 선택한 예약일시를 출력할 위치--%>
-            <input id="selectedDate" style="border:none; width:100px" name="selectedDate" value=""
-                   readonly="readonly">
+            <input id="selectedDate" style="border:none; width:100px" name="selectedDate" value="" readonly="readonly">
             <input id="selectedTime" style="border:none" name="selectedTime" value="" readonly="readonly">
         </td>
     </tr>
