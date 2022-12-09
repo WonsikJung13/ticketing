@@ -10,6 +10,9 @@
         contentName,
         contentStartDate,
         contentEndDate,
+        startTime,
+        endTime,
+        dayLimit,
 <!--        contentPrice,-->
         contentBoard,
         contentAddress,
@@ -21,6 +24,9 @@
         #{contentName},
         #{contentStartDate},
         #{contentEndDate},
+        #{startTime},
+        #{endTime},
+        #{dayLimit},
 <!--        #{contentPrice},-->
         #{contentBoard},
         #{contentAddress},
