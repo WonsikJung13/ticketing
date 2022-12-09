@@ -93,7 +93,7 @@
 
                 <sec:authorize access="hasAuthority('admin')">
                     <li class="nav-item">
-                        <a class="nav-link ${active eq 'customerList' ? 'active' : '' } font25" href="${adminLink }">어드민</a>
+                        <a class="nav-link ${active eq 'customerList' ? 'active' : '' } font25" href="${adminLink }">회원목록</a>
                     </li>
 
                     <li class="nav-item">

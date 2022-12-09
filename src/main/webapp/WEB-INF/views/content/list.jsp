@@ -29,16 +29,16 @@
 
 <%--Alert--%>
 <script>
-  function alert();
+  // function alert();
 
-function alert(${message}) {
-<c:if test="${not empty message}">
-  <div class="alert alert-success">
-      ${message}
-  </div>
-  setTimeout(alert, 500); // 홍길동 님, 안녕하세요.
-</c:if>
-}
+<%--function alert(${message}) {--%>
+<%--<c:if test="${not empty message}">--%>
+<%--  <div class="alert alert-success">--%>
+<%--      ${message}--%>
+<%--  </div>--%>
+<%--  setTimeout(alert, 500);--%>
+<%--</c:if>--%>
+// }
 </script>
   <div class="contentAllList">
 <%--    <div class="tab">--%>

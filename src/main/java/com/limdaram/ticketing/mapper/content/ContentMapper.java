@@ -28,4 +28,5 @@ public interface ContentMapper {
     int deleteByContentIdAndDetailName(int contentId, String fileName);
 
     List<ContentDto> selectContent();
+
 }

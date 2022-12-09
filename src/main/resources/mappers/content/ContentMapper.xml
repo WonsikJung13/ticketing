@@ -32,40 +32,43 @@
 
     <select id="list" resultType="com.limdaram.ticketing.domain.content.ContentDto">
         SELECT
-        c.contentId,
-        c.contentName,
-        c.contentRegion,
-        c.contentStartDate,
-        c.contentEndDate,
-        c.contentPrice,
-        c.contentBoard,
-        p.contentPosterName
+            c.contentId,
+            c.contentName,
+            c.contentRegion,
+            c.contentStartDate,
+            c.contentEndDate,
+            c.contentPrice,
+            c.contentBoard,
+            p.contentPosterName
         FROM
-        Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+            Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
         ORDER BY c.contentId DESC
     </select>
 
     <select id="select" resultMap="contentMap">
         SELECT
-        c.contentId,
-        c.contentName,
-        c.contentRegion,
-        c.contentStartDate,
-        c.contentEndDate,
-        c.contentPrice,
-        c.contentBoard,
-        c.contentMapEntX,
-        c.contentMapEntY,
-        c.contentAddress,
-        c.contentAddrDetail,
-        c.contentInserted,
-        p.contentPosterName,
-        d.contentDetailName
+            c.contentId,
+            c.contentName,
+            c.contentRegion,
+            c.contentStartDate,
+            c.contentEndDate,
+            c.contentPrice,
+            c.contentBoard,
+            c.startTime,
+            c.endTime,
+            c.dayLimit,
+            c.contentMapEntX,
+            c.contentMapEntY,
+            c.contentAddress,
+            c.contentAddrDetail,
+            c.contentInserted,
+            p.contentPosterName,
+            d.contentDetailName
         FROM
-        Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
-        LEFT JOIN ContentDetail d ON c.contentId = d.contentId
+            Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+                      LEFT JOIN ContentDetail d ON c.contentId = d.contentId
         WHERE
-        c.contentId = #{contentId}
+            c.contentId = #{contentId}
     </select>
 
     <resultMap type="com.limdaram.ticketing.domain.content.ContentDto" id="contentMap">
@@ -75,6 +78,9 @@
         <result column="contentStartDate" property="contentStartDate"></result>
         <result column="contentEndDate" property="contentEndDate"></result>
         <result column="contentPrice" property="contentPrice"></result>
+        <result column="startTime" property="startTime"></result>
+        <result column="endTime" property="endTime"></result>
+        <result column="dayLimit" property="dayLimit"></result>
         <result column="contentBoard" property="contentBoard"></result>
         <result column="contentMapEntX" property="contentMapEntX"></result>
         <result column="contentMapEntY" property="contentMapEntY"></result>
@@ -102,7 +108,7 @@
         contentMapEntY = #{contentMapEntY},
         contentAddrDetail = #{contentAddrDetail}
         WHERE
-        contentId = #{contentId}
+            contentId = #{contentId}
     </update>
 
     <delete id="delete">
@@ -138,6 +144,12 @@
         DELETE FROM ContentDetail
         WHERE contentId = #{contentId} AND contentDetailName = #{fileName}
     </delete>
+
+    <select id="reserv" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
+        SELECT FROM CustomerDto
+        WHERE customerId = #{customerId}
+    </select>
+
 
     <select id="selectContent" resultType="com.limdaram.ticketing.domain.content.ContentDto">
         SELECT

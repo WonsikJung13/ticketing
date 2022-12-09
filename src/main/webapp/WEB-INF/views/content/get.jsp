@@ -15,100 +15,6 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-    <script>
-        // 데이터 타입 달력
-        let today = new Date(); // 오늘기준 날짜 데이터
-
-        // 달력 생성
-        function buildCalendar() {
-            let row = null
-            let cnt = 0;
-            let i;
-            let cell;
-
-            // 달력을 만들어서 출력할 table 및 tableTitle을 참조
-            const calendarTable = document.getElementById("calendar");
-            const calendarTableTitle = document.getElementById("calendarTitle");
-            calendarTableTitle.innerHTML = today.getFullYear() + "년" + (today.getMonth() + 1) + "월";
-
-            // 현재 달력의 첫날과 마지막날을 구함
-            const firstDate = new Date(today.getFullYear(), today.getMonth(), 1);   // 첫날
-            const lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); // 마지막날
-
-            // 작성할 테이블을 초기화
-            while (calendarTable.rows.length > 2) {
-                // 타이틀과 요일표시는 남기도록 3번째 행까지만 삭제
-                calendarTable.deleteRow(calendarTable.rows.length - 1); // 가장 마지막 행 삭제 반복
-            }
-
-            // 달의 첫 날까지 빈 셀을 생성
-            row = calendarTable.insertRow();    // 마지막행 생성
-            for (i = 0; i < firstDate.getDay(); i++) {  // firstDate.getDay() : 첫날의 요일
-                cell = row.insertCell();
-                cnt += 1;
-            }
-
-            // 달력에 요일 채우기
-            row = calendarTable.insertRow();    // 마지막행 생성
-            for (i = 1; i <= lastDate.getDate(); i++) { // lastDate.getDate() : 마지막날의 요일
-                cell = row.insertCell();    // 1일~마지막날까지 셀 생성
-                cnt += 1;
-
-                cell.setAttribute('id', i); // 일자를 구해오기 위해 셀의 id속성을 i로 입력
-                cell.innerHTML = i;         // 셀마다 i 입력
-                cell.align = "center";
-
-                // 선택한 일자를 출력하기
-                cell.onclick = function () {
-                    // today로부터 연, 월을
-                    const clickedYear = today.getFullYear();
-                    let clickedMonth = (1 + today.getMonth());
-                    // 클릭된 cell의 id로부터 일자를 불러온다
-                    let clickedDate = this.getAttribute('id');
-
-                    // 연월일을 yyyy-mm-dd로 출력할 수 있게 형식 만든다
-                    clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;  // 10보다 크면 그대로 : 작으면 0n
-                    clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
-                    const clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
-
-                    // 부모창에 계산된 일자를 출력하고 현재창은 닫는다
-                    opener.document.getElementById("dayDate").value = clickedYMD;
-                    self.close();
-                }
-
-                if (cnt % 7 == 1) {
-                    cell.innerHTML = "<font color=#F79DC2>" + i + "</font>";
-                }
-
-                // 한 행에 7번 입력 후 다음행으로 개행
-                if (cnt % 7 == 0) {
-                    cell.innerHTML = "<font color=skyblue>" + i + "</font>";
-                    row = calendar.insertRow();
-                }
-            }
-
-            // 달력의 마지막 날 뒤 빈칸 행으로 채우기
-            if (cnt % 7 != 0) {     // 마지막 일이 7로 나눠 떨어지지 않을 경우
-                for (i = 0; i < 7 - (cnt % 7); i++) {
-                    cell = row.insertCell();
-                }
-            }
-        }
-
-
-        // 이전달, 다음달로 이동
-        // today의 월을 더하거나 뺀 후 buildCalendar를 호출
-        function prevCalendar() {
-            today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-            buildCalendar();
-        }
-
-        function nextCalendar() {
-            today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-            buildCalendar();
-        }
-
-    </script>
 
     <style>
         /*div {*/
@@ -166,14 +72,7 @@
             text-decoration: none;
             /*line-height: 2.5rem;*/
         }
-        div.cal-sticky {
-            position: sticky;
-            top: 100px;
-            right: 0px;
-            /*left: 0px;*/
-            width: 10rem;
-            background-color: #ffffff;
-        }
+
     </style>
 </head>
 <body>
@@ -195,29 +94,11 @@
         </form>
     </h1>
 
-<%--    달력--%>
-    <div class="calendar cal-sticky">
-        <table id="calendar" align="center">
-            <tr>
-                <td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
-                <td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
-                <td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
-            </tr>
-            <tr>
-                <td align="center"><font color="#F79DC2">일</td>
-                <td align="center">월</td>
-                <td align="center">화</td>
-                <td align="center">수</td>
-                <td align="center">목</td>
-                <td align="center">금</td>
-                <td align="center"><font color="skyblue">토</td>
-            </tr>
-            <script type="text/javascript">buildCalendar();</script>
-        </table>
-    </div>
+
 
     <%-- 이미지 출력 --%>
-    <div>
+    <div class="row">
+    <div class="cal">
         <img src="/images/${content.contentId}/${content.contentPosterName}" alt="">
         <%--    상품명 <input type="text" value="${content.contentName}" readonly> <br>--%>
         <p>장소 <input type="text" value="${content.contentRegion}" readonly></p>
@@ -229,6 +110,14 @@
         <input type="hidden" readonly value="${content.contentMapEntY }" id="entY">
         <input type="hidden" readonly value="${content.contentAddress}" id='address'>
 
+        <c:url value="/content/reservation" var="reservLink">
+            <c:param name="contentId" value="${content.contentId}"></c:param>
+        </c:url>
+<%--        <a href="${getLink}">--%>
+<%--            ${content.contentName}--%>
+<%--        </a>--%>
+        <button type="submit" class="btn btn-danger" value="" onclick="location.href='${reservLink}'">예약</button>
+    </div>
         <nav class="nav">
             <div class="navSticky">
                 <div class="stickyWrap">

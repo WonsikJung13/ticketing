@@ -220,4 +220,9 @@ public class ContentService {
         // 게시글 지우기
         return mapper.delete(contentId);
     }
+
+    public ContentDto reservation(int contentId) {
+
+        return mapper.select(contentId);
+    }
 }
