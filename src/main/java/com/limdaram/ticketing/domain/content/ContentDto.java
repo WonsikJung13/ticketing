@@ -30,17 +30,17 @@ public class ContentDto {
     private String contentAddrDetail;
     private int contentPosterId;
     private LocalDateTime contentInserted;
-    public String getTime(){
+
+    private int startTime;
+    private int endTime;
+    private String dayLimit;
+
+    public String getTime() {
         String result = "";
 
         result = contentInserted.toLocalDate().toString() + " " + contentInserted.toLocalTime().toString();
         return result;
     }
-
-    }
-    private int startTime;
-    private int endTime;
-    private String dayLimit;
 
 }
 
