@@ -98,14 +98,12 @@
                 </sec:authorize>
 
                 <c:if test="${not loggedIn}">
-
                     <li class="nav-item">
                         <a class="nav-link ${active eq 'signup' ? 'active' : '' }font25" href="${signupLink}">회원가입</a>
                     </li>
                 </c:if>
 
                 <c:if test="${loggedIn}">
-
                     <li class="nav-item">
                         <a class="nav-link ${active eq 'get' ? 'active' : '' }font25" href="${getLink }">내 정보</a>
                     </li>
@@ -113,14 +111,11 @@
                     <li class="nav-item">
                     <a class="nav-link ${active eq 'reply' ? 'active' : '' } font25" href="${replyLink }">후기 목록</a>
                 </li>
-                </c:if>
-
-                <c:if test="${loggedIn}">
-
                 <li class="nav-item">
                     <a class="nav-link ${active eq 'get' ? 'active' : '' } font25" href="${blogLink }">파워블로거</a>
                 </li>
                 </c:if>
+
 
                 <c:if test="${not loggedIn}">
                     <li class="nav-item position-absolute top-50 end-0 translate-middle-y mar100">
@@ -134,24 +129,22 @@
                     </li>
                 </c:if>
 
-
             </ul>
         </div>
     </div>
 </nav>
 <!-- Header-->
 <c:if test="${loggedIn}">
-    <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">메인 페이지</h1>
-                <p class="lead fw-normal text-white-50 mb-0">일 지 도 ?</p>
-            </div>
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">메인 페이지</h1>
+            <p class="lead fw-normal text-white-50 mb-0">일 지 도 ?</p>
         </div>
-    </header>
+    </div>
+</header>
 </c:if>
-
-
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <script>
     // Get the button:
