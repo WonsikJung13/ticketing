@@ -21,7 +21,7 @@ public class ContentDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contentEndDate;
 
-    private int contentPrice;
+    public int contentPrice;
     private int countContent;
 
     private String contentAddress;
@@ -38,4 +38,9 @@ public class ContentDto {
     }
 
     }
+    private int startTime;
+    private int endTime;
+    private String dayLimit;
+
+}
 
