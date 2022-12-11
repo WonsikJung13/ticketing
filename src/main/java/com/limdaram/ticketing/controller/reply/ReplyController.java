@@ -41,20 +41,20 @@ public class ReplyController {
         // forward / redirect
     }
 
-    @PostMapping("add")
-    @ResponseBody
-    @PreAuthorize("authentication.name == #customerId")
-    public Map<String, Object> add (@RequestBody ReplyDto reply) {
-         System.out.println(reply);
-        Map<String, Object> map = new HashMap<>();
-        int cnt = replyService.addReply(reply);
-        if (cnt == 1) {
-            map.put("message", "새 댓글이 등록되었습니다.");
-        } else {
-            map.put("message", "새 댓글이 등록되지 않았습니다.");
-        }
-        return map;
-    }
+//    @PostMapping("add")
+//    @ResponseBody
+//    @PreAuthorize("authentication.name == #customerId")
+//    public Map<String, Object> add (@RequestBody ReplyDto reply) {
+//         System.out.println(reply);
+//        Map<String, Object> map = new HashMap<>();
+//        int cnt = replyService.addReply(reply);
+//        if (cnt == 1) {
+//            map.put("message", "새 댓글이 등록되었습니다.");
+//        } else {
+//            map.put("message", "새 댓글이 등록되지 않았습니다.");
+//        }
+//        return map;
+//    }
 
     @RequestMapping("register")
     @PreAuthorize("isAuthenticated()")
@@ -78,7 +78,7 @@ public class ReplyController {
     }
 
     @PostMapping("modify")
-//    @PreAuthorize("authentication.name == #replyDto.replyName")
+    @PreAuthorize("authentication.name == #replyDto.replyName")
     public String modify(ReplyDto replyDto, RedirectAttributes rttr) {
 
 //        replyDto.setReplyContent(rttr.getAttribute());
@@ -99,7 +99,6 @@ public class ReplyController {
         ReplyDto replyDto = replyService.getDuo(replyName, replyId);
         System.out.println(replyId + replyName);
         model.addAttribute("Reply", replyDto);
-        System.out.println("왜안되왜안되왜안되왜"+replyDto);
     }
 
     @PostMapping("remove")
