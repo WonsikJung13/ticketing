@@ -67,7 +67,7 @@
                     <c:param name="contentId" value="${content.contentId}"></c:param>
                   </c:url>
                   <a href="${getLink}" title="상세정보 이동">
-                    <img width="100" src="${imgUrl}/${content.contentId}/${URLEncoder.encode(content.contentPosterName, 'utf-8')}" alt="썸네일">
+                    <img width="100" src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="썸네일">
                   </a>
                 </td>
                 <td class="contentName">
