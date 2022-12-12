@@ -50,7 +50,7 @@ public class ContentController {
     @GetMapping("list")
     public void list(Model model, ContentDto content) {
         List<ContentDto> list = service.listContent(content);
-        System.out.println("list"+list);
+        System.out.println("리스트"+list);
         System.out.println("content"+content);
         model.addAttribute("contentList", list);
     }
@@ -87,19 +87,19 @@ public class ContentController {
             ContentDto content,
             MultipartFile addPosterFile,
             MultipartFile[] addDetailFiles,
-            @RequestParam(name = "removePosterFile", required = false) String removePosterFile,
-            @RequestParam(name = "removeDetailFiles", required = false) List<String> removeDetailFiles,
+            @RequestParam(name = "removePosterName", required = false) String removePosterName,
+            @RequestParam(name = "removeDetailNames", required = false) List<String> removeDetailNames,
             RedirectAttributes rttr) {
 
         // 지울 파일명 들어오는지 확인
-//        System.out.println("지울 파일명###");
-//        if (removeDetailFiles != null) {
+        System.out.println("지울 파일명###");
+        if (removePosterName != null) {
 //            for(String name : removeDetailFiles) {
-//                System.out.println(name);
+                System.out.println(removePosterName);
 //            }
-//        }
+        }
 
-        int cnt = service.update(content, addPosterFile, addDetailFiles, removePosterFile, removeDetailFiles);
+        int cnt = service.update(content, addPosterFile, addDetailFiles, removePosterName, removeDetailNames);
         System.out.println("수정완료 " + content);
 
         if (cnt == 1) {

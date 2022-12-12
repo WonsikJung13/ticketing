@@ -13,7 +13,7 @@
         startTime,
         endTime,
         dayLimit,
-<!--        contentPrice,-->
+        contentPrice,
         contentBoard,
         contentAddress,
         contentMapEntX,
@@ -27,7 +27,7 @@
         #{startTime},
         #{endTime},
         #{dayLimit},
-<!--        #{contentPrice},-->
+        #{contentPrice},
         #{contentBoard},
         #{contentAddress},
         #{contentMapEntX},

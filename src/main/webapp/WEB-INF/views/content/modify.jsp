@@ -39,6 +39,7 @@
 </h1>
 <form id="modifyForm" action="" method="post" enctype="multipart/form-data">
 
+<%--    <input type="hidden" name="contentPosterName" value="${content.contentPosterName}">--%>
     상품명 <input type="text" name="contentName" value="${content.contentName}" > <br>
     장소 <input type="text" name="contentRegion" value="${content.contentRegion}" > <br>
     시작 <input type="date" name="contentStartDate" value="${content.contentStartDate}" > <br>
@@ -47,7 +48,7 @@
     정보 <textarea name="contentBoard" >${content.contentBoard}</textarea>
     <div class="posterBox">
         <label for="" class="form-label">포스터</label>
-        <input type="file" accept="image/*" class="form-control" name="addPosterFile">
+        <input type="file" accept="image/*" class="form-control" name="addPosterFile" id="addPosterFile">
     </div>
     <div class="DetailBox">
         <label for="" class="form-label">세부내용</label>
@@ -60,7 +61,7 @@
         <div class="col-2 d-flex justify-content-center align-items-center">
             <%-- 삭제여부 체크박스 --%>
                 <div class="custom-check form-check form-switch text-danger">
-                    <input name="removePosterFile" value="${content.contentPosterName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                    <input name="removePosterName" value="${content.contentPosterName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                     <label class="form-check-label" for="flexSwitchCheckChecked"><i class="fa-regular fa-trash-can"></i></label>
                 </div>
         </div>
@@ -76,7 +77,7 @@
                 <div class="col-2 d-flex justify-content-center align-items-center">
                     <%-- 삭제여부 체크박스 --%>
                         <div class="custom-check form-check form-switch text-danger">
-                            <input name="removeDetailFiles" value="${contentDetailName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked${status.count}">
+                            <input name="removeDetailNames" value="${contentDetailName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked${status.count}">
                             <label class="form-check-label" for="flexSwitchCheckChecked${status.count}"><i class="fa-regular fa-trash-can"></i></label>
                         </div>
                 </div>
@@ -111,6 +112,11 @@
     document.querySelector("#modifyConfirmButton").addEventListener("click", function() {
         document.querySelector("#modifyForm").submit();
     });
+
+    if (document.querySelector("#addPosterFile").value != "") {
+        console.log("input file")
+        document.querySelector("#flexSwitchCheckChecked").checked = true;
+    }
 </script>
 
 

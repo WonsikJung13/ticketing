@@ -15,22 +15,23 @@ public class ContentDto {
     private String contentBoard;
     private String contentPosterName;
     private List<String> contentDetailName;
-
+    private int contentPrice;
+    private int countContent;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contentStartDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contentEndDate;
-
-    public int contentPrice;
-    private int countContent;
-
+    // 이미지 관련
+    private String contentAddrDetail;
+    private int contentPosterId;
+    // 지도 관련
     private String contentAddress;
     private float contentMapEntX;
     private float contentMapEntY;
-    private String contentAddrDetail;
-    private int contentPosterId;
+
     private LocalDateTime contentInserted;
 
+    // 예약 관련
     private int startTime;
     private int endTime;
     private String dayLimit;

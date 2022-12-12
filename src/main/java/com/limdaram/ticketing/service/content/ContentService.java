@@ -65,7 +65,6 @@ public class ContentService {
             uploadPosterFile(content, file1, uuid);
         }
 
-//        if (file2 != null) {
             for (MultipartFile file : file2) {
                 if (file != null && file.getSize() > 0) {
 //                File folder2 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
@@ -88,35 +87,40 @@ public class ContentService {
 //                        throw new RuntimeException(e);
 //                    }
 
-                    try {
-                        // s3에 디테일 파일 저장
-                        // 키 생성
-                        String key = "prj1/board/" + content.getContentId() + "/" + uuid;
-
-                        // putObjectRequest
-                        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                                .bucket(bucketName)
-                                .key(key)
-                                .acl(ObjectCannedACL.PUBLIC_READ)
-                                .build();
-
-                        // requestBody
-                        RequestBody requestBody = RequestBody.fromInputStream(file.getInputStream(), file.getSize());
-
-                        // object(파일) 올리기
-                        s3Client.putObject(putObjectRequest, requestBody);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        throw new RuntimeException(e);
-                    }
+                    uploadDetailFiles(content, file, uuid);
                 }
             }
-//        }
         System.out.println(content);
         return cnt;
     }
 
+    // 디테일 파일 등록 함수
+    private void uploadDetailFiles(ContentDto content, MultipartFile file, String uuid) {
+        try {
+            // s3에 디테일 파일 저장
+            // 키 생성
+            String key = "prj1/board/" + content.getContentId() + "/" + uuid;
+
+            // putObjectRequest
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(key)
+                    .acl(ObjectCannedACL.PUBLIC_READ)
+                    .build();
+
+            // requestBody
+            RequestBody requestBody = RequestBody.fromInputStream(file.getInputStream(), file.getSize());
+
+            // object(파일) 올리기
+            s3Client.putObject(putObjectRequest, requestBody);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    // 포스터 파일 등록 함수
     private void uploadPosterFile(ContentDto content, MultipartFile file1, String uuid) {
         try {
             // s3에 파일 저장
@@ -142,6 +146,7 @@ public class ContentService {
         }
     }
 
+    // 총 게시물 개수 확인
     public List<ContentDto> listContent(ContentDto contentDto) {
         int countAll = mapper.countAll();
 
@@ -163,107 +168,127 @@ public class ContentService {
             ContentDto content,
             MultipartFile addPosterFile,
             MultipartFile[] addDetailFiles,
-            String removePosterFile,
-            List<String> removeDetailFiles) {
-//        System.out.println("removeDetailFiles: " + removeDetailFiles);
+            String removePosterName,
+            List<String> removeDetailNames) {
+        System.out.println("removePosterName: " + removePosterName);
+        System.out.println("removeDetailNames: " + removeDetailNames);
 //        System.out.println("addDetailFiles: " + addDetailFiles);
-//        System.out.println("addPosterFile: " + addPosterFile);
+        System.out.println("addPosterFile: " + addPosterFile);
 
         int contentId = content.getContentId();
+//        String deletePosterName = mapper.select(contentId).getContentPosterName();
+//        String deletePosterName = content.getContentPosterName();
 
         // 포스터 파일 제거
-        if (removePosterFile != null) {
-            // db에서 파일 이름 제거
-            mapper.deletePosterByContentId(contentId);
+        if (removePosterName != null) {
 //            // 저장소에서 파일 제거
 //            String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removePosterFile;
 //            File file = new File(path);
 //            file.delete();
 
             // s3 저장소에서 포스트 파일 제거
-            String contentPosterName = content.getContentPosterName();
-            deletePosterFile(contentId, contentPosterName);
+            removePosterFile(contentId, removePosterName);
+            // db에서 파일 이름 제거
+            mapper.deletePosterByContentId(contentId);
         }
         // 포스터 파일 추가
         if (addPosterFile != null && addPosterFile.getSize() > 0) {
-            // 1. 포스터 파일 제거 먼저 실행
-            String posterName = mapper.select(contentId).getContentPosterName();
-            System.out.println("posterName: " + posterName);
-            // 저장소에서 제거
-            String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + posterName;
-            File file = new File(path);
-            file.delete();
-            // db에서 파일 이름 제거
-            mapper.deletePosterByContentId(contentId);
 
+            // 1. 포스터 파일 제거 먼저 실행
+//            String posterName = mapper.select(contentId).getContentPosterName();
+//            System.out.println("posterName: " + posterName);
+
+//            // 저장소에서 제거
+//            String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + posterName;
+//            File file = new File(path);
+//            file.delete();
+
+            String deletePosterName = mapper.select(contentId).getContentPosterName();
+            System.out.println("contentPosterName: " + deletePosterName);
+//            if (removePosterName != null) {
+                // s3 저장소에서 파일 제거
+                removePosterFile(contentId, deletePosterName);
+                // db에서 파일 이름 제거
+                mapper.deletePosterByContentId(contentId);
+//            }
 
             // 2. 파일 추가 실행
-            // 경로 설정
-            File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
 
-            // 파일 이름 uuid로 설정
-            String PosterNameUuid = UUID.randomUUID().toString() + ".jpg";
-
-            // db에 파일 정보 저장(contentid, filename)
-            mapper.insertFile(content.getContentId(), PosterNameUuid);
-
-            // 저장소에 파일 저장
+//            // 로컬에 파일 저장 방법
+//            // 경로 지정
 //            File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
-            File dest = new File(folder, PosterNameUuid);
+//            // 저장소에 파일 저장
+////            File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+//            File dest = new File(folder, PosterNameUuid);
+//
+//            // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
+//            try {
+//                addPosterFile.transferTo(dest); // checkException을 발생시킴
+//            } catch (Exception e) {
+//                // @Transactional은 RuntimeException에서만 rollback 됨
+//                e.printStackTrace();
+//                throw new RuntimeException(e);
+//            }
 
-            // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
-            try {
-                addPosterFile.transferTo(dest); // checkException을 발생시킴
-            } catch (Exception e) {
-                // @Transactional은 RuntimeException에서만 rollback 됨
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
+            // s3 저장소에 파일 저장
+            // 파일 이름 uuid로 설정
+            String addPosterName = UUID.randomUUID().toString() + ".jpg";
+            uploadPosterFile(content, addPosterFile, addPosterName);
+
+            // db에 파일 정보 저장(contentId, filename)
+            mapper.insertFile(content.getContentId(), addPosterName);
+
         }
 
 
         // removeDetailFiles에 있는 파일명으로
         // 파일 체크 됐을 때
-        if (removeDetailFiles != null) {
-            for (String removeDetailFile : removeDetailFiles) {
+        if (removeDetailNames != null) {
+            for (String removeDetailName : removeDetailNames) {
                 // 1. contentDetail 테이블에서 record 지우기
 //                System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
-                mapper.deleteByContentIdAndDetailName(contentId, removeDetailFile);
-                // 2. 저장소에 있는 실제 파일 지우기
-                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removeDetailFile;
-                File file = new File(path);
-//                System.out.println("path: " + file);
-                file.delete();
+                mapper.deleteByContentIdAndDetailName(contentId, removeDetailName);
+
+                // s3 저장소에서 파일 지우기
+                removeDetailFile(contentId, removeDetailName);
+
+//                // 2. 저장소에 있는 실제 파일 지우기
+//                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removeDetailName;
+//                File file = new File(path);
+////                System.out.println("path: " + file);
+//                file.delete();
             }
         }
         // 추가 파일 있을 때
         if (addDetailFiles != null) {
             for (MultipartFile DetailFile : addDetailFiles) {
-                if (DetailFile != null && DetailFile.getSize() > 0) {
+//                if (DetailFile != null && DetailFile.getSize() > 0) {
                     // 파일 테이블에 파일명 추가
                     String uuid = UUID.randomUUID().toString() + ".jpg";
                     mapper.insertFile2(content.getContentId(), uuid);
 
-                    // 저장소에 실제 파일 추가
-                    File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
-                    folder.mkdirs();
-                    File dest = new File(folder, uuid);
+                    // s3 저장소에 디테일 파일 추가
+                    uploadDetailFiles(content, DetailFile, uuid);
 
-                    // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
-                    try {
-                        DetailFile.transferTo(dest); // checkException을 발생시킴
-                    } catch (Exception e) {
-                        // @Transactional은 RuntimeException에서만 rollback 됨
-                        e.printStackTrace();
-                        throw new RuntimeException(e);
-                    }
-                }
+//                    // 저장소에 실제 파일 추가
+//                    File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+//                    folder.mkdirs();
+//                    File dest = new File(folder, uuid);
+//
+//                    // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
+//                    try {
+//                        DetailFile.transferTo(dest); // checkException을 발생시킴
+//                    } catch (Exception e) {
+//                        // @Transactional은 RuntimeException에서만 rollback 됨
+//                        e.printStackTrace();
+//                        throw new RuntimeException(e);
+//                    }
+//                }
             }
         }
         return mapper.update(content);
     }
 
-    //    컨텐츠삭제
     public int remove(int contentId) {
 //        // 저장소의 이미지 파일 지우기
 //        String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId;
@@ -280,11 +305,18 @@ public class ContentService {
         ContentDto content = mapper.select(contentId);
 
         String contentPosterName = content.getContentPosterName();
+        List<String> removeDetailNames = content.getContentDetailName();
 
         if (contentPosterName != null) {
             // s3 저장소의 파일 지우기
-            deletePosterFile(contentId, contentPosterName);
+            removePosterFile(contentId, contentPosterName);
 
+        }
+
+        if (removeDetailNames != null) {
+            for (String removeDetailName : removeDetailNames) {
+                removeDetailFile(contentId, removeDetailName);
+            }
         }
 
         // db의 이미지 파일 records 지우기
@@ -298,8 +330,18 @@ public class ContentService {
         return mapper.delete(contentId);
     }
 
-    private void deletePosterFile(int contentId, String contentPosterName) {
-        String key = "prj1/board/" + contentId + "/" + contentPosterName;
+    private void removePosterFile(int contentId, String removePosterName) {
+        System.out.println("포스터네임" + removePosterName);
+        String key = "prj1/board/" + contentId + "/" + removePosterName;
+        DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
+                .bucket(bucketName)
+                .key(key)
+                .build();
+        s3Client.deleteObject(deleteObjectRequest);
+    }
+
+    private void removeDetailFile(int contentId, String removeDetailName) {
+        String key = "prj1/board/" + contentId + "/" + removeDetailName;
         DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
                 .bucket(bucketName)
                 .key(key)
