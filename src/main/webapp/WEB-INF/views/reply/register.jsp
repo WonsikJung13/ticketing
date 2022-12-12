@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +27,9 @@
         <label class="form-label">
             작성자
         </label>
-        <input class="form-control" type="text" name="replyName">
+        <input
+                value="<sec:authentication property="name"/>"
+                class="form-control" type="text" name="replyName" readonly>
     </div>
 
     <div class="mb-3">

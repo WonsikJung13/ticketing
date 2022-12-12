@@ -1,10 +1,10 @@
 package com.limdaram.ticketing.controller.reply;
 
 import com.limdaram.ticketing.domain.reply.ReplyDto;
-import com.limdaram.ticketing.mapper.reply.ReplyMapper;
 import com.limdaram.ticketing.service.reply.ReplyService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +23,7 @@ public class ReplyController {
     private ReplyService replyService;
 
     @GetMapping("list")
+    @PreAuthorize("isAuthenticated()")
     public void list(Model model){
         List<ReplyDto> list = replyService.listReply();
 
@@ -30,35 +31,39 @@ public class ReplyController {
     }
 
     @GetMapping("get")
-    public void get(@RequestParam(name = "id") int id, Model model) {
+    @PreAuthorize("isAuthenticated()")
+    public void get(@RequestParam(name = "replyId") int replyId, Model model) {
         // request param
         // business logic (게시물 db에서 가져오기)
-        ReplyDto reply = replyService.get(id);
+        ReplyDto reply = replyService.get(replyId);
         // add attribute
         model.addAttribute("Reply", reply);
         // forward / redirect
     }
 
-    @PostMapping("add")
-    @ResponseBody
-    public Map<String, Object> add (@RequestBody ReplyDto reply) {
-         System.out.println(reply);
-        Map<String, Object> map = new HashMap<>();
-        int cnt = replyService.addReply(reply);
-        if (cnt == 1) {
-            map.put("message", "새 댓글이 등록되었습니다.");
-        } else {
-            map.put("message", "새 댓글이 등록되지 않았습니다.");
-        }
-        return map;
-    }
+//    @PostMapping("add")
+//    @ResponseBody
+//    @PreAuthorize("authentication.name == #customerId")
+//    public Map<String, Object> add (@RequestBody ReplyDto reply) {
+//         System.out.println(reply);
+//        Map<String, Object> map = new HashMap<>();
+//        int cnt = replyService.addReply(reply);
+//        if (cnt == 1) {
+//            map.put("message", "새 댓글이 등록되었습니다.");
+//        } else {
+//            map.put("message", "새 댓글이 등록되지 않았습니다.");
+//        }
+//        return map;
+//    }
 
     @RequestMapping("register")
+    @PreAuthorize("isAuthenticated()")
     public void register() {
 
     }
 
     @PostMapping("register")
+    @PreAuthorize("isAuthenticated()")
     public String register(ReplyDto reply,
                            RedirectAttributes rttr) {
         int cnt = replyService.register(reply);
@@ -73,6 +78,7 @@ public class ReplyController {
     }
 
     @PostMapping("modify")
+    @PreAuthorize("authentication.name == #replyDto.replyName")
     public String modify(ReplyDto replyDto, RedirectAttributes rttr) {
 
 //        replyDto.setReplyContent(rttr.getAttribute());
@@ -88,30 +94,22 @@ public class ReplyController {
     }
 
     @GetMapping("modify")
-    public void modify(int id, Model model) {
-        ReplyDto replyDto = replyService.get(id);
+    @PreAuthorize("authentication.name == #replyName")
+    public void modify(String replyName,int replyId, Model model) {
+        ReplyDto replyDto = replyService.getDuo(replyName, replyId);
+        System.out.println(replyId + replyName);
         model.addAttribute("Reply", replyDto);
     }
 
     @PostMapping("remove")
-    public String remove(int id, RedirectAttributes rttr) {
-        int cnt = replyService.remove(id);
+    public String remove(int replyId, RedirectAttributes rttr) {
+        int cnt = replyService.remove(replyId);
         if (cnt == 1) {
-            rttr.addFlashAttribute("message", id + "번 게시물이 삭제되었습니다.");
+            rttr.addFlashAttribute("message", replyId + "번 게시물이 삭제되었습니다.");
         } else {
-            rttr.addFlashAttribute("message", id + "번 게시물이 삭제되지 않았습니다.");
+            rttr.addFlashAttribute("message", replyId + "번 게시물이 삭제되지 않았습니다.");
         }
         return "redirect:/reply/list";
-    }
-
-    @RequestMapping("test")
-    public void test(){
-        System.out.println("게시판");
-    }
-
-    @RequestMapping("rr")
-    public void rr(){
-        System.out.println("rr");
     }
 
 }
