@@ -1,10 +1,10 @@
 package com.limdaram.ticketing.controller.reply;
 
 import com.limdaram.ticketing.domain.reply.ReplyDto;
+import com.limdaram.ticketing.mapper.reply.ReplyMapper;
 import com.limdaram.ticketing.service.reply.ReplyService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -81,7 +81,6 @@ public class ReplyController {
     @PreAuthorize("authentication.name == #replyDto.replyName")
     public String modify(ReplyDto replyDto, RedirectAttributes rttr) {
 
-//        replyDto.setReplyContent(rttr.getAttribute());
         int cnt = replyService.update(replyDto);
 
         if (cnt == 1) {
@@ -97,7 +96,6 @@ public class ReplyController {
     @PreAuthorize("authentication.name == #replyName")
     public void modify(String replyName,int replyId, Model model) {
         ReplyDto replyDto = replyService.getDuo(replyName, replyId);
-        System.out.println(replyId + replyName);
         model.addAttribute("Reply", replyDto);
     }
 
