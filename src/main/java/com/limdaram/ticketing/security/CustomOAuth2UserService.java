@@ -45,7 +45,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         String email = null;
 
-        String name= null;
+        String name = null;
 
 
         switch (clientName) {
@@ -53,11 +53,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 email = getKakaoEmail(paramMap);
                 break;
 
-            case "Google" :
+            case "Google":
                 email = getGoogleEmail(paramMap);
                 break;
 
-            case "Naver" :
+            case "Naver":
                 email = getNaverEmail(paramMap);
                 name = getNaverName(paramMap);
                 break;
@@ -65,7 +65,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         log.info("=========================");
         log.info(email);
         log.info("=========================");
-
 
         return generateDTO(email, name, paramMap);
     }
@@ -82,8 +81,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             customerDto.setCustomerPassword(passwordEncoder.encode("1111"));
             customerDto.setSocial("true");
             customerDto.setCustomerId(email);
+            customerDto.setAuth(List.of("user"));
 
             customerMapper.insert(customerDto);
+            customerMapper.authAdd(email);
 
             List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
 
@@ -159,7 +160,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return email;
     }
-    
+
     // 네이버 이름 
 
     private String getNaverName(Map<String, Object> paramMap) {

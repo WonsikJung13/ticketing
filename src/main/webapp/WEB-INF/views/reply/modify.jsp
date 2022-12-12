@@ -28,8 +28,7 @@
             <form method="post" id="modifyForm">
                 <h1>수정</h1>
 
-                <input type="hidden" name="replyName" value="${Reply.replyName}">
-                <input type="hidden" name="contentId" value="${Reply.contentId}">
+                <input type="hidden" name="replyId" value="${Reply.replyId}">
 
                 <div class="mb-3" id="content">
                     <label class="form-label">
@@ -51,7 +50,7 @@
                         작성자
                     </label>
 
-                    <input class="form-control" name="replyName" type="text" value="${Reply.replyName}" readonly>
+                    <input class="form-control" type="text" value="${Reply.replyName}" readonly>
 
                 </div>
 
