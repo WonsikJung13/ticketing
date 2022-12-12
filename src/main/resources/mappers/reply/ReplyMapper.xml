@@ -14,6 +14,7 @@
             contentId
         FROM
             Reply
+        ORDER BY 1 DESC
     </select>
 
     <select id="selectDuo" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
