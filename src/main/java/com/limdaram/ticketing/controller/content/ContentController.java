@@ -100,6 +100,7 @@ public class ContentController {
     }
 
     @GetMapping("modify")
+    @PreAuthorize("authentication.name == 'admin'")
     public void modify(
             int contentId,
             Model model) {
