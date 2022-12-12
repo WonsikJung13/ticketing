@@ -73,13 +73,13 @@
 
 <nav class="navbar navbar-expand-md bg-light mb-3">
     <div class="container-md">
-<%--        <a class="navbar-brand" href="${listLink }">--%>
+        <a class="navbar-brand" href="${listLink }">
 
-<%--        </a>--%>
-<%--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"--%>
-<%--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--            <span class="navbar-toggler-icon"></span>--%>
-<%--        </button>--%>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
 
@@ -113,22 +113,22 @@
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link ${active eq 'reply' ? 'active' : '' } font25" href="${replyLink }">후기 목록</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link ${active eq 'get' ? 'active' : '' } font25" href="${blogLink }">파워블로거</a>
-                </li>
+                        <a class="nav-link ${active eq 'reply' ? 'active' : '' } font25" href="${replyLink }">후기 목록</a>
+                    </li>
+                    <li class="nav-item mar100">
+                        <a class="nav-link ${active eq 'get' ? 'active' : '' } font25" href="${blogLink }">파워블로거</a>
+                    </li>
                 </c:if>
 
-
+                <p>${customer.customerId}</p>
                 <c:if test="${not loggedIn}">
                     <li class="nav-item position-absolute top-50 end-0 translate-middle-y mar100">
-                    <a class="nav-link ${active eq 'login' ? 'active' : '' } font25" href="${loginLink }">로그인</a>
-                </li>
+                        <a class="nav-link ${active eq 'login' ? 'active' : '' } font25" href="${loginLink }">로그인</a>
+                    </li>
                 </c:if>
 
                 <c:if test="${loggedIn}">
-                    <li class="nav-item">
+                    <li class="nav-item position-absolute top-50 end-0 translate-middle-y mar100">
                         <a class="nav-link ${active eq 'logout' ? 'active' : '' } font25" href="${logoutLink }">로그아웃</a>
                     </li>
                 </c:if>

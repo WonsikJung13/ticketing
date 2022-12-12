@@ -2,6 +2,7 @@ package com.limdaram.ticketing.controller.customer;
 
 import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.service.customer.CustomerService;
+import com.limdaram.ticketing.service.customer.EmailService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,6 +21,9 @@ public class CustomerController {
 
     @Setter(onMethod_ = @Autowired)
     private CustomerService customerService;
+
+    @Setter(onMethod_ = @Autowired)
+    private EmailService emailService;
 
     @RequestMapping("get")
     @PreAuthorize("authentication.name == #customerId")
@@ -186,4 +190,16 @@ public class CustomerController {
             return "redirect:/customer/modify?customerId=" + customerId;
         }
     }
+
+    @PostMapping("/emailConfirm")
+    public String emailConfirm(@RequestParam String email) throws Exception {
+        String confirm = emailService.sendSimpleMessage(email);
+        return confirm;
+    }
+
+    @GetMapping("/emailConfirm")
+    public void emailConfirm() {
+
+    }
+
 }
