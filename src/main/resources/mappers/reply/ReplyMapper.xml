@@ -14,22 +14,7 @@
             contentId
         FROM
             Reply
-        ORDER BY 1 DESC
-    </select>
-
-    <select id="selectDuo" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
-        SELECT
-            replyId,
-            replyName,
-            replyContent,
-            replyInserted,
-            replyMainText
-        FROM
-            Reply
-        WHERE
-            replyId = #{replyId}
-        AND
-            replyName = #{replyName}
+        ORDER BY replyId DESC
     </select>
 
     <select id="selectDuo" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
