@@ -3,6 +3,7 @@ package com.limdaram.ticketing.controller.customer;
 import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.mapper.customer.CustomerMapper;
 import com.limdaram.ticketing.service.customer.CustomerService;
+import com.limdaram.ticketing.service.customer.EmailService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,6 +22,9 @@ public class CustomerController {
 
     @Setter(onMethod_ = @Autowired)
     private CustomerService customerService;
+
+    @Setter(onMethod_ = @Autowired)
+    private EmailService emailService;
 
     @Setter(onMethod_ = @Autowired)
     private CustomerMapper customerMapper;
@@ -45,7 +49,7 @@ public class CustomerController {
         customerMapper.authAdd(customerId);
 
         rttr.addFlashAttribute("message", "회원가입이 완료되었습니다");
-        return "redirect:/customer/signup";
+        return "redirect:/member/login";
     }
 
     @GetMapping({ "modify"})
@@ -192,4 +196,16 @@ public class CustomerController {
             return "redirect:/customer/modify?customerId=" + customerId;
         }
     }
+
+    @PostMapping("/emailConfirm")
+    public String emailConfirm(@RequestParam String email) throws Exception {
+        String confirm = emailService.sendSimpleMessage(email);
+        return confirm;
+    }
+
+    @GetMapping("/emailConfirm")
+    public void emailConfirm() {
+
+    }
+
 }

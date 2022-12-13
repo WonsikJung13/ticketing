@@ -29,11 +29,11 @@ public class CustomSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws  Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         log.info("-----------configure----------");
 
         // 커스텀 로그인 페이지
-        http.formLogin().loginPage("/member/login").failureHandler(customFailureHandler);
+        http.formLogin().loginPage("/member/login").failureHandler(customFailureHandler).defaultSuccessUrl("/content/list", true);
         http.logout().logoutSuccessUrl("/member/login");
 
         // CSRF 토큰 비활성화

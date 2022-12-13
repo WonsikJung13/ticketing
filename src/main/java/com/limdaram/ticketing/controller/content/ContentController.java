@@ -42,8 +42,6 @@ public class ContentController {
             MultipartFile file1,
             MultipartFile[] file2,
             RedirectAttributes rttr) {
-//            @RequestParam(name = "removePosterName", required = false) String removePosterName,
-//            @RequestParam(name = "removeDetailNames", required = false) List<String> removeDetailNames,
         System.out.println("등록" + content);
         System.out.println(content.getContentId());
 

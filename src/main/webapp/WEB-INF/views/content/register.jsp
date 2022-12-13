@@ -151,6 +151,8 @@
         document.getElementById("dayLimit").value = dayLimit;
     }
 
+    // $("#array").val(checkArray);
+
 </script>
 <script>
     // document.querySelector("#submitButton1").addEventListener("click", function(e) {
