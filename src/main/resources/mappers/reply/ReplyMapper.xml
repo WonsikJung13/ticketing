@@ -15,6 +15,7 @@
         FROM
             Reply
         ORDER BY replyId DESC
+
     </select>
 
     <select id="selectDuo" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">

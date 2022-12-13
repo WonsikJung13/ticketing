@@ -1,6 +1,7 @@
 package com.limdaram.ticketing.controller.customer;
 
 import com.limdaram.ticketing.domain.customer.CustomerDto;
+import com.limdaram.ticketing.mapper.customer.CustomerMapper;
 import com.limdaram.ticketing.service.customer.CustomerService;
 import com.limdaram.ticketing.service.customer.EmailService;
 import lombok.Setter;
@@ -25,6 +26,9 @@ public class CustomerController {
     @Setter(onMethod_ = @Autowired)
     private EmailService emailService;
 
+    @Setter(onMethod_ = @Autowired)
+    private CustomerMapper customerMapper;
+
     @RequestMapping("get")
     @PreAuthorize("authentication.name == #customerId")
     public void method(String customerId, Model model) {
@@ -39,8 +43,10 @@ public class CustomerController {
     }
 
     @PostMapping("signup")
-    public String signup(CustomerDto customer, RedirectAttributes rttr) {
+    public String signup(CustomerDto customer, RedirectAttributes rttr, String customerId) {
         customerService.insert(customer);
+
+        customerMapper.authAdd(customerId);
 
         rttr.addFlashAttribute("message", "회원가입이 완료되었습니다");
         return "redirect:/customer/signup";

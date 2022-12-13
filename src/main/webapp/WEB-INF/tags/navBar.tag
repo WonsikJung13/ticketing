@@ -8,6 +8,7 @@
     #searchTypeSelect {
         width: auto;
     }
+
     #myBtn {
         display: none; /* Hidden by default */
         position: fixed; /* Fixed/sticky position */
@@ -72,10 +73,8 @@
 <c:url value="/logout" var="logoutLink"/>
 
 <nav class="navbar navbar-expand-md bg-light mb-3">
+<a class="navbar-brand" href="${listLink }"></a>
     <div class="container-md">
-        <a class="navbar-brand" href="${listLink }">
-
-        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -85,7 +84,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link ${active eq 'contentList' ? 'active' : '' } apple" href="${indexLink }">
-<%--                        <i class="fa-brands fa-apple"></i>--%>
+                        <%--                        <i class="fa-brands fa-apple"></i>--%>
                         <img src="/images/oo.ico"/>
                     </a>
                 </li>
@@ -120,7 +119,7 @@
                     </li>
                 </c:if>
 
-                <p>${customer.customerId}</p>
+
                 <c:if test="${not loggedIn}">
                     <li class="nav-item position-absolute top-50 end-0 translate-middle-y mar100">
                         <a class="nav-link ${active eq 'login' ? 'active' : '' } font25" href="${loginLink }">로그인</a>

@@ -113,6 +113,8 @@
                     <div style="color: red" id="customerAddressText" class="form-text"></div>
                 </div>
 
+                <input type="hidden" name="social" value="false">
+
                 <input id="submitButton" class="btn btn-primary" type="submit" value="가입" >
             </form>
         </div>

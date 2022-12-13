@@ -97,6 +97,7 @@ public class ReplyController {
     @PreAuthorize("authentication.name == #replyName")
     public void modify(String replyName,int replyId, Model model) {
         ReplyDto replyDto = replyService.getDuo(replyName, replyId);
+
         model.addAttribute("Reply", replyDto);
     }
 
