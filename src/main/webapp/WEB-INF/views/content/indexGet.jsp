@@ -9,6 +9,8 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -125,18 +127,18 @@
                 </section>
             </article>
 
-            <%--    수정버튼--%>
-            <c:url value="/content/indexModify" var="modifyLink">
-                <c:param name="contentId" value="${content.contentId}"></c:param>
-            </c:url>
-            <a class="btn btn-warning" href="${modifyLink}">수정</a>
-            <input type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal" class="btn btn-danger">
+                <%--    수정버튼--%>
+                <c:url value="/content/indexModify" var="modifyLink">
+                    <c:param name="contentId" value="${content.contentId}"></c:param>
+                </c:url>
+                <a class="btn btn-warning" href="${modifyLink}">수정</a>
+                <input type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal" class="btn btn-danger">
 
-            <%--    삭제버튼--%>
-            <c:url value="/content/remove" var="removeLink"></c:url>
-            <form id="removeForm" action="${removeLink }" method="post">
-                <input type="hidden" name="contentId" value="${content.contentId }">
-            </form>
+                <%--    삭제버튼--%>
+                <c:url value="/content/remove" var="removeLink"></c:url>
+                <form id="removeForm" action="${removeLink }" method="post">
+                    <input type="hidden" name="contentId" value="${content.contentId }">
+                </form>
             <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">

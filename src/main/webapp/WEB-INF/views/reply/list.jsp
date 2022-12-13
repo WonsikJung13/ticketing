@@ -34,7 +34,7 @@
         <tr>
             <td>
                 <c:url value="/reply/get" var="getLink">
-                    <c:param name="id" value="${Reply.replyId}" />
+                    <c:param name="replyId" value="${Reply.replyId}" />
 
                 </c:url>
                 <a href="${getLink}">
@@ -43,7 +43,7 @@
             </td>
             <td>
                 <c:url value="/reply/get" var="getLink">
-                    <c:param name="id" value="${Reply.replyId}" />
+                    <c:param name="replyId" value="${Reply.replyId}" />
 
                 </c:url>
                 <a href="${getLink}">

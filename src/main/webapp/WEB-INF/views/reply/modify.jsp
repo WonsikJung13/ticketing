@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +20,7 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
+<my:navBar/>
 <body>
 <div class="container-md">
     <div class="row">
@@ -26,7 +29,6 @@
                 <h1>수정</h1>
 
                 <input type="hidden" name="replyId" value="${Reply.replyId}">
-                <input type="hidden" name="contentId" value="${Reply.contentId}">
 
                 <div class="mb-3" id="content">
                     <label class="form-label">
@@ -48,7 +50,7 @@
                         작성자
                     </label>
 
-                    <input class="form-control" name="replyName" type="text" value="${Reply.replyName}" readonly>
+                    <input class="form-control" type="text" value="${Reply.replyName}" readonly>
 
                 </div>
 

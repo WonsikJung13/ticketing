@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.net.*" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <!doctype html>
 <html lang="en">
@@ -79,19 +81,21 @@
 <my:navBar/>
 <div>
     <h1>${content.contentName}
+        <sec:authentication property="name" var="username"/>
+        <c:if test="${username == 'admin'}">
+            <%--    수정버튼--%>
+            <c:url value="/content/modify" var="modifyLink">
+                <c:param name="contentId" value="${content.contentId}"></c:param>
+            </c:url>
+            <a class="btn btn-warning" href="${modifyLink}">수정</a>
+            <input type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal" class="btn btn-danger">
 
-        <%--    수정버튼--%>
-        <c:url value="/content/modify" var="modifyLink">
-            <c:param name="contentId" value="${content.contentId}"></c:param>
-        </c:url>
-        <a class="btn btn-warning" href="${modifyLink}">수정</a>
-        <input type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal" class="btn btn-danger">
-
-        <%--    삭제버튼--%>
-        <c:url value="/content/remove" var="removeLink"></c:url>
-        <form id="removeForm" action="${removeLink }" method="post">
-            <input type="hidden" name="contentId" value="${content.contentId }">
-        </form>
+            <%--    삭제버튼--%>
+            <c:url value="/content/remove" var="removeLink"></c:url>
+            <form id="removeForm" action="${removeLink }" method="post">
+                <input type="hidden" name="contentId" value="${content.contentId }">
+            </form>
+        </c:if>
     </h1>
 
 

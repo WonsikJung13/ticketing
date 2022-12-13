@@ -17,13 +17,13 @@ public class ReplyService {
         return replyMapper.list();
     }
 
-    public ReplyDto get(int id){
-        return replyMapper.select(id);
+    public ReplyDto getDuo(String replyName, int replyId){
+        return replyMapper.selectDuo(replyName, replyId);
     }
 
-    public ReplyDto getById(int id) {
-        return replyMapper.select(id);
-    }
+//    public ReplyDto getById(String replyName) {
+//        return replyMapper.select(replyName);
+//    }
 
     public int addReply(ReplyDto reply) {
         return replyMapper.addReply(reply);
@@ -42,8 +42,11 @@ public class ReplyService {
         return cnt;
     }
 
-    public int remove(int id) {
-        return replyMapper.removeById(id);
+    public int remove(int replyId) {
+        return replyMapper.removeById(replyId);
+    }
+
+    public ReplyDto get(int replyId) {return replyMapper.select(replyId);
     }
 }
 
