@@ -25,6 +25,7 @@
         <div class="col">
             <h1>회원 목록</h1>
             <!-- table.table>thead>tr>th*4^^tbody -->
+
             <table class="table">
                 <thead>
                 <tr>

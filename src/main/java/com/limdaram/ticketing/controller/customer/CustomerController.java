@@ -45,7 +45,7 @@ public class CustomerController {
         customerMapper.authAdd(customerId);
 
         rttr.addFlashAttribute("message", "회원가입이 완료되었습니다");
-        return "redirect:/customer/signup";
+        return "redirect:/member/login";
     }
 
     @GetMapping({ "modify"})

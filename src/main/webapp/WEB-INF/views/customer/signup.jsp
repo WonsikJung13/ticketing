@@ -12,24 +12,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        body {
+            background-image: url("/back.jpg");
+        }
+    </style>
 </head>
-<body>
-<my:navBar active="signup"/>
+<body class="align-middle">
 
 
-<div class="container-md">
+<div class="container-fluid d-flex justify-content-center">
     <div class="row">
-        <div class="col">
-            <h1>회원가입 하기</h1>
+        <h1 style="color: antiquewhite">회원가입</h1>
+        <div class="col card align-self-center" style="border: white 5px solid">
             <form action="" method="post" id="formId" name="form">
 
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" style="margin-top: 30px">
                         이름
                     </label>
 
                     <div class="input-group">
-                        <input id="customerNameInput" class="form-control" type="text" name="customerName" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerNameInput" class="form-control" type="text" name="customerName"
+                               onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
                     <div style="color: red" id="customerNameText" class="form-text"></div>
@@ -41,7 +46,8 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerBirthInput" class="form-control" type="date" name="customerBirth" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerBirthInput" class="form-control" type="date" name="customerBirth"
+                               onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
                     <div style="color: red" id="customerBirthText" class="form-text"></div>
@@ -53,7 +59,8 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerIdInput" class="form-control" type="text" name="customerId" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerIdInput" class="form-control" type="text" name="customerId"
+                               onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <button id="customerIdButton" class="btn btn-outline-secondary" type="button">중복확인</button>
                     </div>
 
@@ -64,7 +71,8 @@
                     <label for="" class="form-label">
                         비밀번호
                     </label>
-                    <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                    <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword"
+                           onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     <div style="color: red" id="customerPasswordText1" class="form-text"></div>
                 </div>
 
@@ -72,7 +80,8 @@
                     <label for="" class="form-label">
                         비밀번호 확인
                     </label>
-                    <input id="customerPasswordInput2" class="form-control" type="password" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                    <input id="customerPasswordInput2" class="form-control" type="password" onkeyup="noSpaceForm(this)"
+                           onchange="noSpaceForm(this)">
                     <div style="color: red" id="customerPasswordText2" class="form-text"></div>
                 </div>
 
@@ -81,8 +90,10 @@
                         이메일
                     </label>
                     <div class="input-group">
-                        <input id="customerEmailInput" class="form-control" type="email" name="customerEmail" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
-                        <button id="customerEmailButton" disabled class="btn btn-outline-secondary" type="button">중복확인</button>
+                        <input id="customerEmailInput" class="form-control" type="email" name="customerEmail"
+                               onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <button id="customerEmailButton" disabled class="btn btn-outline-secondary" type="button">중복확인
+                        </button>
                     </div>
 
                     <div style="color: red" id="customerEmailText" class="form-text"></div>
@@ -94,8 +105,10 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerPhoneNumberInput" class="form-control" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="customerPhoneNumber"
-                               placeholder="010 부터 숫자만 입력  (ex. 01011112222)" maxlength="11" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerPhoneNumberInput" class="form-control" type="text"
+                               onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="customerPhoneNumber"
+                               placeholder="010 부터 숫자만 입력  (ex. 01011112222)" maxlength="11" onkeyup="noSpaceForm(this)"
+                               onchange="noSpaceForm(this)">
                     </div>
 
                     <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
@@ -107,15 +120,18 @@
                     </label>
 
                     <div class="input-group">
-                        <input id="customerAddressInput" readonly class="form-control" type="text" name="customerAddress">
-                        <input id="customerAddressButton" type="button" onClick="goPopup();" value="검색"/>
+                        <input id="customerAddressInput" readonly class="form-control" type="text"
+                               name="customerAddress">
+                        <input id="customerAddressButton" class="btn btn-outline-secondary" type="button"
+                               onClick="goPopup();" value="검색"/>
                     </div>
                     <div style="color: red" id="customerAddressText" class="form-text"></div>
                 </div>
 
                 <input type="hidden" name="social" value="false">
 
-                <input id="submitButton" class="btn btn-primary" type="submit" value="가입" >
+                <input id="submitButton" class="btn btn-primary" type="submit" value="가입" style="margin-bottom: 30px">
+
             </form>
         </div>
     </div>
@@ -333,10 +349,10 @@
 
         const password2 = customerPasswordInput2.value;
 
-            if (password2 == "") {
-                customerPasswordText2.innerText = "비밀번호를 한번 더 작성해주세요"
-                customerPasswordText2.setAttribute("style", "color:red");
-            } else {
+        if (password2 == "") {
+            customerPasswordText2.innerText = "비밀번호를 한번 더 작성해주세요"
+            customerPasswordText2.setAttribute("style", "color:red");
+        } else {
             checkedPassword2 = true;
         }
     }
@@ -354,11 +370,11 @@
         if (email == "") {
             customerEmailText.innerText = "이메일을 작성해주세요"
             customerEmailText.setAttribute("style", "color:red");
-            emailButtonAbled.setAttribute("disabled","");
+            emailButtonAbled.setAttribute("disabled", "");
         } else if (!emailRule.test(email)) {
             customerEmailText.innerText = "이메일 형식에 맞게 작성해주세요"
             customerEmailText.setAttribute("style", "color:red");
-            emailButtonAbled.setAttribute("disabled","");
+            emailButtonAbled.setAttribute("disabled", "");
         } else {
             checkedDoubleEmail = false;
             customerEmailText.innerText = ""
@@ -404,24 +420,24 @@
 
     function noSpaceForm(obj) { // 공백사용못하게
         var str_space = /\s/;  // 공백체크
-        if(str_space.exec(obj.value)) { //공백 체크
+        if (str_space.exec(obj.value)) { //공백 체크
             //alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
             obj.focus();
-            obj.value = obj.value.replace(/\s| /gi,''); // 공백제거
+            obj.value = obj.value.replace(/\s| /gi, ''); // 공백제거
             return false;
         }
     }
 
-    function goPopup(){
+    function goPopup() {
         // 주소검색을 수행할 팝업 페이지를 호출합니다.
         // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-        var pop = window.open("/customer/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+        var pop = window.open("/customer/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
 
         // 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
         //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes");
     }
 
-    function jusoCallBack(customerAddressInput){
+    function jusoCallBack(customerAddressInput) {
         console.log(customerAddressInput)
         // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
         document.form.customerAddressInput.value = customerAddressInput;
@@ -430,9 +446,9 @@
 
     var now_utc = Date.now() // 지금 날짜를 밀리초로
     // getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
-    var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+    var timeOff = new Date().getTimezoneOffset() * 60000; // 분단위를 밀리초로 변환
     // new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
-    var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+    var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
     document.getElementById("customerBirthInput").setAttribute("max", today);
 
 </script>
