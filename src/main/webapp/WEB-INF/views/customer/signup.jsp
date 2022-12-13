@@ -97,8 +97,8 @@
                     </div>
 
                     <div style="color: red" id="customerEmailText" class="form-text"></div>
+                    <div id="emailHidden"></div>
                 </div>
-
                 <div class="mb-3">
                     <label for="" class="form-label">
                         핸드폰 번호
@@ -156,6 +156,7 @@
     let checkedPassword2 = false;
     let checkedPhoneNumber = false;
     let checkedAddress = false;
+    let checkedEmailAuthentication = false;
 
     // 1. 아이디 중복 확인
     document.querySelector("#customerIdButton").addEventListener("click", function () {
@@ -187,6 +188,12 @@
                 if (data.statusEmail == "not exist") {
                     customerEmailText.removeAttribute("style");
                     checkedDoubleEmail = true;
+                    document.querySelector("#emailHidden").innerHTML=
+                        "<div class=\"input-group\">" +
+                        "<button id=\"emailAuthenticationButton\" class=\"btn btn-outline-secondary\" type=\"button\">이메일 인증하기</button>" +
+                        "<input id=\"emailAuthenticationInput\" type=\"text\" placeholder=\"인증코드 8자리\" onkeyup=\"noSpaceForm(this)\" onchange=\"noSpaceForm(this)\"/>" +
+                        "</div>" +
+                        "<div style=\"color: red\" id=\"customerAddressText\" class=\"form-text\"></div>";
                 }
             })
     })
@@ -196,7 +203,7 @@
         matchAddress();
         e.preventDefault();
 
-        if (checkedId && checkedDoubleId && checkedDoubleEmail && checkedEmail && checkedPassword && checkedPassword1 && checkedPassword2 && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress) {
+        if (checkedId && checkedDoubleId && checkedDoubleEmail && checkedEmail && checkedPassword && checkedPassword1 && checkedPassword2 && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress && checkedEmailAuthentication) {
             document.getElementById('formId').submit();
         } else {
             if (checkedName == false) {
@@ -232,6 +239,9 @@
             } else if (checkedAddress == false) {
                 customerAddressText.innerText = "주소를 입력해주세요"
                 document.getElementById("customerAddressInput").focus();
+            } else if (checkedEmailAuthentication == false) {
+                emailAuthenticationText.innerText="이메일 인증코드를 작성해주세요"
+                document.getElementById("emailAuthenticationInput").focus();
             }
         }
     })
@@ -266,6 +276,7 @@
     const customerEmailInput = document.querySelector("#customerEmailInput");
     const customerPhoneNumberInput = document.querySelector("#customerPhoneNumberInput");
     const customerAddressInput = document.querySelector("#customerAddressInput");
+    const emailAuthenticationInput = document.querySelector("#emailAuthenticationInput");
 
     const customerNameText = document.querySelector("#customerNameText");
     const customerBirthText = document.querySelector("#customerBirthText");
@@ -275,6 +286,7 @@
     const customerEmailText = document.querySelector("#customerEmailText");
     const customerPhoneNumberText = document.querySelector("#customerPhoneNumberText");
     const customerAddressText = document.querySelector("#customerAddressText");
+    const emailAuthenticationText = document.querySelector("#emailAuthenticationText");
 
     function matchName() {
         checkedName = false;
@@ -384,6 +396,22 @@
     }
 
     document.querySelector("#customerEmailInput").addEventListener("keyup", matchEmail);
+
+    function matchEmailAuthentication() {
+        checkedEmailAuthentication = false;
+
+        const emailAuthentication = emailAuthenticationInput.value;
+
+        if (emailAuthentication == "") {
+            emailAuthenticationText.innerText = "이메일 인증코드를 작성해주세요"
+            emailAuthenticationText.setAttribute("style", "color:red");
+        } else {
+            emailAuthenticationText.innerText = ""
+            checkedEmailAuthentication = true;
+        }
+    }
+
+    document.querySelector("#emailAuthenticationInput").addEventListener("keyup", matchEmailAuthentication);
 
     function matchPhoneNumber() {
         checkedPhoneNumber = false;
