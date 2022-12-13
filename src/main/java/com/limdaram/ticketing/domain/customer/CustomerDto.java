@@ -26,4 +26,6 @@ public class CustomerDto {
 
     private String social;
 
+    private String ePw;
+
 }

@@ -90,14 +90,13 @@
                         이메일
                     </label>
                     <div class="input-group">
-                        <input id="customerEmailInput" class="form-control" type="email" name="customerEmail"
-                               onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
-                        <button id="customerEmailButton" disabled class="btn btn-outline-secondary" type="button">중복확인
-                        </button>
+                        <input id="customerEmailInput" class="form-control" type="email" name="customerEmail" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <button id="customerEmailButton" disabled class="btn btn-outline-secondary" type="button">중복확인</button>
+                        <button id="emailAuthenticationButton" disabled type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#emailModal">이메일 인증하기</button>
                     </div>
 
                     <div style="color: red" id="customerEmailText" class="form-text"></div>
-                    <div id="emailHidden"></div>
+                    <div style="color: red" id="emailAuthenticationText" class="form-text"></div>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">
@@ -137,6 +136,25 @@
     </div>
 </div>
 
+<!-- email Modal -->
+<div class="modal fade" id="emailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">인증코드 입력</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="agreementEmailInput" type="text" class="form-control" maxlength="8" >
+                <div style="color: red" id="agreementEmailText" class="form-text"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="agreementEmailButton" disabled type="button" class="btn btn-primary" data-bs-dismiss="modal">인증하기</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -187,16 +205,66 @@
 
                 if (data.statusEmail == "not exist") {
                     customerEmailText.removeAttribute("style");
+                    document.getElementById("emailAuthenticationButton").removeAttribute("disabled");
                     checkedDoubleEmail = true;
-                    document.querySelector("#emailHidden").innerHTML=
-                        "<div class=\"input-group\">" +
-                        "<button id=\"emailAuthenticationButton\" class=\"btn btn-outline-secondary\" type=\"button\">이메일 인증하기</button>" +
-                        "<input id=\"emailAuthenticationInput\" type=\"text\" placeholder=\"인증코드 8자리\" onkeyup=\"noSpaceForm(this)\" onchange=\"noSpaceForm(this)\"/>" +
-                        "</div>" +
-                        "<div style=\"color: red\" id=\"customerAddressText\" class=\"form-text\"></div>";
+                    checkedEmailAuthentication = true;
+
                 }
             })
     })
+
+    // 이메일 인증하기
+    document.querySelector("#emailAuthenticationButton").addEventListener("click", function () {
+
+        const customerEmail = document.querySelector("#customerEmailInput").value;
+        fetch(ctx + "/customer/emailConfirm/", {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({customerEmail})
+
+        })
+    })
+
+    // 이메일 모달 인증확인
+    document.querySelector("#agreementEmailInput").addEventListener("keyup", function () {
+        checkedEmailAuthentication = false;
+        noSpaceForm(this);
+
+        const agreementEmailInput = document.querySelector("#agreementEmailInput").value;
+
+        if (agreementEmailInput == "") {
+            document.getElementById("agreementEmailText").innerText = "이메일 인증코드를 작성해주세요"
+            document.getElementById("agreementEmailText").setAttribute("style", "color:red");
+        } else {
+            document.getElementById("agreementEmailText").innerText = ""
+            checkedEmailAuthentication = true;
+        }
+
+
+        fetch(ctx + "/customer/verifyCode/", {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({agreementEmailInput})
+        })
+            .then(res => res.json())
+            .then(result => {
+                document.querySelector("#agreementEmailText").innerText = document.getElementById("agreementEmailText");
+                    if (result == 1) {
+                        document.getElementById("agreementEmailText").innerText = "인증 성공!"
+                        document.getElementById("agreementEmailText").removeAttribute("style");
+                        document.getElementById("agreementEmailButton").removeAttribute("disabled");
+                        checkedEmailAuthentication = true;
+                    } else {
+                        document.getElementById("agreementEmailText").innerText = "인증 실패 - 인증코드를 다시 확인해주세요"
+                        document.getElementById("agreementEmailText").setAttribute("style", "color:red");
+                    }
+            })
+    })
+
 
     // 3-1. 아이디, 이메일, 패스워드 중복확인 + 모든 input값 입력해야 가입 가능
     document.querySelector("#submitButton").addEventListener("click", function (e) {
@@ -240,8 +308,8 @@
                 customerAddressText.innerText = "주소를 입력해주세요"
                 document.getElementById("customerAddressInput").focus();
             } else if (checkedEmailAuthentication == false) {
-                emailAuthenticationText.innerText="이메일 인증코드를 작성해주세요"
-                document.getElementById("emailAuthenticationInput").focus();
+                emailAuthenticationText.innerText="이메일 인증해주세요"
+                document.getElementById("customerEmailInput").focus();
             }
         }
     })
@@ -276,7 +344,6 @@
     const customerEmailInput = document.querySelector("#customerEmailInput");
     const customerPhoneNumberInput = document.querySelector("#customerPhoneNumberInput");
     const customerAddressInput = document.querySelector("#customerAddressInput");
-    const emailAuthenticationInput = document.querySelector("#emailAuthenticationInput");
 
     const customerNameText = document.querySelector("#customerNameText");
     const customerBirthText = document.querySelector("#customerBirthText");
@@ -382,36 +449,24 @@
         if (email == "") {
             customerEmailText.innerText = "이메일을 작성해주세요"
             customerEmailText.setAttribute("style", "color:red");
+            document.getElementById("emailAuthenticationButton").setAttribute("disabled", "");
             emailButtonAbled.setAttribute("disabled", "");
         } else if (!emailRule.test(email)) {
             customerEmailText.innerText = "이메일 형식에 맞게 작성해주세요"
             customerEmailText.setAttribute("style", "color:red");
+            document.getElementById("emailAuthenticationButton").setAttribute("disabled", "");
             emailButtonAbled.setAttribute("disabled", "");
         } else {
             checkedDoubleEmail = false;
             customerEmailText.innerText = ""
             emailButtonAbled.removeAttribute("disabled");
+            document.getElementById("emailAuthenticationButton").setAttribute("disabled", "");
             checkedEmail = true;
         }
     }
 
+
     document.querySelector("#customerEmailInput").addEventListener("keyup", matchEmail);
-
-    function matchEmailAuthentication() {
-        checkedEmailAuthentication = false;
-
-        const emailAuthentication = emailAuthenticationInput.value;
-
-        if (emailAuthentication == "") {
-            emailAuthenticationText.innerText = "이메일 인증코드를 작성해주세요"
-            emailAuthenticationText.setAttribute("style", "color:red");
-        } else {
-            emailAuthenticationText.innerText = ""
-            checkedEmailAuthentication = true;
-        }
-    }
-
-    document.querySelector("#emailAuthenticationInput").addEventListener("keyup", matchEmailAuthentication);
 
     function matchPhoneNumber() {
         checkedPhoneNumber = false;
@@ -478,6 +533,7 @@
     // new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
     var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
     document.getElementById("customerBirthInput").setAttribute("max", today);
+
 
 </script>
 
