@@ -20,6 +20,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.security:spring-security-oauth2-jose'
     implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -51,6 +52,10 @@ dependencies {
 
 
 
+
+    implementation platform('software.amazon.awssdk:bom:2.18.25')
+    // Declare individual SDK dependencies without version
+    implementation 'software.amazon.awssdk:s3'
 }
 
 tasks.named('test') {

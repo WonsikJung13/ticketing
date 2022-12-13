@@ -29,24 +29,24 @@
         background-color: #555; /* Add a dark-grey background on hover */
     }
 
-    .font25 {
+    .font25{
         font-size: 25px;
     }
 
-    .apple {
+    .apple{
         font-size: 25px;
         margin-right: 15px;
     }
-
+    
     .mar100 {
         margin-right: 110px;
     }
 
-    .mar10 {
+    .mar10{
         margin-right: 10px;
     }
-
-    a {
+    
+    a{
         text-decoration: none;
     }
 </style>
@@ -57,7 +57,7 @@
 
 <c:url value="/" var="indexLink"/>
 
-<sec:authorize access="isAuthenticated()" var="loggedIn"/>
+<sec:authorize access="isAuthenticated()" var="loggedIn" />
 
 <c:url value="/admin/customerList" var="adminLink"/>
 <c:url value="/admin/customerManage" var="manageLink"/>
@@ -114,7 +114,7 @@
                     <li class="nav-item">
                         <a class="nav-link ${active eq 'reply' ? 'active' : '' } font25" href="${replyLink }">후기 목록</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mar100">
                         <a class="nav-link ${active eq 'get' ? 'active' : '' } font25" href="${blogLink }">파워블로거</a>
                     </li>
                 </c:if>
@@ -127,7 +127,7 @@
                 </c:if>
 
                 <c:if test="${loggedIn}">
-                    <li class="nav-item">
+                    <li class="nav-item position-absolute top-50 end-0 translate-middle-y mar100">
                         <a class="nav-link ${active eq 'logout' ? 'active' : '' } font25" href="${logoutLink }">로그아웃</a>
                     </li>
                 </c:if>
@@ -139,14 +139,14 @@
 <!-- Header-->
 <c:if test="${loggedIn}">
 
-    <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">메인 페이지</h1>
-                <p class="lead fw-normal text-white-50 mb-0">일 지 도 ?</p>
-            </div>
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">메인 페이지</h1>
+            <p class="lead fw-normal text-white-50 mb-0">일 지 도 ?</p>
         </div>
-    </header>
+    </div>
+</header>
 </c:if>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <script>
@@ -154,9 +154,7 @@
     let mybutton = document.getElementById("myBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function () {
-        scrollFunction()
-    };
+    window.onscroll = function() {scrollFunction()};
 
 
     function scrollFunction() {
