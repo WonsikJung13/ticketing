@@ -1,6 +1,7 @@
 package com.limdaram.ticketing.controller.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
+import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.service.content.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,8 @@ public class ContentController {
             MultipartFile file1,
             MultipartFile[] file2,
             RedirectAttributes rttr) {
+//            @RequestParam(name = "removePosterName", required = false) String removePosterName,
+//            @RequestParam(name = "removeDetailNames", required = false) List<String> removeDetailNames,
         System.out.println("등록" + content);
         System.out.println(content.getContentId());
 
@@ -56,7 +59,8 @@ public class ContentController {
     }
 
     @GetMapping("get")
-    public void get(int contentId, Model model) {
+    public void get(int contentId,
+                    Model model) {
         ContentDto content = service.get(contentId);
         System.out.println("조회창 " + content);
         model.addAttribute("content", content);
@@ -156,10 +160,12 @@ public void indexModify(
     }
 
     @GetMapping("reservation")
-    public void reservation(int contentId, Model model){
+    public void reservation(int contentId, Model model, CustomerDto customer){
         ContentDto content = service.reservation(contentId);
+//        CustomerDto customer = service.reservInfo(customerUniqueNumber);
         System.out.println("reservation : " + content);
         model.addAttribute("content", content);
+//        model.addAttribute("customer", customer);
     }
 
     @RequestMapping("jusoPopup")
