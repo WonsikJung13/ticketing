@@ -1,6 +1,7 @@
 package com.limdaram.ticketing.controller.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
+import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.service.content.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,6 +37,8 @@ public class ContentController {
             MultipartFile file1,
             MultipartFile[] file2,
             RedirectAttributes rttr) {
+//            @RequestParam(name = "removePosterName", required = false) String removePosterName,
+//            @RequestParam(name = "removeDetailNames", required = false) List<String> removeDetailNames,
         System.out.println("등록" + content);
         System.out.println(content.getContentId());
 
@@ -78,13 +81,14 @@ public class ContentController {
     @GetMapping("list")
     public void list(Model model, ContentDto content) {
         List<ContentDto> list = service.listContent(content);
-        System.out.println("list"+list);
+        System.out.println("리스트"+list);
         System.out.println("content"+content);
         model.addAttribute("contentList", list);
     }
 
     @GetMapping("get")
-    public void get(int contentId, Model model) {
+    public void get(int contentId,
+                    Model model) {
         ContentDto content = service.get(contentId);
         System.out.println("조회창 " + content);
         model.addAttribute("content", content);
@@ -117,19 +121,19 @@ public class ContentController {
             ContentDto content,
             MultipartFile addPosterFile,
             MultipartFile[] addDetailFiles,
-            @RequestParam(name = "removePosterFile", required = false) String removePosterFile,
-            @RequestParam(name = "removeDetailFiles", required = false) List<String> removeDetailFiles,
+            @RequestParam(name = "removePosterName", required = false) String removePosterName,
+            @RequestParam(name = "removeDetailNames", required = false) List<String> removeDetailNames,
             RedirectAttributes rttr) {
 
         // 지울 파일명 들어오는지 확인
-//        System.out.println("지울 파일명###");
-//        if (removeDetailFiles != null) {
+        System.out.println("지울 파일명###");
+        if (removePosterName != null) {
 //            for(String name : removeDetailFiles) {
-//                System.out.println(name);
+                System.out.println(removePosterName);
 //            }
-//        }
+        }
 
-        int cnt = service.update(content, addPosterFile, addDetailFiles, removePosterFile, removeDetailFiles);
+        int cnt = service.update(content, addPosterFile, addDetailFiles, removePosterName, removeDetailNames);
         System.out.println("수정완료 " + content);
 
         if (cnt == 1) {
@@ -189,10 +193,12 @@ public void indexModify(
     }
 
     @GetMapping("reservation")
-    public void reservation(int contentId, Model model){
+    public void reservation(int contentId, Model model, CustomerDto customer){
         ContentDto content = service.reservation(contentId);
+//        CustomerDto customer = service.reservInfo(customerUniqueNumber);
         System.out.println("reservation : " + content);
         model.addAttribute("content", content);
+//        model.addAttribute("customer", customer);
     }
 
     @RequestMapping("jusoPopup")
