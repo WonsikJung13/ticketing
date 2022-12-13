@@ -106,7 +106,6 @@
 <%--        <img src="/image/${content.contentId}/${contentPosterName}" alt="">--%>
         <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(content.contentPosterName, 'utf-8')}" alt="">
 
-    <%--    상품명 <input type="text" value="${content.contentName}" readonly> <br>--%>
         <p>장소 <input type="text" value="${content.contentRegion}" readonly></p>
         <p>장소<input type="text" readonly value="${content.contentAddrDetail}" id='addrDetail'></p>
         기간 <input type="date" value="${content.contentStartDate}" readonly>
@@ -173,7 +172,7 @@
         </div>
     </div>
 
-    <div id="map" style="width:100%;height:350px;"></div>
+    <div id="map" style="width:50%;height:350px;"></div>
     <c:url value="https://map.kakao.com/link/to/" var="after">
         <c:param name="" value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
     </c:url>

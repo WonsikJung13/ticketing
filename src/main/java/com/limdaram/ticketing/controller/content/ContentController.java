@@ -3,8 +3,10 @@ package com.limdaram.ticketing.controller.content;
 import com.limdaram.ticketing.domain.content.ContentDto;
 import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.service.content.ContentService;
+import com.limdaram.ticketing.service.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class ContentController {
 
     @Autowired
     private ContentService service;
+
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping("register")
     @PreAuthorize("authentication.name == 'admin'")
@@ -50,7 +55,7 @@ public class ContentController {
             rttr.addFlashAttribute("message", "상품 등록 실패");
         }
 
-        return "redirect:/";
+        return "redirect:/content/list";
     }
 
     @GetMapping("indexRegister")
@@ -193,17 +198,19 @@ public void indexModify(
     }
 
     @GetMapping("reservation")
-    public void reservation(int contentId, Model model, CustomerDto customer){
+    public void reservation(int contentId, Model model, Authentication authentication){
+        CustomerDto customerDto = customerService.getByCustomerId(authentication.getName());
         ContentDto content = service.reservation(contentId);
-//        CustomerDto customer = service.reservInfo(customerUniqueNumber);
         System.out.println("reservation : " + content);
         model.addAttribute("content", content);
-//        model.addAttribute("customer", customer);
+        model.addAttribute("customer", customerDto);
+
     }
 
     @RequestMapping("jusoPopup")
     public void jusoPopup() {
 
     }
+
 
 }

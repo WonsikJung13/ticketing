@@ -10,6 +10,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <html>
 <head>
@@ -135,10 +137,10 @@
 
     <%
         // 유저정보 획득
-        CustomerDto customer = (CustomerDto)request.getAttribute("customer");
-        String userName = customer.getCustomerName();
-        String userPhone = customer.getCustomerPhoneNumber();
-        String userEmail = customer.getCustomerEmail();
+//        CustomerDto customer = (CustomerDto)request.getAttribute("customer");
+//        String userName = customer.getCustomerName();
+//        String userPhone = customer.getCustomerPhoneNumber();
+//        String userEmail = customer.getCustomerEmail();
 
         ContentDto content = (ContentDto)request.getAttribute("content");
         //JSON 형식으로 달의 날자별 예약현황을 전송받음
@@ -592,18 +594,14 @@
 
         //체크박스 이벤트
         function checkboxEvent(checkbox){
-          const nameForm = document.getElementById("userName");
+            const nameForm = document.getElementById("userName");
           const phoneForm = document.getElementById("userPhone");
           const emailForm = document.getElementById("userEmail");
 
-          const userName = "<%=userName%>";
-          const userPhone = "<%=userPhone%>";
-          const userEmail = "<%=userEmail%>";
-
           if(checkbox.checked == true){
-            nameForm.value = userName;
-            phoneForm.value = userPhone;
-            emailForm.value = userEmail;
+            nameForm.value = "${customer.customerId}";
+            phoneForm.value = "${customer.customerPhoneNumber}";
+            emailForm.value = "${customer.customerEmail}";
           } else {
             nameForm.value = "";
             phoneForm.value = "";

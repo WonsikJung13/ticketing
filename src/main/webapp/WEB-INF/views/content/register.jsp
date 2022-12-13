@@ -66,37 +66,30 @@
         기간 <input required="required" type="date" name="contentStartDate">
         ~ <input required="required" type="date" name="contentEndDate">
         <br>
+        휴관일
         <div class="form-check form-check-inline">
-            <input type="checkbox" value="1" id="checkMon" class="checkSelect">월
-<%--            <input type="hidden" name="checkWeek" value="0" id="checkMonHidden" class="uncheck">--%>
+            <input type="checkbox" value="1" id="checkMon" class="checkSelect" onchange="checkFun()">월
 
-            <input type="checkbox" value="1" id="checkTues" class="checkSelect"/>화
-<%--            <input type="hidden" name="checkWeek" value="0" id="checkTuesHidden" class="uncheck"/>--%>
+            <input type="checkbox" value="1" id="checkTues" class="checkSelect" onchange="checkFun()"/>화
 
-            <input type="checkbox" value="1" id="checkWednes" class="checkSelect"/>수
-<%--            <input type="hidden" name="checkWednes" value="0" id="checkWednesHidden" class="uncheck"/>--%>
+            <input type="checkbox" value="1" id="checkWednes" class="checkSelect" onchange="checkFun()"/>수
 
-            <input type="checkbox" value="1" id="checkThurs" class="checkSelect"/>목
-<%--            <input type="hidden" name="checkThurs" value="0" id="checkThursHidden" class="uncheck"/>--%>
+            <input type="checkbox" value="1" id="checkThurs" class="checkSelect" onchange="checkFun()"/>목
 
-            <input type="checkbox" value="1" id="checkFri" class="checkSelect"/>금
-<%--            <input type="hidden" name="checkFri" value="0" id="checkFriHidden" class="uncheck"/>--%>
+            <input type="checkbox" value="1" id="checkFri" class="checkSelect" onchange="checkFun()"/>금
 
-            <input type="checkbox" value="1" id="checkSatur" class="checkSelect"/>토
-<%--            <input type="hidden" name="checkSatur" value="0" id="checkSaturHidden" class="uncheck"/>--%>
+            <input type="checkbox" value="1" id="checkSatur" class="checkSelect" onchange="checkFun()"/>토
 
-            <input type="checkbox" value="1" id="checkSun" class="checkSelect"/>일
-<%--            <input type="hidden" name="checkSun" value="0" id="checkSunHidden" class="uncheck"/>--%>
+            <input type="checkbox" value="1" id="checkSun" class="checkSelect" onchange="checkFun()"/>일
 
-            <input type="text" name="dayLimit" id="dayLimit" value=""/>
-            <button type="button" onClick="checkFun()" ></button>
+            <input type="hidden" name="dayLimit" id="dayLimit" value=""/>
         </div>
         <br>
         시작시간 <input required="required" type="number" name="startTime" min="0" max="24">
         ~
         종료시간 <input required="required" type="number" name="endTime" min="0" max="24">
         <br>
-        가격 <input required="required" type="number" name="contentPrice" min="0">
+        가격 <input required="required" type="number" name="contentPrice" min="0" step="1000">원
         <br>
         정보 <textarea name="contentBoard"></textarea>
         <br>
@@ -155,16 +148,8 @@
                 dayLimit += '0'
             }
         }
-
-
-        // selectedEls.forEach((el) =>{
-        //     result += el.value;
-        // });
-
         document.getElementById("dayLimit").value = dayLimit;
     }
-
-    // $("#array").val(checkArray);
 
 </script>
 <script>
