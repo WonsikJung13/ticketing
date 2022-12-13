@@ -1,5 +1,6 @@
 <%@ page import="com.limdaram.ticketing.domain.content.ContentDto" %>
-<%@ page import="java.time.LocalDate" %><%--
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="com.limdaram.ticketing.domain.customer.CustomerDto" %><%--
   Created by IntelliJ IDEA.
   User: sunggyu-lim
   Date: 2022/12/05
@@ -19,14 +20,126 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        #reservation_share{
+            margin:50px;
+            width:970px;
+            border-collapse:collapse;
+            color: #505050;
+            /* 		border: 1px solid #f0f0f0; */
+        }
+        #reservation_share td.top{
+            padding-bottom: 10px;
+            font-weight:700; font-size:25px;
+        }
+
+        #reservation_share td.title{
+            padding-left: 15px;
+            width:110px;
+            height: 90px;
+            font-weight:700;
+            font-size:20px;
+            border-bottom: 1px solid #dcdcdc;
+            background-color: #fbedaa;
+        }
+        #reservation_share td.content{
+            font-size:19px;
+            width:320px;
+            padding-left:20px;
+            border-bottom: 1px solid #dcdcdc;
+        }
+
+        #reservation_user{
+            margin:50px;
+            width:600px;
+            border-collapse:collapse;
+            color: #505050;
+            /* 		border: 1px solid #dcdcdc; */
+        }
+        #reservation_user td.top{
+            padding-bottom: 20px;
+            font-weight:700; font-size:25px;
+        }
+
+        #reservation_user td.title{
+            padding : 15px;
+            font-weight:700;
+            font-size:20px;
+        }
+        #reservation_user td.content{
+            font-size:19px;
+            width:450px;
+            padding-left:20px;
+        }
+
+        #reservation_time{
+            margin:50px;
+            width:600px;
+            border-collapse:collapse;
+            color: #505050;
+            /* 		border: 1px solid #dcdcdc; */
+        }
+        #reservation_time td.top{
+            padding-bottom: 20px;
+            font-weight:700; font-size:25px;
+        }
+        #reservation_time td.content{
+            padding-bottom: 50px;
+        }
+
+        #calendar{margin-bottom:50px; padding: 10px; width:250px; color: #505050; border: 1px solid #dcdcdc;}
+        #calendar td{padding:10px;	}
+
+        #timeTable{margin-bottom:50px; padding: 5px; width:200px; color: #505050;}
+        #timeTable td{padding:8px;	}
+
+        #selectedDate{width: 200px; height: 25px;	padding: 10px;
+            color: #505050; font-size:17px;	background-color: #fff;	border: 1px solid #dcdcdc;	}
+        #selectedTime{width: 200px; height: 25px;	padding: 10px;
+            color: #505050; font-size:17px;	background-color: #fff;	border: 1px solid #dcdcdc;	}
+        #totalPrice{width: 200px; height: 25px;	padding: 10px;
+            color: #505050; font-size:17px;	background-color: #fff;	border: 1px solid #dcdcdc;	}
+
+        #btn_submit{
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px; color:#fff;
+            background-color: #ace2f9;
+            font-weight:700;
+
+            border: none;
+            /* 		border-radius: 10px; */
+
+            display: inline-block;
+            width: 300px;
+        }
+        #btn_submit:hover{
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px; color:#ace2f9;
+            background-color: #fff;
+            font-weight:700;
+
+            border: 1px solid #ace2f9;
+            /* 		border-radius: 10px; */
+
+            display: inline-block;
+            width: 300px;
+        }
+
+    </style>
 
     <%
         // 유저정보 획득
-//        String userName = Customer.customerName;
-//        String userPhone = Customer.customerPhoneNumber;
-//        String userEmail = Customer.customerEmail;
+        CustomerDto customer = (CustomerDto)request.getAttribute("customer");
+        String userName = customer.getCustomerName();
+        String userPhone = customer.getCustomerPhoneNumber();
+        String userEmail = customer.getCustomerEmail();
 
-        // share detail data
         ContentDto content = (ContentDto)request.getAttribute("content");
         //JSON 형식으로 달의 날자별 예약현황을 전송받음
 //        JSONArray thisMonthResData = (JSONArray)request.getAttribute("thisMonthResData");
@@ -44,8 +157,6 @@
         Integer endYear = endDate.getYear();
         Integer endMonth = endDate.getMonthValue();
         Integer endDay = endDate.getDayOfMonth();
-
-//        Integer endDate = endDate.getTime();
 
 //        //예약가능 시간 (start time~end time) end - start = 이용가능시간
 //        int startTime = content.getStartTime();
@@ -475,20 +586,19 @@
         }
 
         function selectedTimeInit(){
-
             selectedFirstTime = 24*1;
             selectedFinalTime = 0*1;
         }
 
         //체크박스 이벤트
         function checkboxEvent(checkbox){
-          nameForm = document.getElementById("userName");
-          phoneForm = document.getElementById("userPhone");
-          emailForm = document.getElementById("userEmail");
+          const nameForm = document.getElementById("userName");
+          const phoneForm = document.getElementById("userPhone");
+          const emailForm = document.getElementById("userEmail");
 
-          <%--userName = "<%=userName%>";--%>
-          <%--userPhone = "<%=userPhone%>";--%>
-          <%--userEmail = "<%=userEmail%>";--%>
+          const userName = "<%=userName%>";
+          const userPhone = "<%=userPhone%>";
+          const userEmail = "<%=userEmail%>";
 
           if(checkbox.checked == true){
             nameForm.value = userName;
@@ -557,8 +667,40 @@
     </style>
 </head>
 <body>
-<%--    달력--%>
+<div class="mainBox">
+    <div class="contentBox">
+        <div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700">예약하기</span>
+            <div class="underline"></div></div>
+        <form action="payment" method="post" name="paymentForm">
+<table id="reservation_share" align="center">
+    <tr>
+        <td class="title" align="left">주소</td>
+        <td class="content" align="left">${DETAIL.address1}<br>${DETAIL.address2}</td>
+    </tr>
+</table>
 
+<table id="reservation_user">
+    <tr>
+        <input type="hidden" name="productName" value="${DETAIL.title}">
+        <td class="top" align="left">예약자 정보</td>
+        <td class="content" align="right">
+            <input type="checkbox" onclick="checkboxEvent(this)">계정과 동일</td>
+    </tr>
+    <tr>
+        <td class="title" align="right">예약자</td>
+        <td class="content" align="left"> <input type="text" id="userName" name="userName" size="20"> </td>
+    </tr>
+    <tr>
+        <td class="title" align="right">연락처</td>
+        <td class="content" align="left"> <input type="text" id="userPhone" name="userPhone" size="20"> </td>
+    </tr>
+    <tr>
+        <td class="title" align="right">이메일</td>
+        <td class="content" align="left"> <input type="text" id="userEmail" name="userEmail" size="20"> </td>
+    </tr>
+</table>
+
+<%--    달력--%>
 <table id="reservation_time">
     <tr>
         <td class="top" align="left">시간선택</td>
@@ -596,8 +738,7 @@
     <tr>
         <td class="content" colspan="2" align="left">
             <%-- 선택한 예약일시를 출력할 위치--%>
-            <input id="selectedDate" style="border:none; width:100px" name="selectedDate" value=""
-                   readonly="readonly">
+            <input id="selectedDate" style="border:none; width:100px" name="selectedDate" value="" readonly="readonly">
             <input id="selectedTime" style="border:none" name="selectedTime" value="" readonly="readonly">
         </td>
     </tr>
@@ -616,6 +757,10 @@
             <input id="btn_submit" type="button" value="결제하기" onclick="submitRes()"></td>
     <tr>
 </table>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">buildCalendar();</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

@@ -67,28 +67,28 @@
         ~ <input required="required" type="date" name="contentEndDate">
         <br>
         <div class="form-check form-check-inline">
-            <input type="checkbox" name="checkMon" value="1" id="checkMon" class="checkSelect"/>월
-            <input type="hidden" name="checkMon" value="0" id="checkMonHidden" class="checkSelect"/>
+            <input type="checkbox" value="1" id="checkMon" class="checkSelect">월
+<%--            <input type="hidden" name="checkWeek" value="0" id="checkMonHidden" class="uncheck">--%>
 
-            <input type="checkbox" name="checkTues" value="1" id="checkTues" class="checkSelect"/>화
-            <input type="hidden" name="checkTues" value="0" id="checkTuesHidden" class="checkSelect"/>
+            <input type="checkbox" value="1" id="checkTues" class="checkSelect"/>화
+<%--            <input type="hidden" name="checkWeek" value="0" id="checkTuesHidden" class="uncheck"/>--%>
 
-            <input type="checkbox" name="checkWednes" value="1" id="checkWednes" class="checkSelect"/>수
-            <input type="hidden" name="checkWednes" value="0" id="checkWednesHidden" class="checkSelect"/>
+            <input type="checkbox" value="1" id="checkWednes" class="checkSelect"/>수
+<%--            <input type="hidden" name="checkWednes" value="0" id="checkWednesHidden" class="uncheck"/>--%>
 
-            <input type="checkbox" name="checkThurs" value="1" id="checkThurs" class="checkSelect"/>목
-            <input type="hidden" name="checkThurs" value="0" id="checkThursHidden" class="checkSelect"/>
+            <input type="checkbox" value="1" id="checkThurs" class="checkSelect"/>목
+<%--            <input type="hidden" name="checkThurs" value="0" id="checkThursHidden" class="uncheck"/>--%>
 
-            <input type="checkbox" name="checkFri" value="1" id="checkFri" class="checkSelect"/>금
-            <input type="hidden" name="checkFri" value="0" id="checkFriHidden" class="checkSelect"/>
+            <input type="checkbox" value="1" id="checkFri" class="checkSelect"/>금
+<%--            <input type="hidden" name="checkFri" value="0" id="checkFriHidden" class="uncheck"/>--%>
 
-            <input type="checkbox" name="checkSatur" value="1" id="checkSatur" class="checkSelect"/>토
-            <input type="hidden" name="checkSatur" value="0" id="checkSaturHidden" class="checkSelect"/>
+            <input type="checkbox" value="1" id="checkSatur" class="checkSelect"/>토
+<%--            <input type="hidden" name="checkSatur" value="0" id="checkSaturHidden" class="uncheck"/>--%>
 
-            <input type="checkbox" name="checkSun" value="1" id="checkSun" class="checkSelect"/>일
-            <input type="hidden" name="checkSun" value="0" id="checkSunHidden" class="checkSelect"/>
+            <input type="checkbox" value="1" id="checkSun" class="checkSelect"/>일
+<%--            <input type="hidden" name="checkSun" value="0" id="checkSunHidden" class="uncheck"/>--%>
 
-            <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
+            <input type="text" name="dayLimit" id="dayLimit" value=""/>
             <button type="button" onClick="checkFun()" ></button>
         </div>
         <br>
@@ -142,41 +142,26 @@
         <input id="submitButton1" type="submit" value="등록">
     </form>
 <script>
-    // 요일 체크박스 선택하면 1, 선택 안하면 0
-    if(document.getElementById("checkMon").checked) {
-        document.querySelector("checkMonHidden").disabled = true;
-    }
-    if(document.getElementById("checkTues").checked) {
-        document.querySelector("checkTuesHidden").disabled = true;
-    }
-    if(document.getElementById("checkWednes").checked) {
-        document.querySelector("checkWednesHidden").disabled = true;
-    }
-    if(document.getElementById("checkThurs").checked) {
-        document.querySelector("checkThursHidden").disabled = true;
-    }
-    if(document.getElementById("checkFri").checked) {
-        document.querySelector("checkFriHidden").disabled = true;
-    }
-    if(document.getElementById("checkSatur").checked) {
-        document.querySelector("checkSaturHidden").disabled = true;
-    }
-    if(document.getElementById("checkSun").checked) {
-        document.querySelector("checkSunHidden").disabled = true;
-    }
-
     checkFun();
     function checkFun() {
-        let checkArray = Array();
-        let cnt = false;
-        let chkBox = document.querySelector(".checkSelect").value;
-        console.log(chkBox);
-        for (i=0; i<chkBox.length; i++ ){
-            if(chkBox[i].checked == true){
-                checkArray[i] = chkBox[i].value;
+        // 1이면 휴관일, 0이면 오픈
+        let dayLimit = "";
+        let checked = document.getElementsByClassName("checkSelect");
+
+        for (var i = 0; i < checked.length; i++) {
+            if (checked[i].checked) {
+                dayLimit += '1'
+            } else {
+                dayLimit += '0'
             }
         }
-        console.log(checkArray);
+
+
+        // selectedEls.forEach((el) =>{
+        //     result += el.value;
+        // });
+
+        document.getElementById("dayLimit").value = dayLimit;
     }
 
     // $("#array").val(checkArray);

@@ -10,7 +10,10 @@
         contentName,
         contentStartDate,
         contentEndDate,
-<!--        contentPrice,-->
+        startTime,
+        endTime,
+        dayLimit,
+        contentPrice,
         contentBoard,
         contentAddress,
         contentMapEntX,
@@ -21,7 +24,10 @@
         #{contentName},
         #{contentStartDate},
         #{contentEndDate},
-<!--        #{contentPrice},-->
+        #{startTime},
+        #{endTime},
+        #{dayLimit},
+        #{contentPrice},
         #{contentBoard},
         #{contentAddress},
         #{contentMapEntX},
