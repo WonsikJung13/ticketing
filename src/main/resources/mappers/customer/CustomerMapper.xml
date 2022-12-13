@@ -13,7 +13,11 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="customerId">
         INSERT INTO Customer (customerId, customerPassword, customerEmail, customerName, customerAddress, customerPhoneNumber, customerBirth, social)
         VALUES (#{customerId}, #{customerPassword}, #{customerEmail}, #{customerName}, #{customerAddress}, #{customerPhoneNumber}, #{customerBirth}, #{social})
+    </insert>
 
+    <insert id="authAdd">
+        INSERT INTO Authority(customerId, auth)
+        VALUES (#{customerId}, 'user')
     </insert>
 
     <!--    <select id="getByCustomerUniqueNumber" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">-->
@@ -47,19 +51,19 @@
     </select>
 
     <resultMap id="customerMap" type="com.limdaram.ticketing.domain.customer.CustomerDto">
-        <id column="customerId" property="customerId"></id>
-        <result column="customerName" property="customerName"></result>
-        <result column="customerBirth" property="customerBirth"></result>
-        <result column="customerAddress" property="customerAddress"></result>
-        <result column="customerPassword" property="customerPassword"></result>
-        <result column="customerEmail" property="customerEmail"></result>
-        <result column="customerPhoneNumber" property="customerPhoneNumber"></result>
-        <result column="customerGrade" property="customerGrade"></result>
-        <result column="customerTotalPaid" property="customerTotalPaid"></result>
-        <result column="customerInserted" property="customerInserted"></result>
-        <result column="social" property="social"></result>
+        <id column="customerId" property="customerId"/>
+        <result column="customerName" property="customerName"/>
+        <result column="customerBirth" property="customerBirth"/>
+        <result column="customerAddress" property="customerAddress"/>
+        <result column="customerPassword" property="customerPassword"/>
+        <result column="customerEmail" property="customerEmail"/>
+        <result column="customerPhoneNumber" property="customerPhoneNumber"/>
+        <result column="customerGrade" property="customerGrade"/>
+        <result column="customerTotalPaid" property="customerTotalPaid"/>
+        <result column="customerInserted" property="customerInserted"/>
+        <result column="social" property="social"/>
         <collection property="auth" ofType="string">
-            <result column="auth" property="auth"></result>
+            <result column="auth" property="auth"/>
         </collection>
     </resultMap>
 

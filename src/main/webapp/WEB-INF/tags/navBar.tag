@@ -8,6 +8,7 @@
     #searchTypeSelect {
         width: auto;
     }
+
     #myBtn {
         display: none; /* Hidden by default */
         position: fixed; /* Fixed/sticky position */
@@ -28,24 +29,24 @@
         background-color: #555; /* Add a dark-grey background on hover */
     }
 
-    .font25{
+    .font25 {
         font-size: 25px;
     }
 
-    .apple{
+    .apple {
         font-size: 25px;
         margin-right: 15px;
     }
-    
+
     .mar100 {
         margin-right: 110px;
     }
 
-    .mar10{
+    .mar10 {
         margin-right: 10px;
     }
-    
-    a{
+
+    a {
         text-decoration: none;
     }
 </style>
@@ -56,7 +57,7 @@
 
 <c:url value="/" var="indexLink"/>
 
-<sec:authorize access="isAuthenticated()" var="loggedIn" />
+<sec:authorize access="isAuthenticated()" var="loggedIn"/>
 
 <c:url value="/admin/customerList" var="adminLink"/>
 <c:url value="/admin/customerManage" var="manageLink"/>
@@ -72,20 +73,18 @@
 <c:url value="/logout" var="logoutLink"/>
 
 <nav class="navbar navbar-expand-md bg-light mb-3">
+<a class="navbar-brand" href="${listLink }"></a>
     <div class="container-md">
-<%--        <a class="navbar-brand" href="${listLink }">--%>
-
-<%--        </a>--%>
-<%--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"--%>
-<%--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--            <span class="navbar-toggler-icon"></span>--%>
-<%--        </button>--%>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
 
                 <li class="nav-item">
                     <a class="nav-link ${active eq 'contentList' ? 'active' : '' } apple" href="${indexLink }">
-<%--                        <i class="fa-brands fa-apple"></i>--%>
+                        <%--                        <i class="fa-brands fa-apple"></i>--%>
                         <img src="/images/oo.ico"/>
                     </a>
                 </li>
@@ -93,7 +92,7 @@
 
                 <sec:authorize access="hasAuthority('admin')">
                     <li class="nav-item">
-                        <a class="nav-link ${active eq 'customerList' ? 'active' : '' } font25" href="${adminLink }">어드민</a>
+                        <a class="nav-link ${active eq 'customerList' ? 'active' : '' } font25" href="${adminLink }">회원목록</a>
                     </li>
 
                     <li class="nav-item">
@@ -113,18 +112,18 @@
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link ${active eq 'reply' ? 'active' : '' } font25" href="${replyLink }">후기 목록</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link ${active eq 'get' ? 'active' : '' } font25" href="${blogLink }">파워블로거</a>
-                </li>
+                        <a class="nav-link ${active eq 'reply' ? 'active' : '' } font25" href="${replyLink }">후기 목록</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${active eq 'get' ? 'active' : '' } font25" href="${blogLink }">파워블로거</a>
+                    </li>
                 </c:if>
 
 
                 <c:if test="${not loggedIn}">
                     <li class="nav-item position-absolute top-50 end-0 translate-middle-y mar100">
-                    <a class="nav-link ${active eq 'login' ? 'active' : '' } font25" href="${loginLink }">로그인</a>
-                </li>
+                        <a class="nav-link ${active eq 'login' ? 'active' : '' } font25" href="${loginLink }">로그인</a>
+                    </li>
                 </c:if>
 
                 <c:if test="${loggedIn}">
@@ -140,14 +139,14 @@
 <!-- Header-->
 <c:if test="${loggedIn}">
 
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">메인 페이지</h1>
-            <p class="lead fw-normal text-white-50 mb-0">일 지 도 ?</p>
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">메인 페이지</h1>
+                <p class="lead fw-normal text-white-50 mb-0">일 지 도 ?</p>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 </c:if>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <script>
@@ -155,7 +154,9 @@
     let mybutton = document.getElementById("myBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
+    window.onscroll = function () {
+        scrollFunction()
+    };
 
 
     function scrollFunction() {

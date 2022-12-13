@@ -31,7 +31,7 @@
 
             <form id="customerSearch" method="get">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <input type="text" name="customerUniqueNumber">
+                    <input type="text" name="customerId">
                     <input type="submit" value="검색">
                 </div>
             </form>

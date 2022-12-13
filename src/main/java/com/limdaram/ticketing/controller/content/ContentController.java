@@ -1,9 +1,9 @@
 package com.limdaram.ticketing.controller.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
-import com.limdaram.ticketing.domain.reply.ReplyDto;
 import com.limdaram.ticketing.service.content.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -24,16 +24,20 @@ public class ContentController {
     private ContentService service;
 
     @GetMapping("register")
+    @PreAuthorize("authentication.name == 'admin'")
     public void register() {
 
     }
     @Transactional
     @PostMapping("register")
+    @PreAuthorize("authentication.name == 'admin'")
     public String register(
             ContentDto content,
             MultipartFile file1,
             MultipartFile[] file2,
             RedirectAttributes rttr) {
+        System.out.println("등록" + content);
+        System.out.println(content.getContentId());
 
         int cnt = service.register(content, file1, file2);
 
@@ -47,11 +51,13 @@ public class ContentController {
     }
 
     @GetMapping("indexRegister")
+    @PreAuthorize("authentication.name == 'admin'")
     public void indexRegister() {
 
     }
     @Transactional
     @PostMapping("indexRegister")
+    @PreAuthorize("authentication.name == 'admin'")
     public String indexRegister(
             ContentDto content,
             MultipartFile file1,
@@ -66,18 +72,21 @@ public class ContentController {
             rttr.addFlashAttribute("message", "상품 등록 실패");
         }
 
-        return "redirect:/";
+        return "redirect:/content/list";
     }
 
     @GetMapping("list")
     public void list(Model model, ContentDto content) {
         List<ContentDto> list = service.listContent(content);
+        System.out.println("list"+list);
+        System.out.println("content"+content);
         model.addAttribute("contentList", list);
     }
 
     @GetMapping("get")
     public void get(int contentId, Model model) {
         ContentDto content = service.get(contentId);
+        System.out.println("조회창 " + content);
         model.addAttribute("content", content);
 
     }
@@ -91,16 +100,19 @@ public class ContentController {
     }
 
     @GetMapping("modify")
+    @PreAuthorize("authentication.name == 'admin'")
     public void modify(
             int contentId,
             Model model) {
 
         ContentDto content = service.get(contentId);
+        System.out.println("수정창 " + contentId);
         model.addAttribute("content", content);
     }
 
 //    수정
     @PostMapping("modify")
+    @PreAuthorize("authentication.name == 'admin'")
     public String modify(
             ContentDto content,
             MultipartFile addPosterFile,
@@ -108,7 +120,17 @@ public class ContentController {
             @RequestParam(name = "removePosterFile", required = false) String removePosterFile,
             @RequestParam(name = "removeDetailFiles", required = false) List<String> removeDetailFiles,
             RedirectAttributes rttr) {
+
+        // 지울 파일명 들어오는지 확인
+//        System.out.println("지울 파일명###");
+//        if (removeDetailFiles != null) {
+//            for(String name : removeDetailFiles) {
+//                System.out.println(name);
+//            }
+//        }
+
         int cnt = service.update(content, addPosterFile, addDetailFiles, removePosterFile, removeDetailFiles);
+        System.out.println("수정완료 " + content);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 수정 완료");
@@ -116,11 +138,12 @@ public class ContentController {
             rttr.addFlashAttribute("message", "상품 수정 실패");
         }
 
-        return "redirect:/";
+        return "redirect:/content/list";
     }
 
 //    삭제
 @GetMapping("indexModify")
+@PreAuthorize("authentication.name == 'admin'")
 public void indexModify(
         int contentId,
         Model model) {
@@ -131,6 +154,7 @@ public void indexModify(
 
     //    수정
     @PostMapping("indexModify")
+    @PreAuthorize("authentication.name == 'admin'")
     public String indexModify(
             ContentDto content,
             MultipartFile addPosterFile,
@@ -150,8 +174,10 @@ public void indexModify(
     }
 
     @PostMapping("remove")
+    @PreAuthorize("authentication.name == 'admin'")
     public String remove(int contentId, RedirectAttributes rttr) {
         int cnt = service.remove(contentId);
+        System.out.println("삭제완료 " + contentId);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 삭제 완료");
@@ -159,7 +185,14 @@ public void indexModify(
             rttr.addFlashAttribute("message", "상품 삭제 실패");
         }
 
-        return "redirect:/";
+        return "redirect:/content/list";
+    }
+
+    @GetMapping("reservation")
+    public void reservation(int contentId, Model model){
+        ContentDto content = service.reservation(contentId);
+        System.out.println("reservation : " + content);
+        model.addAttribute("content", content);
     }
 
     @RequestMapping("jusoPopup")

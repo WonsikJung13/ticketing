@@ -21,7 +21,7 @@ public class ContentDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contentEndDate;
 
-    private int contentPrice;
+    public int contentPrice;
     private int countContent;
 
     private String contentAddress;
@@ -30,12 +30,17 @@ public class ContentDto {
     private String contentAddrDetail;
     private int contentPosterId;
     private LocalDateTime contentInserted;
-    public String getTime(){
+
+    private int startTime;
+    private int endTime;
+    private String dayLimit;
+
+    public String getTime() {
         String result = "";
 
         result = contentInserted.toLocalDate().toString() + " " + contentInserted.toLocalTime().toString();
         return result;
     }
 
-    }
+}
 
