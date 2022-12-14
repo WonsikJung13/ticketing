@@ -71,7 +71,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private MemberSecurityDTO generateDTO(String email, String name, Map<String, Object> params) {
         // 소셜로그인으로 받아온 이메일로 중복 체크 with 우리 DB
-        CustomerDto result = customerMapper.getByCustomerEmail(email);
+        CustomerDto result = customerMapper.getByCustomerId(email);
 
         if (result == null) {
             CustomerDto customerDto = new CustomerDto();
