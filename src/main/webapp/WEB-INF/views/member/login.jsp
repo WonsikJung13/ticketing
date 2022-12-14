@@ -15,10 +15,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
     <style>
         body {
             background-image: url("/back.jpg");
         }
+
+        /*글씨체*/
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
     </style>
 </head>
 <body class="align-middle">
@@ -30,7 +41,7 @@
                     ${exception }
             </div>
         </c:if>
-        <div class="card-header">
+        <div style="color: #0CC; font-family: 'LINESeedKR-Bd'" class="card-header">
             LOGIN
         </div>
         <div class="card-body">
@@ -53,35 +64,35 @@
                     </span>
                     <input type="password" name="password" class="form-control" placeholder="PASSWORD">
                 </div>
-                <div class="input-group mb-3 ">
+                <div style="margin-left: 20px" class="input-group mb-3">
                     <input class="form-check-input" type="checkbox" name="remember-me">
-                    <label class="form-check-label">
+                    <label style="font-family: 'LINESeedKR-Bd'; margin-left: 5px;" class="form-check-label">
                         자동 로그인
                     </label>
                 </div>
                 <div>
-                    <a href="/oauth2/authorization/kakao" style="text-decoration: none">
+                    <a href="/oauth2/authorization/kakao" style="text-decoration: none; margin-left: 22px;">
                         <c:url value="/kakaoLogo.png" var="kakaoLogoLink" />
                         <img src="${kakaoLogoLink}" alt="" >
                     </a>
 
-                    <a href="/oauth2/authorization/google" style="text-decoration: none">
+                    <a href="/oauth2/authorization/google" style="text-decoration: none; margin-left: 22px;">
                         <c:url value="/googleLogo.png" var="googleLogoLink" />
                         <img src="${googleLogoLink}" alt="" >
                     </a>
 
                     <a href="/oauth2/authorization/naver">
                         <c:url value="/naverLogo.png" var="naverLogoLink" />
-                        <img src="${naverLogoLink}" alt="" style="height: 48px" >
+                        <img src="${naverLogoLink}" alt="" style="height: 48px; margin-left: 22px;" >
                     </a>
                 </div>
                 <div class="my-4">
-                    <div class="float-first">
-                        아직도 회원이 아니세요? <a href="/customer/signup">회원가입</a>
+                    <div style="font-family: 'LINESeedKR-Bd'; text-align: center" class="float-first">
+                        회원이 아니신가요? <a href="/customer/signup">회원가입</a>
                     </div>
                     <br>
                     <div class="float-end">
-                        <button type="submit" class="btn btn-primary submitBtn">LOGIN</button>
+                        <button style="background-color: #0CC; color: white; font-family: 'LINESeedKR-Bd'" type="submit" class="btn submitBtn">LOGIN</button>
                     </div>
                 </div>
             </form>

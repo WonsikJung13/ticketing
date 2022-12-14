@@ -230,6 +230,8 @@
     </style>
 </head>
 <body>
+<my:sideBar/>
+
 <div>
     <h1>${content.contentName}
         <sec:authentication property="name" var="username"/>

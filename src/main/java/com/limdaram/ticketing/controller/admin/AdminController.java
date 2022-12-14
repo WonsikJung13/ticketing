@@ -76,4 +76,13 @@ public class AdminController {
 
         return map;
     }
+
+    @GetMapping("aboutXtra")
+    public void aboutXtra1() {
+
+    }
+    @PostMapping("aboutXtra")
+    public void aboutXtra2() {
+
+    }
 }
