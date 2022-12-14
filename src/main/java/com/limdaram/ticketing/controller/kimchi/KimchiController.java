@@ -40,8 +40,6 @@ public class KimchiController {
 //        List<KimchiDto> kimchi = kimchiService.getDetailName(contentId);
         KimchiDto kimchi = kimchiService.get(contentId);
         List<ReplyDto> reply = replyService.getContentId(contentId);
-        System.out.println("조회창 " + kimchi);
-        System.out.println(reply + "reply");
         model.addAttribute("kimchi", kimchi);
         model.addAttribute("replyy", reply);
     }
@@ -53,7 +51,6 @@ public class KimchiController {
             Model model) {
 
         KimchiDto kimchi = kimchiService.get(contentId);
-        System.out.println("수정창 " + contentId);
         model.addAttribute("kimchi", kimchi);
     }
 

@@ -66,6 +66,10 @@
                     <i class="far fa-comments"></i>
                     Contact Us
                 </a></li>
+                <li class="tm-nav-item"><a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
+                    <i class="fa-solid fa-comment"></i>
+                    문의하기
+                </a></li>
             </ul>
         </nav>
         <div class="tm-mb-65">

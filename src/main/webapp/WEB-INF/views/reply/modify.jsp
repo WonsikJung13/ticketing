@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        textarea {
+            width: 100%;
+            height: 20em;
+            border: none;
+            resize: none;
+        }
+    </style>
 </head>
 <body>
 <div class="container-md">
@@ -41,15 +49,16 @@
                     <label class="form-label">
                         본문
                     </label>
-                    
+
                     <textarea name="replyMainText" class="form-control">${Reply.replyMainText}</textarea>
-              </div>
+                </div>
                 <div class="mb-3" id="name">
                     <label class="form-label">
                         작성자
                     </label>
 
-                    <input class="form-control" type="text" value="${Reply.replyName}" readonly>
+                    <input class="form-control" type="text" value="${Reply.replyName}" style="background-color: #d4d4d4"
+                           readonly>
 
                 </div>
 
@@ -58,13 +67,14 @@
                         작성일시
                     </label>
 
-                    <input class="form-control" name="time" type="datetime-local" value="${Reply.time}" readonly>
+                    <input class="form-control time" name="time" type="datetime-local" value="${Reply.time}"
+                           style="background-color: #d4d4d4;" readonly>
 
                 </div>
             </form>
 
             <button type="submit" class="btn btn-succeess" data-bs-toggle="modal" data-bs-target="#modifyModal">
-                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="btn btn-warning">수정하기</i>
             </button>
 
             <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -95,12 +105,6 @@
 
 <script>
     document.querySelector("#modifyConfirmButton").addEventListener("click", function () {
-        console.log("hi");
-        // const a = document.querySelector("#content").value;
-        // const b = document.querySelector("#text").value;
-        // const c = document.querySelector("#name").value;
-        // const d = document.querySelector("#time").value;
-        // console.log(a + " " + b + " " + c + " " + d);
         document.querySelector("#modifyForm").submit();
     });
 </script>
