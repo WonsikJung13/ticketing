@@ -20,7 +20,6 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<my:navBar/>
 
 <table class="table">
     <tr>

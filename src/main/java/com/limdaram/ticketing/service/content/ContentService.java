@@ -1,6 +1,7 @@
 package com.limdaram.ticketing.service.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
+import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.mapper.content.ContentMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,58 +93,6 @@ public class ContentService {
             }
         System.out.println(content);
         return cnt;
-    }
-
-    // 디테일 파일 등록 함수
-    private void uploadDetailFiles(ContentDto content, MultipartFile file, String uuid) {
-        try {
-            // s3에 디테일 파일 저장
-            // 키 생성
-            String key = "prj1/board/" + content.getContentId() + "/" + uuid;
-
-            // putObjectRequest
-            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(key)
-                    .acl(ObjectCannedACL.PUBLIC_READ)
-                    .build();
-
-            // requestBody
-            RequestBody requestBody = RequestBody.fromInputStream(file.getInputStream(), file.getSize());
-
-            // object(파일) 올리기
-            s3Client.putObject(putObjectRequest, requestBody);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-
-    // 포스터 파일 등록 함수
-    private void uploadPosterFile(ContentDto content, MultipartFile file1, String uuid) {
-        try {
-            // s3에 파일 저장
-            // 키 생성
-            String key = "prj1/board/" + content.getContentId() + "/" + uuid;
-
-            // putObjectRequest
-            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(key)
-                    .acl(ObjectCannedACL.PUBLIC_READ)
-                    .build();
-
-            // requestBody
-            RequestBody requestBody = RequestBody.fromInputStream(file1.getInputStream(), file1.getSize());
-
-            // object(파일) 올리기
-            s3Client.putObject(putObjectRequest, requestBody);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
     }
 
     // 총 게시물 개수 확인
@@ -349,8 +298,62 @@ public class ContentService {
         s3Client.deleteObject(deleteObjectRequest);
     }
 
+    // 디테일 파일 함수
+    private void uploadDetailFiles(ContentDto content, MultipartFile file, String uuid) {
+        try {
+            // s3에 디테일 파일 저장
+            // 키 생성
+            String key = "prj1/board/" + content.getContentId() + "/" + uuid;
+
+            // putObjectRequest
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(key)
+                    .acl(ObjectCannedACL.PUBLIC_READ)
+                    .build();
+
+            // requestBody
+            RequestBody requestBody = RequestBody.fromInputStream(file.getInputStream(), file.getSize());
+
+            // object(파일) 올리기
+            s3Client.putObject(putObjectRequest, requestBody);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    // 포스터 파일 등록 함수
+    private void uploadPosterFile(ContentDto content, MultipartFile file1, String uuid) {
+        try {
+            // s3에 파일 저장
+            // 키 생성
+            String key = "prj1/board/" + content.getContentId() + "/" + uuid;
+
+            // putObjectRequest
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(key)
+                    .acl(ObjectCannedACL.PUBLIC_READ)
+                    .build();
+
+            // requestBody
+            RequestBody requestBody = RequestBody.fromInputStream(file1.getInputStream(), file1.getSize());
+
+            // object(파일) 올리기
+            s3Client.putObject(putObjectRequest, requestBody);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public ContentDto reservation(int contentId) {
 
         return mapper.select(contentId);
     }
+
+
 }

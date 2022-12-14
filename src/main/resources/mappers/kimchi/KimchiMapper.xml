@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.limdaram.ticketing.mapper.kimchi.KimchiMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="contentId">
+        INSERT INTO Content (
+        contentName,
+        contentStartDate,
+        contentEndDate,
+        <!--        contentPrice,-->
+        contentBoard,
+        contentAddress,
+        contentMapEntX,
+        contentMapEntY,
+        contentAddrDetail
+        )
+        VALUES (
+        #{contentName},
+        #{contentStartDate},
+        #{contentEndDate},
+        <!--        #{contentPrice},-->
+        #{contentBoard},
+        #{contentAddress},
+        #{contentMapEntX},
+        #{contentMapEntY},
+        #{contentAddrDetail}
+        )
+    </insert>
+
+    <select id="list" resultType="com.limdaram.ticketing.domain.kimchi.KimchiDto">
+        SELECT
+        c.contentId,
+        c.contentName,
+        c.contentRegion,
+        c.contentStartDate,
+        c.contentEndDate,
+        c.contentPrice,
+        c.contentBoard,
+        p.contentPosterName
+        FROM
+        Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+        ORDER BY c.contentId DESC
+    </select>
+
+    <select id="select" resultMap="contentMap">
+        SELECT
+            c.contentId,
+            c.contentName,
+            c.contentRegion,
+            c.contentStartDate,
+            c.contentEndDate,
+            c.contentPrice,
+            c.contentBoard,
+            c.startTime,
+            c.endTime,
+            c.dayLimit,
+            c.contentMapEntX,
+            c.contentMapEntY,
+            c.contentAddress,
+            c.contentAddrDetail,
+            c.contentInserted,
+            p.contentPosterName,
+            d.contentDetailName
+        FROM
+            Content c LEFT JOIN ContentPoster p
+        ON
+            c.contentId = p.contentId LEFT JOIN ContentDetail d
+        ON
+            c.contentId = d.contentId
+        WHERE
+        c.contentId = #{contentId}
+    </select>
+
+    <resultMap type="com.limdaram.ticketing.domain.kimchi.KimchiDto" id="contentMap">
+        <id column="contentId" property="contentId"></id>
+        <result column="contentName" property="contentName"></result>
+        <result column="contentRegion" property="contentRegion"></result>
+        <result column="contentStartDate" property="contentStartDate"></result>
+        <result column="contentEndDate" property="contentEndDate"></result>
+        <result column="contentPrice" property="contentPrice"></result>
+        <result column="startTime" property="startTime"></result>
+        <result column="endTime" property="endTime"></result>
+        <result column="dayLimit" property="dayLimit"></result>
+        <result column="contentBoard" property="contentBoard"></result>
+        <result column="contentMapEntX" property="contentMapEntX"></result>
+        <result column="contentMapEntY" property="contentMapEntY"></result>
+        <result column="contentAddress" property="contentAddress"></result>
+        <result column="contentAddrDetail" property="contentAddrDetail"></result>
+        <result column="contentPosterName" property="contentPosterName"></result>
+        <result column="contentInserted" property="contentInserted"></result>
+        <!--        <result column="contentDetailId" property="contentDetailId"></result>-->
+        <collection property="contentDetailName" ofType="string">
+            <result property="contentDetailName" column="contentDetailName"></result>
+        </collection>
+    </resultMap>
+
+    <update id="update">
+        UPDATE Content
+        SET
+        contentName = #{contentName},
+        contentRegion = #{contentRegion},
+        contentStartDate = #{contentStartDate},
+        contentEndDate = #{contentEndDate},
+        contentPrice = #{contentPrice},
+        contentBoard = #{contentBoard},
+        contentAddress = #{contentAddress},
+        contentMapEntX = #{contentMapEntX},
+        contentMapEntY = #{contentMapEntY},
+        contentAddrDetail = #{contentAddrDetail}
+        WHERE
+        contentId = #{contentId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM Content
+        WHERE contentID = #{contentId}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM Content
+    </select>
+
+    <insert id="insertFile">
+        INSERT INTO ContentPoster (contentId, contentPosterName)
+        VALUES (${contentId}, #{fileName})
+    </insert>
+
+    <insert id="insertFile2">
+        INSERT INTO ContentDetail (contentId, contentDetailName)
+        VALUES (${contentId}, #{fileName})
+    </insert>
+
+    <delete id="deletePosterByContentId">
+        DELETE FROM ContentPoster
+        WHERE contentId = #{contentId}
+    </delete>
+
+    <delete id="deleteDetailByContentId">
+        DELETE FROM ContentDetail
+        WHERE contentId = #{contentId}
+    </delete>
+
+    <delete id="deleteByContentIdAndDetailName">
+        DELETE FROM ContentDetail
+        WHERE contentId = #{contentId} AND contentDetailName = #{fileName}
+    </delete>
+
+    <select id="reserv" resultType="com.limdaram.ticketing.domain.kimchi.KimchiDto">
+        SELECT FROM CustomerDto
+        WHERE customerId = #{customerId}
+    </select>
+
+
+    <select id="selectContent" resultType="com.limdaram.ticketing.domain.kimchi.KimchiDto">
+        SELECT
+        c.contentId,
+        c.contentName,
+        c.contentRegion,
+        c.contentStartDate,
+        c.contentEndDate,
+        c.contentInserted,
+        c.contentPrice,
+        c.contentBoard,
+        c.contentMapEntX,
+        c.contentMapEntY,
+        c.contentAddress,
+        c.contentAddrDetail,
+        p.contentPosterName
+        FROM
+        Content c LEFT JOIN ContentPoster p ON c.contentId = p.contentId
+        ORDER BY c.contentId DESC
+    </select>
+    <select id="selectDetailName" resultType="com.limdaram.ticketing.domain.kimchi.KimchiDto">
+        SELECT
+        c.contentId,
+        c.contentName,
+        c.contentRegion,
+        c.contentStartDate,
+        c.contentEndDate,
+        c.contentPrice,
+        c.contentBoard,
+        c.startTime,
+        c.endTime,
+        c.dayLimit,
+        c.contentMapEntX,
+        c.contentMapEntY,
+        c.contentAddress,
+        c.contentAddrDetail,
+        c.contentInserted,
+        p.contentPosterName,
+        d.contentDetailName
+        FROM
+        Content c LEFT JOIN ContentPoster p
+        ON
+        c.contentId = p.contentId LEFT JOIN ContentDetail d
+        ON
+        c.contentId = d.contentId
+        WHERE
+        c.contentId = #{contentId}
+    </select>
+
+
+</mapper>

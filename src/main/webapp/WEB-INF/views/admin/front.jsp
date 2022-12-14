@@ -26,7 +26,6 @@
 
 </head>
 
-<my:navBar/>
 
 <body id="page-top">
 

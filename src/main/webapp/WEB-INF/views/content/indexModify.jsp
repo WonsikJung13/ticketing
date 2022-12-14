@@ -30,7 +30,6 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-<my:navBar/>
 <form id="contentRegisterForm" action="" method="post" enctype="multipart/form-data">
     <!-- Page content-->
     <div class="container mt-5">
