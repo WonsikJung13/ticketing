@@ -60,16 +60,6 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
 </script>
-
-<script>
-    document.querySelector(".test").addEventListener("click", function () {
-        console.log(document.grade.value)
-    })
-
-    document.querySelector(".test").addEventListener("click", function () {
-        console.log(document.grade)
-    })
-</script>
 </body>
 </html>
 

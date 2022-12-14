@@ -11,7 +11,7 @@
     </update>
 
     <select id="getCustomerList" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
-        SELECT * FROM Customer
+        SELECT * FROM Customer;
     </select>
 
     <select id="getGradeCountForSilver" resultType="int">
@@ -20,8 +20,8 @@
     <select id="getGradeCountForGold" resultType="int">
         SELECT count(*) from Customer WHERE customerGrade = 'GOLD'
     </select>
-    <select id="getGradeList" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
-        SELECT DISTINCT customerGrade
-        FROM Customer;
+    <select id="getGradeList" resultType="com.limdaram.ticketing.domain.admin.GradeDto" >
+        SELECT customerGrade
+        FROM Grade
     </select>
 </mapper>

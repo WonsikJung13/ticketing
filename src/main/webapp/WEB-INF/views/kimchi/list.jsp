@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="/css/all.min.css"> <!-- https://fontawesome.com/ -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <!-- https://fonts.google.com/ -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
 </head>
 <body>
 <my:sideBar/>
@@ -105,7 +105,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-<script src="src/main/resources/js/jquery.min.js"></script>
-<script src="src/main/resources/js/templatemo-script.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/templatemo-script.js"></script>
 </body>
 </html>
