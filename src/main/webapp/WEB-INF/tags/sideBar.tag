@@ -4,11 +4,11 @@
 
 <%@ attribute name="active" %>
 
-<link rel="stylesheet" href="/css/all.min.css"> <!-- https://fontawesome.com/ -->
+<link rel="stylesheet" href="../css/all.min.css"> <!-- https://fontawesome.com/ -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <!-- https://fonts.google.com/ -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/templatemo-xtra-blog.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
 
 <style>
     .effect-lily img{
@@ -57,6 +57,10 @@
                 <li class="tm-nav-item"><a href="/kimchi/register" class="tm-nav-link">
                     <i class="fas fa-pen"></i>
                     게시물 작성
+                </a></li>
+                <li class="tm-nav-item"><a href="/admin/customerList" class="tm-nav-link">
+                    <i class="fas fa-pen"></i>
+                    회원목록
                 </a></li>
                 <li class="tm-nav-item"><a href="about.html" class="tm-nav-link">
                     <i class="fas fa-users"></i>
@@ -113,5 +117,5 @@
 
 </script>
 
-<script src="src/main/resources/js/jquery.min.js"></script>
-<script src="src/main/resources/js/templatemo-script.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/templatemo-script.js"></script>
