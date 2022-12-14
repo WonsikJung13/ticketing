@@ -48,5 +48,8 @@ public class ReplyService {
 
     public ReplyDto get(int replyId) {return replyMapper.select(replyId);
     }
+
+    public List<ReplyDto> getContentId(int contentId) {return replyMapper.selectContentId(contentId);
+    }
 }
 
