@@ -75,7 +75,6 @@
     </style>
 </head>
 <body>
-<my:navBar/>
 
 <!-- Page content-->
 <div class="container mt-5">

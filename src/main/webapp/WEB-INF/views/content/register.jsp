@@ -56,7 +56,6 @@
 <%--    </script>--%>
 </head>
 <body>
-<my:navBar/>
     <h1>상품 등록</h1>
     <form id="contentRegisterForm" action="" method="post" enctype="multipart/form-data">
         상품명 <input required="required" type="text" name="contentName">

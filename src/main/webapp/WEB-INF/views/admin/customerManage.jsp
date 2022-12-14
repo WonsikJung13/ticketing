@@ -15,7 +15,6 @@
 </head>
 <body>
 
-<my:navBar active="customerManage"/>
 
 <div class="container-md">
     <div class="row">

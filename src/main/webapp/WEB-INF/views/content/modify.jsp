@@ -32,7 +32,6 @@
     </style>
 </head>
 <body>
-<my:navBar/>
 
 <h1>${content.contentName} 상품 수정
     <input type="submit" value="수정" data-bs-toggle="modal" data-bs-target="#modifyModal">
