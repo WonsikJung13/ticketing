@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        textarea {
+            width: 100%;
+            height: 20em;
+            border: none;
+            resize: none;
+        }
+    </style>
 </head>
 <body>
 <div class="container-md">
@@ -54,40 +62,32 @@
                 <input class="form-control" type="datetime-local" value="${Reply.time}" readonly>
             </div>
         </div>
+
+        <br>
+
+        <c:url value="/reply/modify" var="modifyLink">
+            <c:param name="replyName" value="${Reply.replyName}"></c:param>
+            <c:param name="replyId" value="${Reply.replyId}"></c:param>
+        </c:url>
+
+        <c:url value="/reply/remove" var="removeLink">
+            <c:param name="replyId" value="${Reply.replyId}"></c:param>
+        </c:url>
+
+        <form id="removeForm" action="${removeLink }" method="post">
+            <input type="hidden" name="replyName" value="${Reply.replyName }">
+        </form>
+
+        <sec:authentication property="name" var="username"/>
+        <c:if test="${Reply.replyName == username}">
+            <div>
+                <a class="btn btn-warning " href="${modifyLink}">수정하기</a>
+                <input class="btn btn-warning" type="submit" value="삭제하기" data-bs-toggle="modal"
+                       data-bs-target="#removeModal">
+            </div>
+        </c:if>
     </div>
 </div>
-
-<br>
-<a href="http://pf.kakao.com/_WAlfxj/chat">
-    카카오 채팅
-</a>
-<br>
-<a href="http://pf.kakao.com/_WAlfxj">
-    카카오 채널추가
-</a>
-
-<br>
-
-<c:url value="/reply/modify" var="modifyLink">
-    <c:param name="replyName" value="${Reply.replyName}"></c:param>
-    <c:param name="replyId" value="${Reply.replyId}"></c:param>
-</c:url>
-
-<c:url value="/reply/remove" var="removeLink">
-    <c:param name="replyId" value="${Reply.replyId}"></c:param>
-</c:url>
-
-<form id="removeForm" action="${removeLink }" method="post">
-    <input type="hidden" name="replyName" value="${Reply.replyName }">
-</form>
-
-<sec:authentication property="name" var="username"/>
-<c:if test="${Reply.replyName == username}">
-    <div>
-        <a class="btn btn-warning " href="${modifyLink}">수정하기</a>
-        <input class="btn btn-warning" type="submit" value="삭제하기" data-bs-toggle="modal" data-bs-target="#removeModal">
-    </div>
-</c:if>
 <%--<a class = "btn btn-warning" href="${removeLink}">삭제하기</a>--%>
 
 <!-- Modal -->
