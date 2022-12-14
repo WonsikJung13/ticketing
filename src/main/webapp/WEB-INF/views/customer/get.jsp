@@ -14,7 +14,6 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<my:navBar active="get"/>
 
 <c:if test="${not empty message }">
     <div class="alert alert-success">

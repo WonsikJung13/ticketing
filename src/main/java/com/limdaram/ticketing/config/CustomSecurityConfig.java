@@ -33,7 +33,7 @@ public class CustomSecurityConfig {
         log.info("-----------configure----------");
 
         // 커스텀 로그인 페이지
-        http.formLogin().loginPage("/member/login").failureHandler(customFailureHandler).defaultSuccessUrl("/content/list", true);
+        http.formLogin().loginPage("/member/login").failureHandler(customFailureHandler).defaultSuccessUrl("/kimchi/list", true);
         http.logout().logoutSuccessUrl("/member/login");
 
         // CSRF 토큰 비활성화

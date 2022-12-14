@@ -14,7 +14,6 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<my:navBar active="get"/>
 <div class="container-md">
     <div class="row">
         <div class="col">

@@ -25,7 +25,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<my:navBar/>
 
 <%--Alert--%>
 <script>
