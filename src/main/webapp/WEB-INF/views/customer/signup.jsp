@@ -94,9 +94,7 @@
                         <button id="customerEmailButton" disabled class="btn btn-outline-secondary" type="button">중복확인</button>
                         <button id="emailAuthenticationButton" disabled type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#emailModal">이메일 인증하기</button>
                     </div>
-
                     <div style="color: red" id="customerEmailText" class="form-text"></div>
-                    <div style="color: red" id="emailAuthenticationText" class="form-text"></div>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">
@@ -196,6 +194,7 @@
     // 2. 이메일 중복 확인
     document.querySelector("#customerEmailButton").addEventListener("click", function () {
         checkedDoubleEmail = false;
+        checkedEmailAuthentication == false
         const insertCustomerEmail = document.querySelector("#customerEmailInput").value;
 
         fetch(ctx + "/customer/checkEmail/" + insertCustomerEmail)
@@ -207,7 +206,7 @@
                     customerEmailText.removeAttribute("style");
                     document.getElementById("emailAuthenticationButton").removeAttribute("disabled");
                     checkedDoubleEmail = true;
-                    checkedEmailAuthentication = true;
+                    // checkedEmailAuthentication = true;
 
                 }
             })
@@ -215,7 +214,7 @@
 
     // 이메일 인증하기
     document.querySelector("#emailAuthenticationButton").addEventListener("click", function () {
-
+        checkedEmailAuthentication == false
         const customerEmail = document.querySelector("#customerEmailInput").value;
         fetch(ctx + "/customer/emailConfirm/", {
             method : "POST",
@@ -234,15 +233,6 @@
 
         const agreementEmailInput = document.querySelector("#agreementEmailInput").value;
 
-        if (agreementEmailInput == "") {
-            document.getElementById("agreementEmailText").innerText = "이메일 인증코드를 작성해주세요"
-            document.getElementById("agreementEmailText").setAttribute("style", "color:red");
-        } else {
-            document.getElementById("agreementEmailText").innerText = ""
-            checkedEmailAuthentication = true;
-        }
-
-
         fetch(ctx + "/customer/verifyCode/", {
             method : "POST",
             headers : {
@@ -257,12 +247,18 @@
                         document.getElementById("agreementEmailText").innerText = "인증 성공!"
                         document.getElementById("agreementEmailText").removeAttribute("style");
                         document.getElementById("agreementEmailButton").removeAttribute("disabled");
-                        checkedEmailAuthentication = true;
+
                     } else {
                         document.getElementById("agreementEmailText").innerText = "인증 실패 - 인증코드를 다시 확인해주세요"
                         document.getElementById("agreementEmailText").setAttribute("style", "color:red");
                     }
             })
+    })
+
+    // 이메일 모달창 인증확인 눌렀을 때
+    document.querySelector("#agreementEmailButton").addEventListener("click", function () {
+        customerEmailText.innerText = ""
+        checkedEmailAuthentication = true;
     })
 
 
@@ -273,6 +269,7 @@
 
         if (checkedId && checkedDoubleId && checkedDoubleEmail && checkedEmail && checkedPassword && checkedPassword1 && checkedPassword2 && checkedName && checkedBirth && checkedPhoneNumber && checkedAddress && checkedEmailAuthentication) {
             document.getElementById('formId').submit();
+            alert("가입에 성공했습니다. 환영합니다!")
         } else {
             if (checkedName == false) {
                 customerNameText.innerText = "이름을 작성해주세요"
@@ -308,7 +305,7 @@
                 customerAddressText.innerText = "주소를 입력해주세요"
                 document.getElementById("customerAddressInput").focus();
             } else if (checkedEmailAuthentication == false) {
-                emailAuthenticationText.innerText="이메일 인증해주세요"
+                document.getElementById("customerEmailText").setAttribute("style", "color:red");
                 document.getElementById("customerEmailInput").focus();
             }
         }
@@ -353,7 +350,6 @@
     const customerEmailText = document.querySelector("#customerEmailText");
     const customerPhoneNumberText = document.querySelector("#customerPhoneNumberText");
     const customerAddressText = document.querySelector("#customerAddressText");
-    const emailAuthenticationText = document.querySelector("#emailAuthenticationText");
 
     function matchName() {
         checkedName = false;
