@@ -22,4 +22,6 @@ public interface ReplyMapper {
     int removeById(int replyId);
 
     ReplyDto select(int replyId);
+
+    List<ReplyDto> selectContentId(int contentId);
 }

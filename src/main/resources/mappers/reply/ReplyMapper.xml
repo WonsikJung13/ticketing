@@ -45,6 +45,19 @@
         WHERE
             replyId = #{replyId}
     </select>
+    <select id="selectContentId" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
+        SELECT
+            replyId,
+            replyName,
+            replyContent,
+            replyInserted,
+            replyMainText,
+            contentId
+        FROM
+            Reply
+        WHERE
+            contentId = #{contentId}
+    </select>
 
     <insert id="addReply">
         INSERT INTO Reply (
