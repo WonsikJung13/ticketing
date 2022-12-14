@@ -24,7 +24,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<my:navBar/>
+
 <!-- Header-->
 <%--<header class="bg-dark py-5">--%>
 <%--    <div class="container px-4 px-lg-5 my-5">--%>

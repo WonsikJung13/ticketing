@@ -8,6 +8,7 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="contentId">
         INSERT INTO Content (
         contentName,
+        contentRegion,
         contentStartDate,
         contentEndDate,
         startTime,
@@ -22,6 +23,7 @@
         )
         VALUES (
         #{contentName},
+        #{contentRegion},
         #{contentStartDate},
         #{contentEndDate},
         #{startTime},
@@ -150,12 +152,6 @@
         DELETE FROM ContentDetail
         WHERE contentId = #{contentId} AND contentDetailName = #{fileName}
     </delete>
-
-    <select id="reserv" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
-        SELECT FROM CustomerDto
-        WHERE customerId = #{customerId}
-    </select>
-
 
     <select id="selectContent" resultType="com.limdaram.ticketing.domain.content.ContentDto">
         SELECT

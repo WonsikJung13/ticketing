@@ -4,6 +4,7 @@ import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.mapper.customer.CustomerMapper;
 import com.limdaram.ticketing.service.customer.CustomerService;
 import com.limdaram.ticketing.service.customer.EmailService;
+import com.limdaram.ticketing.service.customer.EmailServiceImpl;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,6 +29,9 @@ public class CustomerController {
 
     @Setter(onMethod_ = @Autowired)
     private CustomerMapper customerMapper;
+
+    @Setter(onMethod_ = @Autowired)
+    private EmailServiceImpl emailServiceImpl;
 
     @RequestMapping("get")
     @PreAuthorize("authentication.name == #customerId")
@@ -104,7 +108,7 @@ public class CustomerController {
 
         if (customer == null) {
             map.put("statusEmail", "not exist");
-            map.put("message", "사용 가능한 이메일입니다");
+            map.put("message", "사용 가능한 이메일입니다. 이메일 인증해주세요.");
         } else {
             map.put("statusEmail", "exist");
             map.put("message", "이미 존재하는 이메일입니다");
@@ -197,15 +201,28 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("/emailConfirm")
-    public String emailConfirm(@RequestParam String email) throws Exception {
-        String confirm = emailService.sendSimpleMessage(email);
-        return confirm;
+    @PostMapping("emailConfirm")
+    @ResponseBody
+    public String emailConfirm(@RequestBody CustomerDto customerDto) throws Exception {
+
+        return emailService.sendSimpleMessage(customerDto.getCustomerEmail());
     }
 
-    @GetMapping("/emailConfirm")
-    public void emailConfirm() {
+    @RequestMapping("verifyCode")
+    @ResponseBody
+    public int verifyCode(@RequestBody Map<String, Object> map) {
+        System.out.println("ePw : " + emailServiceImpl.ePw);
 
+
+        int result = 0;
+        System.out.println("code : " + map.get("agreementEmailInput"));
+        System.out.println("code match : " + emailServiceImpl.ePw.equals(map.get("agreementEmailInput")));
+
+        if(emailServiceImpl.ePw.equals(map.get("agreementEmailInput"))) {
+            result = 1;
+        }
+        return result;
     }
+
 
 }
