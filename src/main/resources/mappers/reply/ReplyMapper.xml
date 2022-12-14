@@ -83,12 +83,14 @@
         INSERT INTO Reply(
             replyName,
             replyContent,
-            replyMainText
+            replyMainText,
+            contentId
         )
         VALUES(
             #{replyName},
             #{replyContent},
-            #{replyMainText}
+            #{replyMainText},
+            #{contentId}
         )
     </insert>
 

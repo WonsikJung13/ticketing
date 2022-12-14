@@ -4,7 +4,7 @@
 
 <%@ attribute name="active" %>
 
-<link rel="stylesheet" href="/css/all.min.css"> <!-- https://fontawesome.com/ -->
+<link rel="stylesheet" href="../css/all.min.css"> <!-- https://fontawesome.com/ -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <!-- https://fonts.google.com/ -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -92,6 +92,10 @@
                         Contact Us
                     </a>
                 </li>
+                                <li class="tm-nav-item"><a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
+                    <i class="fa-solid fa-comment"></i>
+                    문의하기
+                </a></li>
             </ul>
         </nav>
         <div class="tm-mb-65">
