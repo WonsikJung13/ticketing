@@ -44,33 +44,55 @@
         <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
-        <div class="tm-site-header">
+        <div style="margin-bottom: auto" class="tm-site-header">
             <div class="mb-3 mx-auto tm-site-logo"><img src="/oo.ico"/></div>
-            <h1 class="text-center">LimDaRam Blog</h1>
+            <h1 class="text-center">LimDaRam</h1>
+        </div>
+        <div>
+            <div style="margin-bottom: 30px" class="tm-mb-65">
+                <div>
+                    <sec:authentication property="name" var="username"/>
+                        <p style="color:white; margin-bottom: 0px; margin-top: 30px">
+                            <i class="fa-regular fa-face-grin-wide"></i>
+                            ${username}님
+                        </p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <a style="color: white" class="font-weight-light" href="/customer/get?customerId=${username}">내정보</a> |
+                            <a style="color: white" href="/logout">로그아웃</a>
+                        </div>
+                </div>
+            </div>
         </div>
         <nav class="tm-nav" id="tm-nav">
             <ul>
-                <li class="tm-nav-item active"><a href="/kimchi/list" class="tm-nav-link">
-                    <i class="fas fa-home"></i>
-                    Blog Home
-                </a></li>
-                <li class="tm-nav-item"><a href="/kimchi/register" class="tm-nav-link">
-                    <i class="fas fa-pen"></i>
-                    게시물 작성
-                </a></li>
-                <li class="tm-nav-item"><a href="/admin/customerList" class="tm-nav-link">
-                    <i class="fas fa-pen"></i>
-                    회원목록
-                </a></li>
-                <li class="tm-nav-item"><a href="about.html" class="tm-nav-link">
-                    <i class="fas fa-users"></i>
-                    About Xtra
-                </a></li>
-                <li class="tm-nav-item"><a href="contact.html" class="tm-nav-link">
-                    <i class="far fa-comments"></i>
-                    Contact Us
-                </a></li>
-                <li class="tm-nav-item"><a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
+                <li class="tm-nav-item">
+                    <a href="/kimchi/list" class="tm-nav-link">
+                        <i class="fas fa-home"></i>
+                        Blog Home
+                    </a>
+                </li>
+                <sec:authentication property="name" var="username"/>
+                <c:if test="${'admin' == username}">
+                    <li class="tm-nav-item">
+                        <a href="/kimchi/register" class="tm-nav-link">
+                            <i class="fas fa-pen"></i>
+                            게시물 작성
+                        </a>
+                    </li>
+                </c:if>
+                <li class="tm-nav-item">
+                    <a href="/admin/aboutXtra" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        About Xtra
+                    </a>
+                </li>
+                <li class="tm-nav-item">
+                    <a href="contact.html" class="tm-nav-link">
+                        <i class="far fa-comments"></i>
+                        Contact Us
+                    </a>
+                </li>
+                                <li class="tm-nav-item"><a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
                     <i class="fa-solid fa-comment"></i>
                     문의하기
                 </a></li>
