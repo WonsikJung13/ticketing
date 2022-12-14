@@ -672,8 +672,8 @@
         <form action="payment" method="post" name="paymentForm">
 <table id="reservation_share" align="center">
     <tr>
-        <td class="title" align="left">주소</td>
-        <td class="content" align="left">${DETAIL.address1}<br>${DETAIL.address2}</td>
+        <td class="title" align="left">${content.contentRegion}</td>
+        <td class="content" align="left">${content.contentAddress}<br>${content.contentAddrDetail}</td>
     </tr>
 </table>
 

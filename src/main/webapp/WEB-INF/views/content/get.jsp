@@ -87,6 +87,7 @@
             width: 0.1rem;
             height: 0.1rem;
         }
+
         .popCenter {
             position: fixed;
             top: 0;
@@ -95,14 +96,17 @@
             left: 0;
             text-align: center;
         }
+
         .popup {
             z-index: 300;
         }
+
         .popup.popInfoPlace > .popupWrap {
             /*width: 71rem;*/
             max-height: 90vh;
             overflow-y: auto;
         }
+
         .popCenter .popupWrap {
             position: relative;
             display: inline-block;
@@ -111,6 +115,7 @@
             background: #fff;
             z-index: 10;
         }
+
         .popup .popupWrap {
             position: relative;
             display: inline-block;
@@ -121,6 +126,7 @@
             box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 20%);
             box-sizing: border-box;
         }
+
         .popCenter .popupHead {
             overflow: hidden;
             height: 5rem;
@@ -131,11 +137,13 @@
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
         }
+
         .popCenter .popupTitle {
             font-size: 1.6rem;
             font-weight: bold;
             color: #000;
         }
+
         .popup .popupCloseBtn {
             background-image: url(//openimage.interpark.com/ticket-desktop/pages/product/icon_close.png);
             background-repeat: no-repeat;
@@ -151,6 +159,7 @@
             border: 0;
             cursor: pointer;
         }
+
         button {
             padding: 0;
             margin: 0;
@@ -166,15 +175,18 @@
             text-align: left;
             overflow: hidden;
         }
+
         .popInfoPlace {
             text-align: left;
             padding: 1.6rem 2.5rem 2.5rem;
         }
+
         .popPlaceWrap {
             text-align: left;
             padding: 1.6rem 2.5rem 2.5rem;
         }
-        .popInfoPlace .popPlaceTitle{
+
+        .popInfoPlace .popPlaceTitle {
             display: inline-block;
             margin-bottom: 0.8rem;
             max-width: 55rem;
@@ -183,11 +195,13 @@
             font-weight: bold;
             color: #000;
         }
+
         .popup.popInfoPlace .popPlaceInfo {
             color: #666;
             font-size: 1.4rem;
             max-width: 66rem;
         }
+
         .popup.popInfoPlace .popPlaceInfo p {
             display: -webkit-box;
             overflow: hidden;
@@ -196,6 +210,7 @@
             -webkit-box-orient: vertical;
             line-height: 160%;
         }
+
         .popup.popInfoPlace .placeMap {
             overflow: hidden;
             margin-top: 2.3rem;
@@ -203,6 +218,7 @@
             height: 44rem;
             border: 0.1rem solid #ccc;
         }
+
         #map {
             position: relative;
             overflow: hidden;
@@ -241,7 +257,8 @@
             <%--        <img src="/image/${content.contentId}/${contentPosterName}" alt="">--%>
             <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(content.contentPosterName, 'utf-8')}" alt="">
 
-            <p>장소 <a href="#popup-info-place" role="button" type="text" value="" class="mapPopup" readonly>${content.contentRegion}</a></p>
+            <p>장소 <a href="#popup-info-place" role="button" type="text" value="" class="mapPopup"
+                     readonly>${content.contentRegion}</a></p>
             <p>장소<input type="text" readonly value="${content.contentAddrDetail}" id='addrDetail'></p>
             기간 <input type="date" value="${content.contentStartDate}" readonly>
             ~ <input type="date" value="${content.contentEndDate}" readonly> <br>
@@ -257,41 +274,6 @@
             <%--            ${content.contentName}--%>
             <%--        </a>--%>
 
-            <%--    지도--%>
-            <div id="popup-info-place" class="popup popCenter popInfoPlace is-visible" style="display:none;">
-                <div class="popupWrap">
-                    <div class="popupHead">
-                        <Strong class="popupTitle">공연장 정보</Strong>
-                        <button class="popupCloseBtn">
-                            <span class="blind">닫기</span>
-                        </button>
-                    </div>
-                    <div class="popupBody">
-                        <div class="popPlaceWrap">
-                            <div class="popPlaceTitle">
-                                ${content.contentRegion}
-                            </div>
-                            <div class="popPlaceInfo">
-                                <p>
-                            <span>
-                                ${content.contentAddress}
-                            </span>
-                                </p>
-                            </div>
-                            <div id="map" class="placeMap" style="position: relative;"></div>
-                            <c:url value="https://map.kakao.com/link/to/" var="after">
-                                <c:param name=""
-                                         value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
-                            </c:url>
-                            <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">
-                                길찾기
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <button type="submit" class="btn btn-danger" value="" onclick="location.href='${reservLink}'">예약</button>
 </div>
 <nav class="nav">
@@ -344,75 +326,102 @@
 </div>
 </div>
 
-<%--    <div id="map" style="width:50%;height:350px;"></div>--%>
-<%--    <c:url value="https://map.kakao.com/link/to/" var="after">--%>
-<%--        <c:param name="" value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>--%>
-<%--    </c:url>--%>
-<%--    <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">--%>
-<%--        길찾기--%>
-<%--    </a>--%>
 
-    <!-- 삭제버튼 누르면 -->
-    <script>
-        document.querySelector("#removeConfirmButton").addEventListener("click", function () {
-            document.querySelector("#removeForm").submit();
-        });
-    </script>
+    <%--    지도 팝업 창--%>
+    <div id="popup-info-place" class="popup popCenter popInfoPlace is-visible" style="display:none;">
+        <div class="popupWrap">
+            <div class="popupHead">
+                <Strong class="popupTitle">전시장 정보</Strong>
+                <button class="popupCloseBtn">
+                    <span class="blind">닫기</span>
+                </button>
+            </div>
+            <div class="popupBody">
+                <div class="popPlaceWrap">
+                    <div class="popPlaceTitle">
+                        ${content.contentRegion}
+                    </div>
+                    <div class="popPlaceInfo">
+                        <p>
+                            <span>
+                                ${content.contentAddress}
+                            </span>
+                        </p>
+                    </div>
+                    <div id="map" class="placeMap" style="position: relative;"></div>
+                    <c:url value="https://map.kakao.com/link/to/" var="after">
+                        <c:param name=""
+                                 value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
+                    </c:url>
+                    <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">
+                        길찾기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-            crossorigin="anonymous">
-    </script>
-
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9c69650c14dccf7d58695456e5f600e2"></script>
-    <script>
-        // document.addEventListener("DOMContentLoaded", function () {
-
-        // Handler when the DOM is fully loaded
-
-        var a = parseFloat(document.querySelector('#entX').value);
-        var b = parseFloat(document.querySelector('#entY').value);
-
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-            mapOption = {
-                center: new kakao.maps.LatLng(a, b), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };
-
-        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-        // 마커가 표시될 위치입니다
-        var markerPosition = new kakao.maps.LatLng(a, b);
-        // 마커를 생성합니다
-        var marker = new kakao.maps.Marker({
-            position: markerPosition
-        });
-
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
-
-        // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-        // marker.setMap(null);
-
-</script>
+<!-- 삭제버튼 누르면 -->
 <script>
+    document.querySelector("#removeConfirmButton").addEventListener("click", function () {
+        document.querySelector("#removeForm").submit();
+    });
+</script>
+
+
+<!-- 지도 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9c69650c14dccf7d58695456e5f600e2"></script>
+<script>
+    // document.addEventListener("DOMContentLoaded", function () {
+
+    // Handler when the DOM is fully loaded
+
+    var a = parseFloat(document.querySelector('#entX').value);
+    var b = parseFloat(document.querySelector('#entY').value);
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(a, b), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    // 마커가 표시될 위치입니다
+    var markerPosition = new kakao.maps.LatLng(a, b);
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
+    // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+    // marker.setMap(null);
+
+    // 지도 display 변경
     const maptarget = document.querySelector('.mapPopup');
     maptarget.addEventListener('click', function () {
         targetId = this.getAttribute('href');
         document.querySelector(targetId).style.display = 'block';
-        window.setTimeout(function() {
+        window.setTimeout(function () {
             map.relayout();
-        map.setCenter(markerPosition);
+            map.setCenter(markerPosition);
         }, 0);
     });
 
     const btnPopClose = document.querySelector('.popupCloseBtn');
-    btnPopClose.addEventListener('click', function(){
+    btnPopClose.addEventListener('click', function () {
         this.parentNode.parentNode.parentNode.style.display = 'none';
     });
 
-
-
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous">
 </script>
 
 </body>
