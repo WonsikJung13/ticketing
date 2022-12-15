@@ -269,19 +269,21 @@
             width: 4px;
         }
 
-
         .TreeDotDropdown {
-            position: absolute;
-            display: inline-block;
-            right: 270px;
-            top: 120px;
+
+            position: relative;
+            /*display: inline-block;*/
+            left: 680px;
+
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
             margin-left: -130px;
-            margin-top: 1.3em;
+
+            margin-top: 40px;
+
             background-color: #ffffff;
             border: 1px solid #d5d5d5;
             border-radius: 3px;
@@ -310,6 +312,7 @@
     </style>
 
     <style>
+
         /*예매하기 버튼*/
         .btn-danger {
             color: #ffffff !important;
@@ -328,6 +331,7 @@
         .btn-secondary {
             border-radius: 0px !important;
         }
+
     </style>
 </head>
 <body>
@@ -337,9 +341,9 @@
     <my:sideBar/>
     <div class="container-fluid">
         <main class="tm-main" style="width:720px;">
-            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}
+            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
 
-                <!-- three dot menu -->
+            <!-- three dot menu -->
 
             <sec:authentication property="name" var="username"/>
             <c:if test="${username == 'admin'}">
@@ -352,7 +356,7 @@
                     </ul>
                     <!-- menu dropDown -->
                     <div id="myDropdown" class="dropdown-content">
-                        <%--    수정버튼--%>
+                            <%--    수정버튼--%>
                         <c:url value="/content/modify" var="modifyLink">
                             <c:param name="contentId" value="${content.contentId}"></c:param>
                         </c:url>
@@ -360,20 +364,19 @@
                             수정하기
                             <i class="fa-regular fa-pen-to-square" style="margin-left:38px;"></i>
                         </a>
-                        <%--    삭제버튼--%>
+                            <%--    삭제버튼--%>
                         <c:url value="/content/remove" var="removeLink"></c:url>
                         <form id="removeForm" action="${removeLink }" method="post">
                             <input type="hidden" name="contentId" value="${content.contentId }">
                         </form>
-                            <a class="removePost" href="${removeLink }" data-bs-toggle="modal" data-bs-target="#removeModal">
-                                삭제하기
-                                <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i><ion-icon name="trash"></ion-icon>
-                            </a>
+                        <a class="removePost" href="${removeLink }" data-bs-toggle="modal" data-bs-target="#removeModal">
+                            삭제하기
+                            <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i><ion-icon name="trash"></ion-icon>
+                        </a>
                     </div>
                 </div>
-
             </c:if>
-            </h1>
+
                 <span class="tm-mb-40">${content.time}</span>
             <!-- 포스터 및 기본 정보 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
@@ -427,14 +430,12 @@
 <%--            </nav>--%>
 
             <!-- 본문 및 디테일 이미지 -->
-
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
 
             <div class="row tm-row">
                 <div class="col-lg-8 tm-post-col">
                     <div class="tm-post-full">
                         <div class="mb-4">
-
                             <p style="width:45rem;">
                                 ${content.contentBoard}
                             </p>
