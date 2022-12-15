@@ -77,6 +77,29 @@ public class AdminController {
         return map;
     }
 
+    @PostMapping("resetPassword")
+    @ResponseBody
+    @PreAuthorize("authentication.name == 'admin'")
+    public Map<String, Object> resetPassword(@RequestBody CustomerDto customer) {
+
+        int resetPassword = adminService.resetPassword(customer);
+
+        Map<String, Object> map = new HashMap<>();
+
+
+        if (resetPassword == 1) {
+            map.put("status", "success");
+            map.put("message", "비밀번호가 초기화 되었습니다");
+        } else {
+            map.put("status", "fail");
+            map.put("message", "비밀번호 초기화에 실패하였습니다");
+        }
+
+        System.out.println(map);
+
+        return map;
+    }
+
     @GetMapping("about")
     public void about1() {
 

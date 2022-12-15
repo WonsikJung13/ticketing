@@ -15,4 +15,6 @@ public interface AdminMapper {
     List<GradeDto> getGradeList();
 
     int updateGrade(String customerId, String customerGrade);
+
+    int resetPassword(CustomerDto customer);
 }

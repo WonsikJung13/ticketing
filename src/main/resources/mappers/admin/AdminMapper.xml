@@ -9,6 +9,11 @@
         SET customerGrade = #{customerGrade}
         WHERE customerId = #{customerId}
     </update>
+    <update id="resetPassword">
+        UPDATE Customer
+        SET customerPassword = #{customerPassword}
+        WHERE customerId = #{customerId}
+    </update>
 
     <select id="getCustomerList" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
         SELECT * FROM Customer;
