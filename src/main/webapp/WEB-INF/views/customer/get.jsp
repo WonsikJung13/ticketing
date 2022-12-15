@@ -35,7 +35,7 @@
     </div>
 </c:if>
 <div class="tm-main">
-<div class="container-md">
+<div class="container-md" style="width: 600px">
     <div class="row mt-5">
         <div class="col">
 

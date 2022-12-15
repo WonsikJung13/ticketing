@@ -33,14 +33,16 @@
     </style>
 </head>
 <body class="align-middle">
-<div class="container-fluid d-flex justify-content-center" style="height: 100vh">
-    <div class="card align-self-center">
+<div class="container-fluid flex-column justify-content-center" style="height: 80vh; width: 320px; margin-top: 200px">
+    <div style="font-family: LINESeedKR-Bd; font-size: medium">
         <c:if test="${not empty exception }">
             <div class="alert alert-danger">
                 <i class="fa-solid fa-triangle-exclamation"></i>
                     ${exception }
             </div>
         </c:if>
+    </div>
+    <div class="card align-self-center">
         <div style="color: #0CC; font-family: 'LINESeedKR-Bd'" class="card-header">
             LOGIN
         </div>
@@ -53,13 +55,13 @@
 <%--            </c:if>--%>
             <form id="registerForm" action="/member/login" method="post" >
                 <div class="input-group mb-3">
-                    <span class="input-group-text">
+                    <span style="border-color: #0cc" class="input-group-text">
                         <i class="fa-solid fa-user"></i>
                     </span>
                     <input type="text" name="username" class="form-control" placeholder="USER ID">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text">
+                    <span style="border-color: #0cc" class="input-group-text">
                         <i class="fa-solid fa-key"></i>
                     </span>
                     <input type="password" name="password" class="form-control" placeholder="PASSWORD">
