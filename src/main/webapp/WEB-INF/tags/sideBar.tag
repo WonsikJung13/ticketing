@@ -37,6 +37,14 @@
     .tm-post-link-inner{
         background: none;
     }
+
+    /*글씨체*/
+    @font-face {
+        font-family: 'LINESeedKR-Bd';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+    }
 </style>
 
 <header class="tm-header" id="tm-header">
@@ -93,10 +101,6 @@
                     </a>
                 </li>
                                 <li class="tm-nav-item"><a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
-                    <i class="fa-solid fa-comment"></i>
-                    문의하기
-                </a></li>
-                <li class="tm-nav-item"><a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
                     <i class="fa-solid fa-comment"></i>
                     문의하기
                 </a></li>

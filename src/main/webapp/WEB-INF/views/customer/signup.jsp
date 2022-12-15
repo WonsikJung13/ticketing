@@ -12,28 +12,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<%--    <link href="../css/bootstrap.min.css" rel="stylesheet">--%>
+<%--    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">--%>
     <style>
         body {
             background-image: url("/back.jpg");
         }
+
+        /*글씨체*/
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .btn:hover {
+            background-color: #0CC;
+            color: white;
+        }
+
     </style>
 </head>
 <body class="align-middle">
 
 
 <div class="container-fluid d-flex justify-content-center">
-    <div class="row">
-        <h1 style="color: antiquewhite">회원가입</h1>
+    <div class="row mt-5">
+        <h1 style="color: white; font-family: 'LINESeedKR-Bd'">회원가입</h1>
         <div class="col card align-self-center" style="border: white 5px solid">
             <form action="" method="post" id="formId" name="form">
 
                 <div class="mb-3">
-                    <label for="" class="form-label" style="margin-top: 30px">
+                    <label for="" class="form-label" style="margin-top: 30px; font-family: 'LINESeedKR-Bd'">
                         이름
                     </label>
 
                     <div class="input-group">
-                        <input id="customerNameInput" class="form-control" type="text" name="customerName"
+                        <input style="border-color: #0cc" id="customerNameInput" class="form-control" type="text" name="customerName"
                                onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
@@ -41,12 +57,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" style="font-family: 'LINESeedKR-Bd'">
                         생년월일
                     </label>
 
                     <div class="input-group">
-                        <input id="customerBirthInput" class="form-control" type="date" name="customerBirth"
+                        <input style="border-color: #0cc" id="customerBirthInput" class="form-control" type="date" name="customerBirth"
                                onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     </div>
 
@@ -54,55 +70,55 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" style="font-family: 'LINESeedKR-Bd'">
                         아이디
                     </label>
 
                     <div class="input-group">
-                        <input id="customerIdInput" class="form-control" type="text" name="customerId"
+                        <input style="border-color: #0cc" id="customerIdInput" class="form-control" type="text" name="customerId"
                                onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
-                        <button id="customerIdButton" class="btn btn-outline-secondary" type="button">중복확인</button>
+                        <button style="border-color: #0cc; font-family: LINESeedKR-Bd" id="customerIdButton" class="btn" type="button">중복확인</button>
                     </div>
 
                     <div style="color: red" id="customerIdText" class="form-text"></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" style="font-family: 'LINESeedKR-Bd'">
                         비밀번호
                     </label>
-                    <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword"
+                    <input style="border-color: #0cc" id="customerPasswordInput1" class="form-control" type="password" name="customerPassword"
                            onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                     <div style="color: red" id="customerPasswordText1" class="form-text"></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" style="font-family: 'LINESeedKR-Bd'">
                         비밀번호 확인
                     </label>
-                    <input id="customerPasswordInput2" class="form-control" type="password" onkeyup="noSpaceForm(this)"
+                    <input style="border-color: #0cc" id="customerPasswordInput2" class="form-control" type="password" onkeyup="noSpaceForm(this)"
                            onchange="noSpaceForm(this)">
                     <div style="color: red" id="customerPasswordText2" class="form-text"></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" style="font-family: 'LINESeedKR-Bd'">
                         이메일
                     </label>
                     <div class="input-group">
-                        <input id="customerEmailInput" class="form-control" type="email" name="customerEmail" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
-                        <button id="customerEmailButton" disabled class="btn btn-outline-secondary" type="button">중복확인</button>
-                        <button id="emailAuthenticationButton" disabled type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#emailModal">이메일 인증하기</button>
+                        <input style="border-color: #0cc" id="customerEmailInput" class="form-control" type="email" name="customerEmail" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <button style="border-color: #0cc; font-family: LINESeedKR-Bd" id="customerEmailButton" disabled class="btn" type="button">중복확인</button>
+                        <button style="border-color: #0cc; font-family: LINESeedKR-Bd" id="emailAuthenticationButton" disabled type="button" class="btn" data-bs-toggle="modal" data-bs-target="#emailModal">이메일 인증하기</button>
                     </div>
                     <div style="color: red" id="customerEmailText" class="form-text"></div>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" style="font-family: 'LINESeedKR-Bd'">
                         핸드폰 번호
                     </label>
 
                     <div class="input-group">
-                        <input id="customerPhoneNumberInput" class="form-control" type="text"
+                        <input style="border-color: #0cc" id="customerPhoneNumberInput" class="form-control" type="text"
                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="customerPhoneNumber"
                                placeholder="010 부터 숫자만 입력  (ex. 01011112222)" maxlength="11" onkeyup="noSpaceForm(this)"
                                onchange="noSpaceForm(this)">
@@ -112,22 +128,23 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label for="" class="form-label" style="font-family: 'LINESeedKR-Bd'">
                         주소
                     </label>
 
                     <div class="input-group">
-                        <input id="customerAddressInput" readonly class="form-control" type="text"
+                        <input style="border-color: #0cc" id="customerAddressInput" readonly class="form-control" type="text"
                                name="customerAddress">
-                        <input id="customerAddressButton" class="btn btn-outline-secondary" type="button"
-                               onClick="goPopup();" value="검색"/>
+                        <button style="border-color: #0cc" id="customerAddressButton" class="btn" type="button" onClick="goPopup();">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
                     </div>
                     <div style="color: red" id="customerAddressText" class="form-text"></div>
                 </div>
 
                 <input type="hidden" name="social" value="false">
 
-                <input id="submitButton" class="btn btn-primary" type="submit" value="가입" style="margin-bottom: 30px">
+                <input id="submitButton" class="btn" type="submit" value="가입" style="margin-bottom: 20px; font-family: 'LINESeedKR-Bd'; background-color: #0cc; color: white">
 
             </form>
         </div>
