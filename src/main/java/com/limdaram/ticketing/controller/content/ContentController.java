@@ -42,8 +42,6 @@ public class ContentController {
             MultipartFile file1,
             MultipartFile[] file2,
             RedirectAttributes rttr) {
-//        System.out.println("등록" + content);
-//        System.out.println(content.getContentId());
 
         int cnt = service.register(content, file1, file2);
 
@@ -59,17 +57,18 @@ public class ContentController {
     @GetMapping("list")
     public void list(Model model, ContentDto content) {
         List<ContentDto> list = service.listContent(content);
-//        System.out.println("리스트"+list);
-//        System.out.println("content"+content);
+
         model.addAttribute("contentList", list);
     }
 
     @GetMapping("get")
+    @PreAuthorize("isAuthenticated()")
     public void get(int contentId,
                     Model model) {
         ContentDto content = service.get(contentId);
-//        System.out.println("조회창 " + content);
+
         model.addAttribute("content", content);
+        System.out.println("조회창 " + content);
 
     }
 
@@ -95,16 +94,7 @@ public class ContentController {
             @RequestParam(name = "removeDetailNames", required = false) List<String> removeDetailNames,
             RedirectAttributes rttr) {
 
-        // 지울 파일명 들어오는지 확인
-//        System.out.println("지울 파일명###");
-        if (removePosterName != null) {
-//            for(String name : removeDetailFiles) {
-//                System.out.println(removePosterName);
-//            }
-        }
-
         int cnt = service.update(content, addPosterFile, addDetailFiles, removePosterName, removeDetailNames);
-//        System.out.println("수정완료 " + content);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 수정 완료");
@@ -120,7 +110,6 @@ public class ContentController {
     @PreAuthorize("authentication.name == 'admin'")
     public String remove(int contentId, RedirectAttributes rttr) {
         int cnt = service.remove(contentId);
-//        System.out.println("삭제완료 " + contentId);
 
         if (cnt == 1) {
             rttr.addFlashAttribute("message", "상품 삭제 완료");
@@ -135,7 +124,6 @@ public class ContentController {
     public void reservation(int contentId, Model model, Authentication authentication){
         CustomerDto customerDto = customerService.getByCustomerId(authentication.getName());
         ContentDto content = service.reservation(contentId);
-//        System.out.println("reservation : " + content);
         model.addAttribute("content", content);
         model.addAttribute("customer", customerDto);
 
@@ -206,7 +194,6 @@ public class ContentController {
     public void indexGet(int contentId, Model model) {
         ContentDto content = service.get(contentId);
         model.addAttribute("content", content);
-//        System.out.println(content);
 
     }
 }
