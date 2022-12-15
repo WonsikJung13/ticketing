@@ -2,8 +2,12 @@ package com.limdaram.ticketing.controller.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
 import com.limdaram.ticketing.domain.customer.CustomerDto;
+import com.limdaram.ticketing.domain.kimchi.KimchiDto;
+import com.limdaram.ticketing.domain.reply.ReplyDto;
 import com.limdaram.ticketing.service.content.ContentService;
 import com.limdaram.ticketing.service.customer.CustomerService;
+import com.limdaram.ticketing.service.reply.ReplyService;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -28,6 +32,9 @@ public class ContentController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Setter(onMethod_ = @Autowired)
+    private ReplyService replyService;
 
     @GetMapping("register")
     @PreAuthorize("authentication.name == 'admin'")
@@ -66,10 +73,10 @@ public class ContentController {
     public void get(int contentId,
                     Model model) {
         ContentDto content = service.get(contentId);
+        List<ReplyDto> reply = replyService.getContentId(contentId);
 
         model.addAttribute("content", content);
-        System.out.println("조회창 " + content);
-
+        model.addAttribute("replyy", reply);
     }
 
     @GetMapping("modify")
@@ -79,7 +86,6 @@ public class ContentController {
             Model model) {
 
         ContentDto content = service.get(contentId);
-//        System.out.println("수정창 " + contentId);
         model.addAttribute("content", content);
     }
 

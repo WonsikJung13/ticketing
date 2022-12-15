@@ -38,7 +38,7 @@
 
 
 <div class="container-fluid d-flex justify-content-center">
-    <div class="row mt-5">
+    <div class="row mt-5 mb-5">
         <h1 style="color: white; font-family: 'LINESeedKR-Bd'">회원가입</h1>
         <div class="col card align-self-center" style="border: white 5px solid">
             <form action="" method="post" id="formId" name="form">
