@@ -66,7 +66,7 @@
         <nav class="tm-nav" id="tm-nav">
             <ul>
                 <li class="tm-nav-item">
-                    <a href="/kimchi/list" class="tm-nav-link">
+                    <a href="/content/list" class="tm-nav-link">
                         <i class="fas fa-home"></i>
                         Blog Home
                     </a>
@@ -74,7 +74,7 @@
                 <sec:authentication property="name" var="username"/>
                 <c:if test="${'admin' == username}">
                     <li class="tm-nav-item">
-                        <a href="/kimchi/register" class="tm-nav-link">
+                        <a href="/content/register" class="tm-nav-link">
                             <i class="fas fa-pen"></i>
                             게시물 작성
                         </a>
