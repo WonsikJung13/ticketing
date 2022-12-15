@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -34,28 +31,9 @@ public class ReplyController {
     @GetMapping("get")
     @PreAuthorize("isAuthenticated()")
     public void get(@RequestParam(name = "replyId") int replyId, Model model) {
-        // request param
-        // business logic (게시물 db에서 가져오기)
         ReplyDto reply = replyService.get(replyId);
-        // add attribute
         model.addAttribute("Reply", reply);
-        // forward / redirect
     }
-
-//    @PostMapping("add")
-//    @ResponseBody
-//    @PreAuthorize("authentication.name == #customerId")
-//    public Map<String, Object> add (@RequestBody ReplyDto reply) {
-//         System.out.println(reply);
-//        Map<String, Object> map = new HashMap<>();
-//        int cnt = replyService.addReply(reply);
-//        if (cnt == 1) {
-//            map.put("message", "새 댓글이 등록되었습니다.");
-//        } else {
-//            map.put("message", "새 댓글이 등록되지 않았습니다.");
-//        }
-//        return map;
-//    }
 
     @RequestMapping("register")
     @PreAuthorize("isAuthenticated()")
@@ -74,8 +52,7 @@ public class ReplyController {
             rttr.addFlashAttribute("message", "새 게시물이 등록되지 않았습니다.");
         }
 
-        // /board/list로 redirect
-        return "redirect:/reply/list";
+        return "redirect:/reply/kkiimmcchhii";
     }
 
     @PostMapping("modify")
@@ -90,7 +67,7 @@ public class ReplyController {
             rttr.addFlashAttribute("message", replyDto.getReplyId() + "번 게시물을 수정하지 못했습니다.");
         }
 
-        return "redirect:/reply/list";
+        return "redirect:/reply/kkiimmcchhii";
     }
 
     @GetMapping("modify")
@@ -109,7 +86,12 @@ public class ReplyController {
         } else {
             rttr.addFlashAttribute("message", replyId + "번 게시물이 삭제되지 않았습니다.");
         }
-        return "redirect:/reply/list";
+        return "redirect:/reply/kkiimmcchhii";
+    }
+
+    @RequestMapping("kkiimmcchhii")
+    public void kkiimmcchhii(){
+
     }
 
 }

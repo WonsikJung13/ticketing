@@ -12,10 +12,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
+    <style>
+        /*글씨체*/
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+    </style>
 </head>
 <body>
 <div class="container-md">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col">
             <c:if test="${not empty message }">
                 <div class="alert alert-success">
@@ -23,48 +34,48 @@
                 </div>
             </c:if>
 
-            <h1>회원 정보 수정하기</h1>
+            <h1 style="font-family: 'LINESeedKR-Bd'">회원 정보 수정하기</h1>
 
 
             <div class="mb-3">
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR'" for="" class="form-label">
                     이름
                 </label>
                 <input class="form-control" type="text" value="${customer.customerName }" readonly>
             </div>
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#nameModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#nameModal">
                 이름 변경하기
             </button>
 
             <div class="mb-3">
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                     생년월일
                 </label>
                 <input class="form-control" type="date" value="${customer.customerBirth }" readonly>
             </div>
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#birthModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#birthModal">
                 생년월일 변경하기
             </button>
 
             <div class="mb-3">
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                     아이디
                 </label>
                 <input class="form-control" type="text" value="${customer.customerId }" readonly>
             </div>
 
             <div class="mb-3" class="form-label">
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                     비밀번호
                 </label>
-                <input class="form-control" type="password" value="${customer.customerPassword}" readonly>
+                <input class="form-control" type="password" value="****" readonly>
             </div>
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">
                 비밀번호 변경하기
             </button>
 
             <div class="mb-3">
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                     이메일
                 </label>
                 <div>
@@ -73,7 +84,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                     핸드폰 번호
                 </label>
                 <div>
@@ -81,13 +92,13 @@
                 </div>
 
             </div>
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
                 핸드폰 번호 변경하기
             </button>
 
 
             <div class="mb-3">
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                     주소
                 </label>
                 <form id="addressForm" action="addressModify" method="post">
@@ -98,26 +109,26 @@
                     </div>
                 </form>
             </div>
-            <button id="modalConfirmAddressButton" type="button" class="btn btn-outline-secondary">
+            <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button" class="btn btn-outline-secondary">
                 주소 변경하기
             </button>
 
 
             <div class="mb-3">
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                     등급
                 </label>
                 <input class="form-control" type="text" value="${customer.customerGrade }" readonly>
             </div>
 
             <div class="mb-3" >
-                <label for="" class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                     가입일시
                 </label>
                 <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button id="exitButton" type="button" class="btn btn-warning">
+                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white;" id="exitButton" type="button" class="btn">
                     나가기
                 </button>
             </div>

@@ -18,6 +18,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        textarea {
+            width: 100%;
+            height: 20em;
+            border: none;
+            resize: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -29,7 +37,7 @@
         </label>
         <input
                 value="<sec:authentication property="name"/>"
-                class="form-control" type="text" name="replyName" readonly>
+                class="form-control" type="text" name="replyName" style="background-color: #d4d4d4" readonly>
     </div>
 
     <div class="mb-3">
@@ -46,7 +54,9 @@
         <textarea class="form-control" name="replyMainText"></textarea>
     </div>
 
-    <input class="btn btn-primary" type="submit" value="등록">
+    <input type="hidden" name="contentId" value="${param.contentId}">
+
+    <input class="btn btn-warning" type="submit" value="등록">
 </form>
 
 

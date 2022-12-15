@@ -81,23 +81,43 @@
                     <hr class="tm-hr-primary tm-mb-55">
                     <!-- Comments -->
                     <div>
-                        <h2 class="tm-color-primary tm-post-title">후기</h2>
+                        <c:url value="/reply/register" var="registerLink">
+                            <c:param name="contentId" value="${kimchi.contentId}" />
+                        </c:url>
+                        <h2 class="tm-color-primary tm-post-title">
+                            후기
+<%--                            <i href="${registerLink}" onclick="location.href='register'" class="fa-solid fa-plus"></i>--%>
+                            <a href="${registerLink}" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </h2>
+
                         <hr class="tm-hr-primary tm-mb-45">
                         <c:forEach items="${replyy}" var="reply">
-                        <div class="tm-comment tm-mb-45">
+                            <div class="tm-comment tm-mb-45">
+                            <input type="hidden" id="replyId" value="${reply.replyId}" >
                                 <figure class="tm-comment-figure">
-                                    <figcaption class="tm-color-primary text-center">${reply.replyName}</figcaption>
+                                    <figcaption class="tm-color-primary text-center">
+                            <c:url value="/reply/get" var="getLink">
+                                <c:param name="replyId" value="${reply.replyId}" />
+                            </c:url>
+                                        <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">
+                                                ${reply.replyName}
+                                        </a>
+                                    </figcaption>
                                 </figure>
                                 <div>
-                                    <p>
+                                    <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">
                                             ${reply.replyContent}
-                                    </p>
+                                    </a>
                                     <div class="d-flex justify-content-between">
                                         <span class="tm-color-primary">${reply.time}</span>
                                     </div>
                                 </div>
                         </div>
                         </c:forEach>
+
+
                     </div>
                 </div>
             </div>
