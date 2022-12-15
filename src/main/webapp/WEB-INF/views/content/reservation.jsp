@@ -665,6 +665,10 @@
     </style>
 </head>
 <body>
+<my:sideBar/>
+<div class="container-fluid">
+    <main class="tm-main">
+
 <div class="mainBox">
     <div class="contentBox">
         <div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700">예약하기</span>
@@ -758,6 +762,8 @@
 </table>
         </form>
     </div>
+</div>
+    </main>
 </div>
 <script type="text/javascript">buildCalendar();</script>
 

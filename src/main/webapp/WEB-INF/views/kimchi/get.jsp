@@ -25,18 +25,19 @@
 <div class="container-fluid">
     <main class="tm-main">
         <div class="row tm-row">
-            <div class="col-12">
+            <h1>${content.contentName}
+                <div class="col-12">
                 <hr class="tm-hr-primary tm-mb-55">
-                <img src="${imgUrl}/${kimchi.contentId}/${kimchi.contentPosterName}" alt="Image" class="img-fluid">
+                <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image" class="img-fluid">
             </div>
             <aside class="col-lg-4 tm-aside-col">
                 <div class="tm-post-sidebar">
                     <hr class="mb-3 tm-hr-primary">
                     <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>
                     <figcaption class="tm-color-primary">기간</figcaption>
-                    <p>${kimchi.contentStartDate} ~ ${kimchi.contentEndDate}</p>
+                    <p>${content.contentStartDate} ~ ${content.contentEndDate}</p>
                     <figcaption class="tm-color-primary">가격</figcaption>
-                    <p>${kimchi.contentPrice}원</p>
+                    <p>${content.contentPrice}원</p>
                 </div>
                 <hr class="mb-3 tm-hr-primary">
             </aside>
@@ -45,35 +46,35 @@
             <div class="col-lg-8 tm-post-col">
                 <div class="tm-post-full">
                     <div class="mb-4">
-                        <h2 class="pt-2 tm-color-primary tm-post-title">${kimchi.contentName}</h2>
-                        <p class="tm-mb-40">${kimchi.time}</p>
+                        <h2 class="pt-2 tm-color-primary tm-post-title">${content.contentName}</h2>
+                        <p class="tm-mb-40">${content.time}</p>
                         <p class="tm-mb-40">작성자</p>
                         <hr class="tm-hr-primary tm-mb-45">
-                        <c:forEach items="${kimchi.contentDetailName}" var="contentDetailName"
+                        <c:forEach items="${content.contentDetailName}" var="contentDetailName"
                                    varStatus="status">
                             <div class="row">
                                 <div class="col-2 d-flex justify-content-center align-items-center">
                                 <div class="col-10">
                                     <img class="img-fluid img-thumbnail" width=""
-                                         src="${imgUrl}/${kimchi.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
+                                         src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
                                          alt="">
                                 </div>
                                 </div>
                             </div>
                         </c:forEach>
                         <p>
-                            ${kimchi.contentBoard}
+                            ${content.contentBoard}
                         </p>
                     </div>
                     <hr class="tm-hr-primary tm-mb-45">
                     <h2 class="mb-4 tm-post-title tm-color-primary">위치</h2>
-                    <p>${kimchi.contentAddress}</p>
-                    <p>${kimchi.contentAddrDetail}</p>
+                    <p>${content.contentAddress}</p>
+                    <p>${content.contentAddrDetail}</p>
                     <c:url value="https://map.kakao.com/link/to/" var="after">
                         <c:param name=""
-                                 value="${kimchi.contentAddress},${kimchi.contentMapEntX },${kimchi.contentMapEntY }"/>
+                                 value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
                     </c:url>
-                    <a href="${after},${kimchi.contentAddress},${kimchi.contentMapEntX },${kimchi.contentMapEntY }">
+                    <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">
                         <i class="fa-solid fa-location-arrow" style="font-size: 30px"></i>
                     </a>
                     <div id="map" style="width:400px;height:350px;"></div>
@@ -118,8 +119,8 @@
     // Handler when the DOM is fully loaded
 
 
-    var a = "${kimchi.contentMapEntX }";
-    var b = "${kimchi.contentMapEntY }";
+    var a = "${content.contentMapEntX }";
+    var b = "${content.contentMapEntY }";
     console.log(a, b);
 
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
