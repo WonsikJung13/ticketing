@@ -22,18 +22,18 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
                                         AuthenticationException exception) throws IOException, ServletException {
         String errorMessage;
         if (exception instanceof BadCredentialsException) {
-            errorMessage = "비밀번호가 일치하지 않습니다. \n 다시 확인해주세요.";
+            errorMessage = "비밀번호가 일치하지 않습니다. </br> 다시 확인해주세요.";
         }
         else if (exception instanceof InternalAuthenticationServiceException) {
-            errorMessage = "아이디가 일치하지 않습니다. \n 다시 확인해주세요";
+            errorMessage = "아이디가 일치하지 않습니다. </br> 다시 확인해주세요";
         }
         else if (exception instanceof UsernameNotFoundException)
         {
-            errorMessage = "계정이 존재하지 않습니다. \n 회원가입 후 로그인해주세요";
+            errorMessage = "계정이 존재하지 않습니다. </br> 회원가입 후 로그인해주세요";
         } else if (exception instanceof AuthenticationCredentialsNotFoundException) {
-            errorMessage = "인증 요청이 거부되었습니다. \n 관리자에게 문의하세요.";
+            errorMessage = "인증 요청이 거부되었습니다. </br> 관리자에게 문의하세요.";
         } else {
-            errorMessage = "알 수 없는 이유로 로그인에 실패하였습니다. \n 관리자에게 문의하세요.";
+            errorMessage = "알 수 없는 이유로 로그인에 실패하였습니다. </br> 관리자에게 문의하세요.";
         }
         errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
         setDefaultFailureUrl("/member/login?error=true&exception="+errorMessage);

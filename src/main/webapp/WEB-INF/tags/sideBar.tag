@@ -104,39 +104,39 @@
         </nav>
 
         <%-- github --%>
-        <div class="tm-mb-65">
+        <div style="margin: 10px; color : #0cc; !important;" class="tm-mb-65;">
             <%-- JWS --%>
-            <a href="https://github.com/WonsikJung13" target="_blank" class="tm-social-link">
-                <div>
-                    <i class="fa-regular fa-face-meh-blank"></i>
+            <a href="https://github.com/WonsikJung13" target="_blank" class="">
+                <div style=" float: left; margin-right: 15px">
+                    <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-meh-blank"></i>
                     <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">JWS</div>
                 </div>
             </a>
             <%-- LSG --%>
-            <a href="https://github.com/gmlrmrtjd" target="_blank" class="tm-social-link">
-                <div>
-                    <i class="fa-regular fa-face-rolling-eyes"></i>
+            <a href="https://github.com/gmlrmrtjd" target="_blank" class="">
+                <div style=" float: left; margin-right: 15px">
+                    <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-grimace"></i>
                     <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LSG</div>
                 </div>
             </a>
             <%-- LCE --%>
-            <a href="https://github.com/Limdaram" target="_blank" class="tm-social-link">
-                <div>
-                    <i class="fa-regular fa-face-laugh-beam"></i>
+            <a href="https://github.com/Limdaram" target="_blank" class="">
+                <div style=" float: left; margin-right: 15px">
+                    <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-laugh-beam"></i>
                     <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LCE</div>
                 </div>
             </a>
             <%-- HHJ --%>
-            <a href="https://github.com/ha971206" target="_blank" class="tm-social-link">
+            <a href="https://github.com/ha971206" target="_blank" class="">
                 <div>
-                    <i class="fa-regular fa-face-surprise"></i>
+                    <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-surprise"></i>
                     <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">HHJ</div>
                 </div>
             </a>
         </div>
-        <p class="tm-mb-80 pr-5 text-white">
+        <div class="tm-mb-80 pr-5 text-white">
             Xtra Blog is a multi-purpose HTML template from TemplateMo website. Left side is a sticky menu bar. Right side content will scroll up and down.
-        </p>
+        </div>
     </div>
 </header>
 

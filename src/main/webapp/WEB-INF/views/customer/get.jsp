@@ -35,9 +35,9 @@
     </div>
 </c:if>
 <div class="tm-main">
-<div class="container-md" style="width: 600px">
+<div class="container-md" style="width: 900px">
     <div class="row mt-5">
-        <div class="col">
+        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
 
             <h1 style="font-family: 'LINESeedKR-Bd'">내 정보</h1>
 
@@ -122,9 +122,9 @@
     <input type="hidden" name="oldPassword">
 </form>
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-center">
-    <a style="background-color: #0CC; color: white; font-family: 'LINESeedKR-Bd'" class = "btn " href="${modifyLink}">수정하기</a>
-    <input style="font-family: 'LINESeedKR-Bd'" class="btn btn-danger" type="submit" value="탈퇴하기" data-bs-toggle="modal" data-bs-target="#removeModal">
+<div class="gap-2 d-md-flex justify-content-md-center">
+    <a style="background-color: #0CC; color: white; font-family: 'LINESeedKR-Bd';" class = "btn " href="${modifyLink}">수정하기</a>
+    <input style="font-family: 'LINESeedKR-Bd';" class="btn btn-danger" type="submit" value="탈퇴하기" data-bs-toggle="modal" data-bs-target="#removeModal">
 </div>
 
 <br>

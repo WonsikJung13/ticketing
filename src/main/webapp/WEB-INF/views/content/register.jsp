@@ -23,6 +23,8 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js" integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <%--    <script>--%>
 <%--        function checkDay() {--%>
@@ -54,85 +56,173 @@
 <%--            console.log($('#hiddenValue').val());--%>
 <%--        };--%>
 <%--    </script>--%>
+    <style>
+        /*글씨체*/
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .btn:hover {
+            background-color: #0CC;
+            border-color: #0cc;
+            color: white;
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            border: none;
+            resize: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>상품 등록</h1>
-    <form id="contentRegisterForm" action="" method="post" enctype="multipart/form-data">
-        상품명 <input required="required" type="text" name="contentName">
-        <br>
-        장소 <input required="required" type="text" name="contentRegion">
-        <br>
-        기간 <input required="required" type="date" name="contentStartDate">
-        ~ <input required="required" type="date" name="contentEndDate">
-        <br>
-        휴관일
-        <div class="form-check form-check-inline">
-            <input type="checkbox" value="1" id="checkMon" class="checkSelect" onchange="checkFun()">월
+<div class="container-md" style="width: 900px">
+    <div class="row mt-5">
+        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
+            <h1 style="font-family: 'LINESeedKR-Bd'">상품 등록</h1>
 
-            <input type="checkbox" value="1" id="checkTues" class="checkSelect" onchange="checkFun()"/>화
+            <form id="contentRegisterForm" action="" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        상품명
+                    </label>
+                    <input class="form-control" required="required" type="text" name="contentName">
+                </div>
 
-            <input type="checkbox" value="1" id="checkWednes" class="checkSelect" onchange="checkFun()"/>수
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        장소
+                    </label>
+                    <input class="form-control" required="required" type="text" name="contentRegion">
+                </div>
 
-            <input type="checkbox" value="1" id="checkThurs" class="checkSelect" onchange="checkFun()"/>목
+                <div>
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        기간
+                    </label>
+                </div>
+                <div  class="mb-3" style="">
+                     <input class="form-control" style="width:40% !important;" required="required" type="date" name="contentStartDate">
+                    ~ <input class="form-control" style="width:40% !important;" required="required" type="date" name="contentEndDate">
+                </div>
 
-            <input type="checkbox" value="1" id="checkFri" class="checkSelect" onchange="checkFun()"/>금
+                <div>
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        휴관일
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div style="font-family: 'LINESeedKR-Bd'">
+                        <input type="checkbox" value="1" id="checkMon" class="checkSelect" onchange="checkFun()"> 월
+                    </div>
 
-            <input type="checkbox" value="1" id="checkSatur" class="checkSelect" onchange="checkFun()"/>토
+                    <div style="margin-left: 20px; font-family: 'LINESeedKR-Bd'">
+                        <input type="checkbox" value="1" id="checkTues" class="checkSelect" onchange="checkFun()"/> 화
+                    </div>
 
-            <input type="checkbox" value="1" id="checkSun" class="checkSelect" onchange="checkFun()"/>일
+                    <div style="margin-left: 20px; font-family: 'LINESeedKR-Bd'">
+                        <input type="checkbox" value="1" id="checkWednes" class="checkSelect" onchange="checkFun()"/> 수
+                    </div>
 
-            <input type="hidden" name="dayLimit" id="dayLimit" value=""/>
+                    <div style="margin-left: 20px; font-family: 'LINESeedKR-Bd'">
+                        <input type="checkbox" value="1" id="checkThurs" class="checkSelect" onchange="checkFun()"/> 목
+                    </div>
+
+                    <div style="margin-left: 20px; font-family: 'LINESeedKR-Bd'">
+                        <input type="checkbox" value="1" id="checkFri" class="checkSelect" onchange="checkFun()"/> 금
+                    </div>
+
+                    <div style="margin-left: 20px; font-family: 'LINESeedKR-Bd'">
+                        <input type="checkbox" value="1" id="checkSatur" class="checkSelect" onchange="checkFun()"/> 토
+                    </div>
+
+                    <div style="margin-left: 20px; font-family: 'LINESeedKR-Bd'">
+                        <input type="checkbox" value="1" id="checkSun" class="checkSelect" onchange="checkFun()"/> 일
+                    </div>
+
+                    <input type="hidden" name="dayLimit" id="dayLimit" value=""/>
+                </div>
+
+                <div>
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        시작 시간
+                    </label>
+                    <input class="form-control" required="required" type="number" name="startTime" min="0" max="24">
+
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label mt-3">
+                        종료 시간
+                    </label>
+                     <input class="form-control mb-3" required="required" type="number" name="endTime" min="0" max="24">
+                </div>
+
+                <div>
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        가격
+                    </label>
+                </div>
+                <input class="form-control mb-3" required="required" type="number" name="contentPrice" min="0" step="1000" placeholder="원">
+
+                <div>
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        정보
+                    </label>
+                </div>
+                <textarea class="form-control mb-3" name="contentBoard"></textarea>
+
+
+                <div class="posterBox">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        포스터
+                    </label>
+                </div>
+                <input style="padding-bottom: 0" type="file" accept="image/*" class="form-control mb-3" name="file1">
+
+                <div class="DetailBox">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        세부내용
+                    </label>
+                </div>
+                <input multiple type="file" accept="image/*" class="form-control mb-3" name="file2">
+
+        <%--      주소 검색  --%>
+                <table >
+                    <colgroup>
+                        <col style="width:20%"><col>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <%--            도로명주소--%>
+                        <input type="text" id="contentAddress" name="contentAddress" style="width:85%">
+                        <input type="hidden" id="confmKey" name="confmKey" value=""  >
+                            <button type="btn"onclick="goPopup();">
+                                주소검색
+                            </button>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%--             경위도--%>
+                            <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="">
+                            <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+        <%--                    상세정보--%>
+                            <input type="text" id="contentAddrDetail" name="contentAddrDetail" style="width:40%" value="" readonly>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <input id="submitButton1" type="submit" value="등록">
+            </form>
         </div>
-        <br>
-        시작시간 <input required="required" type="number" name="startTime" min="0" max="24">
-        ~
-        종료시간 <input required="required" type="number" name="endTime" min="0" max="24">
-        <br>
-        가격 <input required="required" type="number" name="contentPrice" min="0" step="1000">원
-        <br>
-        정보 <textarea name="contentBoard"></textarea>
-        <br>
-        <div class="posterBox">
-            <label for="" class="form-label">포스터</label>
-            <input type="file" accept="image/*" class="form-control" name="file1">
-        </div>
-        <div class="DetailBox">
-            <label for="" class="form-label">세부내용</label>
-            <input multiple type="file" accept="image/*" class="form-control" name="file2">
-        </div>
-
-        <br>
-
-<%--      주소 검색  --%>
-        <table >
-            <colgroup>
-                <col style="width:20%"><col>
-            </colgroup>
-            <tbody>
-            <tr>
-                <%--            도로명주소--%>
-                <td><input type="hidden" id="contentAddress" name="contentAddress" style="width:85%"></td>
-                <input type="hidden" id="confmKey" name="confmKey" value=""  >
-                <input type="button"  value="주소검색" onclick="goPopup();">
-            </tr>
-            <tr>
-                <td>
-                    <%--             경위도--%>
-                    <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="">
-                    <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="">
-                </td>
-            </tr>
-            <tr>
-                <td>
-<%--                    상세정보--%>
-                    <input type="text" id="contentAddrDetail" name="contentAddrDetail" style="width:40%" value="" readonly>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <input id="submitButton1" type="submit" value="등록">
-    </form>
+    </div>
+</div>
 <script>
     checkFun();
     function checkFun() {
