@@ -228,12 +228,15 @@
         }
     </style>
     <style>
-        *{margin: 0;padding:0px}
+        * {
+            margin: 0;
+            padding: 0px
+        }
 
-        .showLeft{
+        .showLeft {
             text-shadow: none !important;
-            color:#000000 !important;
-            padding:10px;
+            color: #000000 !important;
+            padding: 10px;
         }
 
         .icons li {
@@ -245,7 +248,7 @@
             margin-right: 15px;
             margin-top: 3px;
             vertical-align: top;
-            border-radius:50%;
+            border-radius: 50%;
             pointer-events: none;
         }
 
@@ -289,22 +292,24 @@
             border-radius: 3px;
             min-width: 160px;
             overflow: auto;
-            box-shadow: rgba(0,0,0,.1) 0 1px 1px 0;
+            box-shadow: rgba(0, 0, 0, .1) 0 1px 1px 0;
             text-align: left;
             z-index: 1;
         }
 
         .dropdown-content a {
             color: #888;
-            font-size:17px;
+            font-size: 17px;
             padding: 7px 16px;
-            line-height:30px;
+            line-height: 30px;
             border-top: 1px solid #f2f2f2;
             text-decoration: none;
             display: block;
         }
 
-        .show {display:block;}
+        .show {
+            display: block;
+        }
 
         .removePost {
             color: #ff4646 !important;
@@ -318,16 +323,19 @@
             color: #ffffff !important;
             background-color: #79dfdf !important;
             border-color: #79dfdf !important;
-            border-radius:0px !important;
+            border-radius: 0px !important;
         }
+
         .btn-danger:hover {
-            background-color:#5aa3a3 !important;
+            background-color: #5aa3a3 !important;
             border-color: #5aa3a3 !important;
         }
+
         /*삭제하기 모달 */
         .modal-content {
             border-radius: 0px !important;
         }
+
         .btn-secondary {
             border-radius: 0px !important;
         }
@@ -341,7 +349,8 @@
     <my:sideBar/>
     <div class="container-fluid">
         <main class="tm-main" style="width:720px;">
-            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
+            <h1 class="pt-2 tm-color-primary tm-post-title"
+                style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
 
             <!-- three dot menu -->
 
@@ -369,15 +378,17 @@
                         <form id="removeForm" action="${removeLink }" method="post">
                             <input type="hidden" name="contentId" value="${content.contentId }">
                         </form>
-                        <a class="removePost" href="${removeLink }" data-bs-toggle="modal" data-bs-target="#removeModal">
+                        <a class="removePost" href="${removeLink }" data-bs-toggle="modal"
+                           data-bs-target="#removeModal">
                             삭제하기
-                            <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i><ion-icon name="trash"></ion-icon>
+                            <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i>
+                            <ion-icon name="trash"></ion-icon>
                         </a>
                     </div>
                 </div>
             </c:if>
 
-                <span class="tm-mb-40">${content.time}</span>
+            <span class="tm-mb-40">${content.time}</span>
             <!-- 포스터 및 기본 정보 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
             <div class="row" style="display: block;width:720px;">
@@ -391,21 +402,23 @@
                         <%-- <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>--%>
                         <figcaption class="tm-color-primary">장소</figcaption>
                         <p><a href="#popup-info-place" role="button" type="text" value="" class="mapPopup"
-                              readonly style="color: #999;">${content.contentRegion}</a></p>
+                              readonly style="color: #999;">${content.contentRegion} <i
+                                class="fa-regular fa-map"></i></a></p>
                         <figcaption class="tm-color-primary">기간</figcaption>
                         <p>${content.contentStartDate} ~ ${content.contentEndDate}</p>
-                            <figcaption class="tm-color-primary">시간</figcaption>
+                        <figcaption class="tm-color-primary">시간</figcaption>
                         <p>${content.startTime}:00 ~ ${content.endTime}:00</p>
-                            <figcaption class="tm-color-primary">가격</figcaption>
+                        <figcaption class="tm-color-primary">가격</figcaption>
                         <p>${content.contentPrice}원</p>
-                            <sec:authorize access="isAuthenticated()">
-                                <c:url value="/content/reservation" var="reservLink">
-                                    <c:param name="contentId" value="${content.contentId}"></c:param>
-                                </c:url>
-                                <button type="submit" class="btn btn-danger" value="" onclick="location.href='${reservLink}'">예매하기
-                                </button>
-                            </sec:authorize>
-                            </p>
+                        <sec:authorize access="isAuthenticated()">
+                            <c:url value="/content/reservation" var="reservLink">
+                                <c:param name="contentId" value="${content.contentId}"></c:param>
+                            </c:url>
+                            <button type="submit" class="btn btn-danger" value=""
+                                    onclick="location.href='${reservLink}'">예매하기
+                            </button>
+                        </sec:authorize>
+                        </p>
                     </div>
                 </aside>
             </div>
@@ -414,20 +427,20 @@
             <input type="hidden" readonly value="${content.contentMapEntY }" id="entY">
             <input type="hidden" readonly value="${content.contentAddress}" id='address'>
 
-<%--            <!-- 네브바 -->--%>
-<%--            <nav class="nav">--%>
-<%--                <div class="navSticky">--%>
-<%--                    <div class="stickyWrap">--%>
-<%--                        <ul class="navList">--%>
-<%--                            <li class="navItem  is-active"><a class="navLink" href="#" data-target="INFO">이용정보</a></li>--%>
-<%--                            <li class="navItem "><a class="navLink" href="#" data-target="ADDITIONAL">판매정보</a></li>--%>
-<%--                            <li class="navItem "><a class="navLink" href="#" data-target="REVIEW">이용후기</a></li>--%>
-<%--                            <li class="navItem "><a class="navLink" href="#" data-target="EXPECT">기대평</a></li>--%>
-<%--                            <li class="navItem "><a class="navLink" href="#" data-target="QNA">Q&amp;A</a></li>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </nav>--%>
+            <%--            <!-- 네브바 -->--%>
+            <%--            <nav class="nav">--%>
+            <%--                <div class="navSticky">--%>
+            <%--                    <div class="stickyWrap">--%>
+            <%--                        <ul class="navList">--%>
+            <%--                            <li class="navItem  is-active"><a class="navLink" href="#" data-target="INFO">이용정보</a></li>--%>
+            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="ADDITIONAL">판매정보</a></li>--%>
+            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="REVIEW">이용후기</a></li>--%>
+            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="EXPECT">기대평</a></li>--%>
+            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="QNA">Q&amp;A</a></li>--%>
+            <%--                        </ul>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </nav>--%>
 
             <!-- 본문 및 디테일 이미지 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
@@ -442,42 +455,57 @@
                             <c:forEach items="${content.contentDetailName}" var="contentDetailName"
                                        varStatus="status">
                                 <div class="row">
-                                        <div class="col-10">
-                                            <img class="img-fluid img-thumbnail" width="720px !important;"
-                                                 src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
-                                                 alt="">
-                                        </div>
+                                    <div class="col-10">
+                                        <img class="img-fluid img-thumbnail" width="720px !important;"
+                                             src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
+                                             alt="">
+                                    </div>
                                 </div>
                             </c:forEach>
                         </div>
-<%--                        <hr class="tm-hr-primary tm-mb-45">--%>
-<%--                        <h2 class="mb-4 tm-post-title tm-color-primary">위치</h2>--%>
-<%--                        <p>${content.contentAddress}</p>--%>
-<%--                        <p>${content.contentAddrDetail}</p>--%>
-<%--                        <c:url value="https://map.kakao.com/link/to/" var="after">--%>
-<%--                            <c:param name=""--%>
-<%--                                     value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>--%>
-<%--                        </c:url>--%>
-<%--                        <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">--%>
-<%--                            <i class="fa-solid fa-location-arrow" style="font-size: 30px"></i>--%>
-<%--                        </a>--%>
-<%--                        <div id="map" style="width:400px;height:350px;"></div>--%>
-<%--                        <hr class="tm-hr-primary tm-mb-55">--%>
+                        <%--                        <hr class="tm-hr-primary tm-mb-45">--%>
+                        <%--                        <h2 class="mb-4 tm-post-title tm-color-primary">위치</h2>--%>
+                        <%--                        <p>${content.contentAddress}</p>--%>
+                        <%--                        <p>${content.contentAddrDetail}</p>--%>
+                        <%--                        <c:url value="https://map.kakao.com/link/to/" var="after">--%>
+                        <%--                            <c:param name=""--%>
+                        <%--                                     value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>--%>
+                        <%--                        </c:url>--%>
+                        <%--                        <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">--%>
+                        <%--                            <i class="fa-solid fa-location-arrow" style="font-size: 30px"></i>--%>
+                        <%--                        </a>--%>
+                        <%--                        <div id="map" style="width:400px;height:350px;"></div>--%>
+                        <%--                        <hr class="tm-hr-primary tm-mb-55">--%>
                         <!-- Comments -->
                         <div>
-                            <h2 class="tm-color-primary tm-post-title">후기</h2>
+                            <c:url value="/reply/register" var="registerLink">
+                                <c:param name="contentId" value="${content.contentId}" />
+                            </c:url>
+                            <h2 class="tm-color-primary tm-post-title">후기
+                            <a href="${registerLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                            </h2>
 
                             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
 
                             <c:forEach items="${replyy}" var="reply">
                                 <div class="tm-comment tm-mb-45">
+                                    <input type="hidden" id="replyId" value="${reply.replyId}" >
                                     <figure class="tm-comment-figure">
-                                        <figcaption class="tm-color-primary text-center">${reply.replyName}</figcaption>
+                                        <figcaption class="tm-color-primary text-center">
+                                            <c:url value="/reply/get" var="getLink">
+                                                <c:param name="replyId" value="${reply.replyId}" />
+                                            </c:url>
+                                            <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                                    ${reply.replyName}
+                                            </a>
+                                        </figcaption>
                                     </figure>
                                     <div>
-                                        <p>
+                                        <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
                                                 ${reply.replyContent}
-                                        </p>
+                                        </a>
                                         <div class="d-flex justify-content-between">
                                             <span class="tm-color-primary">${reply.time}</span>
                                         </div>
@@ -499,61 +527,60 @@
         </main>
     </div>
 
-<!-- remove Modal -->
-<div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                삭제하시겠습니까? 삭제된 게시글은 복구할 수 없습니다.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                <button id="removeConfirmButton" type="button" class="btn btn-danger">확인</button>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-
-    <%--    지도 팝업 창--%>
-    <div id="popup-info-place" class="popup popCenter popInfoPlace is-visible" style="display:none;">
-        <div class="popupWrap">
-            <div class="popupHead">
-                <Strong class="popupTitle">전시장 정보</Strong>
-                <button class="popupCloseBtn">
-                    <span class="blind">닫기</span>
-                </button>
-            </div>
-            <div class="popupBody">
-                <div class="popPlaceWrap">
-                    <div class="popPlaceTitle">
-                        ${content.contentRegion}
-                    </div>
-                    <div class="popPlaceInfo">
-                        <p>
-                            <span>
-                                ${content.contentAddress}
-                            </span>
-                            <c:url value="https://map.kakao.com/link/to/" var="after">
-                                <c:param name=""
-                                         value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
-                            </c:url>
-                            <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }" style="position:absolute;right:2.3rem;">
-                                길찾기
-                            </a>
-                        </p>
-                    </div>
-                    <div id="map" class="placeMap" style="position: relative;"></div>
+    <!-- remove Modal -->
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    삭제하시겠습니까? 삭제된 게시글은 복구할 수 없습니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button id="removeConfirmButton" type="button" class="btn btn-danger">확인</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<%--    지도 팝업 창--%>
+<div id="popup-info-place" class="popup popCenter popInfoPlace is-visible" style="display:none;">
+    <div class="popupWrap">
+        <div class="popupHead">
+            <Strong class="popupTitle">전시장 정보</Strong>
+            <button class="popupCloseBtn">
+                <span class="blind">닫기</span>
+            </button>
+        </div>
+        <div class="popupBody">
+            <div class="popPlaceWrap">
+                <div class="popPlaceTitle">
+                    ${content.contentRegion}
+                </div>
+                <div class="popPlaceInfo">
+                    <p>
+                            <span>
+                                ${content.contentAddress}
+                            </span>
+                        <c:url value="https://map.kakao.com/link/to/" var="after">
+                            <c:param name=""
+                                     value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
+                        </c:url>
+                        <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"
+                           style="position:absolute;right:2.3rem;">
+                            길찾기
+                        </a>
+                    </p>
+                </div>
+                <div id="map" class="placeMap" style="position: relative;"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- 삭제버튼 누르면 -->
@@ -626,7 +653,7 @@
     }
 
     // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
             var i;
