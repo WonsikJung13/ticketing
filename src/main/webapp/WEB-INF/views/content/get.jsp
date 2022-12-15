@@ -228,12 +228,15 @@
         }
     </style>
     <style>
-        *{margin: 0;padding:0px}
+        * {
+            margin: 0;
+            padding: 0px
+        }
 
-        .showLeft{
+        .showLeft {
             text-shadow: none !important;
-            color:#000000 !important;
-            padding:10px;
+            color: #000000 !important;
+            padding: 10px;
         }
 
         .icons li {
@@ -245,7 +248,7 @@
             margin-right: 15px;
             margin-top: 3px;
             vertical-align: top;
-            border-radius:50%;
+            border-radius: 50%;
             pointer-events: none;
         }
 
@@ -267,56 +270,91 @@
             border: none;
             cursor: pointer;
             width: 4px;
-            margin-left:22rem;
         }
 
-
         .TreeDotDropdown {
+
             position: relative;
-            display: inline-block;
-            right: 0.4em;
+            /*display: inline-block;*/
+            left: 680px;
+
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
-            margin-left: 8em;
-            margin-top: 1.3em;
+            margin-left: -130px;
+
+            margin-top: 40px;
+
             background-color: #ffffff;
             border: 1px solid #d5d5d5;
             border-radius: 3px;
             min-width: 160px;
             overflow: auto;
-            box-shadow: rgba(0,0,0,.1) 0 1px 1px 0;
+            box-shadow: rgba(0, 0, 0, .1) 0 1px 1px 0;
             text-align: left;
             z-index: 1;
         }
 
         .dropdown-content a {
             color: #888;
-            font-size:17px;
+            font-size: 17px;
             padding: 7px 16px;
-            line-height:30px;
+            line-height: 30px;
             border-top: 1px solid #f2f2f2;
             text-decoration: none;
             display: block;
         }
 
-        .show {display:block;}
+        .show {
+            display: block;
+        }
+
+        .removePost {
+            color: #ff4646 !important;
+        }
+    </style>
+
+    <style>
+
+        /*예매하기 버튼*/
+        .btn-danger {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0px !important;
+        }
+
+        .btn-danger:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
+        }
+
+        /*삭제하기 모달 */
+        .modal-content {
+            border-radius: 0px !important;
+        }
+
+        .btn-secondary {
+            border-radius: 0px !important;
+        }
+
     </style>
 </head>
 <body>
 <my:sideBar/>
 
 <div>
-    <my:sideBar/>
     <div class="container-fluid">
         <main class="tm-main" style="width:720px;">
-            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}
+            <h1 class="pt-2 tm-color-primary tm-post-title"
+                style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
 
-                <!-- three dot menu -->
-<%--            <sec:authentication property="name" var="username"/>--%>
-<%--            <c:if test="${username == 'admin'}">--%>
+            <!-- three dot menu -->
+
+            <sec:authentication property="name" var="username"/>
+            <c:if test="${username == 'admin'}">
                 <div class="TreeDotDropdown">
                     <!-- three dots -->
                     <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
@@ -326,7 +364,7 @@
                     </ul>
                     <!-- menu dropDown -->
                     <div id="myDropdown" class="dropdown-content">
-                        <%--    수정버튼--%>
+                            <%--    수정버튼--%>
                         <c:url value="/content/modify" var="modifyLink">
                             <c:param name="contentId" value="${content.contentId}"></c:param>
                         </c:url>
@@ -334,53 +372,25 @@
                             수정하기
                             <i class="fa-regular fa-pen-to-square" style="margin-left:38px;"></i>
                         </a>
-                        <%--    삭제버튼--%>
+                            <%--    삭제버튼--%>
                         <c:url value="/content/remove" var="removeLink"></c:url>
                         <form id="removeForm" action="${removeLink }" method="post">
                             <input type="hidden" name="contentId" value="${content.contentId }">
                         </form>
-                            <a class="removePost" href="${removeLink }" data-bs-toggle="modal" data-bs-target="#removeModal">
-                                삭제하기
-                                <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i><ion-icon name="trash"></ion-icon>
-                            </a>
+                        <a class="removePost" href="${removeLink }" data-bs-toggle="modal"
+                           data-bs-target="#removeModal">
+                            삭제하기
+                            <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i>
+                            <ion-icon name="trash"></ion-icon>
+                        </a>
                     </div>
                 </div>
-<%--            </c:if>--%>
-<%--                <div class="btn-group">--%>
-<%--                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">--%>
-<%--                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">--%>
-<%--                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>--%>
-<%--                        </svg>--%>
-<%--                    </button>--%>
-<%--                    <ul class="dropdown-menu dropdown-menu-end">--%>
-<%--                        <li><button class="dropdown-item" type="button">Action</button></li>--%>
-<%--                        <li><button class="dropdown-item" type="button">Another action</button></li>--%>
-<%--                        <li><button class="dropdown-item" type="button">Something else here</button></li>--%>
-<%--                    </ul>--%>
-<%--                </div>--%>
-            <!-- 수정 삭제버튼 -->
-             <sapn>
-                <sec:authentication property="name" var="username"/>
-                <c:if test="${username == 'admin'}">
-                    <%--    수정버튼--%>
-                    <c:url value="/content/modify" var="modifyLink">
-                        <c:param name="contentId" value="${content.contentId}"></c:param>
-                    </c:url>
-                    <a class="btn btn-warning" href="${modifyLink}" style="display:inline-block;position: absolute;margin-left:16rem;">수정</a>
+            </c:if>
 
-                    <%--    삭제버튼--%>
-                    <input type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal" class="btn btn-danger"  style="display:inline-block;position: absolute;margin-left:20rem;">
-                    <c:url value="/content/remove" var="removeLink"></c:url>
-                    <form id="removeForm" action="${removeLink }" method="post">
-                        <input type="hidden" name="contentId" value="${content.contentId }">
-                    </form>
-                </c:if>
-             </sapn>
-            </h1>
-                <span class="tm-mb-40">${content.time}</span>
+            <span class="tm-mb-40">${content.time}</span>
             <!-- 포스터 및 기본 정보 -->
+            <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
             <div class="row" style="display: block;width:720px;">
-                <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
                 <div class="col-12" style="display:inline-block;width:20rem;">
                     <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image"
                          class="img-fluid">
@@ -391,21 +401,23 @@
                         <%-- <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>--%>
                         <figcaption class="tm-color-primary">장소</figcaption>
                         <p><a href="#popup-info-place" role="button" type="text" value="" class="mapPopup"
-                              readonly style="color: #999;">${content.contentRegion}</a></p>
+                              readonly style="color: #999;">${content.contentRegion} <i
+                                class="fa-regular fa-map"></i></a></p>
                         <figcaption class="tm-color-primary">기간</figcaption>
                         <p>${content.contentStartDate} ~ ${content.contentEndDate}</p>
-                            <figcaption class="tm-color-primary">시간</figcaption>
+                        <figcaption class="tm-color-primary">시간</figcaption>
                         <p>${content.startTime}:00 ~ ${content.endTime}:00</p>
-                            <figcaption class="tm-color-primary">가격</figcaption>
+                        <figcaption class="tm-color-primary">가격</figcaption>
                         <p>${content.contentPrice}원</p>
-                            <sec:authorize access="isAuthenticated()">
-                                <c:url value="/content/reservation" var="reservLink">
-                                    <c:param name="contentId" value="${content.contentId}"></c:param>
-                                </c:url>
-                                <button type="submit" class="btn btn-danger" value="" onclick="location.href='${reservLink}'">예매하기
-                                </button>
-                            </sec:authorize>
-                            </p>
+                        <sec:authorize access="isAuthenticated()">
+                            <c:url value="/content/reservation" var="reservLink">
+                                <c:param name="contentId" value="${content.contentId}"></c:param>
+                            </c:url>
+                            <button type="submit" class="btn btn-danger" value=""
+                                    onclick="location.href='${reservLink}'">예매하기
+                            </button>
+                        </sec:authorize>
+                        </p>
                     </div>
                 </aside>
             </div>
@@ -414,67 +426,85 @@
             <input type="hidden" readonly value="${content.contentMapEntY }" id="entY">
             <input type="hidden" readonly value="${content.contentAddress}" id='address'>
 
-<%--            <!-- 네브바 -->--%>
-<%--            <nav class="nav">--%>
-<%--                <div class="navSticky">--%>
-<%--                    <div class="stickyWrap">--%>
-<%--                        <ul class="navList">--%>
-<%--                            <li class="navItem  is-active"><a class="navLink" href="#" data-target="INFO">이용정보</a></li>--%>
-<%--                            <li class="navItem "><a class="navLink" href="#" data-target="ADDITIONAL">판매정보</a></li>--%>
-<%--                            <li class="navItem "><a class="navLink" href="#" data-target="REVIEW">이용후기</a></li>--%>
-<%--                            <li class="navItem "><a class="navLink" href="#" data-target="EXPECT">기대평</a></li>--%>
-<%--                            <li class="navItem "><a class="navLink" href="#" data-target="QNA">Q&amp;A</a></li>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </nav>--%>
+            <%--            <!-- 네브바 -->--%>
+            <%--            <nav class="nav">--%>
+            <%--                <div class="navSticky">--%>
+            <%--                    <div class="stickyWrap">--%>
+            <%--                        <ul class="navList">--%>
+            <%--                            <li class="navItem  is-active"><a class="navLink" href="#" data-target="INFO">이용정보</a></li>--%>
+            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="ADDITIONAL">판매정보</a></li>--%>
+            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="REVIEW">이용후기</a></li>--%>
+            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="EXPECT">기대평</a></li>--%>
+            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="QNA">Q&amp;A</a></li>--%>
+            <%--                        </ul>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </nav>--%>
 
             <!-- 본문 및 디테일 이미지 -->
+            <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
+
             <div class="row tm-row">
                 <div class="col-lg-8 tm-post-col">
                     <div class="tm-post-full">
                         <div class="mb-4">
-                            <hr class="tm-hr-primary tm-mb-40" style="width:45rem;margin-top:45px;">
                             <p style="width:45rem;">
                                 ${content.contentBoard}
                             </p>
                             <c:forEach items="${content.contentDetailName}" var="contentDetailName"
                                        varStatus="status">
                                 <div class="row">
-                                        <div class="col-10">
-                                            <img class="img-fluid img-thumbnail" width="720px !important;"
-                                                 src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
-                                                 alt="">
-                                        </div>
+                                    <div class="col-10">
+                                        <img class="img-fluid img-thumbnail" width="720px !important;"
+                                             src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
+                                             alt="">
+                                    </div>
                                 </div>
                             </c:forEach>
                         </div>
-<%--                        <hr class="tm-hr-primary tm-mb-45">--%>
-<%--                        <h2 class="mb-4 tm-post-title tm-color-primary">위치</h2>--%>
-<%--                        <p>${content.contentAddress}</p>--%>
-<%--                        <p>${content.contentAddrDetail}</p>--%>
-<%--                        <c:url value="https://map.kakao.com/link/to/" var="after">--%>
-<%--                            <c:param name=""--%>
-<%--                                     value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>--%>
-<%--                        </c:url>--%>
-<%--                        <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">--%>
-<%--                            <i class="fa-solid fa-location-arrow" style="font-size: 30px"></i>--%>
-<%--                        </a>--%>
-<%--                        <div id="map" style="width:400px;height:350px;"></div>--%>
-<%--                        <hr class="tm-hr-primary tm-mb-55">--%>
+                        <%--                        <hr class="tm-hr-primary tm-mb-45">--%>
+                        <%--                        <h2 class="mb-4 tm-post-title tm-color-primary">위치</h2>--%>
+                        <%--                        <p>${content.contentAddress}</p>--%>
+                        <%--                        <p>${content.contentAddrDetail}</p>--%>
+                        <%--                        <c:url value="https://map.kakao.com/link/to/" var="after">--%>
+                        <%--                            <c:param name=""--%>
+                        <%--                                     value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>--%>
+                        <%--                        </c:url>--%>
+                        <%--                        <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">--%>
+                        <%--                            <i class="fa-solid fa-location-arrow" style="font-size: 30px"></i>--%>
+                        <%--                        </a>--%>
+                        <%--                        <div id="map" style="width:400px;height:350px;"></div>--%>
+                        <%--                        <hr class="tm-hr-primary tm-mb-55">--%>
                         <!-- Comments -->
                         <div>
-                            <h2 class="tm-color-primary tm-post-title">후기</h2>
-                            <hr class="tm-hr-primary tm-mb-45">
+                            <c:url value="/reply/register" var="registerLink">
+                                <c:param name="contentId" value="${content.contentId}" />
+                            </c:url>
+                            <h2 class="tm-color-primary tm-post-title">후기
+                            <a href="${registerLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                            </h2>
+
+                            <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
+
                             <c:forEach items="${replyy}" var="reply">
                                 <div class="tm-comment tm-mb-45">
+                                    <input type="hidden" id="replyId" value="${reply.replyId}" >
                                     <figure class="tm-comment-figure">
-                                        <figcaption class="tm-color-primary text-center">${reply.replyName}</figcaption>
+                                        <figcaption class="tm-color-primary text-center">
+                                            <c:url value="/reply/get" var="getLink">
+                                                <c:param name="replyId" value="${reply.replyId}" />
+                                            </c:url>
+                                            <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                                    ${reply.replyName}
+                                            </a>
+                                        </figcaption>
                                     </figure>
                                     <div>
-                                        <p>
+                                        <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
                                                 ${reply.replyContent}
-                                        </p>
+                                        </a>
                                         <div class="d-flex justify-content-between">
                                             <span class="tm-color-primary">${reply.time}</span>
                                         </div>
@@ -496,61 +526,60 @@
         </main>
     </div>
 
-<!-- remove Modal -->
-<div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                삭제하시겠습니까?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                <button id="removeConfirmButton" type="button" class="btn btn-danger">확인</button>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-
-    <%--    지도 팝업 창--%>
-    <div id="popup-info-place" class="popup popCenter popInfoPlace is-visible" style="display:none;">
-        <div class="popupWrap">
-            <div class="popupHead">
-                <Strong class="popupTitle">전시장 정보</Strong>
-                <button class="popupCloseBtn">
-                    <span class="blind">닫기</span>
-                </button>
-            </div>
-            <div class="popupBody">
-                <div class="popPlaceWrap">
-                    <div class="popPlaceTitle">
-                        ${content.contentRegion}
-                    </div>
-                    <div class="popPlaceInfo">
-                        <p>
-                            <span>
-                                ${content.contentAddress}
-                            </span>
-                            <c:url value="https://map.kakao.com/link/to/" var="after">
-                                <c:param name=""
-                                         value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
-                            </c:url>
-                            <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }" style="position:absolute;right:2.3rem;">
-                                길찾기
-                            </a>
-                        </p>
-                    </div>
-                    <div id="map" class="placeMap" style="position: relative;"></div>
+    <!-- remove Modal -->
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    삭제하시겠습니까? 삭제된 게시글은 복구할 수 없습니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button id="removeConfirmButton" type="button" class="btn btn-danger">확인</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<%--    지도 팝업 창--%>
+<div id="popup-info-place" class="popup popCenter popInfoPlace is-visible" style="display:none;">
+    <div class="popupWrap">
+        <div class="popupHead">
+            <Strong class="popupTitle">전시장 정보</Strong>
+            <button class="popupCloseBtn">
+                <span class="blind">닫기</span>
+            </button>
+        </div>
+        <div class="popupBody">
+            <div class="popPlaceWrap">
+                <div class="popPlaceTitle">
+                    ${content.contentRegion}
+                </div>
+                <div class="popPlaceInfo">
+                    <p>
+                            <span>
+                                ${content.contentAddress}
+                            </span>
+                        <c:url value="https://map.kakao.com/link/to/" var="after">
+                            <c:param name=""
+                                     value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
+                        </c:url>
+                        <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"
+                           style="position:absolute;right:2.3rem;">
+                            길찾기
+                        </a>
+                    </p>
+                </div>
+                <div id="map" class="placeMap" style="position: relative;"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- 삭제버튼 누르면 -->
@@ -623,7 +652,7 @@
     }
 
     // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
             var i;
