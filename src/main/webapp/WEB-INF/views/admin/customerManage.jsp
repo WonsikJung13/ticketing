@@ -123,6 +123,11 @@
                 <input type="hidden" name="oldPassword">
             </form>
 
+            <form action="resetPassword" method="post">
+                <input name="customerId" value="${customer.customerId}" type="hidden">
+                <button id="resetPassword"></button>
+            </form>
+
         </div>
     </div>
 </div>
@@ -161,6 +166,23 @@
 
         fetch(`\${ctx}/admin/updateGrade`, {
             method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector("#gradeUpdateResult").innerText = data.message;
+            });
+    })
+
+    document.querySelector("#resetPassword").addEventListener("click", function () {
+        const customerId = document.querySelector("#customerId").value;
+        const data = {customerId}
+
+        fetch(`\${ctx}/admin/resetPassword`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },

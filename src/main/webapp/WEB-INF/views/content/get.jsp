@@ -267,12 +267,15 @@
             border: none;
             cursor: pointer;
             width: 4px;
+            margin-left:22rem;
         }
+
 
         .TreeDotDropdown {
             position: relative;
             /*display: inline-block;*/
             left: 680px;
+
         }
 
         .dropdown-content {
@@ -308,7 +311,8 @@
     </style>
 
     <style>
-        /*예매하기 버튼dd*/
+
+        /*예매하기 버튼*/
         .btn-danger {
             color: #ffffff !important;
             background-color: #79dfdf !important;
@@ -336,11 +340,10 @@
     <my:sideBar/>
     <div class="container-fluid">
         <main class="tm-main" style="width:720px;">
-            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}
-
-            </h1>
+            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
 
             <!-- three dot menu -->
+
             <sec:authentication property="name" var="username"/>
             <c:if test="${username == 'admin'}">
                 <div class="TreeDotDropdown">
@@ -372,6 +375,7 @@
                     </div>
                 </div>
             </c:if>
+
                 <span class="tm-mb-40">${content.time}</span>
             <!-- 포스터 및 기본 정보 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
@@ -426,6 +430,7 @@
 
             <!-- 본문 및 디테일 이미지 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
+
             <div class="row tm-row">
                 <div class="col-lg-8 tm-post-col">
                     <div class="tm-post-full">
@@ -460,7 +465,9 @@
                         <!-- Comments -->
                         <div>
                             <h2 class="tm-color-primary tm-post-title">후기</h2>
+
                             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
+
                             <c:forEach items="${replyy}" var="reply">
                                 <div class="tm-comment tm-mb-45">
                                     <figure class="tm-comment-figure">
