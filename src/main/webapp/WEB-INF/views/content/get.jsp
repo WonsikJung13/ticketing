@@ -267,7 +267,7 @@
             border: none;
             cursor: pointer;
             width: 4px;
-            margin-left:22rem;
+            margin-left:560px;
         }
 
 
@@ -280,7 +280,7 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            margin-left: 8em;
+            margin-left: 420px;
             margin-top: 1.3em;
             background-color: #ffffff;
             border: 1px solid #d5d5d5;
@@ -303,6 +303,32 @@
         }
 
         .show {display:block;}
+
+        .removePost {
+            color: #ff4646 !important;
+        }
+    </style>
+
+    <style>
+        /*예매하기 버튼*/
+        .btn-danger {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius:0px !important;
+        }
+        .btn-danger:hover {
+            background-color:#5aa3a3 !important;
+            border-color: #5aa3a3 !important;
+        }
+        /*삭제하기 모달 */
+        .modal-content {
+            border-radius: 0px !important;
+        }
+        .btn-secondary {
+            border-radius: 0px !important;
+        }
+
     </style>
 </head>
 <body>
@@ -315,8 +341,8 @@
             <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}
 
                 <!-- three dot menu -->
-<%--            <sec:authentication property="name" var="username"/>--%>
-<%--            <c:if test="${username == 'admin'}">--%>
+            <sec:authentication property="name" var="username"/>
+            <c:if test="${username == 'admin'}">
                 <div class="TreeDotDropdown">
                     <!-- three dots -->
                     <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
@@ -345,42 +371,12 @@
                             </a>
                     </div>
                 </div>
-<%--            </c:if>--%>
-<%--                <div class="btn-group">--%>
-<%--                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">--%>
-<%--                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">--%>
-<%--                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>--%>
-<%--                        </svg>--%>
-<%--                    </button>--%>
-<%--                    <ul class="dropdown-menu dropdown-menu-end">--%>
-<%--                        <li><button class="dropdown-item" type="button">Action</button></li>--%>
-<%--                        <li><button class="dropdown-item" type="button">Another action</button></li>--%>
-<%--                        <li><button class="dropdown-item" type="button">Something else here</button></li>--%>
-<%--                    </ul>--%>
-<%--                </div>--%>
-            <!-- 수정 삭제버튼 -->
-             <sapn>
-                <sec:authentication property="name" var="username"/>
-                <c:if test="${username == 'admin'}">
-                    <%--    수정버튼--%>
-                    <c:url value="/content/modify" var="modifyLink">
-                        <c:param name="contentId" value="${content.contentId}"></c:param>
-                    </c:url>
-                    <a class="btn btn-warning" href="${modifyLink}" style="display:inline-block;position: absolute;margin-left:16rem;">수정</a>
-
-                    <%--    삭제버튼--%>
-                    <input type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal" class="btn btn-danger"  style="display:inline-block;position: absolute;margin-left:20rem;">
-                    <c:url value="/content/remove" var="removeLink"></c:url>
-                    <form id="removeForm" action="${removeLink }" method="post">
-                        <input type="hidden" name="contentId" value="${content.contentId }">
-                    </form>
-                </c:if>
-             </sapn>
+            </c:if>
             </h1>
                 <span class="tm-mb-40">${content.time}</span>
             <!-- 포스터 및 기본 정보 -->
+            <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
             <div class="row" style="display: block;width:720px;">
-                <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
                 <div class="col-12" style="display:inline-block;width:20rem;">
                     <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image"
                          class="img-fluid">
@@ -430,11 +426,11 @@
 <%--            </nav>--%>
 
             <!-- 본문 및 디테일 이미지 -->
+            <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
             <div class="row tm-row">
                 <div class="col-lg-8 tm-post-col">
                     <div class="tm-post-full">
                         <div class="mb-4">
-                            <hr class="tm-hr-primary tm-mb-40" style="width:45rem;margin-top:45px;">
                             <p style="width:45rem;">
                                 ${content.contentBoard}
                             </p>
@@ -465,7 +461,7 @@
                         <!-- Comments -->
                         <div>
                             <h2 class="tm-color-primary tm-post-title">후기</h2>
-                            <hr class="tm-hr-primary tm-mb-45">
+                            <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
                             <c:forEach items="${replyy}" var="reply">
                                 <div class="tm-comment tm-mb-45">
                                     <figure class="tm-comment-figure">
@@ -505,7 +501,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                삭제하시겠습니까?
+                삭제하시겠습니까? 삭제된 게시글은 복구할 수 없습니다.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>

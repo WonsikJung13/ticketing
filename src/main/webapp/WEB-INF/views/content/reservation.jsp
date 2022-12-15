@@ -39,10 +39,11 @@
             padding-left: 15px;
             width:110px;
             height: 90px;
-            font-weight:700;
+            /*font-weight:700;*/
             font-size:20px;
+            color: #ffffff;
             border-bottom: 1px solid #dcdcdc;
-            background-color: #fbedaa;
+            background-color: #79dfdf;
         }
         #reservation_share td.content{
             font-size:19px;
@@ -89,7 +90,7 @@
             padding-bottom: 50px;
         }
 
-        #calendar{margin-bottom:50px; padding: 10px; width:250px; color: #505050; border: 1px solid #dcdcdc;}
+        #calendar{margin-bottom:50px; padding: 10px; width:350px; height: 400px; color: #505050; border: 1px solid #dcdcdc;}
         #calendar td{padding:10px;	}
 
         #timeTable{margin-bottom:50px; padding: 5px; width:200px; color: #505050;}
@@ -571,6 +572,7 @@
           timeTableMaker(selectedMonth, selectedDate);
           selectedTimeAndTotalPriceInit();
           buildCalendar();
+        selectedTimeInit();
         }
 
         //날짜 클릭시 예약시간 및 결제정보 초기화
@@ -671,7 +673,7 @@
 
 <div class="mainBox">
     <div class="contentBox">
-        <div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700">예약하기</span>
+        <div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700; margin-left:50px;">${content.contentName}</span>
             <div class="underline"></div></div>
         <form action="payment" method="post" name="paymentForm">
 <table id="reservation_share" align="center">
