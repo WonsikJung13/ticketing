@@ -211,6 +211,7 @@
 
         document.querySelector('#contentMapEntY').value = result[0];
         document.querySelector('#contentMapEntX').value = result[1];
+        console.log(result);
     }
 </script>
 </body>

@@ -16,12 +16,11 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 
+<body>
 <my:sideBar/>
 
-<div class="tm-main">
-    <h1>limdaram team</h1>
-
-    <div class="row tm-row tm-mb-60">
+<h1>limdaram team</h1>
+    <div class="row tm-row tm-mb-60 tm-main">
         <div class="col-12">
             <hr class="tm-hr-primary tm-mb-55">
         </div>
@@ -86,7 +85,8 @@
             </div>
         </div>
     </div>
-</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
