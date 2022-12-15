@@ -68,6 +68,7 @@ public class ContentController {
         ContentDto content = service.get(contentId);
 
         model.addAttribute("content", content);
+        System.out.println("조회창 " + content);
 
     }
 
