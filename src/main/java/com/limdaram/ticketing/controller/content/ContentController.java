@@ -59,17 +59,18 @@ public class ContentController {
     @GetMapping("list")
     public void list(Model model, ContentDto content) {
         List<ContentDto> list = service.listContent(content);
-//        System.out.println("리스트"+list);
-//        System.out.println("content"+content);
+
         model.addAttribute("contentList", list);
     }
 
     @GetMapping("get")
+    @PreAuthorize("isAuthenticated()")
     public void get(int contentId,
                     Model model) {
         ContentDto content = service.get(contentId);
-//        System.out.println("조회창 " + content);
+
         model.addAttribute("content", content);
+        System.out.println("조회창 " + content);
 
     }
 
