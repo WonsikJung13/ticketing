@@ -31,9 +31,9 @@
     </style>
 </head>
 <body>
-<div class="container-md" style="width: 600px">
+<div class="container-md" style="width: 900px">
     <div class="row mt-5">
-        <div class="col" style="font-family: 'LINESeedKR-Bd'">
+        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px; font-family: LINESeedKR-Bd; padding-bottom: 50px; margin-bottom: 50px;">
             <c:if test="${not empty message }">
                 <div class="alert alert-success">
                         ${message }
@@ -136,7 +136,7 @@
                 <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white;" id="exitButton" type="button" class="btn">
+                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute" id="exitButton" type="button" class="btn">
                     나가기
                 </button>
             </div>
