@@ -18,7 +18,7 @@
 
 <body>
 <my:sideBar/>
-
+<body>
 <h1>limdaram team</h1>
     <div class="row tm-row tm-mb-60 tm-main">
         <div class="col-12">

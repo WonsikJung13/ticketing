@@ -37,6 +37,14 @@
     .tm-post-link-inner{
         background: none;
     }
+
+    /*글씨체*/
+    @font-face {
+        font-family: 'LINESeedKR-Bd';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+    }
 </style>
 
 <header class="tm-header" id="tm-header">
@@ -81,35 +89,49 @@
                     </li>
                 </c:if>
                 <li class="tm-nav-item">
-                    <a href="/admin/aboutXtra" class="tm-nav-link">
+                    <a href="/admin/about" class="tm-nav-link">
                         <i class="fas fa-users"></i>
-                        About Xtra
+                        About
                     </a>
                 </li>
                 <li class="tm-nav-item">
-                    <a href="contact.html" class="tm-nav-link">
-                        <i class="far fa-comments"></i>
-                        Contact Us
+                    <a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
+                        <i class="fa-solid fa-comment"></i>
+                        문의하기
                     </a>
                 </li>
-                                <li class="tm-nav-item"><a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
-                    <i class="fa-solid fa-comment"></i>
-                    문의하기
-                </a></li>
             </ul>
         </nav>
+
+        <%-- github --%>
         <div class="tm-mb-65">
-            <a rel="nofollow" href="https://fb.com/templatemo" class="tm-social-link">
-                <i class="fab fa-facebook tm-social-icon"></i>
+            <%-- JWS --%>
+            <a href="https://github.com/WonsikJung13" target="_blank" class="tm-social-link">
+                <div>
+                    <i class="fa-regular fa-face-meh-blank"></i>
+                    <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">JWS</div>
+                </div>
             </a>
-            <a href="https://twitter.com" class="tm-social-link">
-                <i class="fab fa-twitter tm-social-icon"></i>
+            <%-- LSG --%>
+            <a href="https://github.com/gmlrmrtjd" target="_blank" class="tm-social-link">
+                <div>
+                    <i class="fa-regular fa-face-rolling-eyes"></i>
+                    <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LSG</div>
+                </div>
             </a>
-            <a href="https://instagram.com" class="tm-social-link">
-                <i class="fab fa-instagram tm-social-icon"></i>
+            <%-- LCE --%>
+            <a href="https://github.com/Limdaram" target="_blank" class="tm-social-link">
+                <div>
+                    <i class="fa-regular fa-face-laugh-beam"></i>
+                    <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LCE</div>
+                </div>
             </a>
-            <a href="https://linkedin.com" class="tm-social-link">
-                <i class="fab fa-linkedin tm-social-icon"></i>
+            <%-- HHJ --%>
+            <a href="https://github.com/ha971206" target="_blank" class="tm-social-link">
+                <div>
+                    <i class="fa-regular fa-face-surprise"></i>
+                    <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">HHJ</div>
+                </div>
             </a>
         </div>
         <p class="tm-mb-80 pr-5 text-white">
