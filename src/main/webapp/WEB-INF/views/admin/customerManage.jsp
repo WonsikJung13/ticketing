@@ -98,10 +98,12 @@
                             등급
                         </label>
                         <div class="input-group">
+                            <div class="form-control" id="currentGrade">
+                                현재 등급 : ${customer.customerGrade}
+                            </div>
                             <select id="customerGrade" class="form-control">
                                 <c:forEach items="${gradeList}" var="grade">
-                                    <option><c:out
-                                            value="${grade.customerGrade}"/></option>
+                                    <option ><c:out value="${grade.customerGrade}"/></option>
                                 </c:forEach>
                             </select>
                             <input type="hidden" id="customerId" name="customerId" value="${customer.customerId}">

@@ -306,6 +306,8 @@
     </style>
 </head>
 <body>
+<my:sideBar/>
+
 <div>
     <my:sideBar/>
     <div class="container-fluid">

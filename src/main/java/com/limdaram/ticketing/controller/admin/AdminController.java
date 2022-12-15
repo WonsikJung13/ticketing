@@ -1,5 +1,6 @@
 package com.limdaram.ticketing.controller.admin;
 
+import com.limdaram.ticketing.domain.admin.GradeDto;
 import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.service.admin.AdminService;
 import com.limdaram.ticketing.service.customer.CustomerService;
@@ -27,10 +28,8 @@ public class AdminController {
     @PreAuthorize("authentication.name == 'admin'")
     public void getCustomerList(Model model) {
         List<CustomerDto> customerList = adminService.getCustomerList();
-        List<CustomerDto> gradeList = adminService.getGradeList();
 
         model.addAttribute("customerList", customerList);
-        model.addAttribute("gradeList", gradeList);
 
     }
 
@@ -45,12 +44,13 @@ public class AdminController {
     @RequestMapping("customerManage")
     @PreAuthorize("authentication.name == 'admin'")
     public void method(@RequestParam(name = "customerId", defaultValue = "0") String customerId, Model model) {
-        CustomerDto customer = customerService.getByCustomerId(customerId);
-        List<CustomerDto> gradeList = adminService.getGradeList();
+        List<GradeDto> gradeList = adminService.getGradeList();
 
-        model.addAttribute("gradeList", gradeList);
+        CustomerDto customer = customerService.getByCustomerId(customerId);
 
         model.addAttribute("customer", customer);
+        model.addAttribute("gradeList", gradeList);
+
     }
 
     @PutMapping("updateGrade")
@@ -75,5 +75,14 @@ public class AdminController {
         System.out.println(map);
 
         return map;
+    }
+
+    @GetMapping("aboutXtra")
+    public void aboutXtra1() {
+
+    }
+    @PostMapping("aboutXtra")
+    public void aboutXtra2() {
+
     }
 }

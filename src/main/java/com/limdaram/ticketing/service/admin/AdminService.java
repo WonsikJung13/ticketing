@@ -1,5 +1,6 @@
 package com.limdaram.ticketing.service.admin;
 
+import com.limdaram.ticketing.domain.admin.GradeDto;
 import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.mapper.admin.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class AdminService {
         return adminMapper.getGradeCountForGold();
     }
 
-    public List<CustomerDto> getGradeList() {
+    public List<GradeDto> getGradeList() {
         return adminMapper.getGradeList();
     }
 
