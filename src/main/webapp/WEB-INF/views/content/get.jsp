@@ -267,20 +267,20 @@
             border: none;
             cursor: pointer;
             width: 4px;
-            margin-left:560px;
         }
 
 
         .TreeDotDropdown {
-            position: relative;
+            position: absolute;
             display: inline-block;
-            right: 0.4em;
+            right: 270px;
+            top: 120px;
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
-            margin-left: 420px;
+            margin-left: -130px;
             margin-top: 1.3em;
             background-color: #ffffff;
             border: 1px solid #d5d5d5;

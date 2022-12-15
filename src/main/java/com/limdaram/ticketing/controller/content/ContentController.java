@@ -63,7 +63,7 @@ public class ContentController {
     }
 
     @GetMapping("get")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public void get(int contentId,
                     Model model) {
         ContentDto content = service.get(contentId);
