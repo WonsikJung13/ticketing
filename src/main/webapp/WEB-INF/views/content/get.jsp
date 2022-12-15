@@ -328,7 +328,6 @@
         .btn-secondary {
             border-radius: 0px !important;
         }
-
     </style>
 </head>
 <body>
@@ -341,6 +340,7 @@
             <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}
 
                 <!-- three dot menu -->
+
             <sec:authentication property="name" var="username"/>
             <c:if test="${username == 'admin'}">
                 <div class="TreeDotDropdown">
@@ -371,6 +371,7 @@
                             </a>
                     </div>
                 </div>
+
             </c:if>
             </h1>
                 <span class="tm-mb-40">${content.time}</span>
@@ -426,11 +427,14 @@
 <%--            </nav>--%>
 
             <!-- 본문 및 디테일 이미지 -->
+
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
+
             <div class="row tm-row">
                 <div class="col-lg-8 tm-post-col">
                     <div class="tm-post-full">
                         <div class="mb-4">
+
                             <p style="width:45rem;">
                                 ${content.contentBoard}
                             </p>
@@ -461,7 +465,9 @@
                         <!-- Comments -->
                         <div>
                             <h2 class="tm-color-primary tm-post-title">후기</h2>
+
                             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
+
                             <c:forEach items="${replyy}" var="reply">
                                 <div class="tm-comment tm-mb-45">
                                     <figure class="tm-comment-figure">

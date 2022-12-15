@@ -143,7 +143,7 @@ public class CustomerController {
     @PostMapping("birthModify")
     @PreAuthorize("authentication.name == #customerId")
     public String birthModify(String customerId, String customerBirth, RedirectAttributes rttr) {
-        System.out.println("고객생년월일 : " + customerBirth);
+//        System.out.println("고객생년월일 : " + customerBirth);
         int cnt = customerService.birthModify(customerId, customerBirth);
 
         if (cnt == 1) {
@@ -188,14 +188,14 @@ public class CustomerController {
     public String addressModify(String customerId, String customerAddress, RedirectAttributes rttr) {
         int cnt = customerService.addressModify(customerId, customerAddress);
         String newAddress = customerService.getByCustomerId(customerId).getCustomerAddress();
-        System.out.println(customerId);
+//        System.out.println(customerId);
 
         if (cnt == 1) {
-            System.out.println(customerAddress);
+//            System.out.println(customerAddress);
             rttr.addFlashAttribute("message",  "[" + newAddress + "] 주소로 수정되었습니다");
             return "redirect:/customer/modify?customerId=" + customerId;
         } else {
-            System.out.println(customerAddress);
+//            System.out.println(customerAddress);
             rttr.addFlashAttribute("message", "주소가 수정되지 않았습니다");
             return "redirect:/customer/modify?customerId=" + customerId;
         }
@@ -211,12 +211,12 @@ public class CustomerController {
     @RequestMapping("verifyCode")
     @ResponseBody
     public int verifyCode(@RequestBody Map<String, Object> map) {
-        System.out.println("ePw : " + emailServiceImpl.ePw);
+//        System.out.println("ePw : " + emailServiceImpl.ePw);
 
 
         int result = 0;
-        System.out.println("code : " + map.get("agreementEmailInput"));
-        System.out.println("code match : " + emailServiceImpl.ePw.equals(map.get("agreementEmailInput")));
+//        System.out.println("code : " + map.get("agreementEmailInput"));
+//        System.out.println("code match : " + emailServiceImpl.ePw.equals(map.get("agreementEmailInput")));
 
         if(emailServiceImpl.ePw.equals(map.get("agreementEmailInput"))) {
             result = 1;

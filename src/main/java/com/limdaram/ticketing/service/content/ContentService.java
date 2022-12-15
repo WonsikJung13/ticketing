@@ -1,7 +1,6 @@
 package com.limdaram.ticketing.service.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
-import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.mapper.content.ContentMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +90,7 @@ public class ContentService {
                     uploadDetailFiles(content, file, uuid);
                 }
             }
-        System.out.println(content);
+//        System.out.println(content);
         return cnt;
     }
 
@@ -119,10 +118,10 @@ public class ContentService {
             MultipartFile[] addDetailFiles,
             String removePosterName,
             List<String> removeDetailNames) {
-        System.out.println("removePosterName: " + removePosterName);
-        System.out.println("removeDetailNames: " + removeDetailNames);
+//        System.out.println("removePosterName: " + removePosterName);
+//        System.out.println("removeDetailNames: " + removeDetailNames);
 //        System.out.println("addDetailFiles: " + addDetailFiles);
-        System.out.println("addPosterFile: " + addPosterFile);
+//        System.out.println("addPosterFile: " + addPosterFile);
 
         int contentId = content.getContentId();
 //        String deletePosterName = mapper.select(contentId).getContentPosterName();
@@ -153,7 +152,7 @@ public class ContentService {
 //            file.delete();
 
             String deletePosterName = mapper.select(contentId).getContentPosterName();
-            System.out.println("contentPosterName: " + deletePosterName);
+//            System.out.println("contentPosterName: " + deletePosterName);
 //            if (removePosterName != null) {
                 // s3 저장소에서 파일 제거
                 removePosterFile(contentId, deletePosterName);
@@ -280,7 +279,7 @@ public class ContentService {
     }
 
     private void removePosterFile(int contentId, String removePosterName) {
-        System.out.println("포스터네임" + removePosterName);
+//        System.out.println("포스터네임" + removePosterName);
         String key = "prj1/board/" + contentId + "/" + removePosterName;
         DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
                 .bucket(bucketName)
