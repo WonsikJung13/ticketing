@@ -308,7 +308,7 @@
     </style>
 
     <style>
-        /*예매하기 버튼*/
+        /*예매하기 버튼dd*/
         .btn-danger {
             color: #ffffff !important;
             background-color: #79dfdf !important;
