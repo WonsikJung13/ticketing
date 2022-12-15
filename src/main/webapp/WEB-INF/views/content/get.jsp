@@ -346,7 +346,6 @@
 <my:sideBar/>
 
 <div>
-    <my:sideBar/>
     <div class="container-fluid">
         <main class="tm-main" style="width:720px;">
             <h1 class="pt-2 tm-color-primary tm-post-title"
