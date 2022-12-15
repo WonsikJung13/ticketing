@@ -273,8 +273,8 @@
             /*margin-left:22rem;*/
         }
 
-
         .TreeDotDropdown {
+
             position: relative;
             /*display: inline-block;*/
             left: 680px;
@@ -344,6 +344,10 @@
         <main class="tm-main" style="width:720px;">
             <h1 class="pt-2 tm-color-primary tm-post-title"
                 style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
+
+            <!-- three dot menu -->
+
+            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
 
             <!-- three dot menu -->
 
@@ -471,6 +475,7 @@
                         <%--                        <hr class="tm-hr-primary tm-mb-55">--%>
                         <!-- Comments -->
                         <div>
+                            <h2 class="tm-color-primary tm-post-title">후기</h2>
                             <c:url value="/reply/register" var="registerLink">
                                 <c:param name="contentId" value="${content.contentId}" />
                             </c:url>
