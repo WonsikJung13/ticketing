@@ -77,12 +77,12 @@ public class AdminController {
         return map;
     }
 
-    @GetMapping("aboutXtra")
-    public void aboutXtra1() {
+    @GetMapping("about")
+    public void about1() {
 
     }
-    @PostMapping("aboutXtra")
-    public void aboutXtra2() {
+    @PostMapping("about")
+    public void about2() {
 
     }
 }
