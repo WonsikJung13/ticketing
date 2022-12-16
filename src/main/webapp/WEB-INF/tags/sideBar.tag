@@ -98,6 +98,16 @@
                         </a>
                     </li>
                 </c:if>
+
+                <c:if test="${'admin' == username}">
+                    <li class="tm-nav-item ${active eq 'customerManage' ? 'active' : '' }">
+                        <a href="/admin/customerManage" class="tm-nav-link">
+                            <i class="fa-regular fa-id-card"></i>
+                            회원 정보 관리
+                        </a>
+                    </li>
+                </c:if>
+
                 <li class="tm-nav-item">
                     <a href="/admin/about" class="tm-nav-link">
                         <i class="fas fa-users"></i>
