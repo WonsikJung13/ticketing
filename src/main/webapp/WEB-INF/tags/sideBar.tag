@@ -98,6 +98,24 @@
                         </a>
                     </li>
                 </c:if>
+                <sec:authentication property="name" var="username"/>
+                <c:if test="${'admin' == username}">
+                    <li class="tm-nav-item">
+                        <a href="/admin/customerManage" class="tm-nav-link">
+                            <i class="fa-regular fa-address-card"></i>
+                            회원 정보 관리
+                        </a>
+                    </li>
+                </c:if>
+                <sec:authentication property="name" var="username"/>
+                <c:if test="${'admin' == username}">
+                    <li class="tm-nav-item">
+                        <a href="/admin/customerList" class="tm-nav-link">
+                            <i class="fa-solid fa-list-ul"></i>
+                            회원 목록
+                        </a>
+                    </li>
+                </c:if>
                 <li class="tm-nav-item">
                     <a href="/admin/about" class="tm-nav-link">
                         <i class="fas fa-users"></i>
