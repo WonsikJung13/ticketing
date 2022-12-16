@@ -75,8 +75,11 @@
                             ${username}님
                         </p>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <a style="color: white" class="font-weight-light" href="/customer/get?customerId=${username}">내정보</a> |
-                            <a style="color: white" href="/logout">로그아웃</a>
+                            <div style="width: auto">
+                                <a style="color: white" class="font-weight-light" href="/customer/get?customerId=${username}">내정보</a> |
+                                <a style="color: white" class="font-weight-light" href="/customer/reservation">예약확인</a> |
+                                <a style="color: white" href="/logout">로그아웃</a>
+                            </div>
                         </div>
                 </div>
             </div>
