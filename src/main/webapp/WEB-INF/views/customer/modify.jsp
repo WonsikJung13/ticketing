@@ -33,18 +33,6 @@
             background-color: #5aa3a3 !important;
             border-color: #5aa3a3 !important;
         }
-
-        .btn-ico {
-            color: #ffffff !important;
-            background-color: #79dfdf !important;
-            border-color: #79dfdf !important;
-            border-radius: 0.375rem !important;
-        }
-
-        .btn-ico:hover {
-            background-color: #5aa3a3 !important;
-            border-color: #5aa3a3 !important;
-        }
     </style>
 </head>
 <body>
