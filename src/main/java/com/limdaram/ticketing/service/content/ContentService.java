@@ -47,20 +47,6 @@ public class ContentService {
             // db에 파일 정보 저장(contentid, filename)
             mapper.insertFile(content.getContentId(), uuid);
 
-//            // 파일 저장
-//            // board id 이름의 새폴더 만들기
-//            // File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
-//            folder1.mkdirs();
-//            File dest = new File(folder1, uuid);
-//
-//            // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
-//            try {
-//                file1.transferTo(dest); // checkException을 발생시킴
-//            } catch (Exception e) {
-//                // @Transactional은 RuntimeException에서만 rollback 됨
-//                e.printStackTrace();
-//                throw new RuntimeException(e);
-//            }
 
             uploadPosterFile(content, file1, uuid);
         }
@@ -118,10 +104,6 @@ public class ContentService {
             MultipartFile[] addDetailFiles,
             String removePosterName,
             List<String> removeDetailNames) {
-//        System.out.println("removePosterName: " + removePosterName);
-//        System.out.println("removeDetailNames: " + removeDetailNames);
-//        System.out.println("addDetailFiles: " + addDetailFiles);
-//        System.out.println("addPosterFile: " + addPosterFile);
 
         int contentId = content.getContentId();
 //        String deletePosterName = mapper.select(contentId).getContentPosterName();
@@ -193,6 +175,10 @@ public class ContentService {
         // 파일 체크 됐을 때
         if (removeDetailNames != null) {
             for (String removeDetailName : removeDetailNames) {
+
+                // s3 저장소에서 파일 지우기
+                removeDetailFile(contentId, removeDetailName);
+
                 // 1. contentDetail 테이블에서 record 지우기
 //                System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
                 mapper.deleteByContentIdAndDetailName(contentId, removeDetailName);
@@ -210,28 +196,13 @@ public class ContentService {
         // 추가 파일 있을 때
         if (addDetailFiles != null) {
             for (MultipartFile DetailFile : addDetailFiles) {
-//                if (DetailFile != null && DetailFile.getSize() > 0) {
+                if (DetailFile != null && DetailFile.getSize() > 0) {
                     // 파일 테이블에 파일명 추가
                     String uuid = UUID.randomUUID().toString() + ".jpg";
                     mapper.insertFile2(content.getContentId(), uuid);
-
                     // s3 저장소에 디테일 파일 추가
                     uploadDetailFiles(content, DetailFile, uuid);
-
-//                    // 저장소에 실제 파일 추가
-//                    File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
-//                    folder.mkdirs();
-//                    File dest = new File(folder, uuid);
-//
-//                    // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
-//                    try {
-//                        DetailFile.transferTo(dest); // checkException을 발생시킴
-//                    } catch (Exception e) {
-//                        // @Transactional은 RuntimeException에서만 rollback 됨
-//                        e.printStackTrace();
-//                        throw new RuntimeException(e);
-//                    }
-//                }
+                }
             }
         }
         return mapper.update(content);
