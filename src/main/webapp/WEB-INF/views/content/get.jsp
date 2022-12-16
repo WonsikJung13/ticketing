@@ -350,8 +350,9 @@
 <div>
     <div class="container-fluid">
         <main class="tm-main" style="width:720px;">
-            <h1 class="pt-2 tm-color-primary tm-post-title"
-                style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
+            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
+
+            <!-- three dot menu -->
 
             <sec:authentication property="name" var="username"/>
             <c:if test="${username == 'admin'}">
@@ -429,11 +430,11 @@
             <!-- 본문 및 디테일 이미지 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
 
-            <div class="row tm-row">
-                <div class="col-lg-8 tm-post-col">
-                    <div class="tm-post-full">
+            <div class="row tm-row" style="width:720px;">
+                <div class="tm-post-col" style="">
+                    <div class="tm-post-full" style="">
                         <div class="mb-4">
-                            <p style="width:45rem;">
+                            <p style="">
                                 ${content.contentBoard}
                             </p>
                             <c:forEach items="${content.contentDetailName}" var="contentDetailName"
