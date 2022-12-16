@@ -33,8 +33,39 @@
 
 
     <!-- textEditor -->
+    <script>
 
+        function save(){
+            oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
+            //스마트 에디터 값을 텍스트컨텐츠로 전달
+            // var content = document.getElementById("smartEditor").value;
+            // alert(document.getElementById("txtContent").value);
+            // 값을 불러올 땐 document.get으로 받아오기
+            return;
+        }
 
+    </script>
+    <script>
+        // 파일 체크 실행
+        var MaxSize = 10;
+        var FileExt = "PNG, JPG, JPEG";
+
+        document.getElementById('fileUpload').onchange = function () {
+
+            if (this.value != "") {
+
+                var extPlan = FileExt;
+                var checkSize = 1024 * 1024 * MaxSize;
+
+                if (!checkFile($('#fileUpload'), extPlan) | !checkFileSize($('#fileUpload'), checkSize)) {
+                    this.value = "";
+                    return;
+                }
+            }
+        };
+        </script>
+
+    <!-- 2.10.0 버전엔 js 파일 일부분이 없어 오류 발생 ! -->
 
     <style>
         /*글씨체*/
@@ -180,14 +211,14 @@
                         포스터
                     </label>
                 </div>
-                <input style="padding-bottom: 0" type="file" accept="image/*" class="form-control mb-3" name="file1">
+                <input style="padding-bottom: 0" id="fileUpload" type="file" accept="image/*" class="form-control mb-3" name="file1">
 
                 <div class="DetailBox">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         세부내용
                     </label>
                 </div>
-                <input multiple type="file" accept="image/*" class="form-control mb-3" name="file2">
+                <input multiple type="file" id="fileUpload" accept="image/*" class="form-control mb-3" name="file2">
 
                 <%--      주소 검색  --%>
                 <table >
@@ -197,10 +228,9 @@
                     <tbody>
                     <tr>
                         <%--            도로명주소--%>
-                        <input type="text" id="contentAddress" class="form-control" name="contentAddress" style="width:85%">
+                        <input type="text" id="contentAddress" class="form-control" name="contentAddress"  required="required" style="width:85%">
                         <input type="hidden" id="confmKey" name="confmKey" value=""  >
                             <button type="button" class="MapBtn" onclick="goPopup();">
-
                                 주소검색
                             </button>
                     </tr>
@@ -226,6 +256,105 @@
     </div>
 </div>
 
+<script>
+    // 확장자 체크 함수
+    function checkFile(obj, ext) {
+        var check = false;
+        var extName = obj.val().substring(obj.val().lastIndexOf(".") + 1).toUpperCase();
+        var str = ext.split(",");
+
+        for ( var i = 0; i < str.length; i++ ) {
+            if (extName == str[i].trim()) {
+                check = true;
+                break;
+            } else check = false;
+        }
+        if ( !check ) {
+            alert(ext + " 파일만 업로드 가능합니다.");
+        }
+        return check;
+    };
+
+// 파일 용량 체크 함수
+function checkFileSize(obj, size) {
+
+    var check = false;
+    var sizeinbytes = obj[0].files[0].size;
+    var fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+    var i = 0;
+    var checkSize = size;
+
+    while (checkSize > 900) {
+        checkSize /= 1024;
+        i++;
+    }
+
+    checkSize = (Math.round(checkSize * 100) / 100) + ' ' + fSExt[i];
+    var fSize = sizeinbytes;
+
+    if (fSize > size) {
+        alert("첨부파일은 " + checkSize + " 이하로 첨부 바랍니다.");
+        check = false;
+    } else {
+        check = true;
+    }
+    return check;
+};
+
+
+</script>
+
+
+<script>
+    checkFun();
+    function checkFun() {
+        // 1이면 휴관일, 0이면 오픈
+        let dayLimit = "";
+        let checked = document.getElementsByClassName("checkSelect");
+
+        for (var i = 0; i < checked.length; i++) {
+            if (checked[i].checked) {
+                dayLimit += '1'
+            } else {
+                dayLimit += '0'
+            }
+        }
+        document.getElementById("dayLimit").value = dayLimit;
+    }
+
+    // $("#array").val(checkArray);
+
+</script>
+<script>
+    // document.querySelector("#submitButton1").addEventListener("click", function(e) {
+    //     // submit 진행 중지
+    //     e.preventDefault();
+    //
+    //     // input 입력한 값 가져오기
+    //     let NameValue = document.querySelector(`#registerForm input[name="contentName"]`).value
+    //     let RegionValue = document.querySelector(`#registerForm input[name="contentRegion"]`).value
+    //     let StartDateValue = document.querySelector(`#registerForm input[name="contentStartDate"]`).value
+    //     let EndDateValue = document.querySelector(`#registerForm input[name="contentEndDate"]`).value
+    //     let PriceValue = document.querySelector(`#registerForm input[name="contentPrice"]`).value
+    //     let BoardValue = document.querySelector(`#registerForm input[name="contentBoard"]`).value
+    //     // 빈칸만 있는지 확인
+    //
+    //     // 위 테스트 모두 통과하면 submit
+    //     if (NameValue.trim() != ""
+    //         && RegionValue.trim() != ""
+    //         && StartDateValue.trim() != ""
+    //         && EndDateValue.trim() !=""
+    //         && PriceValue.trim()!= ""
+    //         && BoardValue.trim()!= "") {
+    //
+    //         document.querySelector("#contentRegisterForm").submit();
+    //     } else {
+    //         // 적절한 메세지 표시
+    //
+    //
+    //     }
+    // });
+</script>
 
     <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -257,40 +386,6 @@
         document.querySelector('#contentMapEntX').value = result[1];
         console.log(result);
     }
-</script>
-
-<script>
-    checkFun();
-    function checkFun() {
-        // 1이면 휴관일, 0이면 오픈
-        let dayLimit = "";
-        let checked = document.getElementsByClassName("checkSelect");
-
-        for (var i = 0; i < checked.length; i++) {
-            if (checked[i].checked) {
-                dayLimit += '1'
-            } else {
-                dayLimit += '0'
-            }
-        }
-        document.getElementById("dayLimit").value = dayLimit;
-    }
-
-    // $("#array").val(checkArray);
-
-</script>
-
-<script>
-
-    function save(){
-        oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
-        //스마트 에디터 값을 텍스트컨텐츠로 전달
-        // var content = document.getElementById("smartEditor").value;
-        // alert(document.getElementById("txtContent").value);
-        // 값을 불러올 땐 document.get으로 받아오기
-        return;
-    }
-
 </script>
 
 </body>

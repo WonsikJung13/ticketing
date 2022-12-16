@@ -38,17 +38,37 @@ public class ContentService {
         // db에 게시물 정보 저장
         int cnt = mapper.insert(content);
 
-        File folder1 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+//        File folder1 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
 
         if (file1 != null && file1.getSize() > 0) {
 
-            String uuid = UUID.randomUUID().toString() + ".jpg";
+            String file1Name = file1.getOriginalFilename();
+            file1Name = file1Name.substring(file1Name.lastIndexOf("\\")+1);
+            System.out.println("only file name : " + file1Name);
+
+//            String extension = file1.substring(file1.lastIndexOf("."), file1.length());
+            UUID uuid = UUID.randomUUID();
+            file1Name = uuid.toString() + "_" + file1Name;
 
             // db에 파일 정보 저장(contentid, filename)
-            mapper.insertFile(content.getContentId(), uuid);
+            mapper.insertFile(content.getContentId(), file1Name);
 
+//            // 파일 저장
+//            // board id 이름의 새폴더 만들기
+//            // File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+//            folder1.mkdirs();
+//            File dest = new File(folder1, uuid);
+//
+//            // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
+//            try {
+//                file1.transferTo(dest); // checkException을 발생시킴
+//            } catch (Exception e) {
+//                // @Transactional은 RuntimeException에서만 rollback 됨
+//                e.printStackTrace();
+//                throw new RuntimeException(e);
+//            }
 
-            uploadPosterFile(content, file1, uuid);
+            uploadPosterFile(content, file1, file1Name);
         }
 
             for (MultipartFile file : file2) {
@@ -182,10 +202,7 @@ public class ContentService {
                 // 1. contentDetail 테이블에서 record 지우기
 //                System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
                 mapper.deleteByContentIdAndDetailName(contentId, removeDetailName);
-
-                // s3 저장소에서 파일 지우기
-                removeDetailFile(contentId, removeDetailName);
-
+                System.out.println("디테일 선택 파일 삭제");
 //                // 2. 저장소에 있는 실제 파일 지우기
 //                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removeDetailName;
 //                File file = new File(path);
@@ -200,8 +217,23 @@ public class ContentService {
                     // 파일 테이블에 파일명 추가
                     String uuid = UUID.randomUUID().toString() + ".jpg";
                     mapper.insertFile2(content.getContentId(), uuid);
+                    System.out.println("디테일 파일 추가");
                     // s3 저장소에 디테일 파일 추가
                     uploadDetailFiles(content, DetailFile, uuid);
+
+//                    // 저장소에 실제 파일 추가
+//                    File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+//                    folder.mkdirs();
+//                    File dest = new File(folder, uuid);
+//
+//                    // CheckException을 RuntimeException으로 바꿔서 던져주는 역할
+//                    try {
+//                        DetailFile.transferTo(dest); // checkException을 발생시킴
+//                    } catch (Exception e) {
+//                        // @Transactional은 RuntimeException에서만 rollback 됨
+//                        e.printStackTrace();
+//                        throw new RuntimeException(e);
+//                    }
                 }
             }
         }
@@ -295,11 +327,11 @@ public class ContentService {
     }
 
     // 포스터 파일 등록 함수
-    private void uploadPosterFile(ContentDto content, MultipartFile file1, String uuid) {
+    private void uploadPosterFile(ContentDto content, MultipartFile file1, String posterFileName) {
         try {
             // s3에 파일 저장
             // 키 생성
-            String key = "prj1/board/" + content.getContentId() + "/" + uuid;
+            String key = "prj1/board/" + content.getContentId() + "/" + posterFileName;
 
             // putObjectRequest
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
