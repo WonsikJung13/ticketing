@@ -45,6 +45,16 @@
         font-weight: 700;
         font-style: normal;
     }
+
+    .up {
+        display: block;
+        transition: all 0.3s ease-out;
+    }
+
+    .up:hover {
+        transform: translateY(-50px);
+    }
+
 </style>
 
 <header class="tm-header" id="tm-header">
@@ -74,7 +84,7 @@
         <nav class="tm-nav" id="tm-nav">
             <ul>
                 <li class="tm-nav-item">
-                    <a href="/content/list" class="tm-nav-link ${active eq 'contentList' ? 'active' : '' }">
+                    <a href="/content/list" class="tm-nav-link">
                         <i class="fas fa-home"></i>
                         Blog Home
                     </a>
@@ -82,24 +92,14 @@
                 <sec:authentication property="name" var="username"/>
                 <c:if test="${'admin' == username}">
                     <li class="tm-nav-item">
-                        <a href="/content/register" class="tm-nav-link ${active eq 'contentRegister' ? 'active' : '' }">
+                        <a href="/content/register" class="tm-nav-link">
                             <i class="fas fa-pen"></i>
                             게시물 작성
                         </a>
                     </li>
                 </c:if>
-
-                <c:if test="${'admin' == username}">
-                    <li class="tm-nav-item ${active eq 'customerManage' ? 'active' : '' }">
-                        <a href="/admin/customerManage" class="tm-nav-link">
-                            <i class="fa-regular fa-id-card"></i>
-                            회원 정보 관리
-                        </a>
-                    </li>
-                </c:if>
-
                 <li class="tm-nav-item">
-                    <a href="/admin/about" class="tm-nav-link ${active eq 'about' ? 'active' : '' }">
+                    <a href="/admin/about" class="tm-nav-link">
                         <i class="fas fa-users"></i>
                         About
                     </a>
@@ -117,36 +117,36 @@
         <div style="margin: 10px; color : #0cc; !important;" class="tm-mb-65;">
             <%-- JWS --%>
             <a href="https://github.com/WonsikJung13" target="_blank" class="">
-                <div style=" float: left; margin-right: 15px">
-                    <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-meh-blank"></i>
+                <div style=" float: left; margin-right: 15px" class="up">
+                    <i style="margin-left: 3px;; font-size: 30px;" class="fa-regular fa-face-meh-blank"></i>
                     <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">JWS</div>
                 </div>
             </a>
             <%-- LSG --%>
             <a href="https://github.com/gmlrmrtjd" target="_blank" class="">
-                <div style=" float: left; margin-right: 15px">
+                <div style=" float: left; margin-right: 15px" class="up">
                     <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-grimace"></i>
                     <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LSG</div>
                 </div>
             </a>
             <%-- LCE --%>
             <a href="https://github.com/Limdaram" target="_blank" class="">
-                <div style=" float: left; margin-right: 15px">
+                <div style=" float: left; margin-right: 15px" class="up">
                     <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-laugh-beam"></i>
                     <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LCE</div>
                 </div>
             </a>
             <%-- HHJ --%>
             <a href="https://github.com/ha971206" target="_blank" class="">
-                <div>
+                <div style=" float: left; margin-right: 15px" class="up">
                     <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-surprise"></i>
                     <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">HHJ</div>
                 </div>
             </a>
         </div>
-        <div class="tm-mb-80 pr-5 text-white">
-            Xtra Blog is a multi-purpose HTML template from TemplateMo website. Left side is a sticky menu bar. Right side content will scroll up and down.
-        </div>
+<%--        <div class="tm-mb-80 pr-5 text-white">--%>
+<%--            Xtra Blog is a multi-purpose HTML template from TemplateMo website. Left side is a sticky menu bar. Right side content will scroll up and down.--%>
+<%--        </div>--%>
     </div>
 </header>
 
