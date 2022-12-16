@@ -21,71 +21,95 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         textarea {
-            width: 100%;
-            height: 20em;
-            border: none;
-            resize: none;
+            width: 100% !important;
+            height: 20em !important;
+            resize: none !important;
+        }
+
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .form-control {
+            height: 45px;
+            border-color: #0CC;
+        }
+
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
+
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
         }
     </style>
 </head>
 <body>
 <div class="container-md">
     <div class="row">
-        <div class="col">
+        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
 
-            <h1>${Reply.replyName} 게시물</h1>
-            <div class="mb-3">
-                <label class="form-label">
-                    제목
+            <h3>${Reply.replyName}님의 게시물</h3>
+            <div class="mb-3" style="margin-top: 30px">
+                <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
+                    상품명
                 </label>
                 <input class="form-control" type="text" value="${Reply.replyContent}" readonly>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                     본문
                 </label>
                 <textarea class="form-control" readonly>${Reply.replyMainText}</textarea>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                     작성자
                 </label>
                 <input class="form-control" type="text" value="${Reply.replyName}" readonly>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">
+                <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                     작성일시
                 </label>
                 <input class="form-control" type="datetime-local" value="${Reply.time}" readonly>
             </div>
+
+
+            <br>
+
+            <c:url value="/reply/modify" var="modifyLink">
+                <c:param name="replyName" value="${Reply.replyName}"></c:param>
+                <c:param name="replyId" value="${Reply.replyId}"></c:param>
+            </c:url>
+
+            <c:url value="/reply/remove" var="removeLink">
+                <c:param name="replyId" value="${Reply.replyId}"></c:param>
+            </c:url>
+
+            <form id="removeForm" action="${removeLink }" method="post">
+                <input type="hidden" name="replyName" value="${Reply.replyName }">
+            </form>
+
+            <sec:authentication property="name" var="username"/>
+            <c:if test="${Reply.replyName == username}">
+                <div>
+                    <a class="btn btn-ico " href="${modifyLink}">수정하기</a>
+                    <input class="btn btn-danger" type="submit" value="삭제하기" data-bs-toggle="modal"
+                           data-bs-target="#removeModal">
+                </div>
+            </c:if>
         </div>
-
-        <br>
-
-        <c:url value="/reply/modify" var="modifyLink">
-            <c:param name="replyName" value="${Reply.replyName}"></c:param>
-            <c:param name="replyId" value="${Reply.replyId}"></c:param>
-        </c:url>
-
-        <c:url value="/reply/remove" var="removeLink">
-            <c:param name="replyId" value="${Reply.replyId}"></c:param>
-        </c:url>
-
-        <form id="removeForm" action="${removeLink }" method="post">
-            <input type="hidden" name="replyName" value="${Reply.replyName }">
-        </form>
-
-        <sec:authentication property="name" var="username"/>
-        <c:if test="${Reply.replyName == username}">
-            <div>
-                <a class="btn btn-warning " href="${modifyLink}">수정하기</a>
-                <input class="btn btn-warning" type="submit" value="삭제하기" data-bs-toggle="modal"
-                       data-bs-target="#removeModal">
-            </div>
-        </c:if>
     </div>
 </div>
 <%--<a class = "btn btn-warning" href="${removeLink}">삭제하기</a>--%>

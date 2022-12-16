@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 
 <!doctype html>
@@ -30,6 +30,17 @@
             font-style: normal;
         }
 
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
+
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
+        }
     </style>
 </head>
 <body class="align-middle">
@@ -47,13 +58,13 @@
             LOGIN
         </div>
         <div class="card-body">
-<%--            <c:if test="${param.logout != null}">--%>
-<%--                <div class="alert alert-danger">--%>
-<%--                    <i class="fa-solid fa-triangle-exclamation"></i>--%>
-<%--                        로그아웃 되었습니다--%>
-<%--                </div>--%>
-<%--            </c:if>--%>
-            <form id="registerForm" action="/member/login" method="post" >
+            <%--            <c:if test="${param.logout != null}">--%>
+            <%--                <div class="alert alert-danger">--%>
+            <%--                    <i class="fa-solid fa-triangle-exclamation"></i>--%>
+            <%--                        로그아웃 되었습니다--%>
+            <%--                </div>--%>
+            <%--            </c:if>--%>
+            <form id="registerForm" action="/member/login" method="post">
                 <div class="input-group mb-3">
                     <span style="border-color: #0cc" class="input-group-text">
                         <i class="fa-solid fa-user"></i>
@@ -67,25 +78,26 @@
                     <input type="password" name="password" class="form-control" placeholder="PASSWORD">
                 </div>
                 <div style="margin-left: 20px" class="input-group mb-3">
-                    <input class="form-check-input" type="checkbox" name="remember-me">
+                    <input class="form-check-input" type="checkbox" name="remember-me"
+                           style="border-bottom-right-radius: 0.25em; border-top-right-radius: 0.25em">
                     <label style="font-family: 'LINESeedKR-Bd'; margin-left: 5px;" class="form-check-label">
                         자동 로그인
                     </label>
                 </div>
                 <div>
                     <a href="/oauth2/authorization/kakao" style="text-decoration: none; margin-left: 22px;">
-                        <c:url value="/kakaoLogo.png" var="kakaoLogoLink" />
-                        <img src="${kakaoLogoLink}" alt="" >
+                        <c:url value="/kakaoLogo.png" var="kakaoLogoLink"/>
+                        <img src="${kakaoLogoLink}" alt="">
                     </a>
 
                     <a href="/oauth2/authorization/google" style="text-decoration: none; margin-left: 22px;">
-                        <c:url value="/googleLogo.png" var="googleLogoLink" />
-                        <img src="${googleLogoLink}" alt="" >
+                        <c:url value="/googleLogo.png" var="googleLogoLink"/>
+                        <img src="${googleLogoLink}" alt="">
                     </a>
 
                     <a href="/oauth2/authorization/naver">
-                        <c:url value="/naverLogo.png" var="naverLogoLink" />
-                        <img src="${naverLogoLink}" alt="" style="height: 48px; margin-left: 22px;" >
+                        <c:url value="/naverLogo.png" var="naverLogoLink"/>
+                        <img src="${naverLogoLink}" alt="" style="height: 48px; margin-left: 22px;">
                     </a>
                 </div>
                 <div class="my-4">
@@ -94,7 +106,9 @@
                     </div>
                     <br>
                     <div class="float-end">
-                        <button style="background-color: #0CC; color: white; font-family: 'LINESeedKR-Bd'" type="submit" class="btn submitBtn">LOGIN</button>
+                        <button style="background-color: #0CC; color: white; font-family: 'LINESeedKR-Bd'" type="submit"
+                                class="btn submitBtn btn-ico">LOGIN
+                        </button>
                     </div>
                 </div>
             </form>
