@@ -74,7 +74,7 @@
         <nav class="tm-nav" id="tm-nav">
             <ul>
                 <li class="tm-nav-item">
-                    <a href="/content/list" class="tm-nav-link">
+                    <a href="/content/list" class="tm-nav-link ${active eq 'contentList' ? 'active' : '' }">
                         <i class="fas fa-home"></i>
                         Blog Home
                     </a>
@@ -82,14 +82,24 @@
                 <sec:authentication property="name" var="username"/>
                 <c:if test="${'admin' == username}">
                     <li class="tm-nav-item">
-                        <a href="/content/register" class="tm-nav-link">
+                        <a href="/content/register" class="tm-nav-link ${active eq 'contentRegister' ? 'active' : '' }">
                             <i class="fas fa-pen"></i>
                             게시물 작성
                         </a>
                     </li>
                 </c:if>
+
+                <c:if test="${'admin' == username}">
+                    <li class="tm-nav-item ${active eq 'customerManage' ? 'active' : '' }">
+                        <a href="/admin/customerManage" class="tm-nav-link">
+                            <i class="fa-regular fa-id-card"></i>
+                            회원 정보 관리
+                        </a>
+                    </li>
+                </c:if>
+
                 <li class="tm-nav-item">
-                    <a href="/admin/about" class="tm-nav-link">
+                    <a href="/admin/about" class="tm-nav-link ${active eq 'about' ? 'active' : '' }">
                         <i class="fas fa-users"></i>
                         About
                     </a>
