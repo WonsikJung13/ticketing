@@ -94,4 +94,14 @@ public class ReplyController {
 
     }
 
+    @RequestMapping("create")
+    public void create(){
+
+    }
+
+    @RequestMapping("jusoPopup")
+    public void jusoPopup() {
+
+    }
+
 }
