@@ -118,10 +118,6 @@ public class ContentService {
             MultipartFile[] addDetailFiles,
             String removePosterName,
             List<String> removeDetailNames) {
-//        System.out.println("removePosterName: " + removePosterName);
-//        System.out.println("removeDetailNames: " + removeDetailNames);
-//        System.out.println("addDetailFiles: " + addDetailFiles);
-//        System.out.println("addPosterFile: " + addPosterFile);
 
         int contentId = content.getContentId();
 //        String deletePosterName = mapper.select(contentId).getContentPosterName();
