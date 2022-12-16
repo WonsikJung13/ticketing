@@ -353,12 +353,6 @@
             <h1 class="pt-2 tm-color-primary tm-post-title"
                 style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
 
-            <!-- three dot menu -->
-
-            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
-
-            <!-- three dot menu -->
-
             <sec:authentication property="name" var="username"/>
             <c:if test="${username == 'admin'}">
                 <div class="TreeDotDropdown">
@@ -432,21 +426,6 @@
             <input type="hidden" readonly value="${content.contentMapEntY }" id="entY">
             <input type="hidden" readonly value="${content.contentAddress}" id='address'>
 
-            <%--            <!-- 네브바 -->--%>
-            <%--            <nav class="nav">--%>
-            <%--                <div class="navSticky">--%>
-            <%--                    <div class="stickyWrap">--%>
-            <%--                        <ul class="navList">--%>
-            <%--                            <li class="navItem  is-active"><a class="navLink" href="#" data-target="INFO">이용정보</a></li>--%>
-            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="ADDITIONAL">판매정보</a></li>--%>
-            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="REVIEW">이용후기</a></li>--%>
-            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="EXPECT">기대평</a></li>--%>
-            <%--                            <li class="navItem "><a class="navLink" href="#" data-target="QNA">Q&amp;A</a></li>--%>
-            <%--                        </ul>--%>
-            <%--                    </div>--%>
-            <%--                </div>--%>
-            <%--            </nav>--%>
-
             <!-- 본문 및 디테일 이미지 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
 
@@ -468,22 +447,7 @@
                                 </div>
                             </c:forEach>
                         </div>
-                        <%--                        <hr class="tm-hr-primary tm-mb-45">--%>
-                        <%--                        <h2 class="mb-4 tm-post-title tm-color-primary">위치</h2>--%>
-                        <%--                        <p>${content.contentAddress}</p>--%>
-                        <%--                        <p>${content.contentAddrDetail}</p>--%>
-                        <%--                        <c:url value="https://map.kakao.com/link/to/" var="after">--%>
-                        <%--                            <c:param name=""--%>
-                        <%--                                     value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>--%>
-                        <%--                        </c:url>--%>
-                        <%--                        <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }">--%>
-                        <%--                            <i class="fa-solid fa-location-arrow" style="font-size: 30px"></i>--%>
-                        <%--                        </a>--%>
-                        <%--                        <div id="map" style="width:400px;height:350px;"></div>--%>
-                        <%--                        <hr class="tm-hr-primary tm-mb-55">--%>
-                        <!-- Comments -->
                         <div>
-                            <h2 class="tm-color-primary tm-post-title">후기</h2>
                             <c:url value="/reply/register" var="registerLink">
                                 <c:param name="contentId" value="${content.contentId}" />
                             </c:url>

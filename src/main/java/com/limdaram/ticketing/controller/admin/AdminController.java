@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,28 +54,21 @@ public class AdminController {
 
     }
 
-    @PutMapping("updateGrade")
-    @ResponseBody
+    @PostMapping("updateGrade")
     @PreAuthorize("authentication.name == 'admin'")
-    public Map<String, Object> updateGrade(@RequestBody CustomerDto customer) {
+    public String updateGrade(String customerId, String customerGrade, RedirectAttributes rttr) {
 
-        int updateGrade = adminService.updateGrade(customer.getCustomerId(), customer.getCustomerGrade());
-
-
-        Map<String, Object> map = new HashMap<>();
-
+        int updateGrade = adminService.updateGrade(customerId, customerGrade);
 
         if (updateGrade == 1) {
-            map.put("status", "success");
-            map.put("message", "등급 반영이 완료되었습니다");
+            rttr.addFlashAttribute("message", "정상적으로 반영되었습니다");
+            return "redirect:/admin/customerManage?customerId=" + customerId;
+
         } else {
-            map.put("status", "fail");
-            map.put("message", "등급 반영이 완료되지 않았습니다");
+            rttr.addFlashAttribute("message", "등급 반영이 완료되지 않았습니다");
+            return "redirect:/admin/customerManage?customerId=" + customerId;
+
         }
-
-        System.out.println(map);
-
-        return map;
     }
 
     @PostMapping("resetPassword")
