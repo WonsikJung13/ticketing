@@ -30,36 +30,7 @@
     <script type="text/javascript" src="../libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
     <script type="application/json" src="/code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
     <link rel="shortcut icon" href="#">
-<%--    <script>--%>
-<%--        function checkDay() {--%>
-<%--            &lt;%&ndash;let obj = ${"[name"};&ndash;%&gt;--%>
-<%--            const checkArray = new Array();--%>
 
-<%--            $('input:checkBox[name=checkMon]:checked').each(function(){--%>
-<%--                checkArray.push(this.value);--%>
-<%--            });--%>
-<%--            $('input:checkBox[name=checkTues]:checked').each(function(){--%>
-<%--                checkArray.push(this.value);--%>
-<%--            });--%>
-<%--            $('input:checkBox[name=checkWednes]:checked').each(function(){--%>
-<%--                checkArray.push(this.value);--%>
-<%--            });--%>
-<%--            $('input:checkBox[name=checkThurs]:checked').each(function(){--%>
-<%--                checkArray.push(this.value);--%>
-<%--            });--%>
-<%--            $('input:checkBox[name=checkFri]:checked').each(function(){--%>
-<%--                checkArray.push(this.value);--%>
-<%--            });--%>
-<%--            $('input:checkBox[name=checkSatur]:checked').each(function(){--%>
-<%--                checkArray.push(this.value);--%>
-<%--            });--%>
-<%--            $('input:checkBox[name=checkSun]:checked').each(function(){--%>
-<%--                checkArray.push(this.value);--%>
-<%--            });--%>
-<%--            $('#hiddenValue').val(checkArray);--%>
-<%--            console.log($('#hiddenValue').val());--%>
-<%--        };--%>
-<%--    </script>--%>
 
     <!-- textEditor -->
     <script>
@@ -240,7 +211,8 @@
                         <%--            도로명주소--%>
                         <input type="text" id="contentAddress" class="form-control" name="contentAddress" style="width:85%">
                         <input type="hidden" id="confmKey" name="confmKey" value=""  >
-                            <button type="btn" class="MapBtn" onclick="goPopup();">
+                            <button type="button" class="MapBtn" onclick="goPopup();">
+
                                 주소검색
                             </button>
                     </tr>
@@ -265,22 +237,6 @@
         </div>
     </div>
 </div>
-<script>
-    checkFun();
-    function checkFun() {
-        // 1이면 휴관일, 0이면 오픈
-        let dayLimit = "";
-        let checked = document.getElementsByClassName("checkSelect");
-
-        for (var i = 0; i < checked.length; i++) {
-            if (checked[i].checked) {
-                dayLimit += '1'
-            } else {
-                dayLimit += '0'
-            }
-        }
-        document.getElementById("dayLimit").value = dayLimit;
-    }
 
     // $("#array").val(checkArray);
 
@@ -321,7 +277,8 @@
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
 
-<script language="javascript">
+
+<script>
 
     function goPopup(){
         // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrCoordUrl.do)를 호출하게 됩니다.
@@ -345,6 +302,40 @@
         document.querySelector('#contentMapEntX').value = result[1];
         console.log(result);
     }
+</script>
+
+<script>
+    checkFun();
+    function checkFun() {
+        // 1이면 휴관일, 0이면 오픈
+        let dayLimit = "";
+        let checked = document.getElementsByClassName("checkSelect");
+
+        for (var i = 0; i < checked.length; i++) {
+            if (checked[i].checked) {
+                dayLimit += '1'
+            } else {
+                dayLimit += '0'
+            }
+        }
+        document.getElementById("dayLimit").value = dayLimit;
+    }
+
+    // $("#array").val(checkArray);
+
+</script>
+
+<script>
+
+    function save(){
+        oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
+        //스마트 에디터 값을 텍스트컨텐츠로 전달
+        // var content = document.getElementById("smartEditor").value;
+        // alert(document.getElementById("txtContent").value);
+        // 값을 불러올 땐 document.get으로 받아오기
+        return;
+    }
+
 </script>
 
 </body>

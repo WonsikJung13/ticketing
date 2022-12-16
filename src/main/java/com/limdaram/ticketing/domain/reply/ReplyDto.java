@@ -13,6 +13,7 @@ public class ReplyDto {
     private LocalDateTime replyInserted;
     private int contentId;
     private String replyMainText;
+    private String customerName;
 
     public String getTime(){
         String result = "";

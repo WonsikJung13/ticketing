@@ -22,18 +22,35 @@
             font-weight: 700;
             font-style: normal;
         }
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
 
-        .btn:hover {
-            background-color: #0CC;
-            border-color: #0cc;
-            color: white;
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
+        }
+
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
+
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
         }
     </style>
 </head>
 <body>
 <div class="container-md" style="width: 900px">
     <div class="row mt-5">
-        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px; font-family: LINESeedKR-Bd; padding-bottom: 50px; margin-bottom: 50px;">
+        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px; padding-bottom: 50px; margin-bottom: 50px;">
             <c:if test="${not empty message }">
                 <div class="alert alert-success">
                         ${message }
@@ -49,7 +66,7 @@
                 </label>
                 <input class="form-control" type="text" value="${customer.customerName }" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#nameModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#nameModal">
                 이름 변경하기
             </button>
 
@@ -59,7 +76,7 @@
                 </label>
                 <input class="form-control" type="date" value="${customer.customerBirth }" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#birthModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#birthModal">
                 생년월일 변경하기
             </button>
 
@@ -70,13 +87,13 @@
                 <input id="customerId" class="form-control" type="text" value="${customer.customerId }" readonly>
             </div>
 
-            <div class="mb-3" class="form-label">
+            <div class="mb-3">
                 <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
                     비밀번호
                 </label>
                 <input class="form-control" type="password" value="****" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#passwordModal">
                 비밀번호 변경하기
             </button>
 
@@ -93,15 +110,11 @@
                 <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
                     핸드폰 번호
                 </label>
-                <div>
-                    <input class="form-control" type="text" value="${customer.customerPhoneNumber }" readonly>
-                </div>
-
+                <input class="form-control" type="text" value="${customer.customerPhoneNumber }" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
+            <button style="font-family: 'LINESeedKR-Bd';" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
                 핸드폰 번호 변경하기
             </button>
-
 
             <div class="mb-3">
                 <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
@@ -109,15 +122,17 @@
                 </label>
                 <form id="addressForm" action="addressModify" method="post">
                     <div class="input-group">
-                        <input id="customerAddressInput" name="customerAddress" class="form-control" type="text" value="${customer.customerAddress }" readonly>
+                        <input id="customerAddressInput" name="customerAddress" class="form-control" type="text"
+                               value="${customer.customerAddress }" readonly>
                         <input type="hidden" name="customerId" value="${customer.customerId}">
-                        <button class="btn btn-outline-secondary" id="customerAddressButton" type="button" onClick="goPopup();">
+                        <button class="btn btn-outline-secondary" id="customerAddressButton" type="button"
+                                onClick="goPopup();">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
                 </form>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button" class="btn btn-outline-secondary">
+            <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button" class="btn btn-ico">
                 주소 변경하기
             </button>
 
@@ -129,14 +144,14 @@
                 <input class="form-control" type="text" value="${customer.customerGrade }" readonly>
             </div>
 
-            <div class="mb-3" >
+            <div class="mb-3">
                 <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
                     가입일시
                 </label>
                 <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute" id="exitButton" type="button" class="btn">
+                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute" id="exitButton" type="button" class="btn btn-ico">
                     나가기
                 </button>
             </div>
@@ -159,15 +174,20 @@
                         <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                             이름
                         </label>
-                        <input id="customerNameInput" class="form-control" type="text" name="customerName" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerNameInput" class="form-control" type="text" name="customerName"
+                               onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerNameText" class="form-text"></div>
                         <input type="hidden" name="customerId" value="${customer.customerId}">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white" id="modalConfirmNameButton" type="button" class="btn">수정</button>
+                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close
+                </button>
+                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white"
+                        id="modalConfirmNameButton" type="button" class="btn btn-ico">수정
+                </button>
             </div>
         </div>
     </div>
@@ -187,15 +207,20 @@
                         <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                             생년월일
                         </label>
-                        <input id="customerBirthInput" class="form-control" type="date" name="customerBirth" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerBirthInput" class="form-control" type="date" name="customerBirth"
+                               onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerBirthText" class="form-text"></div>
                         <input type="hidden" name="customerId" value="${customer.customerId}">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white" id="modalConfirmBirthButton" type="button" class="btn">수정</button>
+                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close
+                </button>
+                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white"
+                        id="modalConfirmBirthButton" type="button" class="btn btn-ico">수정
+                </button>
             </div>
         </div>
     </div>
@@ -215,7 +240,8 @@
                         <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                             비밀번호
                         </label>
-                        <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerPasswordInput1" class="form-control" type="password" name="customerPassword"
+                               onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerPasswordText1" class="form-text"></div>
                         <input type="hidden" name="customerId" value="${customer.customerId}">
                     </div>
@@ -225,13 +251,18 @@
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         비밀번호 확인
                     </label>
-                    <input id="customerPasswordInput2" class="form-control" type="password" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                    <input id="customerPasswordInput2" class="form-control" type="password" onkeyup="noSpaceForm(this)"
+                           onchange="noSpaceForm(this)">
                     <div style="color: red" id="customerPasswordText2" class="form-text"></div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white" id="modalConfirmPasswordButton" type="button" class="btn">수정</button>
+                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close
+                </button>
+                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white"
+                        id="modalConfirmPasswordButton" type="button" class="btn btn-ico">수정
+                </button>
             </div>
         </div>
     </div>
@@ -242,7 +273,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 style="font-family: 'LINESeedKR-Bd'" class="modal-title fs-5" id="phoneNumberModalLabel">핸드폰 번호 변경하기</h1>
+                <h1 style="font-family: 'LINESeedKR-Bd'" class="modal-title fs-5" id="phoneNumberModalLabel">핸드폰 번호
+                    변경하기</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -251,22 +283,26 @@
                         <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                             핸드폰 번호
                         </label>
-                        <input id="customerPhoneNumberInput" class="form-control" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="customerPhoneNumber"
-                               placeholder="010 부터 숫자만 입력 (ex. 01011112222)" maxlength="11" onkeyup="noSpaceForm(this)" onchange="noSpaceForm(this)">
+                        <input id="customerPhoneNumberInput" class="form-control" type="text"
+                               onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="customerPhoneNumber"
+                               placeholder="010 부터 숫자만 입력 (ex. 01011112222)" maxlength="11" onkeyup="noSpaceForm(this)"
+                               onchange="noSpaceForm(this)">
                         <div style="color: red" id="customerPhoneNumberText" class="form-text"></div>
                         <input type="hidden" name="customerId" value="${customer.customerId}">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white" id="modalConfirmPhoneNumberButton" type="button" class="btn">수정</button>
+                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close
+                </button>
+                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white"
+                        id="modalConfirmPhoneNumberButton" type="button" class="btn btn-ico">수정
+                </button>
             </div>
         </div>
     </div>
 </div>
-
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -285,7 +321,7 @@
     let checkedName = false;
     let checkedBirth = false;
 
-    document.querySelector("#modalConfirmNameButton").addEventListener("click", function() {
+    document.querySelector("#modalConfirmNameButton").addEventListener("click", function () {
         if (checkedName) {
             document.getElementById('nameForm').submit();
         } else if (checkedName == false) {
@@ -295,7 +331,7 @@
 
     })
 
-    document.querySelector("#modalConfirmBirthButton").addEventListener("click", function() {
+    document.querySelector("#modalConfirmBirthButton").addEventListener("click", function () {
         if (checkedBirth) {
             document.getElementById('birthForm').submit();
         } else if (checkedBirth == false) {
@@ -305,7 +341,7 @@
 
     })
 
-    document.querySelector("#modalConfirmPasswordButton").addEventListener("click", function(e) {
+    document.querySelector("#modalConfirmPasswordButton").addEventListener("click", function (e) {
         e.preventDefault();
 
         if (checkedPassword && checkedPassword1 && checkedPassword2) {
@@ -322,7 +358,7 @@
         }
     })
 
-    document.querySelector("#modalConfirmPhoneNumberButton").addEventListener("click", function() {
+    document.querySelector("#modalConfirmPhoneNumberButton").addEventListener("click", function () {
         if (checkedPhoneNumber) {
             document.getElementById('phoneNumberForm').submit();
         } else if (checkedPhoneNumber == false) {
@@ -331,12 +367,12 @@
         }
     })
 
-    document.querySelector("#modalConfirmAddressButton").addEventListener("click", function() {
+    document.querySelector("#modalConfirmAddressButton").addEventListener("click", function () {
         document.getElementById('addressForm').submit();
 
     })
 
-    document.querySelector("#exitButton").addEventListener("click", function() {
+    document.querySelector("#exitButton").addEventListener("click", function () {
         window.location.href = "/customer/get?customerId=" + document.querySelector("#customerId").value;
     })
 
@@ -473,33 +509,33 @@
 
     function noSpaceForm(obj) { // 공백사용못하게
         var str_space = /\s/;  // 공백체크
-        if(str_space.exec(obj.value)) { //공백 체크
+        if (str_space.exec(obj.value)) { //공백 체크
             //alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
             obj.focus();
-            obj.value = obj.value.replace(/\s| /gi,''); // 공백제거
+            obj.value = obj.value.replace(/\s| /gi, ''); // 공백제거
             return false;
         }
     }
 
-    function goPopup(){
+    function goPopup() {
         // 주소검색을 수행할 팝업 페이지를 호출합니다.
         // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-        var pop = window.open("/customer/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+        var pop = window.open("/customer/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
 
         // 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
         //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes");
     }
 
-    function jusoCallBack(customerAddressInput){
+    function jusoCallBack(customerAddressInput) {
         // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
         document.querySelector("#customerAddressInput").value = customerAddressInput;
     }
 
     var now_utc = Date.now() // 지금 날짜를 밀리초로
     // getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
-    var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+    var timeOff = new Date().getTimezoneOffset() * 60000; // 분단위를 밀리초로 변환
     // new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
-    var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+    var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
     document.getElementById("customerBirthInput").setAttribute("max", today);
 
 </script>

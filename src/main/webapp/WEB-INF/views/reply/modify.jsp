@@ -80,9 +80,16 @@
                         작성자
                     </label>
 
-                    <input class="form-control" type="text" value="${Reply.replyName}" style="background-color: #d4d4d4"
-                           readonly>
-
+                    <c:if test="${Reply.customerName != null}">
+                        <input class="form-control" type="text" value="${Reply.customerName}"
+                               style="background-color: #d4d4d4"
+                               readonly>
+                    </c:if>
+                    <c:if test="${Reply.customerName == null}">
+                        <input class="form-control" type="text" value="${Reply.replyName}"
+                               style="background-color: #d4d4d4"
+                               readonly>
+                    </c:if>
                 </div>
 
                 <div class="mb-3" id="time">

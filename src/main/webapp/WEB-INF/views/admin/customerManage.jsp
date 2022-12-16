@@ -12,144 +12,130 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
+
+    <style>
+        /*글씨체*/
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
+
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
+        }
+    </style>
 </head>
 <body>
+<my:sideBar active="customerManage"/>
 
-
-<div class="container-md">
-    <div class="row">
-        <div class="col">
-
-            <c:if test="${not empty message }">
+<div class="tm-main">
+    <div class="container-md" style="width: 900px">
+        <div class="row mt-5">
+            <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
+                <c:if test="${not empty message }">
                 <div class="alert alert-success">
                         ${message }
                 </div>
-            </c:if>
+                </c:if>
 
-            <h1>${customer.customerName}님의 정보</h1>
-
-            <form id="customerSearch" method="get">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <input type="text" name="customerId">
-                    <input type="submit" value="검색">
-                </div>
-            </form>
-
-            <form id="form1" action="" method="post">
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        이름
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerName }" readonly>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        생년월일
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerBirth }" readonly>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        아이디
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerId }" readonly>
-                </div>
-
-                <div class="mb-3" class="form-label">
-                    <label for="" class="form-label">
-                        비밀번호
-                    </label>
-                    <input class="form-control" type="password" value="${customer.customerPassword}"
-                           name="customerPassword" readonly>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        이메일
-                    </label>
-                    <div class="input-group">
-                        <input class="form-control" type="email" value="${customer.customerEmail }" name="customerEmail"
-                               readonly>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        핸드폰 번호
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerPhoneNumber }"
-                           name="customerPhoneNumber" readonly>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">
-                        주소
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerAddress }" name="customerAddress"
-                           readonly>
-                </div>
-                <form action="" name="customerGradeSelect">
-
-                    <div class="mb-3">
-                        <label for="" class="form-label">
-                            등급
-                        </label>
-                        <div class="input-group">
-                            <div class="form-control" id="currentGrade">
-                                현재 등급 : ${customer.customerGrade}
-                            </div>
-                            <select id="customerGrade" class="form-control">
-                                <c:forEach items="${gradeList}" var="grade">
-                                    <option ><c:out value="${grade.customerGrade}"/></option>
-                                </c:forEach>
-                            </select>
-                            <input type="hidden" id="customerId" name="customerId" value="${customer.customerId}">
-                            <button id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영</button>
-                        </div>
-                        <div id="gradeUpdateResult" class="form-text"></div>
-
+                <h1 style="font-family: 'LINESeedKR-Bd'">회원 정보 관리</h1>
+                <form id="customerSearch" method="get">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <input type="text" name="customerId">
+                        <button style="border-color: #0cc" id="searchButton" class="btn" type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
                     </div>
                 </form>
 
+
                 <div class="mb-3">
-                    <label for="" class="form-label">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        이름
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerName}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        생년월일
+                    </label>
+                    <input class="form-control" type="date" value="${customer.customerBirth}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        아이디
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerId}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        비밀번호
+                    </label>
+                    <input class="form-control" type="password" value="****" readonly>
+                    <button style="font-family: 'LINESeedKR-Bd'; margin-top: 20px" id="resetPasswordButton" type="button" class="btn btn-outline-secondary">
+                        비밀번호 초기화
+                    </button>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        이메일
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerEmail}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        핸드폰 번호
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerPhoneNumber}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        주소
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerAddress}" readonly>
+                </div>
+                <form action="updateGrade" method="post" id="customerGradeSelect" name="customerGradeSelect">
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        등급
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerGrade}" readonly>
+                    <div class="input-group" style="margin-top: 20px">
+                        <select id="customerGrade" name="customerGrade" style="width:40%">
+                            <c:forEach items="${gradeList}" var="grade">
+                                <option value="${grade.customerGrade}"><c:out value="${grade.customerGrade}"/></option>
+                            </c:forEach>
+                        </select>
+                        <input type="hidden" id="customerId" name="customerId" value="${customer.customerId}">
+                        <button id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영</button>
+                    </div>
+                    <div id="gradeUpdateResult" class="form-text"></div>
+                </div>
+                </form>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         가입일시
                     </label>
                     <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
                 </div>
-                <input type="hidden" name="oldPassword">
-            </form>
-
-            <form action="resetPassword" method="post">
-                <input name="customerId" value="${customer.customerId}" type="hidden">
-                <button id="resetPassword"></button>
-            </form>
-
-        </div>
-    </div>
-</div>
-
-<!-- modify Modal -->
-<div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">기존 암호 입력</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input id="oldPasswordInput1" type="text" class="form-control">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button id="modalConfirmButton" type="button" class="btn btn-primary">수정</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -162,22 +148,11 @@
     document.querySelector("#gradeUpdate").addEventListener("click", function () {
         const customerId = document.querySelector("#customerId").value;
         const customerGrade = document.querySelector("#customerGrade option:checked").value;
-        const data = {customerId, customerGrade}
 
-        fetch(`\${ctx}/admin/updateGrade`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                document.querySelector("#gradeUpdateResult").innerText = data.message;
-            });
+        document.querySelector("#customerGradeSelect").submit();
     })
 
-    document.querySelector("#resetPassword").addEventListener("click", function () {
+    document.querySelector("#resetPasswordButton").addEventListener("click", function () {
         const customerId = document.querySelector("#customerId").value;
         const data = {customerId}
 
@@ -189,9 +164,10 @@
             body: JSON.stringify(data)
         })
             .then(res => res.json())
-            .then(data => {
-                document.querySelector("#gradeUpdateResult").innerText = data.message;
-            });
+    })
+
+    document.querySelector("#searchButton").addEventListener("click", function() {
+        document.querySelector("#customerSearch").submit();
     })
 </script>
 
