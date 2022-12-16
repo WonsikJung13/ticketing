@@ -2,7 +2,6 @@ package com.limdaram.ticketing.controller.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
 import com.limdaram.ticketing.domain.customer.CustomerDto;
-import com.limdaram.ticketing.domain.kimchi.KimchiDto;
 import com.limdaram.ticketing.domain.reply.ReplyDto;
 import com.limdaram.ticketing.service.content.ContentService;
 import com.limdaram.ticketing.service.customer.CustomerService;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +39,7 @@ public class ContentController {
     public void register() {
 
     }
-    @Transactional
+
     @PostMapping("register")
     @PreAuthorize("authentication.name == 'admin'")
     public String register(
@@ -145,7 +143,6 @@ public class ContentController {
     public void indexRegister() {
 
     }
-    @Transactional
     @PostMapping("indexRegister")
     @PreAuthorize("authentication.name == 'admin'")
     public String indexRegister(
