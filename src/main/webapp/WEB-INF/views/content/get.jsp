@@ -278,6 +278,7 @@
             border: none;
             cursor: pointer;
             width: 4px;
+            /*margin-left:22rem;*/
         }
 
         .TreeDotDropdown {
@@ -292,9 +293,7 @@
             display: none;
             position: absolute;
             margin-left: -130px;
-
             margin-top: 40px;
-
             background-color: #ffffff;
             border: 1px solid #d5d5d5;
             border-radius: 3px;
@@ -331,7 +330,6 @@
             color: #ffffff !important;
             background-color: #79dfdf !important;
             border-color: #79dfdf !important;
-            border-radius: 0px !important;
         }
 
         .btn-danger:hover {
@@ -341,12 +339,8 @@
 
         /*삭제하기 모달 */
         .modal-content {
-            border-radius: 0px !important;
         }
 
-        .btn-secondary {
-            border-radius: 0px !important;
-        }
 
     </style>
 </head>
@@ -358,6 +352,10 @@
         <main class="tm-main" style="width:720px;">
             <h1 class="pt-2 tm-color-primary tm-post-title"
                 style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
+
+            <!-- three dot menu -->
+
+            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
 
             <!-- three dot menu -->
 
@@ -485,6 +483,7 @@
                         <%--                        <hr class="tm-hr-primary tm-mb-55">--%>
                         <!-- Comments -->
                         <div>
+                            <h2 class="tm-color-primary tm-post-title">후기</h2>
                             <c:url value="/reply/register" var="registerLink">
                                 <c:param name="contentId" value="${content.contentId}" />
                             </c:url>
