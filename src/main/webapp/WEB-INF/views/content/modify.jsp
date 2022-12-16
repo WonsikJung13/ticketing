@@ -56,19 +56,21 @@
     </div>
     <br>
 
+<c:forEach items="${content.contentPosterName}" var="contentPosterName" varStatus="status">
     <%-- Poster 이미지 출력 --%>
     <div class="row">
         <div class="col-2 d-flex justify-content-center align-items-center">
             <%-- 삭제여부 체크박스 --%>
                 <div class="custom-check form-check form-switch text-danger">
-                    <input name="removePosterName" value="${content.contentPosterName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                    <input name="removePosterName" value="${contentPosterName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                     <label class="form-check-label" for="flexSwitchCheckChecked"><i class="fa-regular fa-trash-can"></i></label>
                 </div>
         </div>
         <div class="col-10">
-            <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(content.contentPosterName, 'utf-8')}" alt="">
+            <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentPosterName, 'utf-8')}" alt="">
         </div>
     </div>
+</c:forEach>
 
     <%-- Detail 이미지 출력 --%>
     <div>
