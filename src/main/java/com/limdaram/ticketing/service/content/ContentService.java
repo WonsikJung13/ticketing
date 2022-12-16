@@ -38,14 +38,20 @@ public class ContentService {
         // db에 게시물 정보 저장
         int cnt = mapper.insert(content);
 
-        File folder1 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+//        File folder1 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
 
         if (file1 != null && file1.getSize() > 0) {
 
-            String uuid = UUID.randomUUID().toString() + ".jpg";
+            String file1Name = file1.getOriginalFilename();
+            file1Name = file1Name.substring(file1Name.lastIndexOf("\\")+1);
+            System.out.println("only file name : " + file1Name);
+
+//            String extension = file1.substring(file1.lastIndexOf("."), file1.length());
+            UUID uuid = UUID.randomUUID();
+            file1Name = uuid.toString() + "_" + file1Name;
 
             // db에 파일 정보 저장(contentid, filename)
-            mapper.insertFile(content.getContentId(), uuid);
+            mapper.insertFile(content.getContentId(), file1Name);
 
 //            // 파일 저장
 //            // board id 이름의 새폴더 만들기
@@ -62,7 +68,7 @@ public class ContentService {
 //                throw new RuntimeException(e);
 //            }
 
-            uploadPosterFile(content, file1, uuid);
+            uploadPosterFile(content, file1, file1Name);
         }
 
             for (MultipartFile file : file2) {
@@ -321,11 +327,11 @@ public class ContentService {
     }
 
     // 포스터 파일 등록 함수
-    private void uploadPosterFile(ContentDto content, MultipartFile file1, String uuid) {
+    private void uploadPosterFile(ContentDto content, MultipartFile file1, String posterFileName) {
         try {
             // s3에 파일 저장
             // 키 생성
-            String key = "prj1/board/" + content.getContentId() + "/" + uuid;
+            String key = "prj1/board/" + content.getContentId() + "/" + posterFileName;
 
             // putObjectRequest
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
