@@ -103,5 +103,9 @@
         WHERE customerId = #{customerId}
     </update>
 
-
+    <select id="getByCustomerReservation" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
+        SELECT *
+        FROM Customer
+        WHERE customerId = #{customerId}
+    </select>
 </mapper>
