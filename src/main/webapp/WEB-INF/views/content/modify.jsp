@@ -23,14 +23,16 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js" integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"
+            integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <title>상품 수정</title>
     <style>
-        .custom-check .form-check-input:checked{
+        .custom-check .form-check-input:checked {
             background-color: #dc3545;
             border-color: #dc3545;
         }
@@ -55,7 +57,6 @@
             border-color: #5aa3a3 !important;
         }
 
-        
 
     </style>
 </head>
@@ -64,9 +65,10 @@
     <div class="row mt-5">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
             <h1 style="font-family: 'LINESeedKR-Bd'">
-<%--                ${content.contentName}--%>
+                <%--                ${content.contentName}--%>
                 전시회 정보 수정
-                <button style="font-family: 'LINESeedKR-Bd'; border-color: #0cc" type="submit" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#modifyModal">
+                <button style="font-family: 'LINESeedKR-Bd'; border-color: #0cc" type="submit" class="btn btn-ico"
+                        data-bs-toggle="modal" data-bs-target="#modifyModal">
                     수정하기
                 </button>
             </h1>
@@ -76,43 +78,43 @@
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         제목
                     </label>
-            <%--    <input type="hidden" name="contentPosterName" value="${content.contentPosterName}">--%>
-                    <input class="form-control" type="text" name="contentName" value="${content.contentName}" >
+                    <%--    <input type="hidden" name="contentPosterName" value="${content.contentPosterName}">--%>
+                    <input class="form-control" type="text" name="contentName" value="${content.contentName}">
                 </div>
 
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         장소
                     </label>
-                     <input class="form-control" type="text" name="contentRegion" value="${content.contentRegion}" >
+                    <input class="form-control" type="text" name="contentRegion" value="${content.contentRegion}">
                 </div>
 
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         시작
                     </label>
-                    <input class="form-control" type="date" name="contentStartDate" value="${content.contentStartDate}" >
+                    <input class="form-control" type="date" name="contentStartDate" value="${content.contentStartDate}">
                 </div>
 
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         종료
                     </label>
-                    <input class="form-control" type="date" name="contentEndDate" value="${content.contentEndDate}" >
+                    <input class="form-control" type="date" name="contentEndDate" value="${content.contentEndDate}">
                 </div>
 
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         가격
                     </label>
-                    <input class="form-control" type="number" name="contentPrice" value="${content.contentPrice}" >
+                    <input class="form-control" type="number" name="contentPrice" value="${content.contentPrice}">
                 </div>
 
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         정보
                     </label>
-                    <textarea class="form-control" name="contentBoard" >${content.contentBoard}</textarea>
+                    <textarea class="form-control" name="contentBoard">${content.contentBoard}</textarea>
                 </div>
 
                 <div class="posterBox mb-3">
@@ -124,34 +126,43 @@
                     <input multiple type="file" accept="image/*" class="form-control" name="addDetailFiles">
                 </div>
 
+                <c:forEach items="${content.contentPosterName}" var="contentPosterName" varStatus="status">
 
-                <%-- Poster 이미지 출력 --%>
-                <div class="row mt-5">
-                    <div class="col-2 d-flex justify-content-center align-items-baseline">
-                        <%-- 삭제여부 체크박스 --%>
+                    <%-- Poster 이미지 출력 --%>
+                    <div class="row mt-5">
+                        <div class="col-2 d-flex justify-content-center align-items-baseline">
+                                <%-- 삭제여부 체크박스 --%>
                             <div class="custom-check form-check form-switch text-danger">
-                                <input name="removePosterName" value="${content.contentPosterName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-                                <label class="form-check-label" for="flexSwitchCheckChecked"><i class="fa-regular fa-trash-can"></i></label>
+                                <input name="removePosterName" value="${contentPosterName}" class="form-check-input"
+                                       type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                <label class="form-check-label" for="flexSwitchCheckChecked"><i
+                                        class="fa-regular fa-trash-can"></i></label>
                             </div>
+                        </div>
+                        <div class="col-10">
+                            <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentPosterName, 'utf-8')}"
+                                 alt="">
+                        </div>
                     </div>
-                    <div class="col-10">
-                        <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(content.contentPosterName, 'utf-8')}" alt="">
-                    </div>
-                </div>
-
+                </c:forEach>
                 <%-- Detail 이미지 출력 --%>
                 <div>
                     <c:forEach items="${content.contentDetailName}" var="contentDetailName" varStatus="status">
                         <div class="row mt-5">
                             <div class="col-2 d-flex justify-content-center align-items-baseline">
-                                <%-- 삭제여부 체크박스 --%>
-                                    <div class="custom-check form-check form-switch text-danger">
-                                        <input name="removeDetailNames" value="${contentDetailName}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked${status.count}">
-                                        <label class="form-check-label" for="flexSwitchCheckChecked${status.count}"><i class="fa-regular fa-trash-can"></i></label>
-                                    </div>
+                                    <%-- 삭제여부 체크박스 --%>
+                                <div class="custom-check form-check form-switch text-danger">
+                                    <input name="removeDetailNames" value="${contentDetailName}"
+                                           class="form-check-input" type="checkbox" role="switch"
+                                           id="flexSwitchCheckChecked${status.count}">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked${status.count}"><i
+                                            class="fa-regular fa-trash-can"></i></label>
+                                </div>
                             </div>
                             <div class="col-10">
-                                <img class="img-fluid img-thumbnail" src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}" alt="">
+                                <img class="img-fluid img-thumbnail"
+                                     src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
+                                     alt="">
                             </div>
                         </div>
                     </c:forEach>
@@ -173,15 +184,19 @@
                 수정하시겠습니까?
             </div>
             <div class="modal-footer">
-                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white" type="button" class="btn" id="modifyConfirmButton">확인</button>
+                <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">취소
+                </button>
+                <button style="font-family: LINESeedKR-Bd; background-color: #0cc; color: white" type="button"
+                        class="btn" id="modifyConfirmButton">확인
+                </button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    document.querySelector("#modifyConfirmButton").addEventListener("click", function() {
+    document.querySelector("#modifyConfirmButton").addEventListener("click", function () {
         document.querySelector("#modifyForm").submit();
     });
 
