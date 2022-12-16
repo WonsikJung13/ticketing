@@ -45,27 +45,8 @@
         }
 
     </script>
-    <script>
-        // 파일 체크 실행
-        var MaxSize = 10;
-        var FileExt = "PNG, JPG, JPEG";
 
-        document.getElementById('fileUpload').onchange = function () {
 
-            if (this.value != "") {
-
-                var extPlan = FileExt;
-                var checkSize = 1024 * 1024 * MaxSize;
-
-                if (!checkFile($('#fileUpload'), extPlan) | !checkFileSize($('#fileUpload'), checkSize)) {
-                    this.value = "";
-                    return;
-                }
-            }
-        };
-        </script>
-
-    <!-- 2.10.0 버전엔 js 파일 일부분이 없어 오류 발생 ! -->
 
     <style>
         /*글씨체*/
@@ -180,8 +161,6 @@
                         이용정보
                     </label>
                 </div>
-<%--                <textarea class="form-control mb-3" name="contentBoard"></textarea>--%>
-
                 <!-- textEditor -->
                 <div>
                     <textarea class="form-control mb-3" name="contentBoard" id="txtContent" rows="10" cols="100" style="width: 100%; "></textarea>
@@ -211,7 +190,7 @@
                         포스터
                     </label>
                 </div>
-                <input style="padding-bottom: 0" id="fileUpload" type="file" accept="image/*" class="form-control mb-3" name="file1">
+                <input style="padding-bottom: 0" type="file" accept="image/*" class="form-control mb-3" name="file1">
 
                 <div class="DetailBox">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
@@ -302,6 +281,25 @@ function checkFileSize(obj, size) {
 };
 
 
+</script>
+<script>
+    // 파일 체크 실행
+    var MaxSize = 10;
+    var FileExt = "PNG, JPG, JPEG";
+
+    document.getElementById('fileUpload').onchange = function () {
+
+        if (this.value != "") {
+
+            var extPlan = FileExt;
+            var checkSize = 1024 * 1024 * MaxSize;
+
+            if (!checkFile($('#fileUpload'), extPlan) | !checkFileSize($('#fileUpload'), checkSize)) {
+                this.value = "";
+                return;
+            }
+        }
+    };
 </script>
 
 
