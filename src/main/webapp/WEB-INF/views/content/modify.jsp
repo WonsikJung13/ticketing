@@ -122,8 +122,8 @@
                         <tr>
                             <td>
                                 <%--             경위도--%>
-                                <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="">
-                                <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="">
+                                <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="${content.contentMapEntX}">
+                                <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="${content.contentMapEntY}">
                             </td>
                         </tr>
                         <tr>
@@ -194,6 +194,7 @@
                     <input style="display: inline-block;width:49.3%;margin-right: 4px;" class="form-control" required="required" type="number" name="startTime" min="0" max="24" value="${content.startTime}">
                     <input style="display: inline-block;width:49.3%;" class="form-control mb-3" required="required" type="number" name="endTime" min="0" max="24" value="${content.endTime}">
                 </div>
+
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         가격
