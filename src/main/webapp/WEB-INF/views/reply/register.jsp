@@ -20,45 +20,74 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         textarea {
-            width: 100%;
-            height: 20em;
-            border: none;
-            resize: none;
+            width: 100% !important;
+            height: 20em !important;
+            resize: none !important;
+        }
+
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .form-control {
+            height: 45px;
+            border-color: #0CC;
+        }
+
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
+
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
         }
     </style>
 </head>
 <body>
 
-<h1>게시물 작성</h1>
-<form action="" method="post" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label class="form-label">
-            작성자
-        </label>
-        <input
-                value="<sec:authentication property="name"/>"
-                class="form-control" type="text" name="replyName" style="background-color: #d4d4d4" readonly>
+<div class="container-md">
+    <div class="row">
+        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
+            <h3>게시물 작성</h3>
+            <form action="" method="post" enctype="multipart/form-data" style="margin-top: 30px">
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
+                        작성자
+                    </label>
+                    <input
+                            value="<sec:authentication property="name"/>"
+                            class="form-control" type="text" name="replyName" style="background-color: #d4d4d4"
+                            readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
+                        제목
+                    </label>
+                    <input class="form-control" type="text" name="replyContent">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
+                        본문
+                    </label>
+                    <textarea class="form-control" name="replyMainText"></textarea>
+                </div>
+
+                <input type="hidden" name="contentId" value="${param.contentId}">
+
+                <input class="btn btn-ico" type="submit" value="등록">
+            </form>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label class="form-label">
-            제목
-        </label>
-        <input class="form-control" type="text" name="replyContent">
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">
-            본문
-        </label>
-        <textarea class="form-control" name="replyMainText"></textarea>
-    </div>
-
-    <input type="hidden" name="contentId" value="${param.contentId}">
-
-    <input class="btn btn-warning" type="submit" value="등록">
-</form>
-
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
