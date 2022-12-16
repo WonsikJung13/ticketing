@@ -56,7 +56,14 @@
     <div class="row">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
 
-            <h3>${Reply.replyName}님의 게시물</h3>
+            <h3>
+                <c:if test="${Reply.customerName != null}">
+                    ${Reply.customerName}님의 게시물
+                </c:if>
+                <c:if test="${Reply.customerName == null}">
+                    ${Reply.replyName}님의 게시물
+                </c:if>
+            </h3>
             <div class="mb-3" style="margin-top: 30px">
                 <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                     상품명
@@ -75,7 +82,12 @@
                 <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                     작성자
                 </label>
-                <input class="form-control" type="text" value="${Reply.replyName}" readonly>
+                <c:if test="${Reply.customerName != null}">
+                    <input class="form-control" type="text" value="${Reply.customerName}" readonly>
+                </c:if>
+                <c:if test="${Reply.customerName == null}">
+                    <input class="form-control" type="text" value="${Reply.replyName}" readonly>
+                </c:if>
             </div>
 
             <div class="mb-3">

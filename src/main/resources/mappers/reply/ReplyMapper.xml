@@ -20,13 +20,14 @@
 
     <select id="selectDuo" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
         SELECT
-            replyId,
-            replyName,
-            replyContent,
-            replyInserted,
-            replyMainText
+            r.replyId,
+            r.replyName,
+            r.replyContent,
+            r.replyInserted,
+            r.replyMainText,
+            c.customerName
         FROM
-            Reply
+            Reply r LEFT JOIN Customer c ON r.replyName = c.customerId
         WHERE
             replyId = #{replyId}
         AND
@@ -35,26 +36,28 @@
 
     <select id="select" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
         SELECT
-            replyId,
-            replyName,
-            replyContent,
-            replyInserted,
-            replyMainText
+            r.replyId,
+            r.replyName,
+            r.replyContent,
+            r.replyInserted,
+            r.replyMainText,
+            c.customerName
         FROM
-            Reply
+            Reply r LEFT OUTER JOIN Customer c ON r.replyName = c.customerId
         WHERE
             replyId = #{replyId}
     </select>
     <select id="selectContentId" resultType="com.limdaram.ticketing.domain.reply.ReplyDto">
         SELECT
-            replyId,
-            replyName,
-            replyContent,
-            replyInserted,
-            replyMainText,
-            contentId
+            r.replyId,
+            r.replyName,
+            r.replyContent,
+            r.replyInserted,
+            r.replyMainText,
+            r.contentId,
+            c.customerName
         FROM
-            Reply
+            Reply r LEFT OUTER JOIN Customer c ON r.replyName = c.customerId
         WHERE
             contentId = #{contentId}
     </select>
