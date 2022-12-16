@@ -55,7 +55,7 @@
 <div class="container-md">
     <div class="row">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
-            <h3>게시물 작성</h3>
+            <h3 style="font-family: LINESeedKR-Bd">게시물 작성</h3>
             <form action="" method="post" enctype="multipart/form-data" style="margin-top: 30px">
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
@@ -83,7 +83,7 @@
 
                 <input type="hidden" name="contentId" value="${param.contentId}">
 
-                <input class="btn btn-ico" type="submit" value="등록">
+                <input style="font-family: LINESeedKR-Bd" class="btn btn-ico" type="submit" value="등록">
             </form>
         </div>
     </div>
