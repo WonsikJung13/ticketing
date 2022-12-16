@@ -330,6 +330,7 @@
             color: #ffffff !important;
             background-color: #79dfdf !important;
             border-color: #79dfdf !important;
+            border-radius: 0px !important;
         }
 
         .btn-danger:hover {
@@ -339,8 +340,12 @@
 
         /*삭제하기 모달 */
         .modal-content {
+            border-radius: 0px !important;
         }
 
+        .btn-secondary {
+            border-radius: 0px !important;
+        }
 
     </style>
 </head>

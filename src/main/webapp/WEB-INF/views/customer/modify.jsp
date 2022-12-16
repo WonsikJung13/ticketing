@@ -22,18 +22,23 @@
             font-weight: 700;
             font-style: normal;
         }
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
 
-        .btn:hover {
-            background-color: #0CC;
-            border-color: #0cc;
-            color: white;
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
         }
     </style>
 </head>
 <body>
 <div class="container-md" style="width: 900px">
     <div class="row mt-5">
-        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px; font-family: LINESeedKR-Bd; padding-bottom: 50px; margin-bottom: 50px;">
+        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px; padding-bottom: 50px; margin-bottom: 50px;">
             <c:if test="${not empty message }">
                 <div class="alert alert-success">
                         ${message }
@@ -49,7 +54,7 @@
                 </label>
                 <input class="form-control" type="text" value="${customer.customerName }" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#nameModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#nameModal">
                 이름 변경하기
             </button>
 
@@ -59,7 +64,7 @@
                 </label>
                 <input class="form-control" type="date" value="${customer.customerBirth }" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#birthModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#birthModal">
                 생년월일 변경하기
             </button>
 
@@ -70,13 +75,13 @@
                 <input id="customerId" class="form-control" type="text" value="${customer.customerId }" readonly>
             </div>
 
-            <div class="mb-3" class="form-label">
+            <div class="mb-3">
                 <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
                     비밀번호
                 </label>
                 <input class="form-control" type="password" value="****" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#passwordModal">
                 비밀번호 변경하기
             </button>
 
@@ -93,15 +98,11 @@
                 <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
                     핸드폰 번호
                 </label>
-                <div>
-                    <input class="form-control" type="text" value="${customer.customerPhoneNumber }" readonly>
-                </div>
-
+                <input class="form-control" type="text" value="${customer.customerPhoneNumber }" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
+            <button style="font-family: 'LINESeedKR-Bd';" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
                 핸드폰 번호 변경하기
             </button>
-
 
             <div class="mb-3">
                 <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
@@ -117,7 +118,7 @@
                     </div>
                 </form>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button" class="btn btn-outline-secondary">
+            <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button" class="btn btn-ico">
                 주소 변경하기
             </button>
 
@@ -136,7 +137,7 @@
                 <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute" id="exitButton" type="button" class="btn">
+                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute" id="exitButton" type="button" class="btn btn-ico">
                     나가기
                 </button>
             </div>
