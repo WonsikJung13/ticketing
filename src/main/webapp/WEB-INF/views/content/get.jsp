@@ -30,6 +30,14 @@
             display: block;
         }
 
+        .replyIcon{
+            color: #099;
+        }
+
+        .replyIcon:hover{
+            color: #5aa3a3 !important;
+        }
+
         .nav {
             display: block;
             position: sticky;
@@ -482,7 +490,7 @@
                             </c:url>
                             <h2 class="tm-color-primary tm-post-title">후기
                             <a href="${registerLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
-                                <i class="fa-solid fa-plus"></i>
+                                <i class="fa-solid fa-plus replyIcon"></i>
                             </a>
                             </h2>
 

@@ -24,6 +24,17 @@
             font-style: normal;
         }
 
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
+
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
+        }
     </style>
 </head>
 <body>
@@ -35,118 +46,119 @@
     </div>
 </c:if>
 <div class="tm-main">
-<div class="container-md" style="width: 900px">
-    <div class="row mt-5">
-        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
+    <div class="container-md" style="width: 900px">
+        <div class="row mt-5">
+            <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
 
-            <h1 style="font-family: 'LINESeedKR-Bd'">내 정보</h1>
+                <h1 style="font-family: 'LINESeedKR-Bd'">내 정보</h1>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    이름
-                </label>
-                <input class="form-control" type="text" value="${customer.customerName}" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        이름
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerName}" readonly>
+                </div>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    생년월일
-                </label>
-                <input class="form-control" type="date" value="${customer.customerBirth}" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        생년월일
+                    </label>
+                    <input class="form-control" type="date" value="${customer.customerBirth}" readonly>
+                </div>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    아이디
-                </label>
-                <input class="form-control" type="text" value="${customer.customerId}" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        아이디
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerId}" readonly>
+                </div>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    비밀번호
-                </label>
-                <input class="form-control" type="password" value="****" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        비밀번호
+                    </label>
+                    <input class="form-control" type="password" value="****" readonly>
+                </div>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    이메일
-                </label>
-                <input class="form-control" type="text" value="${customer.customerEmail}" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        이메일
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerEmail}" readonly>
+                </div>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    핸드폰 번호
-                </label>
-                <input class="form-control" type="text" value="${customer.customerPhoneNumber}" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        핸드폰 번호
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerPhoneNumber}" readonly>
+                </div>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    주소
-                </label>
-                <input class="form-control" type="text" value="${customer.customerAddress}" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        주소
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerAddress}" readonly>
+                </div>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    등급
-                </label>
-                <input class="form-control" type="text" value="${customer.customerGrade}" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        등급
+                    </label>
+                    <input class="form-control" type="text" value="${customer.customerGrade}" readonly>
+                </div>
 
-            <div class="mb-3">
-                <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                    가입일시
-                </label>
-                <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
-            </div>
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                        가입일시
+                    </label>
+                    <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
+                </div>
 
-        </div>
-    </div>
-</div>
 
-<br>
+                <br>
 
-<c:url value="/customer/modify" var="modifyLink">
-    <c:param name="customerId" value="${customer.customerId}"></c:param>
-</c:url>
-<c:url value="/customer/remove" var="removeLink">
-    <%--     <c:param name="id" value="${member.id}"></c:param>--%>
-</c:url>
+                <c:url value="/customer/modify" var="modifyLink">
+                    <c:param name="customerId" value="${customer.customerId}"></c:param>
+                </c:url>
+                <c:url value="/customer/remove" var="removeLink">
+                    <%--     <c:param name="id" value="${member.id}"></c:param>--%>
+                </c:url>
 
-<form id="form2" action="${removeLink }" method="post">
-    <input type="hidden" name="customerId" value="${customer.customerId}">
-    <input type="hidden" name="oldPassword">
-</form>
+                <form id="form2" action="${removeLink }" method="post">
+                    <input type="hidden" name="customerId" value="${customer.customerId}">
+                    <input type="hidden" name="oldPassword">
+                </form>
 
-<div class="gap-2 d-md-flex justify-content-md-center">
-    <a style="background-color: #0CC; color: white; font-family: 'LINESeedKR-Bd';" class = "btn " href="${modifyLink}">수정하기</a>
-    <input style="font-family: 'LINESeedKR-Bd';" class="btn btn-danger" type="submit" value="탈퇴하기" data-bs-toggle="modal" data-bs-target="#removeModal">
-</div>
-
-<br>
-
-<!-- remove Modal -->
-<div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">기존 암호 입력</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input id="oldPasswordInput2" type="text" class="form-control">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button id="modalConfirmButton2" type="button" class="btn btn-danger">탈퇴</button>
+                <div class="gap-2 d-md-flex justify-content-md-center">
+                    <a style="background-color: #0CC; color: white; font-family: 'LINESeedKR-Bd';" class="btn btn-ico"
+                       href="${modifyLink}">수정하기</a>
+                    <input style="font-family: 'LINESeedKR-Bd';" class="btn btn-danger" type="submit" value="탈퇴하기"
+                           data-bs-toggle="modal" data-bs-target="#removeModal">
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <br>
+
+    <!-- remove Modal -->
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">기존 암호 입력</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input id="oldPasswordInput2" type="text" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="modalConfirmButton2" type="button" class="btn btn-danger">탈퇴</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -156,7 +168,7 @@
 </script>
 
 <script>
-    document.querySelector("#modalConfirmButton2").addEventListener("click", function() {
+    document.querySelector("#modalConfirmButton2").addEventListener("click", function () {
         const form = document.forms.form2;
         const modalInput = document.querySelector("#oldPasswordInput2");
         const formOldPasswordInput = document.querySelector(`#form2 input[name="oldPassword"]`)
