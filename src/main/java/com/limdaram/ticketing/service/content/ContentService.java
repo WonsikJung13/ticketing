@@ -193,13 +193,14 @@ public class ContentService {
         // 파일 체크 됐을 때
         if (removeDetailNames != null) {
             for (String removeDetailName : removeDetailNames) {
-                // 1. contentDetail 테이블에서 record 지우기
-//                System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
-                mapper.deleteByContentIdAndDetailName(contentId, removeDetailName);
 
                 // s3 저장소에서 파일 지우기
                 removeDetailFile(contentId, removeDetailName);
 
+                // 1. contentDetail 테이블에서 record 지우기
+//                System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
+                mapper.deleteByContentIdAndDetailName(contentId, removeDetailName);
+                System.out.println("디테일 선택 파일 삭제");
 //                // 2. 저장소에 있는 실제 파일 지우기
 //                String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removeDetailName;
 //                File file = new File(path);
@@ -210,11 +211,11 @@ public class ContentService {
         // 추가 파일 있을 때
         if (addDetailFiles != null) {
             for (MultipartFile DetailFile : addDetailFiles) {
-//                if (DetailFile != null && DetailFile.getSize() > 0) {
+                if (DetailFile != null && DetailFile.getSize() > 0) {
                     // 파일 테이블에 파일명 추가
                     String uuid = UUID.randomUUID().toString() + ".jpg";
                     mapper.insertFile2(content.getContentId(), uuid);
-
+                    System.out.println("디테일 파일 추가");
                     // s3 저장소에 디테일 파일 추가
                     uploadDetailFiles(content, DetailFile, uuid);
 
@@ -231,7 +232,7 @@ public class ContentService {
 //                        e.printStackTrace();
 //                        throw new RuntimeException(e);
 //                    }
-//                }
+                }
             }
         }
         return mapper.update(content);

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 
 <html>
@@ -62,18 +62,18 @@
 <%--    </script>--%>
 
     <!-- textEditor -->
-<%--    <script>--%>
+    <script>
 
-<%--        function save(){--%>
-<%--            oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);--%>
-<%--            //스마트 에디터 값을 텍스트컨텐츠로 전달--%>
-<%--            var content = document.getElementById("smartEditor").value;--%>
-<%--            alert(document.getElementById("txtContent").value);--%>
-<%--            // 값을 불러올 땐 document.get으로 받아오기--%>
-<%--            return;--%>
-<%--        }--%>
+        function save(){
+            oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
+            //스마트 에디터 값을 텍스트컨텐츠로 전달
+            // var content = document.getElementById("smartEditor").value;
+            // alert(document.getElementById("txtContent").value);
+            // 값을 불러올 땐 document.get으로 받아오기
+            return;
+        }
 
-<%--    </script>--%>
+    </script>
 
     <!-- 2.10.0 버전엔 js 파일 일부분이 없어 오류 발생 ! -->
 
@@ -86,7 +86,7 @@
             font-style: normal;
         }
 
-        .btn:hover {
+        .MapBtn:hover {
             background-color: #0CC;
             border-color: #0cc;
             color: white;
@@ -238,9 +238,9 @@
                     <tbody>
                     <tr>
                         <%--            도로명주소--%>
-                        <input type="text" id="contentAddress" name="contentAddress" style="width:85%">
+                        <input type="text" id="contentAddress" class="form-control" name="contentAddress" style="width:85%">
                         <input type="hidden" id="confmKey" name="confmKey" value=""  >
-                            <button type="btn"onclick="goPopup();">
+                            <button type="btn" class="MapBtn" onclick="goPopup();">
                                 주소검색
                             </button>
                     </tr>
@@ -260,7 +260,7 @@
                     </tbody>
                 </table>
 
-                <input id="submitButton1" type="submit" value="등록">
+                <input id="submitButton1" type="submit" onclick="save();" value="등록">
             </form>
         </div>
     </div>
