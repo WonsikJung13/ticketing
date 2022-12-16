@@ -21,24 +21,47 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         textarea {
-            width: 100%;
-            height: 20em;
-            border: none;
-            resize: none;
+            width: 100% !important;
+            height: 20em !important;
+            resize: none !important;
+        }
+
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .form-control {
+            height: 45px;
+            border-color: #0CC;
+        }
+
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
+
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
         }
     </style>
 </head>
 <body>
 <div class="container-md">
     <div class="row">
-        <div class="col">
-            <form method="post" id="modifyForm">
-                <h1>수정</h1>
+        <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
+            <h3>수정</h3>
+            <form method="post" id="modifyForm" style="margin-top: 30px">
 
                 <input type="hidden" name="replyId" value="${Reply.replyId}">
 
                 <div class="mb-3" id="content">
-                    <label class="form-label">
+                    <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                         제목
                     </label>
                     <input name="replyContent" class="form-control" type="text" value="${Reply.replyContent}">
@@ -46,14 +69,14 @@
                 </div>
 
                 <div class="mb-3" id="text">
-                    <label class="form-label">
+                    <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                         본문
                     </label>
 
                     <textarea name="replyMainText" class="form-control">${Reply.replyMainText}</textarea>
                 </div>
                 <div class="mb-3" id="name">
-                    <label class="form-label">
+                    <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                         작성자
                     </label>
 
@@ -63,7 +86,7 @@
                 </div>
 
                 <div class="mb-3" id="time">
-                    <label class="form-label">
+                    <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
                         작성일시
                     </label>
 
@@ -73,8 +96,8 @@
                 </div>
             </form>
 
-            <button type="submit" class="btn btn-succeess" data-bs-toggle="modal" data-bs-target="#modifyModal">
-                <i class="btn btn-warning">수정하기</i>
+            <button type="submit" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#modifyModal">
+                수정하기
             </button>
 
             <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="exampleModalLabel"
