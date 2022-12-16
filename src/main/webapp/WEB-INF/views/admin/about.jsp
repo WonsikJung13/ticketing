@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<my:sideBar/>
+<my:sideBar active="about"/>
 
 <h1>limdaram team</h1>
     <div class="row tm-row tm-mb-60 tm-main">
