@@ -350,15 +350,6 @@
             font-weight: 700;
             font-style: normal;
         }
-
-        /*글씨체*/
-        @font-face {
-            font-family: 'LINESeedKR-Bd';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-        }
-
     </style>
 </head>
 <body>
@@ -384,14 +375,14 @@
                     <div id="myDropdown" class="dropdown-content">
                             <%--    수정버튼--%>
                         <c:url value="/content/modify" var="modifyLink">
-                            <c:param name="contentId" value="${content.contentId}"></c:param>
+                            <c:param name="contentId" value="${content.contentId}"/>
                         </c:url>
                         <a style="font-family: LINESeedKR-Bd" class="modifyPost" href="${modifyLink}">
                             수정하기
                             <i class="fa-regular fa-pen-to-square" style="margin-left:38px;"></i>
                         </a>
                             <%--    삭제버튼--%>
-                        <c:url value="/content/remove" var="removeLink"></c:url>
+                        <c:url value="/content/remove" var="removeLink"/>
                         <form id="removeForm" action="${removeLink }" method="post">
                             <input type="hidden" name="contentId" value="${content.contentId }">
                         </form>
