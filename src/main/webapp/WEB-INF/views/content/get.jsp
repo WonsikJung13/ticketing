@@ -321,6 +321,8 @@
         .removePost {
             color: #ff4646 !important;
         }
+
+
     </style>
 
     <style>
@@ -347,6 +349,14 @@
             border-radius: 0px !important;
         }
 
+        /*글씨체*/
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
     </style>
 </head>
 <body>
@@ -355,7 +365,7 @@
 <div>
     <div class="container-fluid">
         <main class="tm-main" style="width:720px;">
-            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px;">${content.contentName}</h1>
+            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px; font-family: LINESeedKR-Bd">${content.contentName}</h1>
 
             <!-- three dot menu -->
 
@@ -374,7 +384,7 @@
                         <c:url value="/content/modify" var="modifyLink">
                             <c:param name="contentId" value="${content.contentId}"></c:param>
                         </c:url>
-                        <a class="modifyPost" href="${modifyLink}">
+                        <a style="font-family: LINESeedKR-Bd" class="modifyPost" href="${modifyLink}">
                             수정하기
                             <i class="fa-regular fa-pen-to-square" style="margin-left:38px;"></i>
                         </a>
@@ -383,7 +393,7 @@
                         <form id="removeForm" action="${removeLink }" method="post">
                             <input type="hidden" name="contentId" value="${content.contentId }">
                         </form>
-                        <a class="removePost" href="${removeLink }" data-bs-toggle="modal"
+                        <a style="font-family: LINESeedKR-Bd" class="removePost" href="${removeLink }" data-bs-toggle="modal"
                            data-bs-target="#removeModal">
                             삭제하기
                             <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i>
@@ -405,26 +415,27 @@
                        style="display: inline-block;vertical-align: top;width:20rem;margin-top: 0.4rem;margin-left: 2.5rem;">
                     <div class="tm-post-sidebar">
                         <%-- <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>--%>
-                        <figcaption class="tm-color-primary">장소</figcaption>
+                        <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">장소</figcaption>
                         <p><a href="#popup-info-place" role="button" type="text" value="" class="mapPopup"
                               readonly style="color: #999;">${content.contentRegion} <i
                                 class="fa-regular fa-map"></i></a></p>
-                        <figcaption class="tm-color-primary">기간</figcaption>
+                        <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">기간</figcaption>
                         <p>${content.contentStartDate} ~ ${content.contentEndDate}</p>
-                        <figcaption class="tm-color-primary">시간</figcaption>
+                        <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">시간</figcaption>
                         <p>${content.startTime}:00 ~ ${content.endTime}:00</p>
-                        <figcaption class="tm-color-primary">가격</figcaption>
+                        <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">가격</figcaption>
                         <p>${content.contentPrice}원</p>
                         <sec:authorize access="isAuthenticated()">
                             <c:url value="/content/reservation" var="reservLink">
                                 <c:param name="contentId" value="${content.contentId}"></c:param>
                             </c:url>
-                            <button type="submit" class="btn btn-danger" value=""
+                            <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger" value=""
                                     onclick="location.href='${reservLink}'">예매하기
                             </button>
-                            <a href="#replySection">
-                                후기로
-                            </a>
+                            <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-danger" value=""
+                                    onclick="location.href='#replySection'">후기보기
+                            </button>
+
                         </sec:authorize>
                         </p>
                     </div>
@@ -460,7 +471,7 @@
                             <c:url value="/reply/register" var="registerLink">
                                 <c:param name="contentId" value="${content.contentId}" />
                             </c:url>
-                            <h2 class="tm-color-primary tm-post-title">후기
+                            <h2 style="font-family: LINESeedKR-Bd" class="tm-color-primary tm-post-title">후기
                             <a href="${registerLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
                                 <i class="fa-solid fa-plus replyIcon"></i>
                             </a>
