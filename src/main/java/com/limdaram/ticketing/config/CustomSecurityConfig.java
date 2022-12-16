@@ -32,13 +32,16 @@ public class CustomSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         log.info("-----------configure----------");
 
+        // 시큐리티 여는 코드
+        // http.authorizeRequests().antMatchers("/css/*").permitAll();
+
         // 커스텀 로그인 페이지
         http.formLogin().loginPage("/member/login").failureHandler(customFailureHandler).defaultSuccessUrl("/content/list", true);
         http.logout().logoutSuccessUrl("/member/login");
 
         // CSRF 토큰 비활성화
         http.csrf().disable();
-
+        http.headers().frameOptions().sameOrigin(); // 동일 도메인에서 iframe 접근 가능하도록 x-frame-options 설정. 참조 https://gigas-blog.tistory.com/124
         http.rememberMe();
 
         http.oauth2Login().loginPage("/member/login").defaultSuccessUrl("/content/list", true);
