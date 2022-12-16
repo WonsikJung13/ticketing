@@ -431,7 +431,6 @@
                             </button>
 
                         </sec:authorize>
-                        </p>
                     </div>
                 </aside>
             </div>
