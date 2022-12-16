@@ -122,8 +122,8 @@
                         <tr>
                             <td>
                                 <%--             경위도--%>
-                                <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="">
-                                <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="">
+                                <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="${content.contentMapEntX}">
+                                <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="${content.contentMapEntY}">
                             </td>
                         </tr>
                         <tr>
