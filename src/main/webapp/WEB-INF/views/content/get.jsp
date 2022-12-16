@@ -422,6 +422,9 @@
                             <button type="submit" class="btn btn-danger" value=""
                                     onclick="location.href='${reservLink}'">예매하기
                             </button>
+                            <a href="#replySection">
+                                후기로
+                            </a>
                         </sec:authorize>
                         </p>
                     </div>
@@ -465,6 +468,7 @@
 
                             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
 
+                            <section id="replySection">
                             <c:forEach items="${replyy}" var="reply">
                                 <div class="tm-comment tm-mb-45">
                                     <input type="hidden" id="replyId" value="${reply.replyId}" >
@@ -473,9 +477,16 @@
                                             <c:url value="/reply/get" var="getLink">
                                                 <c:param name="replyId" value="${reply.replyId}" />
                                             </c:url>
+                                            <c:if test="${reply.customerName != null}">
                                             <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
-                                                    ${reply.replyName}
+                                                    ${reply.customerName}
                                             </a>
+                                            </c:if>
+                                            <c:if test="${reply.customerName == null}">
+                                                <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                                        ${reply.replyName}
+                                                </a>
+                                            </c:if>
                                         </figcaption>
                                     </figure>
                                     <div>
@@ -488,6 +499,7 @@
                                     </div>
                                 </div>
                             </c:forEach>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -646,6 +658,5 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
 </script>
-
 </body>
 </html>
