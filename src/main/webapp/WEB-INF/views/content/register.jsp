@@ -25,9 +25,9 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"
-            integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js" integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- 네이버 스마트에디터  -->
     <script type="text/javascript" src="../libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
     <script type="application/json" src="/code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
@@ -47,7 +47,6 @@
         }
 
     </script>
-
 
     <style>
         /*글씨체*/
@@ -71,10 +70,125 @@
             resize: none;
         }
     </style>
+
+    <style>
+         /*업로드 버튼*/
+        .posterBox label {
+            display: inline-block;
+            padding: .5em .75em;
+            color: #fff;
+            font-size: inherit;
+            line-height: normal;
+            vertical-align: middle;
+            background-color: #00CCCC;
+            cursor: pointer;
+            border: 1px solid #ebebeb;
+            border-bottom-color: #e2e2e2;
+            border-radius: .25em;
+        }
+
+         .detailBox label {
+             display: inline-block;
+             padding: .5em .75em;
+             color: #fff;
+             font-size: inherit;
+             line-height: normal;
+             vertical-align: middle;
+             background-color: #00CCCC;
+             cursor: pointer;
+             border: 1px solid #ebebeb;
+             border-bottom-color: #e2e2e2;
+             border-radius: .25em;
+         }
+
+
+        input[type="file"] {  /* 파일 필드 숨기기 */
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip:rect(0,0,0,0);
+            border: 0;
+        }
+
+        .posterBox.bs3-primary label {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+
+        }
+
+        /* named upload */
+        .posterBox .file1-name .file2-name{
+            display: inline-block;
+            padding: .5em .75em;  /* label의 패딩값과 일치 */
+            font-size: inherit;
+            font-family: inherit;
+            line-height: normal;
+            vertical-align: middle;
+            background-color: #f5f5f5;
+            border: 1px solid #ebebeb;
+            border-bottom-color: #e2e2e2;
+            border-radius: .25em;
+            -webkit-appearance: none; /* 네이티브 외형 감추기 */
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+         /* imaged preview */
+         .posterBox .upload-display {  /* 이미지가 표시될 지역 */
+             margin-bottom: 5px;
+         }
+
+         @media(min-width: 768px) {
+             .posterBox .upload-display {
+                 display: inline-block;
+                 margin-right: 5px;
+                 margin-bottom: 0;
+             }
+         }
+
+         .posterBox .upload-thumb-wrap {  /* 추가될 이미지를 감싸는 요소 */
+             display: inline-block;
+             width: 54px;
+             padding: 2px;
+             vertical-align: middle;
+             border: 1px solid #ddd;
+             border-radius: 5px;
+             background-color: #fff;
+         }
+
+         .posterBox .upload-display img {  /* 추가될 이미지 */
+             display: block;
+             max-width: 100%;
+             width: 100% \9;
+             height: auto;
+         }
+
+         /* 디테일 이미지 미리보기 */
+         #multiple-container {
+             display: grid;
+             grid-template-columns: 1fr 1fr 1fr;
+         }
+         .image {
+             display: block;
+             width: 100%;
+         }
+         .image-label {
+             position: relative;
+             bottom: 22px;
+             left: 5px;
+             color: white;
+             text-shadow: 2px 2px 2px black;
+         }
+
+    </style>
 </head>
 <body>
-<div class="container-md" style="width: 900px">
-    <div class="row mt-5" style="width: 900px">
+<div class="container-md" style="max-width: 900px;min-width: 500px;overflow-x:scroll">
+    <div class="row mt-5"style="">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
             <h1 style="font-family: 'LINESeedKR-Bd'">상품 등록</h1>
 
@@ -93,23 +207,71 @@
                     <input class="form-control" required="required" type="text" name="contentRegion">
                 </div>
 
+                <div class="mb-3">
+                    <label style="font-family: 'LINESeedKR-Bd';" for="" class="form-label">
+                        주소
+                    </label>
+                    <%--      주소 검색  --%>
+                    <table >
+                        <colgroup>
+                            <col style="width:20%"><col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <div class="input-group">
+                            <%--            도로명주소--%>
+                            <button type="button" class="MapBtn btn btn-outline-secondary " onclick="goPopup();" style="background-color: #00CCCC;color: #ffffff; border-color:#00CCCC">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <input type="text" id="contentAddress" class="form-control" name="contentAddress"  required="required" readonly style="background-color: transparent;">
+                            <input type="hidden" id="confmKey" name="confmKey" value=""  >
+                            <%--                    상세정보--%>
+                            <input type="text" id="contentAddrDetail" class="form-control" name="contentAddrDetail" style="margin-left:4px" value="" placeholder="상세주소">
+                            </div>
+                        </tr>
+                        <tr>
+                            <td>
+                                <%--             경위도--%>
+                                <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="">
+                                <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div>
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         기간
                     </label>
                 </div>
-                <div class="mb-3" style="">
-                    <input class="form-control" style="display:inline-block;width: 48.4%" required="required"
-                           type="date" name="contentStartDate">
-                    ~ <input class="form-control" style="display: inline-block;width:48.4%;" required="required"
-                             type="date" name="contentEndDate">
+                <div  class="mb-3" style="">
+                    <div class="input-group">
+                     <input class="form-control" style="margin-right: 4px" required="required" type="date" name="contentStartDate">
+                        ~
+                     <input class="form-control" style="margin-left: 4px" required="required" type="date" name="contentEndDate">
+                    </div>
                 </div>
+
+                <div style="">
+                    <div class="input-group">
+                        <label style="font-family: 'LINESeedKR-Bd';" for="" class="form-label">
+                            시간
+                        </label>
+                    </div>
+                    <div class="input-group">
+                    <input style="display: inline-block;width:50%;margin-right: 4px;" class="form-control" required="required" type="number" name="startTime" min="0" max="24" placeholder="시작 (시)">
+                        ~
+                    <input style="display: inline-block;margin-left: 4px" class="form-control mb-3" required="required" type="number" name="endTime" min="0" max="24" placeholder="종료 (시)">
+                    </div>
+                </div>
+
                 <div>
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         휴관일
                     </label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline mb-3" style="">
                     <div style="font-family: 'LINESeedKR-Bd'; color: #ff493f">
                         <input type="checkbox" value="1" id="checkMon" class="checkSelect" onchange="checkFun()"> 일
                     </div>
@@ -140,29 +302,12 @@
 
                     <input type="hidden" name="dayLimit" id="dayLimit" value=""/>
                 </div>
-
-                <div style="">
-                    <label style="font-family: 'LINESeedKR-Bd';display: inline-block;width:49.3%;margin-right: 4px"
-                           for="" class="form-label">
-                        시작 시간
-                    </label>
-                    <label style="font-family: 'LINESeedKR-Bd';display: inline-block;width:49.3%;" for=""
-                           class="form-label mt-3">
-                        종료 시간
-                    </label>
-                    <input style="display: inline-block;width:49.3%;margin-right: 4px;" class="form-control"
-                           required="required" type="number" name="startTime" min="0" max="24">
-                    <input style="display: inline-block;width:49.3%;" class="form-control mb-3" required="required"
-                           type="number" name="endTime" min="0" max="24">
-                </div>
-
                 <div>
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         가격
                     </label>
                 </div>
-                <input class="form-control mb-3" required="required" type="number" name="contentPrice" min="0"
-                       step="1000" placeholder="원">
+                <input class="form-control mb-3" required="required" type="number" name="contentPrice" min="0" step="" placeholder="원">
 
                 <div>
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
@@ -171,8 +316,8 @@
                 </div>
                 <!-- textEditor -->
                 <div>
-                    <textarea class="form-control mb-3" name="contentBoard" id="txtContent" rows="10" cols="100"
-                              style="width: 100%; "></textarea>
+                    <textarea class="form-control mb-3" name="contentBoard" id="txtContent" rows="10" cols="100" style="width: 100%;max-width: 900px "></textarea>
+
                     <!-- textarea 밑에 script 작성하기 -->
                     <script id="smartEditor" type="text/javascript">
                         var oEditors = [];
@@ -194,52 +339,38 @@
                 </div>
 
                 <!-- 파일첨부 -->
-                <div class="posterBox" style="margin-top: 1rem;">
+                <div style="margin-top: 1rem;">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         포스터
                     </label>
+                    <div class="posterBox preview-image">
+                        <div class="input-group">
+                        <label for="file1" style="height: 45px;border-color: #0ccccc;">업로드</label>
+                        <input class="file1-name form-control mb-3"  value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
+                        </div>
+                        <input type="file" accept="image/*" class="file1-hidden form-control mb-3" name="file1" id="file1" style="padding-bottom: 0">
+                    </div>
                 </div>
-                <input style="padding-bottom: 0" type="file" accept="image/*" class="form-control mb-3" name="file1">
 
-                <div class="DetailBox">
+                <div style="margin-top: 1rem;">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         세부내용
                     </label>
                 </div>
-                <input multiple type="file" id="fileUpload" accept="image/*" class="form-control mb-3" name="file2">
+                <div class="DetailBox preview-image">
+                    <div class="input-group">
+                        <label for="file2" style="height: 45px;border-color: #0ccccc;">업로드</label>
+                        <input class="file2-name form-control mb-3"  value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
+                    </div>
+                    <input multiple type="file" id="file2" accept="image/*" class="file2-hidden form-control mb-3" name="file2" style="padding-bottom: 0">
+                </div>
 
-                <%--      주소 검색  --%>
-                <table>
-                    <colgroup>
-                        <col style="width:20%">
-                        <col>
-                    </colgroup>
-                    <tbody>
-                    <tr>
-                        <%--            도로명주소--%>
-                        <input type="text" id="contentAddress" class="form-control" name="contentAddress"
-                               required="required" style="width:85%">
-                        <input type="hidden" id="confmKey" name="confmKey" value="">
-                        <button type="button" class="MapBtn" onclick="goPopup();">
-                            주소검색
-                        </button>
-                    </tr>
-                    <tr>
-                        <td>
-                            <%--             경위도--%>
-                            <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="">
-                            <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <%--                    상세정보--%>
-                            <input type="text" id="contentAddrDetail" name="contentAddrDetail" style="width:40%"
-                                   value="" readonly>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="image-container">
+                    <img style="width: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+                </div>
+
+                <div id="multiple-container">
+                </div>
 
                 <input id="submitButton1" type="submit" onclick="save();" value="등록">
             </form>
@@ -297,16 +428,16 @@
 <script>
     // 파일 체크 실행
     var MaxSize = 10;
-    var FileExt = "PNG, JPG, JPEG";
+    var FileExt = "PNG, JPG, JPEG, GIF";
 
-    document.getElementById('fileUpload').onchange = function () {
+    document.getElementById('file2').onchange = function () {
 
         if (this.value != "") {
 
             var extPlan = FileExt;
             var checkSize = 1024 * 1024 * MaxSize;
 
-            if (!checkFile($('#fileUpload'), extPlan) | !checkFileSize($('#fileUpload'), checkSize)) {
+            if (!checkFile($('#file2'), extPlan) | !checkFileSize($('#file2'), checkSize)) {
                 this.value = "";
                 return;
             }
@@ -368,6 +499,115 @@
         console.log(result);
     }
 </script>
+
+<script>
+    // 포스터 파일 스크립트
+    // 파일 업로드 버튼 누를 시 이름 생성
+    document.addEventListener("DOMContentLoaded", function ready() {
+        var fileTarget = document.querySelector(".posterBox .file1-hidden");
+        fileTarget.addEventListener("change", handleFiles, false);
+        function handleFiles() {
+            const fileList = this.files;
+            var filename = fileList[0].name;
+            document.querySelector('.file1-name').value = filename;
+        }
+    });
+
+
+    function readImage(input) {
+        // 인풋 태그에 파일이 있는 경우
+        if(input.files && input.files[0]) {
+            // 이미지 파일인지 검사 (생략)
+            // FileReader 인스턴스 생성
+            const reader = new FileReader()
+            // 이미지가 로드가 된 경우
+            reader.onload = e => {
+                const previewImage = document.getElementById("preview-image")
+                previewImage.src = e.target.result
+            }
+            // reader가 이미지 읽도록 하기
+            reader.readAsDataURL(input.files[0])
+        }
+    }
+    // input file에 change 이벤트 부여
+    const inputImage = document.getElementById("file1")
+    inputImage.addEventListener("change", e => {
+        readImage(e.target)
+    })
+
+
+    // 디테일 스크립터
+    document.addEventListener("DOMContentLoaded", function ready() {
+        var fileTarget = document.querySelector(".detailBox .file2-hidden");
+
+            fileTarget.addEventListener("change", handleFiles, false);
+            function handleFiles() {
+                const fileList = this.files;
+                var file2Length = document.getElementById("file2").files.length;
+
+                console.log("file2 개수: " + fileList.length);
+
+                if (fileList.length == 1) {
+                    console.log(fileList.length);
+                    var filename = fileList[0].name;
+                    document.querySelector('.file2-name').value = filename;
+                }
+                else if (fileList.length != 1) {
+                    var filename = "파일 " + fileList.length + "개";
+                    document.querySelector('.file2-name').value = filename;
+                }
+            }
+    });
+
+    function readMultipleImage(input) {
+        const multipleContainer = document.getElementById("multiple-container")
+
+        // 인풋 태그에 파일들이 있는 경우
+        if(input.files) {
+            // 이미지 파일 검사 (생략)
+            console.log(input.files)
+            // 유사배열을 배열로 변환 (forEach문으로 처리하기 위해)
+            const fileArr = Array.from(input.files)
+            const $colDiv1 = document.createElement("div")
+            const $colDiv2 = document.createElement("div")
+            $colDiv1.classList.add("column")
+            $colDiv2.classList.add("column")
+            fileArr.forEach((file, index) => {
+                const reader = new FileReader()
+                const $imgDiv = document.createElement("div")
+                const $img = document.createElement("img")
+                $img.classList.add("image")
+                const $label = document.createElement("label")
+                $label.classList.add("image-label")
+                $label.textContent = file.name
+                $imgDiv.appendChild($img)
+                $imgDiv.appendChild($label)
+                reader.onload = e => {
+                    $img.src = e.target.result
+
+                    $imgDiv.style.width = ($img.naturalWidth) * 0.2 + "px"
+                    $imgDiv.style.height = ($img.naturalHeight) * 0.2 + "px"
+                }
+
+                console.log(file.name)
+                if(index % 2 == 0) {
+                    $colDiv1.appendChild($imgDiv)
+                } else {
+                    $colDiv2.appendChild($imgDiv)
+                }
+
+                reader.readAsDataURL(file)
+            })
+            multipleContainer.appendChild($colDiv1)
+            multipleContainer.appendChild($colDiv2)
+        }
+    }
+    const inputMultipleImage = document.getElementById("file2")
+    inputMultipleImage.addEventListener("change", e => {
+        readMultipleImage(e.target)
+    })
+</script>
+
 
 </body>
 </html>
