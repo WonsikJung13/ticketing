@@ -113,7 +113,7 @@
                         <tbody>
                         <tr>
                             <%--            도로명주소--%>
-                            <input type="text" id="contentAddress" class="form-control" name="contentAddress"  value="${content.contentAddress}" required="required" style="width:85%">
+                            <input type="text" id="contentAddress" class="form-control" name="contentAddress"  value="${content.contentAddress}" required="required" readonly style="width:85%">
                             <input type="hidden" id="confmKey" name="confmKey" value=""  >
                             <button type="button" class="MapBtn" onclick="goPopup();">
                                 주소검색
