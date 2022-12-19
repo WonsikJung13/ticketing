@@ -186,8 +186,8 @@
     </style>
 </head>
 <body>
-<div class="container-md" style="width: 900px">
-    <div class="row mt-5"style="width: 900px">
+<div class="container-md" style="max-width: 900px;min-width: 500px;overflow-x:scroll">
+    <div class="row mt-5"style="">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
             <h1 style="font-family: 'LINESeedKR-Bd'">상품 등록</h1>
 
@@ -207,7 +207,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label style="font-family: 'LINESeedKR-Bd'; for="" class="form-label">
+                    <label style="font-family: 'LINESeedKR-Bd';" for="" class="form-label">
                         주소
                     </label>
                     <%--      주소 검색  --%>
@@ -260,7 +260,8 @@
                     </div>
                     <div class="input-group">
                     <input style="display: inline-block;width:50%;margin-right: 4px;" class="form-control" required="required" type="number" name="startTime" min="0" max="24" placeholder="시작 (시)">
-                    <input style="display: inline-block;" class="form-control mb-3" required="required" type="number" name="endTime" min="0" max="24" placeholder="종료 (시)">
+                        ~
+                    <input style="display: inline-block;margin-left: 4px" class="form-control mb-3" required="required" type="number" name="endTime" min="0" max="24" placeholder="종료 (시)">
                     </div>
                 </div>
 
@@ -306,7 +307,7 @@
                         가격
                     </label>
                 </div>
-                <input class="form-control mb-3" required="required" type="number" name="contentPrice" min="0" step="1000" placeholder="원">
+                <input class="form-control mb-3" required="required" type="number" name="contentPrice" min="0" step="" placeholder="원">
 
                 <div>
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
@@ -315,7 +316,7 @@
                 </div>
                 <!-- textEditor -->
                 <div>
-                    <textarea class="form-control mb-3" name="contentBoard" id="txtContent" rows="10" cols="100" style="width: 100%; "></textarea>
+                    <textarea class="form-control mb-3" name="contentBoard" id="txtContent" rows="10" cols="100" style="width: 100%;max-width: 900px "></textarea>
                     <!-- textarea 밑에 script 작성하기 -->
                     <script id="smartEditor" type="text/javascript">
                         var oEditors = [];

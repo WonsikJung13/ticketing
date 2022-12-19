@@ -42,9 +42,6 @@ public class CustomSecurityConfig {
                 .failureHandler(customFailureHandler)
                 .defaultSuccessUrl("/content/list", true);
 
-//        http.sessionManagement()
-//                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
-
         http.logout().logoutSuccessUrl("/member/login");
 
         // CSRF 토큰 비활성화
