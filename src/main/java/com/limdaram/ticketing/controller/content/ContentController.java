@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -91,6 +92,7 @@ public class ContentController {
     @PostMapping("modify")
     @PreAuthorize("authentication.name == 'admin'")
     public String modify(
+            HttpSession session,
             ContentDto content,
             MultipartFile addPosterFile,
             MultipartFile[] addDetailFiles,
@@ -98,6 +100,7 @@ public class ContentController {
             @RequestParam(name = "removeDetailNames", required = false) List<String> removeDetailNames,
             RedirectAttributes rttr) {
 
+        System.out.println(session.getMaxInactiveInterval());
         int cnt = service.update(content, addPosterFile, addDetailFiles, removePosterName, removeDetailNames);
 
         if (cnt == 1) {
