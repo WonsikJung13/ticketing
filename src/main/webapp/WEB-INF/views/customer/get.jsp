@@ -41,7 +41,7 @@
 <my:sideBar/>
 
 <c:if test="${not empty message }">
-    <div class="alert alert-success">
+    <div style="font-family: 'LINESeedKR-Bd'" class="alert alert-danger">
             ${message }
     </div>
 </c:if>
@@ -146,11 +146,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">기존 암호 입력</h1>
+                    <h1 style="font-family: 'LINESeedKR-Bd';" class="modal-title fs-5" id="exampleModalLabel">기존 암호 입력</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input id="oldPasswordInput2" type="text" class="form-control">
+                    <input id="oldPasswordInput2" type="password" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
