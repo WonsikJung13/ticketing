@@ -11,8 +11,8 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>상품 등록</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -22,10 +22,12 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js" integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"
+            integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- 네이버 스마트에디터  -->
     <script type="text/javascript" src="../libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
     <script type="application/json" src="/code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
@@ -35,7 +37,7 @@
     <!-- textEditor -->
     <script>
 
-        function save(){
+        function save() {
             oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
             //스마트 에디터 값을 텍스트컨텐츠로 전달
             // var content = document.getElementById("smartEditor").value;
@@ -45,7 +47,6 @@
         }
 
     </script>
-
 
 
     <style>
@@ -73,7 +74,7 @@
 </head>
 <body>
 <div class="container-md" style="width: 900px">
-    <div class="row mt-5"style="width: 900px">
+    <div class="row mt-5" style="width: 900px">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
             <h1 style="font-family: 'LINESeedKR-Bd'">상품 등록</h1>
 
@@ -97,9 +98,11 @@
                         기간
                     </label>
                 </div>
-                <div  class="mb-3" style="">
-                     <input class="form-control" style="display:inline-block;width: 48.4%" required="required" type="date" name="contentStartDate">
-                    ~ <input class="form-control" style="display: inline-block;width:48.4%;" required="required" type="date" name="contentEndDate">
+                <div class="mb-3" style="">
+                    <input class="form-control" style="display:inline-block;width: 48.4%" required="required"
+                           type="date" name="contentStartDate">
+                    ~ <input class="form-control" style="display: inline-block;width:48.4%;" required="required"
+                             type="date" name="contentEndDate">
                 </div>
                 <div>
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
@@ -139,14 +142,18 @@
                 </div>
 
                 <div style="">
-                    <label style="font-family: 'LINESeedKR-Bd';display: inline-block;width:49.3%;margin-right: 4px" for="" class="form-label">
+                    <label style="font-family: 'LINESeedKR-Bd';display: inline-block;width:49.3%;margin-right: 4px"
+                           for="" class="form-label">
                         시작 시간
                     </label>
-                    <label style="font-family: 'LINESeedKR-Bd';display: inline-block;width:49.3%;" for="" class="form-label mt-3">
+                    <label style="font-family: 'LINESeedKR-Bd';display: inline-block;width:49.3%;" for=""
+                           class="form-label mt-3">
                         종료 시간
                     </label>
-                    <input style="display: inline-block;width:49.3%;margin-right: 4px;" class="form-control" required="required" type="number" name="startTime" min="0" max="24">
-                    <input style="display: inline-block;width:49.3%;" class="form-control mb-3" required="required" type="number" name="endTime" min="0" max="24">
+                    <input style="display: inline-block;width:49.3%;margin-right: 4px;" class="form-control"
+                           required="required" type="number" name="startTime" min="0" max="24">
+                    <input style="display: inline-block;width:49.3%;" class="form-control mb-3" required="required"
+                           type="number" name="endTime" min="0" max="24">
                 </div>
 
                 <div>
@@ -154,7 +161,8 @@
                         가격
                     </label>
                 </div>
-                <input class="form-control mb-3" required="required" type="number" name="contentPrice" min="0" step="1000" placeholder="원">
+                <input class="form-control mb-3" required="required" type="number" name="contentPrice" min="0"
+                       step="1000" placeholder="원">
 
                 <div>
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
@@ -163,7 +171,8 @@
                 </div>
                 <!-- textEditor -->
                 <div>
-                    <textarea class="form-control mb-3" name="contentBoard" id="txtContent" rows="10" cols="100" style="width: 100%; "></textarea>
+                    <textarea class="form-control mb-3" name="contentBoard" id="txtContent" rows="10" cols="100"
+                              style="width: 100%; "></textarea>
                     <!-- textarea 밑에 script 작성하기 -->
                     <script id="smartEditor" type="text/javascript">
                         var oEditors = [];
@@ -172,13 +181,13 @@
                             elPlaceHolder: "txtContent",  //textarea ID 입력
                             sSkinURI: "../libs/smarteditor/SmartEditor2Skin.html",  //martEditor2Skin.html 경로 입력
                             fCreator: "createSEditor2",
-                            htParams : {
+                            htParams: {
                                 // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                bUseToolbar : true,
+                                bUseToolbar: true,
                                 // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                bUseVerticalResizer : false,
+                                bUseVerticalResizer: false,
                                 // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                bUseModeChanger : false
+                                bUseModeChanger: false
                             }
                         });
                     </script>
@@ -200,18 +209,20 @@
                 <input multiple type="file" id="fileUpload" accept="image/*" class="form-control mb-3" name="file2">
 
                 <%--      주소 검색  --%>
-                <table >
+                <table>
                     <colgroup>
-                        <col style="width:20%"><col>
+                        <col style="width:20%">
+                        <col>
                     </colgroup>
                     <tbody>
                     <tr>
                         <%--            도로명주소--%>
-                        <input type="text" id="contentAddress" class="form-control" name="contentAddress"  required="required" style="width:85%">
-                        <input type="hidden" id="confmKey" name="confmKey" value=""  >
-                            <button type="button" class="MapBtn" onclick="goPopup();">
-                                주소검색
-                            </button>
+                        <input type="text" id="contentAddress" class="form-control" name="contentAddress"
+                               required="required" style="width:85%">
+                        <input type="hidden" id="confmKey" name="confmKey" value="">
+                        <button type="button" class="MapBtn" onclick="goPopup();">
+                            주소검색
+                        </button>
                     </tr>
                     <tr>
                         <td>
@@ -222,8 +233,9 @@
                     </tr>
                     <tr>
                         <td>
-        <%--                    상세정보--%>
-                            <input type="text" id="contentAddrDetail" name="contentAddrDetail" style="width:40%" value="" readonly>
+                            <%--                    상세정보--%>
+                            <input type="text" id="contentAddrDetail" name="contentAddrDetail" style="width:40%"
+                                   value="" readonly>
                         </td>
                     </tr>
                     </tbody>
@@ -242,43 +254,43 @@
         var extName = obj.val().substring(obj.val().lastIndexOf(".") + 1).toUpperCase();
         var str = ext.split(",");
 
-        for ( var i = 0; i < str.length; i++ ) {
+        for (var i = 0; i < str.length; i++) {
             if (extName == str[i].trim()) {
                 check = true;
                 break;
             } else check = false;
         }
-        if ( !check ) {
+        if (!check) {
             alert(ext + " 파일만 업로드 가능합니다.");
         }
         return check;
     };
 
-// 파일 용량 체크 함수
-function checkFileSize(obj, size) {
+    // 파일 용량 체크 함수
+    function checkFileSize(obj, size) {
 
-    var check = false;
-    var sizeinbytes = obj[0].files[0].size;
-    var fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
-    var i = 0;
-    var checkSize = size;
+        var check = false;
+        var sizeinbytes = obj[0].files[0].size;
+        var fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+        var i = 0;
+        var checkSize = size;
 
-    while (checkSize > 900) {
-        checkSize /= 1024;
-        i++;
-    }
+        while (checkSize > 900) {
+            checkSize /= 1024;
+            i++;
+        }
 
-    checkSize = (Math.round(checkSize * 100) / 100) + ' ' + fSExt[i];
-    var fSize = sizeinbytes;
+        checkSize = (Math.round(checkSize * 100) / 100) + ' ' + fSExt[i];
+        var fSize = sizeinbytes;
 
-    if (fSize > size) {
-        alert("첨부파일은 " + checkSize + " 이하로 첨부 바랍니다.");
-        check = false;
-    } else {
-        check = true;
-    }
-    return check;
-};
+        if (fSize > size) {
+            alert("첨부파일은 " + checkSize + " 이하로 첨부 바랍니다.");
+            check = false;
+        } else {
+            check = true;
+        }
+        return check;
+    };
 
 
 </script>
@@ -305,6 +317,7 @@ function checkFileSize(obj, size) {
 
 <script>
     checkFun();
+
     function checkFun() {
         // 1이면 휴관일, 0이면 오픈
         let dayLimit = "";
@@ -323,52 +336,22 @@ function checkFileSize(obj, size) {
     // $("#array").val(checkArray);
 
 </script>
-<script>
-    // document.querySelector("#submitButton1").addEventListener("click", function(e) {
-    //     // submit 진행 중지
-    //     e.preventDefault();
-    //
-    //     // input 입력한 값 가져오기
-    //     let NameValue = document.querySelector(`#registerForm input[name="contentName"]`).value
-    //     let RegionValue = document.querySelector(`#registerForm input[name="contentRegion"]`).value
-    //     let StartDateValue = document.querySelector(`#registerForm input[name="contentStartDate"]`).value
-    //     let EndDateValue = document.querySelector(`#registerForm input[name="contentEndDate"]`).value
-    //     let PriceValue = document.querySelector(`#registerForm input[name="contentPrice"]`).value
-    //     let BoardValue = document.querySelector(`#registerForm input[name="contentBoard"]`).value
-    //     // 빈칸만 있는지 확인
-    //
-    //     // 위 테스트 모두 통과하면 submit
-    //     if (NameValue.trim() != ""
-    //         && RegionValue.trim() != ""
-    //         && StartDateValue.trim() != ""
-    //         && EndDateValue.trim() !=""
-    //         && PriceValue.trim()!= ""
-    //         && BoardValue.trim()!= "") {
-    //
-    //         document.querySelector("#contentRegisterForm").submit();
-    //     } else {
-    //         // 적절한 메세지 표시
-    //
-    //
-    //     }
-    // });
-</script>
-
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-            crossorigin="anonymous"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
 
 
 <script>
 
-    function goPopup(){
+    function goPopup() {
         // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrCoordUrl.do)를 호출하게 됩니다.
-        var pop = window.open("/content/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+        var pop = window.open("/content/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
     }
-    function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
+
+    function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
         , detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno
-        , emdNo, entX, entY){
+        , emdNo, entX, entY) {
         // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
         document.querySelector('#contentAddress').value = roadAddrPart1;
         document.querySelector('#contentAddrDetail').value = addrDetail;

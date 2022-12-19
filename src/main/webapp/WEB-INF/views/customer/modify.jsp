@@ -28,12 +28,14 @@
             border-color: #0cc;
             color: white;
         }
+
         .btn-ico {
             color: #ffffff !important;
             background-color: #79dfdf !important;
             border-color: #79dfdf !important;
             border-radius: 0.375rem !important;
         }
+
         .btn-ico:hover {
             background-color: #5aa3a3 !important;
             border-color: #5aa3a3 !important;
@@ -128,6 +130,8 @@
                         </div>
                     </form>
                 </div>
+                <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button"
+                        class="btn btn-outline-secondary">
                     <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button"
                             class="btn btn-ico">
                         주소 변경하기
