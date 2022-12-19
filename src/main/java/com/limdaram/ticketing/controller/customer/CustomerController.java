@@ -8,11 +8,14 @@ import com.limdaram.ticketing.service.customer.EmailServiceImpl;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +35,10 @@ public class CustomerController {
 
     @Setter(onMethod_ = @Autowired)
     private EmailServiceImpl emailServiceImpl;
+
+    @Setter(onMethod_ = @Autowired)
+    private PasswordEncoder passwordEncoder;
+
 
     @RequestMapping("get")
     @PreAuthorize("authentication.name == #customerId")
@@ -64,21 +71,23 @@ public class CustomerController {
 
     @PostMapping("remove")
     @PreAuthorize("authentication.name == #customer.customerId")
-    public String remove(CustomerDto customer, String oldPassword, RedirectAttributes rttr) {
+    public String remove(CustomerDto customer, String oldPassword, RedirectAttributes rttr, HttpServletRequest request) throws ServletException {
 
         CustomerDto oldCustomer = customerService.getByCustomerId(customer.getCustomerId());
 
-        if (oldCustomer.getCustomerPassword().equals(oldPassword)) {
-            int cnt = customerService.remove(customer);
+        boolean passwordMatch = passwordEncoder.matches(oldPassword, oldCustomer.getCustomerPassword());
 
-            rttr.addFlashAttribute("message", "회원 탈퇴하였습니다.");
+        if (passwordMatch) {
+            customerService.remove(customer);
+            request.logout();
+//            rttr.addFlashAttribute("message", "회원 탈퇴하였습니다.");
 
-            return "redirect:/customer/get";
+            return "redirect:/";
 
         } else {
-            rttr.addAttribute("customerId", customer);
+//            rttr.addAttribute("customerId", customer);
             rttr.addFlashAttribute("message", "암호가 일치하지 않습니다.");
-            return "redirect:/customer/get";
+            return "redirect:/customer/get?customerId=" + customer.getCustomerId();
         }
     }
 
@@ -192,7 +201,7 @@ public class CustomerController {
 
         if (cnt == 1) {
 //            System.out.println(customerAddress);
-            rttr.addFlashAttribute("message",  "[" + newAddress + "] 주소로 수정되었습니다");
+            rttr.addFlashAttribute("message",  "[" + newAddress + "]" + "</br>" + "주소로 수정되었습니다");
             return "redirect:/customer/modify?customerId=" + customerId;
         } else {
 //            System.out.println(customerAddress);
@@ -236,6 +245,4 @@ public class CustomerController {
 
         return "redirect:/customer/reservation";
     }
-
-
 }
