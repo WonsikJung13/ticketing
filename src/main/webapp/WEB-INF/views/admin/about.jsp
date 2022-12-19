@@ -19,69 +19,131 @@
 <body>
 <my:sideBar active="about"/>
 
-<h1>limdaram team</h1>
 <div class="row tm-row tm-mb-60 tm-main">
+    <h1>limdaram team</h1>
     <div class="col-12">
         <hr class="tm-hr-primary tm-mb-55">
     </div>
+    <h2 style="font-family: 'LINESeedKR-Bd'">통합 개발 환경</h2>
+    <table class="table">
+        <thead>
+            <tr style="font-family: 'LINESeedKR-Bd'">
+                <th>항목</th>
+                <th>세부내용</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr class="tm-h3 mb-3">
+                <th>Cloud Service Provider</th>
+                <th>AWS</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>Cloud Native</th>
+                <th>EC2 / S3 / RDS</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>Database</th>
+                <th>MariaDB / MySQL</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>Front-end</th>
+                <th>HTML / CSS / Javascript / JSP / JSTL / AJAX / JSON / EL</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>Back-end</th>
+                <th>Java / Spring Boot</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>Build Tool</th>
+                <th>Gradle</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>Library</th>
+                <th>Springboot-mail / springboot-security / OAuth2 / springboot-web / lombok / log4j2 / springboot-Devtools / </th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>VCS</th>
+                <th>git / github</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>IDE</th>
+                <th>Intellij / Visual Studio Code</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>Server</th>
+                <th>Apache Tomcat</th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>O/S</th>
+                <th>MS Windows 10 / MAC </th>
+            </tr>
+            <tr class="tm-h3 mb-3">
+                <th>Test Browser</th>
+                <th>Explorer / Chrome / Firefox / Safari</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="col-12">
+        <hr class="tm-hr-primary tm-mb-55">
+    </div>
+
     <%--    JWS--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
-            <img src="/JWS.png" width="200" height="300" class="img-fluid mr-4">
-            <div class="media-body">
-                <h2 class="tm-color-primary tm-post-title mb-2">PB</h2>
-                <h3 class="tm-h3 mb-3">PB</h3>
-                <p class="mb-0 tm-line-height-short">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
-                    error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
-                    ratione sapiente sequi similique totam?
-                </p>
-            </div>
+            <img src="/JWS.png" width="200" height="300" class="img-fluid" style="margin-left: 0">
+        </div>
+        <div class="media-body">
+            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">PB</h2>
+            <h3 class="tm-h3 mb-3">PB</h3>
+            <p class="mb-0 tm-line-height-short">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias aliquam aliquid commodi ducimus eaque eius, eligendi magnam natus, necessitatibus odio pariatur quaerat quis reiciendis voluptatem. Ab aliquam repudiandae suscipit?
+            </p>
         </div>
     </div>
     <%--    LSG--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
             <img src="/LSG.png" width="230" height="330" class="img-fluid">
-            <div class="media-body">
-                <h2 class="tm-color-primary tm-post-title mb-2">SSUNG</h2>
-                <h3 class="tm-h3 mb-3">SSUNG</h3>
-                <p class="mb-0 tm-line-height-short">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
-                    error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
-                    ratione sapiente sequi similique totam?
-                </p>
-            </div>
+        </div>
+        <div class="media-body">
+            <h2 class="tm-color-primary tm-post-title mb-2">SSUNG</h2>
+            <h3 class="tm-h3 mb-3">SSUNG</h3>
+            <p class="mb-0 tm-line-height-short">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
+                error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
+                ratione sapiente sequi similique totam?
+            </p>
         </div>
     </div>
     <%--    LCE--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
             <img src="/LCE.png" width="200" height="300" class="img-fluid mr-4">
-            <div class="media-body">
-                <h2 class="tm-color-primary tm-post-title mb-2">LDR</h2>
-                <h3 class="tm-h3 mb-3">LDR</h3>
-                <p class="mb-0 tm-line-height-short">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
-                    error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
-                    ratione sapiente sequi similique totam?
-                </p>
-            </div>
+        </div>
+        <div class="media-body">
+            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">LDR</h2>
+            <h3 class="tm-h3 mb-3">LDR</h3>
+            <p class="mb-0 tm-line-height-short">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
+                error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
+                ratione sapiente sequi similique totam?
+            </p>
         </div>
     </div>
     <%--    HHJ--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
             <img src="/HHJ.png" width="140" height="240" class="img-fluid mr-3 ml-5">
-            <div class="media-body ml-4">
-                <h2 class="tm-color-primary tm-post-title mb-2">Kimchi</h2>
-                <h3 class="tm-h3 mb-3">Kimchi</h3>
-                <p class="mb-0 tm-line-height-short">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
-                    error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
-                    ratione sapiente sequi similique totam?
-                </p>
-            </div>
+        </div>
+        <div class="media-body ml-4">
+            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Kimchi</h2>
+            <h3 class="tm-h3 mb-3">Kimchi</h3>
+            <p class="mb-0 tm-line-height-short">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
+                error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
+                ratione sapiente sequi similique totam?
+            </p>
         </div>
     </div>
 </div>

@@ -350,7 +350,6 @@
             font-weight: 700;
             font-style: normal;
         }
-
     </style>
 </head>
 <body>
@@ -376,14 +375,14 @@
                     <div id="myDropdown" class="dropdown-content">
                             <%--    수정버튼--%>
                         <c:url value="/content/modify" var="modifyLink">
-                            <c:param name="contentId" value="${content.contentId}"></c:param>
+                            <c:param name="contentId" value="${content.contentId}"/>
                         </c:url>
                         <a style="font-family: LINESeedKR-Bd" class="modifyPost" href="${modifyLink}">
                             수정하기
                             <i class="fa-regular fa-pen-to-square" style="margin-left:38px;"></i>
                         </a>
                             <%--    삭제버튼--%>
-                        <c:url value="/content/remove" var="removeLink"></c:url>
+                        <c:url value="/content/remove" var="removeLink"/>
                         <form id="removeForm" action="${removeLink }" method="post">
                             <input type="hidden" name="contentId" value="${content.contentId }">
                         </form>
@@ -423,9 +422,9 @@
                             <c:url value="/content/reservation" var="reservLink">
                                 <c:param name="contentId" value="${content.contentId}"></c:param>
                             </c:url>
-                            <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger" value=""
-                                    onclick="location.href='${reservLink}'">예매하기
-                            </button>
+<%--                            <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger" value=""--%>
+<%--                                    onclick="location.href='${reservLink}'">예매하기--%>
+<%--                            </button>--%>
                             <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-danger" value=""
                                     onclick="location.href='#replySection'">후기보기
                             </button>

@@ -134,14 +134,27 @@
             width: 300px;
         }
 
+        /*글씨체*/
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+        .btn-ico {
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            border-radius: 0.375rem !important;
+        }
+
+        .btn-ico:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
+        }
     </style>
 
     <%
-        // 유저정보 획득
-//        CustomerDto customer = (CustomerDto)request.getAttribute("customer");
-//        String userName = customer.getCustomerName();
-//        String userPhone = customer.getCustomerPhoneNumber();
-//        String userEmail = customer.getCustomerEmail();
 
         ContentDto content = (ContentDto)request.getAttribute("content");
         //JSON 형식으로 달의 날자별 예약현황을 전송받음
@@ -161,13 +174,6 @@
         Integer endMonth = endDate.getMonthValue();
         Integer endDay = endDate.getDayOfMonth();
 
-//        //예약가능 시간 (start time~end time) end - start = 이용가능시간
-//        int startTime = content.getStartTime();
-//        int endTime = content.getEndTime();
-//        //총 이용 가능 시간
-//        int totalUsingTime = endTime - startTime;
-//        //시간당 가격
-//        int price = content.getContentPrice();
         %>
     <script>
         <%--//예약이 가득찬 날들의 배열--%>
@@ -242,7 +248,7 @@
             const firstDate = new Date(today.getFullYear(), today.getMonth(), 1);   // 첫날
             const lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); // 마지막날
 
-            // 작성할 테이블을 초기화
+            // 작성할 테이블을
             while (calendarTable.rows.length > 2) {
                 // 타이틀과 요일표시는 남기도록 3번째 행까지만 삭제
                 calendarTable.deleteRow(calendarTable.rows.length - 1); // 가장 마지막 행 삭제 반복
@@ -596,16 +602,13 @@
 
         //체크박스 이벤트
         function checkboxEvent(checkbox){
-            const nameForm = document.getElementById("userName");
           const phoneForm = document.getElementById("userPhone");
           const emailForm = document.getElementById("userEmail");
 
           if(checkbox.checked == true){
-            nameForm.value = "${customer.customerId}";
             phoneForm.value = "${customer.customerPhoneNumber}";
             emailForm.value = "${customer.customerEmail}";
           } else {
-            nameForm.value = "";
             phoneForm.value = "";
             emailForm.value = "";
           }
@@ -673,34 +676,44 @@
 
 <div class="mainBox">
     <div class="contentBox">
-        <div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700; margin-left:50px;">${content.contentName}</span>
+        <div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700; margin-left:50px; font-family: LINESeedKR-Bd">${content.contentName}</span>
             <div class="underline"></div></div>
         <form action="payment" method="post" name="paymentForm">
 <table id="reservation_share" align="center">
     <tr>
-        <td class="title" align="left">${content.contentRegion}</td>
-        <td class="content" align="left">${content.contentAddress}<br>${content.contentAddrDetail}</td>
+        <td style="font-family: LINESeedKR-Bd" class="title" align="left">${content.contentRegion}</td>
+        <td style="font-family: LINESeedKR-Bd" class="content" align="left">${content.contentAddress}<br>${content.contentAddrDetail}</td>
     </tr>
 </table>
 
 <table id="reservation_user">
     <tr>
         <input type="hidden" name="productName" value="${DETAIL.title}">
-        <td class="top" align="left">예약자 정보</td>
-        <td class="content" align="right">
-            <input type="checkbox" onclick="checkboxEvent(this)">계정과 동일</td>
+        <td style="font-family: LINESeedKR-Bd" class="top" align="left">예약자 정보</td>
+        <td style="font-family: LINESeedKR-Bd" class="content" align="right">
+            <input type="checkbox" onclick="checkboxEvent(this)">
+            계정과 동일
+        </td>
     </tr>
     <tr>
-        <td class="title" align="right">예약자</td>
-        <td class="content" align="left"> <input type="text" id="userName" name="userName" size="20"> </td>
+        <td style="font-family: LINESeedKR-Bd" class="title" align="center">예약자</td>
+        <td class="content " align="left">
+            <input
+                    value="<sec:authentication property="name"/>"
+                    class="form-control" type="text" id="userName" value="${name}" name="userName" size="20" readonly>
+        </td>
     </tr>
     <tr>
-        <td class="title" align="right">연락처</td>
-        <td class="content" align="left"> <input type="text" id="userPhone" name="userPhone" size="20"> </td>
+        <td style="font-family: LINESeedKR-Bd" class="title" align="center">연락처</td>
+        <td class="content" align="left">
+            <input class="form-control" type="text" id="userPhone" name="userPhone" size="20">
+        </td>
     </tr>
     <tr>
-        <td class="title" align="right">이메일</td>
-        <td class="content" align="left"> <input type="text" id="userEmail" name="userEmail" size="20"> </td>
+        <td style="font-family: LINESeedKR-Bd" class="title" align="center">이메일</td>
+        <td class="content" align="left">
+            <input class="form-control" type="text" id="userEmail" name="userEmail" size="20">
+        </td>
     </tr>
 </table>
 
@@ -708,9 +721,11 @@
 
 <table id="reservation_time">
     <tr>
-        <td class="top" align="left">시간선택</td>
+        <td style="font-family: LINESeedKR-Bd" class="top" align="left">시간선택</td>
         <td class="top" align="right">
-          <button class="btnTime" type="button" onclick="tableinit()">초기화</button>
+          <button style="font-family: LINESeedKR-Bd" class="btn-ico" type="button" onclick="tableinit()">
+              초기화
+          </button>
         </td>
 
     </tr>
@@ -738,7 +753,7 @@
         </td>
     </tr>
     <tr>
-        <td class="top" align="left" colspan="2">예약일시</td>
+        <td style="font-family: LINESeedKR-Bd" class="top" align="left" colspan="2">예약일시</td>
     </tr>
     <tr>
         <td class="content" colspan="2" align="left">
@@ -748,7 +763,7 @@
         </td>
     </tr>
     <tr>
-        <td class="top" align="left">결제정보</td>
+        <td style="font-family: LINESeedKR-Bd" class="top" align="left">금액</td>
     </tr>
     <tr>
         <td class="content" align="left" colspan="2">
@@ -759,7 +774,10 @@
     </tr>
     <tr>
         <td class="content" align="left" colspan="2">
-            <input id="btn_submit" type="button" value="결제하기" onclick="submitRes()"></td>
+            <button style="font-family: LINESeedKR-Bd" class="btn-ico" id="btn_submit" type="button" onclick="submitRes()">
+                예약하기
+            </button>
+        </td>
     <tr>
 </table>
         </form>
@@ -772,6 +790,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
+</script>
+<script>
+    const ctx = "${pageContext.request.contextPath}";
+
+    document.querySelector("#btn_submit").addEventListener("click", function () {
+        alert("예약이 완료되었습니다");
+    })
 </script>
 </body>
 </html>

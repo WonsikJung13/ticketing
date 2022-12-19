@@ -29,4 +29,6 @@ public interface CustomerMapper {
     int birthModify(String customerId, String customerBirth);
 
     int authAdd(String customerId);
+
+    CustomerDto getByCustomerReservation(String customerId);
 }
