@@ -45,15 +45,14 @@
 
         <hr class="tm-hr-primary">
 
-        <div class="tm-post-link-inner">
-          <a href="${getLink}" class="effect-lily tm-post-link tm-pt-60">
+        <div class="tm-post-link-inner" style="">
+          <a href="${getLink}" class="effect-lily tm-post-link tm-pt-60" style="height: 500.66px;">
               <%-- 이미지 --%>
-            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image"
-                 class="img-fluid">
-              <%-- 제목 --%>
-            <h2 class="tm-pt-30 tm-color-primary tm-post-title">"${content.contentName}"</h2>
+            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image" class="img-fluid" style="">
           </a>
         </div>
+              <%-- 제목 --%>
+            <h2 class="tm-pt-30 tm-color-primary tm-post-title">"${content.contentName}"</h2>
           <%--                    &lt;%&ndash; 내용 &ndash;%&gt;--%>
           <%--                <p class="tm-pt-30">--%>
           <%--                        ${content.contentBoard}--%>

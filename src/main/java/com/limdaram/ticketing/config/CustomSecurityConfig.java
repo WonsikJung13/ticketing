@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -36,7 +37,11 @@ public class CustomSecurityConfig {
         // http.authorizeRequests().antMatchers("/css/*").permitAll();
 
         // 커스텀 로그인 페이지
-        http.formLogin().loginPage("/member/login").failureHandler(customFailureHandler).defaultSuccessUrl("/content/list", true);
+        http.formLogin()
+                .loginPage("/member/login")
+                .failureHandler(customFailureHandler)
+                .defaultSuccessUrl("/content/list", true);
+
         http.logout().logoutSuccessUrl("/member/login");
 
         // CSRF 토큰 비활성화

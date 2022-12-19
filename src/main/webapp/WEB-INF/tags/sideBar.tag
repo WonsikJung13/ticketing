@@ -4,16 +4,18 @@
 
 <%@ attribute name="active" %>
 
-<link rel="stylesheet" href="../css/all.min.css"> <!-- https://fontawesome.com/ -->
+<link rel="stylesheet" href="../css/all.min.css">
+<!-- https://fontawesome.com/ -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <!-- https://fonts.google.com/ -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
 
 <style>
-    .effect-lily img{
+    .effect-lily img {
         opacity: 100;
     }
+
     #myBtn {
         display: none; /* Hidden by default */
         position: fixed; /* Fixed/sticky position */
@@ -34,7 +36,7 @@
         background-color: #555; /* Add a dark-grey background on hover */
     }
 
-    .tm-post-link-inner{
+    .tm-post-link-inner {
         background: none;
     }
 
@@ -70,17 +72,18 @@
             <div style="margin-bottom: 30px" class="tm-mb-65">
                 <div>
                     <sec:authentication property="name" var="username"/>
-                        <p style="color:white; margin-bottom: 0px; margin-top: 30px">
-                            <i class="fa-regular fa-face-grin-wide"></i>
-                            ${username}님
-                        </p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <div style="width: auto">
-                                <a style="color: white" class="font-weight-light" href="/customer/get?customerId=${username}">내정보</a> |
-<%--                                <a style="color: white" class="font-weight-light" href="/customer/reservation">예약확인</a> |--%>
-                                <a style="color: white" href="/logout">로그아웃</a>
-                            </div>
+                    <p style="color:white; margin-bottom: 0px; margin-top: 30px">
+                        <i class="fa-regular fa-face-grin-wide"></i>
+                        ${username}님
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <div style="width: auto">
+                            <a style="color: white" class="font-weight-light"
+                               href="/customer/get?customerId=${username}">내정보</a> |
+                            <%--                                <a style="color: white" class="font-weight-light" href="/customer/reservation">예약확인</a> --%>
+                            <a style="color: white" href="/logout">로그아웃</a>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -165,9 +168,9 @@
                 </div>
             </a>
         </div>
-<%--        <div class="tm-mb-80 pr-5 text-white">--%>
-<%--            Xtra Blog is a multi-purpose HTML template from TemplateMo website. Left side is a sticky menu bar. Right side content will scroll up and down.--%>
-<%--        </div>--%>
+        <%--        <div class="tm-mb-80 pr-5 text-white">--%>
+        <%--            Xtra Blog is a multi-purpose HTML template from TemplateMo website. Left side is a sticky menu bar. Right side content will scroll up and down.--%>
+        <%--        </div>--%>
     </div>
 </header>
 
@@ -177,7 +180,9 @@
     let mybutton = document.getElementById("myBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
+    window.onscroll = function () {
+        scrollFunction()
+    };
 
 
     function scrollFunction() {
