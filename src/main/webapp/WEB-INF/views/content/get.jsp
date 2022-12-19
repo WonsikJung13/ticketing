@@ -422,9 +422,9 @@
                             <c:url value="/content/reservation" var="reservLink">
                                 <c:param name="contentId" value="${content.contentId}"></c:param>
                             </c:url>
-                            <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger" value=""
-                                    onclick="location.href='${reservLink}'">예매하기
-                            </button>
+<%--                            <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger" value=""--%>
+<%--                                    onclick="location.href='${reservLink}'">예매하기--%>
+<%--                            </button>--%>
                             <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-danger" value=""
                                     onclick="location.href='#replySection'">후기보기
                             </button>

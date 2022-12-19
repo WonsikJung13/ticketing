@@ -44,7 +44,7 @@
 <div class="container-md" style="width: 900px">
     <div class="row mt-5">
         <div class="col"
-             style="border: 30px solid #c6f1f1; padding: 90px; padding-bottom: 50px; margin-bottom: 50px;">
+             style="border: 30px solid #c6f1f1; padding: 90px; padding-bottom: 50px; margin-bottom: 50px; font-family: LINESeedKR-Bd">
             <c:if test="${not empty message }">
                 <div class="alert alert-success">
                         ${message }
