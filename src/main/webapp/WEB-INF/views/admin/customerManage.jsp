@@ -90,6 +90,8 @@
                     <button style="font-family: 'LINESeedKR-Bd'; margin-top: 20px" id="resetPasswordButton" type="button" class="btn btn-outline-secondary">
                         비밀번호 초기화
                     </button>
+                    <div id="passwordResult" class="form-text"></div>
+
                 </div>
 
                 <div class="mb-3">
@@ -164,6 +166,9 @@
             body: JSON.stringify(data)
         })
             .then(res => res.json())
+            .then(data => {
+                document.querySelector("#passwordResult").innerText = data.message;
+            })
     })
 
     document.querySelector("#searchButton").addEventListener("click", function() {
