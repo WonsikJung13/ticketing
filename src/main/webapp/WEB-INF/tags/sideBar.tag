@@ -65,7 +65,7 @@
         </button>
         <div style="margin-bottom: auto" class="tm-site-header">
             <div class="mb-3 mx-auto tm-site-logo"><img src="/oo.ico"/></div>
-            <h1 class="text-center">A Raboza Team</h1>
+            <h1 class="text-center"><strong>A</strong> <strong>R</strong>aboza <strong>T</strong>eam</h1>
         </div>
         <div>
             <div style="margin-bottom: 30px" class="tm-mb-65">

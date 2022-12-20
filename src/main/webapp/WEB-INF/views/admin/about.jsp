@@ -20,7 +20,7 @@
 <my:sideBar active="about"/>
 
 <div class="row tm-row tm-mb-60 tm-main">
-    <h1>A Raboza Team</h1>
+    <h1><strong>A</strong> <strong>R</strong>aboza <strong>T</strong>eam</h1>
     <div class="col-12">
         <hr class="tm-hr-primary tm-mb-55">
     </div>
@@ -152,6 +152,7 @@
             <li></li>
         </div>
     </div>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

@@ -555,7 +555,7 @@
                                      value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
                         </c:url>
                         <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"
-                           style="position:absolute;right:2.3rem;">
+                           style="position:absolute;right:2.3rem;" target="_blank">
                             길찾기
                         </a>
                     </p>
