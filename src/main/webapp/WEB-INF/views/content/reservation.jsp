@@ -323,9 +323,8 @@
 
                 if (nowMonth == realMonth && i <= realToDay) {  // 이번달이고 오늘을 포한한 지난날
                     noCount += 1;
-                    // } else if (nowMonth < realMonth) {
-                    //     noCount += 1;
-                    // }
+                } else if (nowMonth < realMonth) {
+                    noCount += 1;
                     // else if (nowMonth > realMonth && i > realToDay) { // 다음달이고 오늘보다 일이 높은 수일떄
                     //     noCount += 1;
                 } else if (possibleDay[etp] == 1) { // 해당 일이 예약불가 요일일 경우
@@ -676,12 +675,14 @@
 
 <div class="mainBox">
     <div class="contentBox">
+        <form id="paymentForm" action="" method="post" name="paymentForm">
         <div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700; margin-left:50px; font-family: LINESeedKR-Bd">${content.contentName}</span>
+            <input class="form-control" type="hidden" name="contentName" value="${content.contentName}">
             <div class="underline"></div></div>
-        <form action="payment" method="post" name="paymentForm">
 <table id="reservation_share" align="center">
     <tr>
         <td style="font-family: LINESeedKR-Bd" class="title" align="left">${content.contentRegion}</td>
+        <input  class="form-control" type="hidden" name="reservRegion" value="${content.contentRegion}">
         <td style="font-family: LINESeedKR-Bd" class="content" align="left">${content.contentAddress}<br>${content.contentAddrDetail}</td>
     </tr>
 </table>
@@ -700,19 +701,19 @@
         <td class="content " align="left">
             <input
                     value="<sec:authentication property="name"/>"
-                    class="form-control" type="text" id="userName" value="${name}" name="userName" size="20" readonly>
+                    class="form-control" type="text" id="userName" value="${name}" name="reservName" size="20" readonly>
         </td>
     </tr>
     <tr>
         <td style="font-family: LINESeedKR-Bd" class="title" align="center">연락처</td>
         <td class="content" align="left">
-            <input class="form-control" type="text" id="userPhone" name="userPhone" size="20">
+            <input class="form-control" type="text" id="userPhone" name="reservPhone" size="20">
         </td>
     </tr>
     <tr>
         <td style="font-family: LINESeedKR-Bd" class="title" align="center">이메일</td>
         <td class="content" align="left">
-            <input class="form-control" type="text" id="userEmail" name="userEmail" size="20">
+            <input class="form-control" type="text" id="userEmail" name="reservEmail" size="20">
         </td>
     </tr>
 </table>
@@ -758,8 +759,8 @@
     <tr>
         <td class="content" colspan="2" align="left">
             <%-- 선택한 예약일시를 출력할 위치--%>
-            <input id="selectedDate" style="border:none; width:100px" name="selectedDate" value="" readonly="readonly">
-            <input id="selectedTime" style="border:none" name="selectedTime" value="" readonly="readonly">
+            <input id="selectedDate" style="border:none; width:100px" name="reservDate" value="" readonly="readonly">
+            <input id="selectedTime" style="border:none" name="reservTime" value="" readonly="readonly">
         </td>
     </tr>
     <tr>
@@ -768,15 +769,13 @@
     <tr>
         <td class="content" align="left" colspan="2">
             <%-- 총 예약금액을 출력할 위치--%>
-            <input id="totalPrice" style="border:none; text-align:right; width:100px" name="totalPrice" value=""
+            <input id="totalPrice" style="border:none; text-align:right; width:100px" name="reservPrice" value=""
                    readonly="readonly">원
         </td>
     </tr>
     <tr>
         <td class="content" align="left" colspan="2">
-            <button style="font-family: LINESeedKR-Bd" class="btn-ico" id="btn_submit" type="button" onclick="submitRes()">
-                예약하기
-            </button>
+            <input style="font-family: LINESeedKR-Bd" class="btn-ico" id="btn_submit" type="submit" value="예약하기">
         </td>
     <tr>
 </table>
@@ -792,7 +791,7 @@
         crossorigin="anonymous">
 </script>
 <script>
-    const ctx = "${pageContext.request.contextPath}";
+    <%--const ctx = "${pageContext.request.contextPath}";--%>
 
     document.querySelector("#btn_submit").addEventListener("click", function () {
         alert("예약이 완료되었습니다");

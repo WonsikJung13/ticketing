@@ -284,8 +284,10 @@
         .TreeDotDropdown {
 
             position: relative;
+            float: right;
             /*display: inline-block;*/
-            left: 680px;
+            /*margin-left: 300px;*/
+            /*left: 680px;*/
 
         }
 
@@ -356,15 +358,22 @@
 <my:sideBar/>
 
 <div>
-    <div class="container-fluid">
-        <main class="tm-main" style="width:720px;">
-            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px;width:720px; font-family: LINESeedKR-Bd">${content.contentName}</h1>
+    <div class="container-fluid" >
+        <main class="tm-main" >
+            <div class="tm-row" style="min-width:300px;max-width: 720px;">
+            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px; font-family: LINESeedKR-Bd">${content.contentName}</h1>
+
+                    <div style="max-width: 700px;height:30px;margin-bottom: 10px;">
+                        <div style="display:inline-block;float:left;">
+                            <span class="tm-mb-40" >${content.time}</span>
+
+                        </div>
 
             <!-- three dot menu -->
 
             <sec:authentication property="name" var="username"/>
             <c:if test="${username == 'admin'}">
-                <div class="TreeDotDropdown">
+                <div class="TreeDotDropdown" style="display: inline-block">
                     <!-- three dots -->
                     <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
                         <li></li>
@@ -396,16 +405,19 @@
                 </div>
             </c:if>
 
-            <span class="tm-mb-40">${content.time}</span>
+
+                    </div>
+
+            <div>
             <!-- 포스터 및 기본 정보 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
             <div class="row" style="display: block;width:720px;">
-                <div class="col-12" style="display:inline-block;width:20rem;">
+                <div class="col-12" style="display:inline-block;min-width:50%;max-width:50%;height:369px;overflow: hidden">
                     <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image"
-                         class="img-fluid">
+                         class="img-fluid" style="max-width: 370px;transform: translate3d(-15px,0,0);-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;">
                 </div>
                 <aside class="col-lg-4 tm-aside-col"
-                       style="display: inline-block;vertical-align: top;width:20rem;margin-top: 0.4rem;margin-left: 2.5rem;">
+                       style="display: inline-block;vertical-align: top;width:20rem;margin-top: 0.4rem;">
                     <div class="tm-post-sidebar">
                         <%-- <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>--%>
                         <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">장소</figcaption>
@@ -422,9 +434,9 @@
                             <c:url value="/content/reservation" var="reservLink">
                                 <c:param name="contentId" value="${content.contentId}"></c:param>
                             </c:url>
-<%--                            <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger" value=""--%>
-<%--                                    onclick="location.href='${reservLink}'">예매하기--%>
-<%--                            </button>--%>
+                            <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger" value=""
+                                    onclick="location.href='${reservLink}'">예매하기
+                            </button>
                             <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-danger" value=""
                                     onclick="location.href='#replySection'">후기보기
                             </button>
@@ -432,6 +444,7 @@
                         </sec:authorize>
                     </div>
                 </aside>
+            </div>
             </div>
 
             <input type="hidden" readonly value="${content.contentMapEntX }" id="entX">
@@ -443,7 +456,7 @@
 
             <div class="row tm-row" style="width:720px;">
                 <div class="tm-post-col" style="">
-                    <div class="tm-post-full" style="">
+                    <div class="tm-post-full" style="max-width: 720px">
                         <div class="mb-4">
                             <p style="">
                                 ${content.contentBoard}
@@ -452,7 +465,7 @@
                                        varStatus="status">
                                 <div class="row">
                                     <div class="col-10">
-                                        <img class="img-fluid img-thumbnail" width="720px !important;"
+                                        <img class="img-fluid img-thumbnail" style="width:720px !important;"
                                              src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
                                              alt="">
                                     </div>
