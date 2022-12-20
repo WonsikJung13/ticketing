@@ -90,7 +90,7 @@
                 <li class="tm-nav-item">
                     <a href="/content/list" class="tm-nav-link">
                         <i class="fas fa-home"></i>
-                        Blog Home
+                        전시회
                     </a>
                 </li>
                 <sec:authentication property="name" var="username"/>
