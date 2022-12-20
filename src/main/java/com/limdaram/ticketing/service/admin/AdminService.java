@@ -3,6 +3,7 @@ package com.limdaram.ticketing.service.admin;
 import com.limdaram.ticketing.domain.admin.GradeDto;
 import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.mapper.admin.AdminMapper;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import java.util.List;
 @Transactional
 public class AdminService {
 
-    @Autowired
+    @Setter(onMethod_ = @Autowired)
     private AdminMapper adminMapper;
     @Autowired
     private PasswordEncoder passwordEncoder;

@@ -172,4 +172,25 @@
         ORDER BY c.contentId DESC
     </select>
 
+    <insert id="reserv" useGeneratedKeys="true" keyProperty="reservId">
+        INSERT INTO ReservInfo (
+        reservName,
+        reservPhone,
+        contentName,
+        reservDate,
+        reservTime,
+        reservRegion,
+        reservPrice
+        )
+        VALUES (
+        #{reservName},
+        #{reservPhone},
+        #{contentName},
+        #{reservDate},
+        #{reservTime},
+        #{reservRegion},
+        #{reservPrice}
+        )
+
+    </insert>
 </mapper>
