@@ -88,9 +88,6 @@ public class AdminController {
             map.put("status", "fail");
             map.put("message", "비밀번호 초기화에 실패하였습니다");
         }
-
-        System.out.println(map);
-
         return map;
     }
 

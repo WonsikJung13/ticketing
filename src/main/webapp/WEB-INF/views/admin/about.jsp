@@ -20,7 +20,7 @@
 <my:sideBar active="about"/>
 
 <div class="row tm-row tm-mb-60 tm-main">
-    <h1>limdaram team</h1>
+    <h1>A Raboza Team</h1>
     <div class="col-12">
         <hr class="tm-hr-primary tm-mb-55">
     </div>
@@ -94,11 +94,14 @@
             <img src="/JWS.png" width="200" height="300" class="img-fluid" style="margin-left: 0">
         </div>
         <div class="media-body">
-            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">PB</h2>
-            <h3 class="tm-h3 mb-3">PB</h3>
-            <p class="mb-0 tm-line-height-short">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias aliquam aliquid commodi ducimus eaque eius, eligendi magnam natus, necessitatibus odio pariatur quaerat quis reiciendis voluptatem. Ab aliquam repudiandae suscipit?
-            </p>
+            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Jung Won Sik</h2>
+            <h3 class="tm-h3 mb-3">JWS (Team Leader)</h3>
+            <div class="mb-0 tm-line-height-short">
+                [admin / content / customer / reply]
+            </div>
+            <li>회원 정보 관리</li>
+            <li>회원 등급 조정</li>
+            <li>비밀번호 초기화</li>
         </div>
     </div>
     <%--    LSG--%>
@@ -107,13 +110,14 @@
             <img src="/LSG.png" width="230" height="330" class="img-fluid">
         </div>
         <div class="media-body">
-            <h2 class="tm-color-primary tm-post-title mb-2">SSUNG</h2>
-            <h3 class="tm-h3 mb-3">SSUNG</h3>
-            <p class="mb-0 tm-line-height-short">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
-                error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
-                ratione sapiente sequi similique totam?
-            </p>
+            <h2 class="tm-color-primary tm-post-title mb-2">Lim Sung Gyu</h2>
+            <h3 class="tm-h3 mb-3">LSG</h3>
+            <div class="mb-0 tm-line-height-short">
+                [content]
+            </div>
+            <li></li>
+            <li></li>
+            <li></li>
         </div>
     </div>
     <%--    LCE--%>
@@ -122,13 +126,14 @@
             <img src="/LCE.png" width="200" height="300" class="img-fluid mr-4">
         </div>
         <div class="media-body">
-            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">LDR</h2>
-            <h3 class="tm-h3 mb-3">LDR</h3>
-            <p class="mb-0 tm-line-height-short">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
-                error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
-                ratione sapiente sequi similique totam?
-            </p>
+            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Lim Chae Eun</h2>
+            <h3 class="tm-h3 mb-3">LCE</h3>
+            <div class="mb-0 tm-line-height-short">
+                [customer]
+            </div>
+            <li>회원가입</li>
+            <li>로그인 / 로그아웃</li>
+            <li>내 정보 / 회원 탈퇴</li>
         </div>
     </div>
     <%--    HHJ--%>
@@ -137,16 +142,16 @@
             <img src="/HHJ.png" width="140" height="240" class="img-fluid mr-3 ml-5">
         </div>
         <div class="media-body ml-4">
-            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Kimchi</h2>
-            <h3 class="tm-h3 mb-3">Kimchi</h3>
-            <p class="mb-0 tm-line-height-short">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut deleniti, distinctio
-                error excepturi expedita, fugiat incidunt labore laboriosam molestias, neque nostrum porro quod
-                ratione sapiente sequi similique totam?
-            </p>
+            <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Ha Hyeon Jong</h2>
+            <h3 class="tm-h3 mb-3">HHJ</h3>
+            <div class="mb-0 tm-line-height-short">
+                [reply]
+            </div>
+            <li></li>
+            <li></li>
+            <li></li>
         </div>
     </div>
-</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
