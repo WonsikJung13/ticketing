@@ -520,15 +520,6 @@
                     </div>
                 </div>
             </div>
-            <footer class="row tm-row">
-                <div class="col-md-6 col-12 tm-color-gray">
-                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">TemplateMo</a>
-                </div>
-                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Copyright 2020 Xtra Blog Company Co. Ltd.
-                </div>
-            </footer>
-            </div>
         </main>
     </div>
 
@@ -577,7 +568,7 @@
                                      value="${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"/>
                         </c:url>
                         <a href="${after},${content.contentAddress},${content.contentMapEntX },${content.contentMapEntY }"
-                           style="position:absolute;right:2.3rem;">
+                           style="position:absolute;right:2.3rem;" target="_blank">
                             길찾기
                         </a>
                     </p>

@@ -281,7 +281,7 @@
                         <tr>
                             <%--            도로명주소--%>
                             <div class="input-group">
-                                <button type="button" class="MapBtn btn btn-outline-secondary " onclick="goPopup();" style="background-color: #00CCCC;color: #ffffff; border-color:#00CCCC">
+                                <button type="button" class="MapBtn btn btn-outline-secondary " onclick="goPopup();" style="background-color: #79dfdf;color: #ffffff; border-color:#00CCCC">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                                 <input type="text" id="contentAddress" class="form-control" name="contentAddress"  value="${content.contentAddress}" required="required" readonly style="background-color: transparent;">
