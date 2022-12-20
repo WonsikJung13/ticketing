@@ -73,7 +73,8 @@
                 </label>
                 <input class="form-control" type="date" value="${customer.customerBirth }" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#birthModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal"
+                    data-bs-target="#birthModal">
                 생년월일 변경하기
             </button>
 
@@ -90,7 +91,8 @@
                 </label>
                 <input class="form-control" type="password" value="****" readonly>
             </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#passwordModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal"
+                    data-bs-target="#passwordModal">
                 비밀번호 변경하기
             </button>
 
@@ -124,14 +126,14 @@
                                value="${customer.customerAddress }" readonly>
                         <input type="hidden" name="customerId" value="${customer.customerId}">
                         <button class="btn btn-outline-secondary" id="customerAddressButton" type="button"
-                                onClick="goPopup();" style="background-color: #79dfdf;color: #ffffff; border-color:#00CCCC">
+                                onClick="goPopup();">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
                 </form>
             </div>
             <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button"
-                    class="btn btn-ico" >
+                    class="btn btn-ico">
                 주소 변경하기
             </button>
 
@@ -154,8 +156,8 @@
                         id="exitButton" type="button" class="btn btn-ico">
                     나가기
                 </button>
-                <br>
             </div>
+            <br>
         </div>
     </div>
 </div>
