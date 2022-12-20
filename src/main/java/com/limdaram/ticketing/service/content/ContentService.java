@@ -1,6 +1,7 @@
 package com.limdaram.ticketing.service.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
+import com.limdaram.ticketing.domain.reservation.reservationDto;
 import com.limdaram.ticketing.mapper.content.ContentMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,11 +75,16 @@ public class ContentService {
             for (MultipartFile file : file2) {
                 if (file != null && file.getSize() > 0) {
 //                File folder2 = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
+                    String fileName = file.getOriginalFilename();
+                    fileName = fileName.substring(fileName.lastIndexOf("\\")+1);
+                    System.out.println("only file name : " + fileName);
 
-                    String uuid = UUID.randomUUID().toString() + ".jpg";
+//            String extension = file1.substring(file1.lastIndexOf("."), file1.length());
+                    UUID uuid = UUID.randomUUID();
+                    fileName = uuid.toString() + "_" + fileName;
 
                     // db에 파일 정보 저장(contentid, filename)
-                    mapper.insertFile2(content.getContentId(), uuid);
+                    mapper.insertFile2(content.getContentId(), fileName);
 
 //                    // 파일 저장// board id 이름의 새폴더 만들기
 //                    folder1.mkdirs();
@@ -93,7 +99,7 @@ public class ContentService {
 //                        throw new RuntimeException(e);
 //                    }
 
-                    uploadDetailFiles(content, file, uuid);
+                    uploadDetailFiles(content, file, fileName);
                 }
             }
 //        System.out.println(content);
@@ -129,7 +135,7 @@ public class ContentService {
 //        String deletePosterName = mapper.select(contentId).getContentPosterName();
 //        String deletePosterName = content.getContentPosterName();
 
-        // 포스터 파일 제거
+        // 포스터 파일 제거할게 있을 경우
         if (removePosterName != null) {
 //            // 저장소에서 파일 제거
 //            String path = "/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + contentId + "/" + removePosterFile;
@@ -141,9 +147,8 @@ public class ContentService {
             // db에서 파일 이름 제거
             mapper.deletePosterByContentId(contentId);
         }
-        // 포스터 파일 추가
+        // 포스터 파일 추가할게 있을 경우
         if (addPosterFile != null && addPosterFile.getSize() > 0) {
-
             // 1. 포스터 파일 제거 먼저 실행
 //            String posterName = mapper.select(contentId).getContentPosterName();
 //            System.out.println("posterName: " + posterName);
@@ -160,7 +165,20 @@ public class ContentService {
                 removePosterFile(contentId, deletePosterName);
                 // db에서 파일 이름 제거
                 mapper.deletePosterByContentId(contentId);
-//            }
+
+            // 2. s3 저장소에 파일 저장
+            // 파일 이름 uuid로 설정
+            String fileName = addPosterFile.getOriginalFilename();
+            fileName = fileName.substring(fileName.lastIndexOf("\\")+1);
+            System.out.println("only file name : " + fileName);
+            UUID uuid = UUID.randomUUID();
+            fileName = uuid.toString() + "_" + fileName;
+
+            uploadPosterFile(content, addPosterFile, fileName);
+
+            // db에 파일 정보 저장(contentId, filename)
+            mapper.insertFile(content.getContentId(), fileName);
+
 
             // 2. 파일 추가 실행
 
@@ -179,28 +197,17 @@ public class ContentService {
 //                e.printStackTrace();
 //                throw new RuntimeException(e);
 //            }
-
-            // s3 저장소에 파일 저장
-            // 파일 이름 uuid로 설정
-            String addPosterName = UUID.randomUUID().toString() + ".jpg";
-            uploadPosterFile(content, addPosterFile, addPosterName);
-
-            // db에 파일 정보 저장(contentId, filename)
-            mapper.insertFile(content.getContentId(), addPosterName);
-
         }
 
-
         // removeDetailFiles에 있는 파일명으로
-        // 파일 체크 됐을 때
+        // 파일제거 체크 됐을 때
         if (removeDetailNames != null) {
             for (String removeDetailName : removeDetailNames) {
 
-                // s3 저장소에서 파일 지우기
+                // 1. s3 저장소에서 파일 지우기
                 removeDetailFile(contentId, removeDetailName);
 
-                // 1. contentDetail 테이블에서 record 지우기
-//                System.out.println("contentId, DetailFileName: " + contentId + ", " + removeDetailFile);
+                // 2. contentDetail 테이블에서 record 지우기
                 mapper.deleteByContentIdAndDetailName(contentId, removeDetailName);
                 System.out.println("디테일 선택 파일 삭제");
 //                // 2. 저장소에 있는 실제 파일 지우기
@@ -215,11 +222,17 @@ public class ContentService {
             for (MultipartFile DetailFile : addDetailFiles) {
                 if (DetailFile != null && DetailFile.getSize() > 0) {
                     // 파일 테이블에 파일명 추가
-                    String uuid = UUID.randomUUID().toString() + ".jpg";
-                    mapper.insertFile2(content.getContentId(), uuid);
+                    String fileName = DetailFile.getOriginalFilename();
+                    fileName = fileName.substring(fileName.lastIndexOf("\\")+1);
+                    System.out.println("only file name : " + fileName);
+                    UUID uuid = UUID.randomUUID();
+                    fileName = uuid.toString() + "_" + fileName;
+
+                    mapper.insertFile2(content.getContentId(), fileName);
                     System.out.println("디테일 파일 추가");
+
                     // s3 저장소에 디테일 파일 추가
-                    uploadDetailFiles(content, DetailFile, uuid);
+                    uploadDetailFiles(content, DetailFile, fileName);
 
 //                    // 저장소에 실제 파일 추가
 //                    File folder = new File("/Users/sunggyu-lim/Desktop/kukbi/study/upload/ticket/content/" + content.getContentId());
@@ -352,9 +365,11 @@ public class ContentService {
         }
     }
 
-    public ContentDto reservation(int contentId) {
+    public int reservation(reservationDto reservDto) {
 
-        return mapper.select(contentId);
+        System.out.println("service DTO: " + reservDto);
+        int cnt = mapper.reserv(reservDto);
+        return cnt;
     }
 
 

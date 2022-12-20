@@ -27,6 +27,7 @@
     <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js" integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 
     <!-- 네이버 스마트에디터  -->
     <script type="text/javascript" src="../libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
@@ -69,6 +70,18 @@
             border: none;
             resize: none;
         }
+
+        .btn:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
+        }
+
+        .btn{
+            color: #ffffff !important;
+            background-color: #79dfdf !important;
+            border-color: #79dfdf !important;
+            /*border-radius: 0.375rem !important;*/
+        }
     </style>
 
     <style>
@@ -80,12 +93,16 @@
             font-size: inherit;
             line-height: normal;
             vertical-align: middle;
-            background-color: #00CCCC;
+            background-color: #79dfdf;
             cursor: pointer;
-            border: 1px solid #ebebeb;
-            border-bottom-color: #e2e2e2;
+            border: 1px solid #79dfdf;
             border-radius: .25em;
         }
+
+         .posterBox label:hover {
+    background-color: #5aa3a3 !important;
+    border-color: #5aa3a3 !important;
+}
 
          .detailBox label {
              display: inline-block;
@@ -94,11 +111,14 @@
              font-size: inherit;
              line-height: normal;
              vertical-align: middle;
-             background-color: #00CCCC;
+             background-color: #79dfdf;
              cursor: pointer;
-             border: 1px solid #ebebeb;
-             border-bottom-color: #e2e2e2;
+             border: 1px solid #79dfdf;
              border-radius: .25em;
+         }
+         .detailBox label:hover {
+             background-color: #5aa3a3 !important;
+             border-color: #5aa3a3 !important;
          }
 
 
@@ -167,31 +187,70 @@
              height: auto;
          }
 
-         /* 디테일 이미지 미리보기 */
-         #multiple-container {
-             display: grid;
-             grid-template-columns: 1fr 1fr 1fr;
-         }
-         .image {
-             display: block;
-             width: 100%;
-         }
-         .image-label {
-             position: relative;
-             bottom: 22px;
-             left: 5px;
-             color: white;
-             text-shadow: 2px 2px 2px black;
-         }
+    </style>
 
+    <style>
+        #preview1,
+        #preview1 li,
+        #preview2,
+        #preview2 li{
+            float:left;
+            margin-bottom: 16px;
+
+        }
+        /*.addImgBtn{*/
+        /*    width: 80px !important;*/
+        /*    height: 80px !important;*/
+        /*    background-color: #fff !important;*/
+        /*    color: #b7b7b7 !important;*/
+        /*    border: 2px solid #b7b7b7;*/
+        /*    font-size: 35px !important;*/
+        /*}*/
+
+        #preview1,
+        #preview2{
+            width: 660px;
+        }
+        #preview1 li,
+        #preview2 li{
+            margin-left: 10px;
+            margin-bottom: 10px;
+            position: relative;
+            border: 1px solid #ececec;
+            cursor:move;
+            vertical-align: middle;
+        }
+        .delBtn{
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 13px;
+            background-color: #000;
+            color: #fff;
+            width: 18px;
+            height: 18px;
+            line-height: 16px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+        }
     </style>
 </head>
 <body>
 <div class="container-md" style="max-width: 900px;min-width: 500px;overflow-x:scroll">
     <div class="row mt-5"style="">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
-            <h1 style="font-family: 'LINESeedKR-Bd'">상품 등록</h1>
-
+            <h1 style="font-family: 'LINESeedKR-Bd';">상품 등록
+                <button type="button" class="btn" id="outButton" onclick="location.href='/content/list'" style="float:right;font-family: LINESeedKR-Bd;background-color: #ff4a46 !important; border-color:#FF4A46 !important;">
+                    나가기
+                </button>
+                <button style="font-family: LINESeedKR-Bd;float:right" type="button" class="btn" id="registerConfirmButton" onclick="save();">
+                    등록하기
+                </button>
+            </h1>
             <form id="contentRegisterForm" action="" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
@@ -343,41 +402,145 @@
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         포스터
                     </label>
-                    <div class="posterBox preview-image">
-                        <div class="input-group">
+                    <div class="posterBox preview_image">
+                        <div class="input-group inputFile">
                         <label for="file1" style="height: 45px;border-color: #0ccccc;">업로드</label>
                         <input class="file1-name form-control mb-3"  value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
                         </div>
-                        <input type="file" accept="image/*" class="file1-hidden form-control mb-3" name="file1" id="file1" style="padding-bottom: 0">
+                        <input type="file" id="file1" accept="image/*" class="file1-hidden form-control mb-3" name="file1" style="padding-bottom: 0">
+                        <div>
+                            <ul id="preview1" class="sortable"></ul>
+                        </div>
                     </div>
                 </div>
 
-                <div style="margin-top: 1rem;">
+                <div style="">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         세부내용
                     </label>
-                </div>
-                <div class="DetailBox preview-image">
-                    <div class="input-group">
+                <div class="DetailBox clearfix">
+                    <div class="input-group inputFile ">
                         <label for="file2" style="height: 45px;border-color: #0ccccc;">업로드</label>
-                        <input class="file2-name form-control mb-3"  value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
+                        <input class="file2-name form-control mb-3" value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
                     </div>
                     <input multiple type="file" id="file2" accept="image/*" class="file2-hidden form-control mb-3" name="file2" style="padding-bottom: 0">
+                    <div>
+                        <ul id="preview2" class="sortable"></ul>
+                    </div>
+                </div>
                 </div>
 
-                <div class="image-container">
-                    <img style="width: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
-                </div>
+                <input style="display: none" id="submitButton1" type="submit" onclick="save();" value="등록">
 
-                <div id="multiple-container">
-                </div>
-
-                <input id="submitButton1" type="submit" onclick="save();" value="등록">
             </form>
         </div>
     </div>
 </div>
 
+<script>
+    // 포스터 이미지 미리보기
+    $(document).ready(function (e){
+        $("#file1").change(function(e){
+
+            //div 내용 비워주기
+            $('#preview1').empty();
+
+            var files = e.target.files;
+            var arr =Array.prototype.slice.call(files);
+
+
+            preview(arr);
+
+
+        });//file change
+
+
+        function preview(arr){
+            arr.forEach(function(f){
+
+                //파일명이 길면 파일명...으로 처리
+                var fileName = f.name;
+                if(fileName.length > 10){
+                    fileName = fileName.substring(0,7)+"...";
+                }
+
+                //div에 이미지 추가
+                var str = '<li class="ui-state-default">';
+                // str += '<span>'+fileName+'</span><br>';
+
+                //이미지 파일 미리보기
+                if(f.type.match('image.*')){
+                    var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                    reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                        //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+                        str += '<img src="'+e.target.result+'" title="'+f.name+'" width=120 height=120 />';
+                        // str += '<span class="delBtn" onclick="delImg(this)">x</span>';
+                        str += '</li>';
+                        $(str).appendTo('#preview1');
+                    }
+                    reader.readAsDataURL(f);
+                }
+
+            });//arr.forEach
+        }
+    })
+</script>
+
+<script type="text/javascript">
+    // 디테일 이미지 미리보기
+    $(document).ready(function (e){
+        $("#file2").change(function(e){
+
+            //div 내용 비워주기
+            $('#preview2').empty();
+
+            var files = e.target.files;
+            var arr =Array.prototype.slice.call(files);
+
+
+            preview(arr);
+
+
+        });//file change
+
+
+        function preview(arr){
+            arr.forEach(function(f){
+
+                //파일명이 길면 파일명...으로 처리
+                var fileName = f.name;
+                if(fileName.length > 10){
+                    fileName = fileName.substring(0,7)+"...";
+                }
+
+                //div에 이미지 추가
+                var str = '<li class="ui-state-default">';
+                // str += '<span>'+fileName+'</span><br>';
+
+                //이미지 파일 미리보기
+                if(f.type.match('image.*')){
+                    var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                    reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                        //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+                        str += '<img src="'+e.target.result+'" title="'+f.name+'" width=120 height=120 />';
+                        // str += '<span class="delBtn" onclick="delImg(this)">x</span>';
+                        str += '</li>';
+                        $(str).appendTo('#preview2');
+                    }
+                    reader.readAsDataURL(f);
+                }
+
+            });//arr.forEach
+        }
+    })
+</script>
+
+<script>
+    // 등록하기 누르면
+    document.querySelector("#registerConfirmButton").addEventListener("click", function () {
+        document.querySelector("#submitButton1").click();
+    });
+</script>
 <script>
     // 확장자 체크 함수
     function checkFile(obj, ext) {
@@ -522,7 +685,7 @@
             const reader = new FileReader()
             // 이미지가 로드가 된 경우
             reader.onload = e => {
-                const previewImage = document.getElementById("preview-image")
+                const previewImage = document.getElementById("preview_image")
                 previewImage.src = e.target.result
             }
             // reader가 이미지 읽도록 하기
@@ -559,53 +722,6 @@
             }
     });
 
-    function readMultipleImage(input) {
-        const multipleContainer = document.getElementById("multiple-container")
-
-        // 인풋 태그에 파일들이 있는 경우
-        if(input.files) {
-            // 이미지 파일 검사 (생략)
-            console.log(input.files)
-            // 유사배열을 배열로 변환 (forEach문으로 처리하기 위해)
-            const fileArr = Array.from(input.files)
-            const $colDiv1 = document.createElement("div")
-            const $colDiv2 = document.createElement("div")
-            $colDiv1.classList.add("column")
-            $colDiv2.classList.add("column")
-            fileArr.forEach((file, index) => {
-                const reader = new FileReader()
-                const $imgDiv = document.createElement("div")
-                const $img = document.createElement("img")
-                $img.classList.add("image")
-                const $label = document.createElement("label")
-                $label.classList.add("image-label")
-                $label.textContent = file.name
-                $imgDiv.appendChild($img)
-                $imgDiv.appendChild($label)
-                reader.onload = e => {
-                    $img.src = e.target.result
-
-                    $imgDiv.style.width = ($img.naturalWidth) * 0.2 + "px"
-                    $imgDiv.style.height = ($img.naturalHeight) * 0.2 + "px"
-                }
-
-                console.log(file.name)
-                if(index % 2 == 0) {
-                    $colDiv1.appendChild($imgDiv)
-                } else {
-                    $colDiv2.appendChild($imgDiv)
-                }
-
-                reader.readAsDataURL(file)
-            })
-            multipleContainer.appendChild($colDiv1)
-            multipleContainer.appendChild($colDiv2)
-        }
-    }
-    const inputMultipleImage = document.getElementById("file2")
-    inputMultipleImage.addEventListener("change", e => {
-        readMultipleImage(e.target)
-    })
 </script>
 
 

@@ -65,14 +65,14 @@
             font-style: normal;
         }
 
-        .btn-ico {
+        .btn {
             color: #ffffff !important;
             background-color: #79dfdf !important;
             border-color: #79dfdf !important;
             border-radius: 0.375rem !important;
         }
 
-        .btn-ico:hover {
+        .btn:hover {
             background-color: #5aa3a3 !important;
             border-color: #5aa3a3 !important;
         }
@@ -89,11 +89,15 @@
             font-size: inherit;
             line-height: normal;
             vertical-align: middle;
-            background-color: #00CCCC;
+            background-color: #79dfdf;
             cursor: pointer;
-            border: 1px solid #ebebeb;
-            border-bottom-color: #e2e2e2;
+            border: 1px solid #79dfdf;
             border-radius: .25em;
+        }
+
+        .posterBox label:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
         }
 
         .detailBox label {
@@ -103,11 +107,14 @@
             font-size: inherit;
             line-height: normal;
             vertical-align: middle;
-            background-color: #00CCCC;
+            background-color: #79dfdf;
             cursor: pointer;
-            border: 1px solid #ebebeb;
-            border-bottom-color: #e2e2e2;
+            border: 1px solid #79dfdf;
             border-radius: .25em;
+        }
+        .detailBox label:hover {
+            background-color: #5aa3a3 !important;
+            border-color: #5aa3a3 !important;
         }
 
 
@@ -175,33 +182,71 @@
             width: 100% \9;
             height: auto;
         }
+    </style>
 
-        /* 디테일 이미지 미리보기 */
-        #multiple-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+    <style>
+        /*파일 첨부*/
+
+        #preview1,
+        #preview1 li,
+        #preview2,
+        #preview2 li{
+            float:left;
+            margin-bottom: 16px;
+
         }
-        .image {
-            display: block;
-            width: 100%;
+        /*.addImgBtn{*/
+        /*    width: 80px !important;*/
+        /*    height: 80px !important;*/
+        /*    background-color: #fff !important;*/
+        /*    color: #b7b7b7 !important;*/
+        /*    border: 2px solid #b7b7b7;*/
+        /*    font-size: 35px !important;*/
+        /*}*/
+
+        #preview1,
+        #preview2{
+            width: 660px;
         }
-        .image-label {
+        #preview1 li,
+        #preview2 li{
+            margin-left: 10px;
+            margin-bottom: 10px;
             position: relative;
-            bottom: 22px;
-            left: 5px;
-            color: white;
-            text-shadow: 2px 2px 2px black;
+            border: 1px solid #ececec;
+            cursor:move;
+            vertical-align: middle;
+        }
+        .delBtn{
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 13px;
+            background-color: #000;
+            color: #fff;
+            width: 18px;
+            height: 18px;
+            line-height: 16px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
         }
     </style>
 </head>
 <body>
-<div class="container-md" style="max-width: 900px">
+<div class="container-md" style="max-width: 900px;min-width: 500px">
     <div class="row mt-5">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
             <h1 style="font-family: 'LINESeedKR-Bd'">
                 <%--                ${content.contentName}--%>
                 전시회 정보 수정
-                <button style="font-family: 'LINESeedKR-Bd'; border-color: #0cc" type="submit" class="btn btn-ico"
+                <button type="button" class="btn" id="outButton" onclick="location.href='/content/get?contentId=${content.contentId}'" style="float:right;font-family: LINESeedKR-Bd;background-color: #ff4a46 !important; border-color:#FF4A46 !important;">
+                    나가기
+                </button>
+                <button style="font-family: 'LINESeedKR-Bd';float:right; border-color: #0cc" type="submit" class="btn btn-ico"
                         data-bs-toggle="modal" data-bs-target="#modifyModal">
                     수정하기
                 </button>
@@ -361,6 +406,31 @@
                             <input class="addPosterFile-name form-control mb-3"  value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
                         </div>
                         <input type="file" accept="image/*" class="addPosterFile-hidden form-control mb-3" name="addPosterFile" id="addPosterFile" style="padding-bottom: 0">
+                        <div>
+                            <ul id="preview1" class="sortable"></ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <c:forEach items="${content.contentPosterName}" var="contentPosterName" varStatus="status">
+                        <ul id="posterPreview">
+                            <li class="ui-state-default">
+                                <div class="col-2 d-flex justify-content-center align-items-baseline">
+                                    <%-- 삭제여부 체크박스 --%>
+                                    <div class="custom-check form-check form-switch text-danger">
+                                        <input name="removePosterName" value="${contentPosterName}" class="form-check-input"
+                                               type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked"><i
+                                                class="fa-regular fa-trash-can"></i></label>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentPosterName, 'utf-8')}"
+                                         alt="" style="height: 120px; width: 120px">
+                                </div>
+                            </li>
+                        </ul>
+                        </c:forEach>
                     </div>
                 </div>
 
@@ -375,34 +445,19 @@
                         <input class="addDetailFiles-name form-control mb-3"  value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
                     </div>
                     <input multiple type="file" id="addDetailFiles" accept="image/*" class="addDetailFiles-hidden form-control mb-3" name="addDetailFiles" style="padding-bottom: 0">
+                    <div>
+                        <ul id="preview2" class="sortable"></ul>
+                    </div>
                 </div>
                 
-                <c:forEach items="${content.contentPosterName}" var="contentPosterName" varStatus="status">
-
-                    <%-- Poster 이미지 출력 --%>
-                    <div class="row mt-5">
-                        <div class="col-2 d-flex justify-content-center align-items-baseline">
-                                <%-- 삭제여부 체크박스 --%>
-                            <div class="custom-check form-check form-switch text-danger">
-                                <input name="removePosterName" value="${contentPosterName}" class="form-check-input"
-                                       type="checkbox" role="switch" id="flexSwitchCheckChecked">
-                                <label class="form-check-label" for="flexSwitchCheckChecked"><i
-                                        class="fa-regular fa-trash-can"></i></label>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentPosterName, 'utf-8')}"
-                                 alt="">
-                        </div>
-                    </div>
-                </c:forEach>
                 <%-- Detail 이미지 출력 --%>
                 <div>
                     <c:forEach items="${content.contentDetailName}" var="contentDetailName" varStatus="status">
-                        <div class="row mt-5">
-                            <div class="col-2 d-flex justify-content-center align-items-baseline">
+                        <ul id="detailPreview" style="float:left">
+                            <li class="ui-state-default">
+                            <div class="col-2 d-flex justify-content-center align-items-baseline" style="max-width: none !important;">
                                     <%-- 삭제여부 체크박스 --%>
-                                <div class="custom-check form-check form-switch text-danger">
+                                <div class="custom-check form-check form-switch text-danger" >
                                     <input name="removeDetailNames" value="${contentDetailName}"
                                            class="form-check-input" type="checkbox" role="switch"
                                            id="flexSwitchCheckChecked${status.count}">
@@ -413,9 +468,10 @@
                             <div class="col-10">
                                 <img class="img-fluid img-thumbnail"
                                      src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
-                                     alt="">
+                                     alt="" style="width: 120px;height: 120px">
                             </div>
-                        </div>
+                            </li>
+                        </ul>
                     </c:forEach>
                 </div>
             </form>
@@ -445,6 +501,104 @@
         </div>
     </div>
 </div>
+
+<script>
+    // 포스터 이미지 미리보기
+    $(document).ready(function (e){
+        $("#addPosterFile").change(function(e){
+
+            //div 내용 비워주기
+            $('#preview1').empty();
+
+            var files = e.target.files;
+            var arr =Array.prototype.slice.call(files);
+
+
+            preview(arr);
+
+
+        });//file change
+
+
+        function preview(arr){
+            arr.forEach(function(f){
+
+                //파일명이 길면 파일명...으로 처리
+                var fileName = f.name;
+                if(fileName.length > 10){
+                    fileName = fileName.substring(0,7)+"...";
+                }
+
+                //div에 이미지 추가
+                var str = '<li class="ui-state-default">';
+                // str += '<span>'+fileName+'</span><br>';
+
+                //이미지 파일 미리보기
+                if(f.type.match('image.*')){
+                    var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                    reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                        //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+                        str += '<img src="'+e.target.result+'" title="'+f.name+'" width=120 height=120 />';
+                        // str += '<span class="delBtn" onclick="delImg(this)">x</span>';
+                        str += '</li>';
+                        $(str).appendTo('#preview1');
+                    }
+                    reader.readAsDataURL(f);
+                }
+
+            });//arr.forEach
+        }
+    })
+</script>
+
+<script type="text/javascript">
+    // 디테일 이미지 미리보기
+    $(document).ready(function (e){
+        $("#addDetailFiles").change(function(e){
+
+            //div 내용 비워주기
+            $('#preview2').empty();
+
+            var files = e.target.files;
+            var arr =Array.prototype.slice.call(files);
+
+
+            preview(arr);
+
+
+        });//file change
+
+
+        function preview(arr){
+            arr.forEach(function(f){
+
+                //파일명이 길면 파일명...으로 처리
+                var fileName = f.name;
+                if(fileName.length > 10){
+                    fileName = fileName.substring(0,7)+"...";
+                }
+
+                //div에 이미지 추가
+                var str = '<li class="ui-state-default">';
+                // str += '<span>'+fileName+'</span><br>';
+
+                //이미지 파일 미리보기
+                if(f.type.match('image.*')){
+                    var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                    reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                        //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+                        str += '<img src="'+e.target.result+'" title="'+f.name+'" width=120 height=120 />';
+                        // str += '<span class="delBtn" onclick="delImg(this)">x</span>';
+                        str += '</li>';
+                        $(str).appendTo('#preview2');
+                    }
+                    reader.readAsDataURL(f);
+                }
+
+            });//arr.forEach
+        }
+    })
+</script>
 
 <script>
     // 확장자 체크 함수

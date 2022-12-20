@@ -1,6 +1,7 @@
 package com.limdaram.ticketing.mapper.content;
 
 import com.limdaram.ticketing.domain.content.ContentDto;
+import com.limdaram.ticketing.domain.reservation.reservationDto;
 
 import java.util.List;
 
@@ -29,4 +30,5 @@ public interface ContentMapper {
 
     List<ContentDto> selectContent();
 
+    int reserv(reservationDto reservDto);
 }
