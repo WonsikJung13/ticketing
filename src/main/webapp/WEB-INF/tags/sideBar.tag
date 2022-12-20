@@ -4,8 +4,7 @@
 
 <%@ attribute name="active" %>
 
-<link rel="stylesheet" href="../css/all.min.css">
-<!-- https://fontawesome.com/ -->
+<link rel="stylesheet" href="../css/all.min.css"> <!-- https://fontawesome.com/ -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <!-- https://fonts.google.com/ -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -72,18 +71,17 @@
             <div style="margin-bottom: 30px" class="tm-mb-65">
                 <div>
                     <sec:authentication property="name" var="username"/>
-                    <p style="color:white; margin-bottom: 0px; margin-top: 30px">
-                        <i class="fa-regular fa-face-grin-wide"></i>
-                        ${username}님
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <div style="width: auto">
-                            <a style="color: white" class="font-weight-light"
-                               href="/customer/get?customerId=${username}">내정보</a> |
-                            <%--                                <a style="color: white" class="font-weight-light" href="/customer/reservation">예약확인</a> --%>
-                            <a style="color: white" href="/logout">로그아웃</a>
+                        <p style="color:white; margin-bottom: 0px; margin-top: 30px">
+                            <i class="fa-regular fa-face-grin-wide"></i>
+                            ${username}님
+                        </p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <div style="width: auto">
+                                <a style="color: white" class="font-weight-light" href="/customer/get?customerId=${username}">내정보</a> |
+<%--                                <a style="color: white" class="font-weight-light" href="/customer/reservation">예약확인</a> --%>
+                                <a style="color: white" href="/logout">로그아웃</a>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

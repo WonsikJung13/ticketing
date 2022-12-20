@@ -45,7 +45,7 @@
         <div class="row mt-5">
             <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
                 <c:if test="${not empty message }">
-                <div class="alert alert-success">
+                <div style="font-family: 'LINESeedKR-Bd'" class="alert alert-success">
                         ${message }
                 </div>
                 </c:if>
@@ -87,7 +87,7 @@
                         비밀번호
                     </label>
                     <input class="form-control" type="password" value="****" readonly>
-                    <button style="font-family: 'LINESeedKR-Bd'; margin-top: 20px" id="resetPasswordButton" type="button" class="btn btn-outline-secondary">
+                    <button style="font-family: 'LINESeedKR-Bd'; margin-top: 20px" id="resetPasswordButton" type="button" class="btn btn-ico">
                         비밀번호 초기화
                     </button>
                     <div id="passwordResult" class="form-text"></div>
@@ -127,7 +127,7 @@
                             </c:forEach>
                         </select>
                         <input type="hidden" id="customerId" name="customerId" value="${customer.customerId}">
-                        <button id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영</button>
+                        <button style="background-color: #79dfdf;color: #ffffff; border-color:#00CCCC" id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영</button>
                     </div>
                     <div id="gradeUpdateResult" class="form-text"></div>
                 </div>
