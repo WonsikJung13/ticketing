@@ -58,14 +58,15 @@
 
 </style>
 
-<header class="tm-header" id="tm-header" style="">
+
+<header class="tm-header" id="tm-header" style="width:320px">
     <div class="tm-header-wrapper">
         <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
         <div style="margin-bottom: auto" class="tm-site-header">
             <div class="mb-3 mx-auto tm-site-logo"><img src="/oo.ico"/></div>
-            <h1 class="text-center">A Raboza Team</h1>
+            <h1 class="text-center"><strong>A</strong> <strong>R</strong>aboza <strong>T</strong>eam</h1>
         </div>
         <div>
             <div style="margin-bottom: 30px" class="tm-mb-65">
@@ -181,11 +182,18 @@
         scrollFunction()
     };
 
+    function hiddenFunction() {
+        if (document.body.scrollLeft > 1300 || document.documentElement.scrollTop > 1300) {
+            mybutton.style.display = "block";
+        } else{
+            mybutton.style.display = "none";
+        }
+    }
 
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             mybutton.style.display = "block";
-        } else {
+        } else{
             mybutton.style.display = "none";
         }
     }

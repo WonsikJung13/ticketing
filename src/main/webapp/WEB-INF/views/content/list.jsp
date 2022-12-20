@@ -41,14 +41,14 @@
       <c:url value="/content/get" var="getLink">
         <c:param name="contentId" value="${content.contentId}"></c:param>
       </c:url>
-      <article class="col-12 col-md-6 tm-post">
+      <article class="col-12 col-md-6 tm-post" style="min-width:50%;max-width:calc(100 - 50%);">
 
         <hr class="tm-hr-primary">
 
         <div class="tm-post-link-inner" style="">
-          <a href="${getLink}" class="effect-lily tm-post-link tm-pt-60" style="height: 500.66px;">
+          <a href="${getLink}" class="effect-lily tm-post-link tm-pt-60" style="height: 500px;">
               <%-- 이미지 --%>
-            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image" class="img-fluid" style="">
+            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image" class="img-fluid" style="max-width:370px">
           </a>
         </div>
               <%-- 제목 --%>

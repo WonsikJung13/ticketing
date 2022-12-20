@@ -3,6 +3,7 @@ package com.limdaram.ticketing.controller.content;
 import com.limdaram.ticketing.domain.content.ContentDto;
 import com.limdaram.ticketing.domain.customer.CustomerDto;
 import com.limdaram.ticketing.domain.reply.ReplyDto;
+import com.limdaram.ticketing.domain.reservation.reservationDto;
 import com.limdaram.ticketing.service.content.ContentService;
 import com.limdaram.ticketing.service.customer.CustomerService;
 import com.limdaram.ticketing.service.reply.ReplyService;
@@ -125,11 +126,22 @@ public class ContentController {
     }
 
     @GetMapping("reservation")
+    @PreAuthorize("authentication.name == 'admin'")
     public void reservation(int contentId, Model model, Authentication authentication){
         CustomerDto customerDto = customerService.getByCustomerId(authentication.getName());
-        ContentDto content = service.reservation(contentId);
+        ContentDto content = service.get(contentId);
         model.addAttribute("content", content);
         model.addAttribute("customer", customerDto);
+
+    }
+
+    @PostMapping("reservation")
+    @PreAuthorize("authentication.name == 'admin'")
+    public String reservation(reservationDto reservDto) {
+        System.out.println("Controller DTO: " + reservDto);
+        service.reservation(reservDto);
+
+        return "redirect:/content/list";
 
     }
 
@@ -197,6 +209,7 @@ public class ContentController {
     public void indexGet(int contentId, Model model) {
         ContentDto content = service.get(contentId);
         model.addAttribute("content", content);
+
 
     }
 }
