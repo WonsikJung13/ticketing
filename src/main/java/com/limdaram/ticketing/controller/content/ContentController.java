@@ -47,7 +47,6 @@ public class ContentController {
             MultipartFile file1,
             MultipartFile[] file2,
             RedirectAttributes rttr) {
-        System.out.println("aaaaaaa" + content.getContentBoard());
 
         int cnt = service.register(content, file1, file2);
 
