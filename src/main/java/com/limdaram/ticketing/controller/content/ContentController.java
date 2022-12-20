@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -48,6 +47,7 @@ public class ContentController {
             MultipartFile file1,
             MultipartFile[] file2,
             RedirectAttributes rttr) {
+        System.out.println("aaaaaaa" + content.getContentBoard());
 
         int cnt = service.register(content, file1, file2);
 
