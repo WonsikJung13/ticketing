@@ -40,16 +40,17 @@
 <body>
 <my:sideBar/>
 
-<c:if test="${not empty message }">
-    <div style="font-family: 'LINESeedKR-Bd'" class="alert alert-danger">
-            ${message }
-    </div>
-</c:if>
 <div class="tm-main">
     <div class="container-md" style="width: 900px">
         <div class="row mt-5">
             <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
 
+                <c:if test="${not empty message }">
+                    <div style="font-family: 'LINESeedKR-Bd'" class="alert alert-danger">
+                            ${message }
+                    </div>
+                </c:if>
+                <br>
                 <h1 style="font-family: 'LINESeedKR-Bd'">내 정보</h1>
 
                 <div class="mb-3">
