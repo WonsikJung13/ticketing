@@ -315,7 +315,7 @@
                 let endDay = "<%=endDay%>";
                 let endDate = "<%=endDate%>";
 
-                // console.log(endDate.getTime());
+                // console.log(endDate);
 
                 // 예약불가일 색상변경 및 사용자가 직접 지정한 경우------------------------
                 let etp = exchangeToPossibleDay(cnt) * 1; // etp의 값 범위: 0 ~ 6 (0일...6토)
@@ -323,34 +323,37 @@
 
                 if (nowMonth == realMonth && i < realToDay) {  // 이번달이고 오늘을 포한한 지난날
                     noCount += 1;
-                // }
-                // else if (nowMonth < realMonth) {  // 지난달
-                //     noCount += 1;
-                    // else if (nowMonth > realMonth && i > realToDay) { // 다음달이고 오늘보다 일이 높은 수일떄
-                    //     noCount += 1;
-                } else if (possibleDay[etp] == 1) { // 해당 일이 예약불가 요일일 경우(휴관일 체크)
-                    noCount += 1;
-                } else if (today.getFullYear() > endYear) { // 끝나는 연도보다 클 경우
-                    noCount += 1;
-                } else if (today.getFullYear() == endYear) {    // 끝나는 연도랑 같으면서
-                    if ((today.getMonth()+1) > endMonth) {      // 끝나는 달보다 클 경우
+                }
+                if (today.getFullYear() == startYear) {
+                    if (nowMonth < realMonth) {
                         noCount += 1;
-                        console.log("getMonth: " + today.getMonth() + "endMonth: " + endMonth);
-                    } else if (today.getMonth()+1 == endMonth) {    // 끝나는 달과 같을 경우
+                    } else if (nowMonth == realMonth) {
+                        if (i < startDay) {
+                            noCount += 1;
+                        }
+                    }
+                }
+                if (possibleDay[etp] == 1) { // 해당 일이 예약불가 요일일 경우(휴관일 체크)
+                    noCount += 1;
+                }
+                // else
+                if (today.getFullYear() > endYear) {            // 끝나는 연도보다 클 경우
+                    noCount += 1;
+                } else if (today.getFullYear() == endYear) {           // 끝나는 연도랑 같으면서
+                    if (nowMonth > endMonth) {      // 끝나는 달보다 클 경우
+                        noCount += 1;
+                    } else if (nowMonth == endMonth) {    // 끝나는 달과 같을 경우
                         if (i > endDay) {                           // 끝나는 일보다 클 경우
                             noCount += 1;
                         }
                     }
-                } else if (today.getFullYear() < startYear) {       // 시작하는 연도보다 작을 경우
+                }
+                else if (today.getFullYear() < startYear) {       // 시작하는 연도보다 작을 경우
                     noCount += 1;
-                } else if (today.getFullYear() == startYear) {      // 시작하는 연도와 같은 경우
-                    if (today.getMonth()+1 < startMonth) {          // 시작하는 달보다 작을 경우
+                }
+                else if (nowMonth == startMonth) {    // 시작하는 달과 같은 경우
+                    if (i < startDay) {                         // 시작하는 일보다 작은 경우
                         noCount += 1;
-                    }
-                    else if (today.getMonth()+1 == startMonth) {    // 시작하는 달과 같은 경우
-                        if (i < startDay) {                         // 시작하는 일보다 작은 경우
-                            noCount += 1;
-                        }
                     }
                 }
 
