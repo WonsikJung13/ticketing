@@ -321,33 +321,34 @@
                 let etp = exchangeToPossibleDay(cnt) * 1; // etp의 값 범위: 0 ~ 6 (0일...6토)
                 // 기능 : cnt를 매개변수로 넣어 현재일이 '무슨 요일' 인지 반환(1:일,2:월,3:화,4:수,5:목,6:금,7:토)
 
-                if (nowMonth == realMonth && i <= realToDay) {  // 이번달이고 오늘을 포한한 지난날
+                if (nowMonth == realMonth && i < realToDay) {  // 이번달이고 오늘을 포한한 지난날
                     noCount += 1;
-                } else if (nowMonth < realMonth) {
-                    noCount += 1;
+                // }
+                // else if (nowMonth < realMonth) {  // 지난달
+                //     noCount += 1;
                     // else if (nowMonth > realMonth && i > realToDay) { // 다음달이고 오늘보다 일이 높은 수일떄
                     //     noCount += 1;
-                } else if (possibleDay[etp] == 1) { // 해당 일이 예약불가 요일일 경우
+                } else if (possibleDay[etp] == 1) { // 해당 일이 예약불가 요일일 경우(휴관일 체크)
                     noCount += 1;
-                } else if (today.getFullYear() > endYear) {
+                } else if (today.getFullYear() > endYear) { // 끝나는 연도보다 클 경우
                     noCount += 1;
-                } else if (today.getFullYear() == endYear) {
-                    if ((today.getMonth()+1) > endMonth) {
+                } else if (today.getFullYear() == endYear) {    // 끝나는 연도랑 같으면서
+                    if ((today.getMonth()+1) > endMonth) {      // 끝나는 달보다 클 경우
                         noCount += 1;
                         console.log("getMonth: " + today.getMonth() + "endMonth: " + endMonth);
-                    } else if (today.getMonth()+1 == endMonth) {
-                        if (i > endDay) {
+                    } else if (today.getMonth()+1 == endMonth) {    // 끝나는 달과 같을 경우
+                        if (i > endDay) {                           // 끝나는 일보다 클 경우
                             noCount += 1;
                         }
                     }
-                } else if (today.getFullYear() > startYear) {
+                } else if (today.getFullYear() < startYear) {       // 시작하는 연도보다 작을 경우
                     noCount += 1;
-                } else if (today.getFullYear() == startYear) {
-                    if (today.getMonth()+1 < startMonth) {
+                } else if (today.getFullYear() == startYear) {      // 시작하는 연도와 같은 경우
+                    if (today.getMonth()+1 < startMonth) {          // 시작하는 달보다 작을 경우
                         noCount += 1;
                     }
-                    else if (today.getMonth()+1 == startMonth) {
-                        if (i < startDay) {
+                    else if (today.getMonth()+1 == startMonth) {    // 시작하는 달과 같은 경우
+                        if (i < startDay) {                         // 시작하는 일보다 작은 경우
                             noCount += 1;
                         }
                     }
