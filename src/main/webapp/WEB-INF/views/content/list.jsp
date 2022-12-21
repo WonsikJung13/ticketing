@@ -70,9 +70,9 @@
         </div>
       </article>
       </c:forEach>
-        <div class="pagination">페이지네이션</div>
+<%--        <div class="pagination">페이지네이션</div>--%>
 
-      <div class="row tm-row tm-mt-100 tm-mb-75">
+<%--      <div class="row tm-row tm-mt-100 tm-mb-75">--%>
   </main>
 </div>
 <script
