@@ -412,7 +412,7 @@
             <!-- 포스터 및 기본 정보 -->
             <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
             <div class="row" style="display: block;width:720px;">
-                <div class="col-12" style="display:inline-block;min-width:50%;max-width:50%;height:369px;overflow: hidden">
+                <div class="col-12" style="display:inline-block;min-width:50%;max-width:50%;height:400px;overflow: hidden">
                     <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image"
                          class="img-fluid" style="max-width: 370px;">
                 </div>
