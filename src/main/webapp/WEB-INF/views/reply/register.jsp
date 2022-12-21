@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>후기 작성</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -55,7 +55,7 @@
 <div class="container-md">
     <div class="row">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
-            <h3 style="font-family: LINESeedKR-Bd">게시물 작성</h3>
+            <h3 style="font-family: LINESeedKR-Bd">후기 작성</h3>
             <form action="" method="post" enctype="multipart/form-data" style="margin-top: 30px">
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
