@@ -232,17 +232,4 @@ public class CustomerController {
         }
         return result;
     }
-
-    @GetMapping("reservation")
-    public void reservation1() {
-
-    }
-
-    @PostMapping("reservation")
-    @PreAuthorize("authentication.name == #customerId")
-    public String reservation2(String customerId) {
-        CustomerDto customer = customerService.getByCustomerReservation(customerId);
-
-        return "redirect:/customer/reservation";
-    }
 }
