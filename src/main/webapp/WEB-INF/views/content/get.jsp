@@ -414,7 +414,7 @@
             <div class="row" style="display: block;width:720px;">
                 <div class="col-12" style="display:inline-block;min-width:50%;max-width:50%;height:369px;overflow: hidden">
                     <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image"
-                         class="img-fluid" style="max-width: 370px;transform: translate3d(-15px,0,0);-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;">
+                         class="img-fluid" style="max-width: 370px;">
                 </div>
                 <aside class="col-lg-4 tm-aside-col"
                        style="display: inline-block;vertical-align: top;width:20rem;margin-top: 0.4rem;">
