@@ -35,7 +35,7 @@
     <script type="application/json" src="/code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
     <link rel="shortcut icon" href="#">
 
-    <title>상품 수정</title>
+    <title>전시회 수정</title>
 
     <!-- textEditor -->
     <script>
