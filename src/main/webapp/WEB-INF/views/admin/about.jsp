@@ -97,7 +97,7 @@
             <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Jung Won Sik</h2>
             <h3 class="tm-h3 mb-3">JWS (Team Leader)</h3>
             <div class="mb-0 tm-line-height-short">
-                [admin / content / customer / reply]
+                [admin]
             </div>
             <li>회원 정보 관리</li>
             <li>회원 등급 조정</li>
@@ -110,14 +110,13 @@
             <img src="/LSG.png" width="230" height="330" class="img-fluid">
         </div>
         <div class="media-body">
-            <h2 class="tm-color-primary tm-post-title mb-2">Lim Sung Gyu</h2>
+            <h2 class="tm-color-primary tm-post-title mb-2">Lim Seong Gyu</h2>
             <h3 class="tm-h3 mb-3">LSG</h3>
             <div class="mb-0 tm-line-height-short">
                 [content]
             </div>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>게시글 CRUD</li>
+            <li>예약하기</li>
         </div>
     </div>
     <%--    LCE--%>
@@ -139,7 +138,7 @@
     <%--    HHJ--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
-            <img src="/HHJ.png" width="140" height="240" class="img-fluid mr-3 ml-5">
+            <img src="/HHJ.png" width="150" height="240" class="img-fluid mr-3 ml-5">
         </div>
         <div class="media-body ml-4">
             <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Ha Hyeon Jong</h2>
@@ -147,9 +146,9 @@
             <div class="mb-0 tm-line-height-short">
                 [reply]
             </div>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>후기 CRUD</li>
+            <li>카카오 지도 / 길찾기</li>
+            <li>카카오 채팅</li>
         </div>
     </div>
 </div>
