@@ -56,17 +56,17 @@
     <div class="row">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
 
-            <h3>
+            <h3 style="font-family: LINESeedKR-Bd">
                 <c:if test="${Reply.customerName != null}">
-                    ${Reply.customerName}님의 게시물
+                    ${Reply.customerName}님의 후기
                 </c:if>
                 <c:if test="${Reply.customerName == null}">
-                    ${Reply.replyName}님의 게시물
+                    ${Reply.replyName}님의 후기
                 </c:if>
             </h3>
             <div class="mb-3" style="margin-top: 30px">
                 <label style="font-family: 'LINESeedKR-Bd'" class="form-label">
-                    상품명
+                    제목
                 </label>
                 <input class="form-control" type="text" value="${Reply.replyContent}" readonly>
             </div>
@@ -115,7 +115,7 @@
 
             <sec:authentication property="name" var="username"/>
             <c:if test="${Reply.replyName == username}">
-                <div>
+                <div style="font-family: LINESeedKR-Bd">
                     <a class="btn btn-ico " href="${modifyLink}">수정하기</a>
                     <input class="btn btn-danger" type="submit" value="삭제하기" data-bs-toggle="modal"
                            data-bs-target="#removeModal">
@@ -131,15 +131,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
+                <h1 style="font-family: 'LINESeedKR-Bd'" class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 삭제하시겠습니까?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                <button id="removeConfirmButton" type="button" class="btn btn-danger">확인</button>
+                <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button style="font-family: 'LINESeedKR-Bd'" id="removeConfirmButton" type="button" class="btn btn-danger">확인</button>
             </div>
         </div>
     </div>

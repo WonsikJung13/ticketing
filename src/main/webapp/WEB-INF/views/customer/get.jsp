@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>내정보</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -40,16 +40,17 @@
 <body>
 <my:sideBar/>
 
-<c:if test="${not empty message }">
-    <div style="font-family: 'LINESeedKR-Bd'" class="alert alert-danger">
-            ${message }
-    </div>
-</c:if>
 <div class="tm-main">
     <div class="container-md" style="width: 900px">
         <div class="row mt-5">
             <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
 
+                <c:if test="${not empty message }">
+                    <div style="font-family: 'LINESeedKR-Bd'" class="alert alert-danger">
+                            ${message }
+                    </div>
+                </c:if>
+                <br>
                 <h1 style="font-family: 'LINESeedKR-Bd'">내 정보</h1>
 
                 <div class="mb-3">
