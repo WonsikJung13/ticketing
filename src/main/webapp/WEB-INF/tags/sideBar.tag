@@ -4,7 +4,8 @@
 
 <%@ attribute name="active" %>
 
-<link rel="stylesheet" href="../css/all.min.css"> <!-- https://fontawesome.com/ -->
+<link rel="stylesheet" href="../css/all.min.css">
+<!-- https://fontawesome.com/ -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <!-- https://fonts.google.com/ -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +58,6 @@
     }
 
 </style>
-
 
 <header class="tm-header" id="tm-header" style="width:320px">
     <div class="tm-header-wrapper">
