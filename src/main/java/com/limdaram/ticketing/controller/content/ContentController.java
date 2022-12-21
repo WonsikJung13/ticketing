@@ -125,7 +125,7 @@ public class ContentController {
     }
 
     @GetMapping("reservation")
-    @PreAuthorize("authentication.name == 'admin'")
+    @PreAuthorize("isAuthenticated()")
     public void reservation(int contentId, Model model, Authentication authentication){
         CustomerDto customerDto = customerService.getByCustomerId(authentication.getName());
         ContentDto content = service.get(contentId);
@@ -135,7 +135,7 @@ public class ContentController {
     }
 
     @PostMapping("reservation")
-    @PreAuthorize("authentication.name == 'admin'")
+    @PreAuthorize("isAuthenticated()")
     public String reservation(reservationDto reservDto) {
         System.out.println("Controller DTO: " + reservDto);
         service.reservation(reservDto);
