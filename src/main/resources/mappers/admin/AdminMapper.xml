@@ -14,6 +14,10 @@
         SET customerPassword = #{customerPassword}
         WHERE customerId = #{customerId}
     </update>
+    <delete id="deleteAuth">
+        DELETE FROM Authority
+        WHERE customerId = #{customerId}
+    </delete>
 
     <select id="getCustomerList" resultType="com.limdaram.ticketing.domain.customer.CustomerDto">
         SELECT * FROM Customer;
