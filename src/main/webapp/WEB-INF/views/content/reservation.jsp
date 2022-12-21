@@ -355,7 +355,6 @@
                         }
                     }
                 }
-
                 if (today.getFullYear() > endYear)  {
                     noCount += 1;
                 }
