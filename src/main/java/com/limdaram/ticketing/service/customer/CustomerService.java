@@ -60,7 +60,7 @@ public class CustomerService {
     }
 
     public int passwordModify(String customerId, String customerPassword) {
-        return customerMapper.passwordModify(customerId, customerPassword);
+        return customerMapper.passwordModify(customerId, passwordEncoder.encode(customerPassword));
     }
 
     public int phoneNumberModify(String customerId, String customerPhoneNumber) {
