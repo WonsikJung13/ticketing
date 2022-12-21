@@ -128,7 +128,7 @@
                     </a>
                 </li>
                 <li class="tm-nav-item" style="margin-bottom: 230px">
-                    <a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
+                    <a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link" target="_blank">
                         <i class="fa-solid fa-comment"></i>
                         문의하기
                     </a>

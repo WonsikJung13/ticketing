@@ -79,7 +79,4 @@ public class CustomerService {
         return customerMapper.birthModify(customerId, customerBirth);
     }
 
-    public CustomerDto getByCustomerReservation(String customerId) {
-        return customerMapper.getByCustomerReservation(customerId);
-    }
 }

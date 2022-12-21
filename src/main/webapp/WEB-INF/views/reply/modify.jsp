@@ -55,7 +55,7 @@
 <div class="container-md">
     <div class="row">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
-            <h3>수정</h3>
+            <h3 style="font-family: LINESeedKR-Bd">수정</h3>
             <form method="post" id="modifyForm" style="margin-top: 30px">
 
                 <input type="hidden" name="replyId" value="${Reply.replyId}">
@@ -103,7 +103,7 @@
                 </div>
             </form>
 
-            <button type="submit" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#modifyModal">
+            <button style="font-family: 'LINESeedKR-Bd'" type="submit" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#modifyModal">
                 수정하기
             </button>
 
@@ -112,15 +112,15 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">수정 확인</h1>
+                            <h1 style="font-family: 'LINESeedKR-Bd'" class="modal-title fs-5" id="exampleModalLabel">수정 확인</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             수정하시겠습니까?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                            <button id="modifyConfirmButton" type="button" class="btn btn-primary">확인</button>
+                            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                            <button style="font-family: 'LINESeedKR-Bd'" id="modifyConfirmButton" type="button" class="btn btn-ico">확인</button>
                         </div>
                     </div>
                 </div>
