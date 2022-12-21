@@ -107,14 +107,17 @@
         SET
         contentName = #{contentName},
         contentRegion = #{contentRegion},
-        contentStartDate = #{contentStartDate},
-        contentEndDate = #{contentEndDate},
-        contentPrice = #{contentPrice},
-        contentBoard = #{contentBoard},
         contentAddress = #{contentAddress},
         contentMapEntX = #{contentMapEntX},
         contentMapEntY = #{contentMapEntY},
-        contentAddrDetail = #{contentAddrDetail}
+        contentAddrDetail = #{contentAddrDetail},
+        contentStartDate = #{contentStartDate},
+        contentEndDate = #{contentEndDate},
+        startTime = #{startTime},
+        endTime = #{endTime},
+        dayLimit = #{dayLimit},
+        contentPrice = #{contentPrice},
+        contentBoard = #{contentBoard}
         WHERE
             contentId = #{contentId}
     </update>
