@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>수정하기</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -62,102 +62,102 @@
                 </label>
                 <input class="form-control" type="text" value="${customer.customerName }" readonly>
             </div>
-                <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal"
-                        data-bs-target="#nameModal">
-                    이름 변경하기
-                </button>
-
-                <div class="mb-3">
-                    <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
-                        생년월일
-                    </label>
-                    <input class="form-control" type="date" value="${customer.customerBirth }" readonly>
-                </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#birthModal">
-                    생년월일 변경하기
-                </button>
-
-                <div class="mb-3">
-                    <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
-                        아이디
-                    </label>
-                    <input id="customerId" class="form-control" type="text" value="${customer.customerId }" readonly>
-                </div>
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal"
+                    data-bs-target="#nameModal">
+                이름 변경하기
+            </button>
 
             <div class="mb-3">
-                    <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
-                        비밀번호
-                    </label>
-                    <input class="form-control" type="password" value="****" readonly>
-                </div>
-            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                    비밀번호 변경하기
-                </button>
+                <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
+                    생년월일
+                </label>
+                <input class="form-control" type="date" value="${customer.customerBirth }" readonly>
+            </div>
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal"
+                    data-bs-target="#birthModal">
+                생년월일 변경하기
+            </button>
 
-                <div class="mb-3">
-                    <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
-                        이메일
-                    </label>
-                    <div>
-                        <input class="form-control" type="email" value="${customer.customerEmail }" readonly>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
+                    아이디
+                </label>
+                <input id="customerId" class="form-control" type="text" value="${customer.customerId }" readonly>
+            </div>
 
-                <div class="mb-3">
-                    <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
-                        핸드폰 번호
-                    </label>
+            <div class="mb-3">
+                <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
+                    비밀번호
+                </label>
+                <input class="form-control" type="password" value="****" readonly>
+            </div>
+            <button style="font-family: 'LINESeedKR-Bd'" type="button" class="btn btn-ico" data-bs-toggle="modal"
+                    data-bs-target="#passwordModal">
+                비밀번호 변경하기
+            </button>
+
+            <div class="mb-3">
+                <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
+                    이메일
+                </label>
+                <div>
+                    <input class="form-control" type="email" value="${customer.customerEmail }" readonly>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
+                    핸드폰 번호
+                </label>
                 <input class="form-control" type="text" value="${customer.customerPhoneNumber }" readonly>
-                </div>
-                <button style="font-family: 'LINESeedKR-Bd';" type="button" class="btn btn-ico" data-bs-toggle="modal"
-                        data-bs-target="#phoneNumberModal">
-                    핸드폰 번호 변경하기
-                </button>
+            </div>
+            <button style="font-family: 'LINESeedKR-Bd';" type="button" class="btn btn-ico" data-bs-toggle="modal"
+                    data-bs-target="#phoneNumberModal">
+                핸드폰 번호 변경하기
+            </button>
 
-                <div class="mb-3">
-                    <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
-                        주소
-                    </label>
-                    <form id="addressForm" action="addressModify" method="post">
-                        <div class="input-group">
-                            <input id="customerAddressInput" name="customerAddress" class="form-control" type="text"
-                                   value="${customer.customerAddress }" readonly>
-                            <input type="hidden" name="customerId" value="${customer.customerId}">
-                            <button class="btn btn-outline-secondary" id="customerAddressButton" type="button"
-                                    onClick="goPopup();">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button"
-                        class="btn btn-outline-secondary">
-                    <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button"
-                            class="btn btn-ico">
-                        주소 변경하기
-                    </button>
-
-
-                    <div class="mb-3">
-                        <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
-                            등급
-                        </label>
-                        <input class="form-control" type="text" value="${customer.customerGrade }" readonly>
-                    </div>
-
-                    <div class="mb-3">
-                        <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
-                            가입일시
-                        </label>
-                        <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
-                    </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute"
-                                id="exitButton" type="button" class="btn btn-ico">
-                            나가기
+            <div class="mb-3">
+                <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
+                    주소
+                </label>
+                <form id="addressForm" action="addressModify" method="post">
+                    <div class="input-group">
+                        <input id="customerAddressInput" name="customerAddress" class="form-control" type="text"
+                               value="${customer.customerAddress }" readonly>
+                        <input type="hidden" name="customerId" value="${customer.customerId}">
+                        <button class="btn btn-outline-secondary" id="customerAddressButton" type="button"
+                                onClick="goPopup();">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
-                    <br>
+                </form>
+            </div>
+            <button style="font-family: 'LINESeedKR-Bd'" id="modalConfirmAddressButton" type="button"
+                    class="btn btn-ico">
+                주소 변경하기
+            </button>
+
+
+            <div class="mb-3">
+                <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
+                    등급
+                </label>
+                <input class="form-control" type="text" value="${customer.customerGrade }" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
+                    가입일시
+                </label>
+                <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute"
+                        id="exitButton" type="button" class="btn btn-ico">
+                    나가기
+                </button>
+            </div>
+            <br>
         </div>
     </div>
 </div>

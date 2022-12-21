@@ -1,6 +1,7 @@
 package com.limdaram.ticketing.service.customer;
 
 import com.limdaram.ticketing.domain.customer.CustomerDto;
+import com.limdaram.ticketing.mapper.admin.AdminMapper;
 import com.limdaram.ticketing.mapper.customer.CustomerMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerService {
     @Setter(onMethod_ = @Autowired)
     private CustomerMapper customerMapper;
+
+    @Setter(onMethod_ = @Autowired)
+    private AdminMapper adminMapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -43,6 +47,7 @@ public class CustomerService {
     }
 
     public int remove(CustomerDto customer) {
+        adminMapper.deleteAuth(customer);
         return customerMapper.delete(customer);
     }
 
@@ -74,7 +79,4 @@ public class CustomerService {
         return customerMapper.birthModify(customerId, customerBirth);
     }
 
-    public CustomerDto getByCustomerReservation(String customerId) {
-        return customerMapper.getByCustomerReservation(customerId);
-    }
 }

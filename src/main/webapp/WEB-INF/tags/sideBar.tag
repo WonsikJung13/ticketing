@@ -66,24 +66,23 @@
         </button>
         <div style="margin-bottom: auto" class="tm-site-header">
             <div class="mb-3 mx-auto tm-site-logo"><img src="/oo.ico"/></div>
-            <h1 class="text-center">LimDaRam</h1>
+            <h1 class="text-center"><strong>A</strong> <strong>R</strong>aboza <strong>T</strong>eam</h1>
         </div>
         <div>
             <div style="margin-bottom: 30px" class="tm-mb-65">
                 <div>
                     <sec:authentication property="name" var="username"/>
-                    <p style="color:white; margin-bottom: 0px; margin-top: 30px">
-                        <i class="fa-regular fa-face-grin-wide"></i>
-                        ${username}님
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <div style="width: auto">
-                            <a style="color: white" class="font-weight-light"
-                               href="/customer/get?customerId=${username}">내정보</a> |
-                            <%--                                <a style="color: white" class="font-weight-light" href="/customer/reservation">예약확인</a> --%>
-                            <a style="color: white" href="/logout">로그아웃</a>
+                        <p style="color:white; margin-bottom: 0px; margin-top: 30px">
+                            <i class="fa-regular fa-face-grin-wide"></i>
+                            ${username}님
+                        </p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <div style="width: auto">
+                                <a style="color: white" class="font-weight-light" href="/customer/get?customerId=${username}">내정보</a> |
+<%--                                <a style="color: white" class="font-weight-light" href="/customer/reservation">예약확인</a> --%>
+                                <a style="color: white" href="/logout">로그아웃</a>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -92,7 +91,7 @@
                 <li class="tm-nav-item">
                     <a href="/content/list" class="tm-nav-link">
                         <i class="fas fa-home"></i>
-                        Blog Home
+                        전시회
                     </a>
                 </li>
                 <sec:authentication property="name" var="username"/>
@@ -128,8 +127,8 @@
                         About
                     </a>
                 </li>
-                <li class="tm-nav-item">
-                    <a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link">
+                <li class="tm-nav-item" style="margin-bottom: 230px">
+                    <a href="http://pf.kakao.com/_WAlfxj/chat" class="tm-nav-link" target="_blank">
                         <i class="fa-solid fa-comment"></i>
                         문의하기
                     </a>
@@ -138,39 +137,38 @@
         </nav>
 
         <%-- github --%>
-        <div style="margin: 10px; color : #0cc; !important;" class="tm-mb-65;">
-            <%-- JWS --%>
-            <a href="https://github.com/WonsikJung13" target="_blank" class="">
-                <div style=" float: left; margin-right: 15px" class="up">
-                    <i style="margin-left: 3px;; font-size: 30px;" class="fa-regular fa-face-meh-blank"></i>
-                    <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">JWS</div>
-                </div>
-            </a>
-            <%-- LSG --%>
-            <a href="https://github.com/gmlrmrtjd" target="_blank" class="">
-                <div style=" float: left; margin-right: 15px" class="up">
-                    <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-grimace"></i>
-                    <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LSG</div>
-                </div>
-            </a>
-            <%-- LCE --%>
-            <a href="https://github.com/Limdaram" target="_blank" class="">
-                <div style=" float: left; margin-right: 15px" class="up">
-                    <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-laugh-beam"></i>
-                    <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LCE</div>
-                </div>
-            </a>
-            <%-- HHJ --%>
-            <a href="https://github.com/ha971206" target="_blank" class="">
-                <div style=" float: left; margin-right: 15px" class="up">
-                    <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-surprise"></i>
-                    <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">HHJ</div>
-                </div>
-            </a>
+        <div style="margin: 10px; color : #0cc; !important;" class="">
+            <div style="margin-bottom: 10px">
+                <%-- JWS --%>
+                <a href="https://github.com/WonsikJung13" target="_blank" class="">
+                    <div style=" float: left; margin-right: 15px" class="up">
+                        <i style="margin-left: 3px;; font-size: 30px;" class="fa-regular fa-face-meh-blank"></i>
+                        <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">JWS</div>
+                    </div>
+                </a>
+                <%-- LSG --%>
+                <a href="https://github.com/gmlrmrtjd" target="_blank" class="">
+                    <div style=" float: left; margin-right: 15px" class="up">
+                        <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-grimace"></i>
+                        <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LSG</div>
+                    </div>
+                </a>
+                <%-- LCE --%>
+                <a href="https://github.com/Limdaram" target="_blank" class="">
+                    <div style=" float: left; margin-right: 15px" class="up">
+                        <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-laugh-beam"></i>
+                        <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">LCE</div>
+                    </div>
+                </a>
+                <%-- HHJ --%>
+                <a href="https://github.com/ha971206" target="_blank" class="">
+                    <div style=" float: left; margin-right: 15px;" class="up">
+                        <i style="margin: auto; font-size: 30px;" class="fa-regular fa-face-surprise"></i>
+                        <div style="font-family: LINESeedKR-Bd; font-size: 15px; color: white">HHJ</div>
+                    </div>
+                </a>
+            </div>
         </div>
-        <%--        <div class="tm-mb-80 pr-5 text-white">--%>
-        <%--            Xtra Blog is a multi-purpose HTML template from TemplateMo website. Left side is a sticky menu bar. Right side content will scroll up and down.--%>
-        <%--        </div>--%>
     </div>
 </header>
 

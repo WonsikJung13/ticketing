@@ -30,5 +30,4 @@ public interface CustomerMapper {
 
     int authAdd(String customerId);
 
-    CustomerDto getByCustomerReservation(String customerId);
 }
