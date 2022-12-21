@@ -17,4 +17,6 @@ public interface AdminMapper {
     int updateGrade(String customerId, String customerGrade);
 
     int resetPassword(CustomerDto customer);
+
+    int deleteAuth(CustomerDto customer);
 }
