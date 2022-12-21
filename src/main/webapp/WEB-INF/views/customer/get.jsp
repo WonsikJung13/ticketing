@@ -41,7 +41,7 @@
 <my:sideBar/>
 
 <div class="tm-main">
-    <div class="container-md" style="width: 900px">
+    <div class="container-md" style="max-width: 900px; min-width: 400px">
         <div class="row mt-5">
             <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
 
