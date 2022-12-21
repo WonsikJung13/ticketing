@@ -41,14 +41,15 @@
       <c:url value="/content/get" var="getLink">
         <c:param name="contentId" value="${content.contentId}"></c:param>
       </c:url>
+        <input type="hidden" class="scrolling" data-contentId="${content.contentId}">
       <article class="col-12 col-md-6 tm-post" style="min-width:50%;max-width:calc(100 - 50%);">
 
         <hr class="tm-hr-primary">
 
         <div class="tm-post-link-inner" style="">
-          <a href="${getLink}" class="effect-lily tm-post-link tm-pt-60" style="height: 500px;">
+          <a href="${getLink}" class="effect-lily tm-post-link tm-pt-60" style="max-height: 626px;">
               <%-- 이미지 --%>
-            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image" class="img-fluid" style="max-width:370px">
+            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" onerror="this.src='/oo.ico'" alt="Image" class="img-fluid" style="max-width:470px">
           </a>
         </div>
               <%-- 제목 --%>
@@ -69,6 +70,8 @@
         </div>
       </article>
       </c:forEach>
+        <div class="pagination">페이지네이션</div>
+
       <div class="row tm-row tm-mt-100 tm-mb-75">
   </main>
 </div>

@@ -109,7 +109,6 @@ public class ContentService {
     // 총 게시물 개수 확인
     public List<ContentDto> listContent(ContentDto contentDto) {
         int countAll = mapper.countAll();
-
         contentDto.setCountContent(countAll);
 
         return mapper.list();
