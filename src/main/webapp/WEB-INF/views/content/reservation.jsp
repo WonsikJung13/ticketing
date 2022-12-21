@@ -195,6 +195,7 @@
         let dateSelectedCell;
         let timeSelectedCell;
         // 오늘에 해당하는 월, 일 객체
+        let realYear = date.getFullYear();
         let realMonth = date.getMonth() + 1;
         let realToDay = date.getDate();
         console.log("realMonth: " + realMonth + "realToDay: " + realToDay);
@@ -321,42 +322,94 @@
                 let etp = exchangeToPossibleDay(cnt) * 1; // etp의 값 범위: 0 ~ 6 (0일...6토)
                 // 기능 : cnt를 매개변수로 넣어 현재일이 '무슨 요일' 인지 반환(1:일,2:월,3:화,4:수,5:목,6:금,7:토)
 
-                if (nowMonth == realMonth && i < realToDay) {  // 이번달이고 오늘을 포한한 지난날
-                    noCount += 1;
-                }
-                if (today.getFullYear() == startYear) {
-                    if (nowMonth < realMonth) {
-                        noCount += 1;
-                    } else if (nowMonth == realMonth) {
-                        if (i < startDay) {
-                            noCount += 1;
-                        }
-                    }
-                }
                 if (possibleDay[etp] == 1) { // 해당 일이 예약불가 요일일 경우(휴관일 체크)
                     noCount += 1;
                 }
-                // else
-                if (today.getFullYear() > endYear) {            // 끝나는 연도보다 클 경우
-                    noCount += 1;
-                } else if (today.getFullYear() == endYear) {           // 끝나는 연도랑 같으면서
-                    if (nowMonth > endMonth) {      // 끝나는 달보다 클 경우
+
+                if (today.getFullYear() == realYear) {
+                    if (nowMonth == realMonth && i < realToDay) {  // 이번달이고 오늘을 포한한 지난날
                         noCount += 1;
-                    } else if (nowMonth == endMonth) {    // 끝나는 달과 같을 경우
-                        if (i > endDay) {                           // 끝나는 일보다 클 경우
+                    }
+                    else if (nowMonth < realMonth) {
+                        noCount += 1;
+                    }
+                }
+                else if (today.getFullYear() < realMonth) {
+                    noCount += 1;
+                }
+
+                if (today.getFullYear() < startYear) {
+                    noCount += 1;
+                }
+
+                if (today.getFullYear() == startYear) {
+                    if (nowMonth < startMonth) {
+                        noCount += 1;
+                    }
+                    else if (nowMonth == startMonth) {
+                        if (i < startDay) {
                             noCount += 1;
+                        }
+                        else if (i >= startDay) {
+                            // noCount = 0;
                         }
                     }
                 }
-                else if (today.getFullYear() < startYear) {       // 시작하는 연도보다 작을 경우
+                if (today.getFullYear() > endYear)  {
                     noCount += 1;
                 }
-                else if (nowMonth == startMonth) {    // 시작하는 달과 같은 경우
-                    if (i < startDay) {                         // 시작하는 일보다 작은 경우
+
+                if (today.getFullYear() == endYear) {
+                    if (nowMonth > endMonth) {
                         noCount += 1;
+                    }
+                    else if (nowMonth == endMonth) {
+                        if (i > endDay) {
+                            noCount += 1;
+                        }
+                        else if (i <= endDay) {
+                            // noCount = 0;
+                        }
+                    }
+                    else if (nowMonth < endMonth) {
+
                     }
                 }
 
+
+                // if (today.getFullYear() == startYear) { // 시작연도와 같으면서
+                //     if (nowMonth < realMonth) {         // 현재 달보다 작은 경우
+                //         noCount += 1;
+                //     } else if (nowMonth == realMonth) { // 현재 달과 같은 경우
+                //         if (i < startDay) {
+                //             noCount += 1;
+                //         }
+                //     }
+                // }
+                //
+                // // else
+                // if (today.getFullYear() > endYear) {            // 끝나는 연도보다 클 경우
+                //     noCount += 1;
+                // } else if (today.getFullYear() == endYear) {           // 끝나는 연도랑 같으면서
+                //     if (nowMonth > endMonth) {                        // 끝나는 달보다 클 경우
+                //         noCount += 1;
+                //     } else if (nowMonth == endMonth) {               // 끝나는 달과 같을 경우
+                //         if (i > endDay) {                           // 끝나는 일보다 클 경우
+                //             noCount += 1;
+                //         }
+                //     }
+                // }
+                // else if (today.getFullYear() < startYear) {       // 시작하는 연도보다 작을 경우
+                //     if (nowMonth == startMonth) {              // 시작하는 달과 같은 경우
+                //         if (i < startDay) {                         // 시작하는 일보다 작은 경우
+                //             noCount += 1;
+                //         }
+                //     // } else if (nowMonth < startMonth) {
+                //     //     noCount += 1;
+                //     // } else if (nowMonth > startMonth) {
+                //     //         // noCount = 0;
+                //     }
+                // }
 
 
 
