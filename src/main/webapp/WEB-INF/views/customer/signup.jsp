@@ -16,7 +16,7 @@
 <%--    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">--%>
     <style>
         body {
-            background-image: url("/back.jpg");
+            background-image: url("/static/back.jpg");
         }
 
         /*글씨체*/

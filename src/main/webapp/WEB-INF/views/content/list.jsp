@@ -23,11 +23,11 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+  <link rel="stylesheet" href="/static/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
   <!-- https://fonts.google.com/ -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
 </head>
 <body>
 <my:sideBar active="contentList"/>
@@ -49,7 +49,7 @@
         <div class="tm-post-link-inner" style="">
           <a href="${getLink}" class="effect-lily tm-post-link tm-pt-60" style="max-height: 626px;">
               <%-- 이미지 --%>
-            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" onerror="this.src='/oo.ico'" alt="Image" class="img-fluid" style="max-width:470px">
+            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" onerror="this.src='/static/oo.ico'" alt="Image" class="img-fluid" style="max-width:470px">
           </a>
         </div>
               <%-- 제목 --%>
@@ -79,7 +79,7 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-<script src="src/main/resources/static/js/jquery.min.js"></script>
-<script src="src/main/resources/static/js/templatemo-script.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/templatemo-script.js"></script>
 </body>
 </html>

@@ -4,12 +4,12 @@
 
 <%@ attribute name="active" %>
 
-<link rel="stylesheet" href="../css/all.min.css">
+<%--<link rel="stylesheet" href="/static/css/all.min.css">--%>
 <!-- https://fontawesome.com/ -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <!-- https://fonts.google.com/ -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
 
 <style>
     .effect-lily img {
@@ -65,7 +65,7 @@
             <i class="fas fa-bars"></i>
         </button>
         <div style="margin-bottom: auto" class="tm-site-header">
-            <div class="mb-3 mx-auto tm-site-logo"><img src="/oo.ico"/></div>
+            <div class="mb-3 mx-auto tm-site-logo"><img src="/static/oo.ico"/></div>
             <h1 class="text-center"><strong>A</strong> <strong>R</strong>aboza <strong>T</strong>eam</h1>
         </div>
         <div>
@@ -206,5 +206,5 @@
 
 </script>
 
-<script src="../js/jquery.min.js"></script>
-<script src="../js/templatemo-script.js"></script>
+<script type="application/json" src="/static/js/jquery.min.js"></script>
+<script type="application/json" src="/static/js/templatemo-script.js"></script>
