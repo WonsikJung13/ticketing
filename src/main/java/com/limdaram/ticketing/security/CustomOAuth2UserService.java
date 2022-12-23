@@ -42,7 +42,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         OAuth2User oAuth2User = super.loadUser(userRequest);
         Map<String, Object> paramMap = oAuth2User.getAttributes();
-        System.out.println("파람 맵 : " + paramMap);
 
         String email = null;
 

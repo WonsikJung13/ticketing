@@ -53,6 +53,10 @@
         </div>
               <%-- 제목 --%>
             <h2 class="tm-pt-30 tm-color-primary tm-post-title">"${content.contentName}"</h2>
+          <%--                    &lt;%&ndash; 내용 &ndash;%&gt;--%>
+          <%--                <p class="tm-pt-30">--%>
+          <%--                        ${content.contentBoard}--%>
+          <%--                </p>--%>
 
           <%-- 날짜 --%>
         <div class="d-flex justify-content-between tm-pt-45">
