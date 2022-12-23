@@ -722,7 +722,8 @@
 
 <div class="mainBox">
     <div class="contentBox">
-        <form id="paymentForm" action="" method="post" name="paymentForm">
+        <c:url value="/content/reservation" var="reservation"/>
+        <form id="paymentForm" action="${reservation}" method="post" name="paymentForm">
         <div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700; margin-left:50px; font-family: LINESeedKR-Bd">${content.contentName}</span>
             <input class="form-control" type="hidden" name="contentName" value="${content.contentName}">
             <div class="underline"></div></div>

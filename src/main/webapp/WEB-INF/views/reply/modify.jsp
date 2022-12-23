@@ -56,7 +56,8 @@
     <div class="row">
         <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
             <h3 style="font-family: LINESeedKR-Bd">수정</h3>
-            <form method="post" id="modifyForm" style="margin-top: 30px">
+            <c:url value="/reply/modify" var="modify"/>
+            <form method="post" action="${modify}" id="modifyForm" style="margin-top: 30px">
 
                 <input type="hidden" name="replyId" value="${Reply.replyId}">
 
@@ -81,12 +82,12 @@
                     </label>
 
                     <c:if test="${Reply.customerName != null}">
-                        <input class="form-control" type="text" value="${Reply.customerName}"
+                        <input class="form-control" name="replyName" type="text" value="${Reply.customerName}"
                                style="background-color: #d4d4d4"
                                readonly>
                     </c:if>
                     <c:if test="${Reply.customerName == null}">
-                        <input class="form-control" type="text" value="${Reply.replyName}"
+                        <input class="form-control" name="replyName" type="text" value="${Reply.replyName}"
                                style="background-color: #d4d4d4"
                                readonly>
                     </c:if>

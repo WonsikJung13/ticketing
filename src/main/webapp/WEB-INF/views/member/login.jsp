@@ -19,7 +19,7 @@
     <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
     <style>
         body {
-            background-image: url("/static/back.jpg");
+            background-image: url('/static/back.jpg');
         }
 
         /*글씨체*/
@@ -58,13 +58,8 @@
             LOGIN
         </div>
         <div class="card-body">
-            <%--            <c:if test="${param.logout != null}">--%>
-            <%--                <div class="alert alert-danger">--%>
-            <%--                    <i class="fa-solid fa-triangle-exclamation"></i>--%>
-            <%--                        로그아웃 되었습니다--%>
-            <%--                </div>--%>
-            <%--            </c:if>--%>
-            <form id="registerForm" method="post">
+            <c:url value="/member/login" var="login"/>
+            <form id="registerForm" action="${login}" method="post">
                 <div class="input-group mb-3">
                     <span style="border-color: #0cc" class="input-group-text">
                         <i class="fa-solid fa-user"></i>

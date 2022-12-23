@@ -119,7 +119,8 @@
                 <label style="font-family: 'LINESeedKR-Bd'; margin-top: 20px;" for="" class="form-label">
                     주소
                 </label>
-                <form id="addressForm" action="addressModify" method="post">
+                <c:url value="/customer/addressModify" var="addressModify"/>
+                <form id="addressForm" action="${addressModify}" method="post">
                     <div class="input-group">
                         <input id="customerAddressInput" name="customerAddress" class="form-control" type="text"
                                value="${customer.customerAddress }" readonly>
@@ -170,7 +171,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="nameForm" action="nameModify" method="post">
+                <c:url value="/customer/nameModify" var="nameModify"/>
+                <form id="nameForm" action="${nameModify}" method="post">
                     <div class="mb-3">
                         <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                             이름
@@ -204,7 +206,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="birthForm" action="birthModify" method="post">
+                <c:url value="/customer/birthModify" var="birthModify"/>
+                <form id="birthForm" action="${birthModify}" method="post">
                     <div class="mb-3">
                         <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                             생년월일
@@ -238,7 +241,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="passwordForm" action="passwordModify" method="post">
+                <c:url value="/customer/passwordModify" var="passwordModify"/>
+                <form id="passwordForm" action="${passwordModify}" method="post">
                     <div class="mb-3">
                         <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                             비밀번호
@@ -284,7 +288,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="phoneNumberForm" action="phoneNumberModify" method="post">
+                <c:url value="/customer/phoneNumberModify" var="phoneNumberModify"/>
+                <form id="phoneNumberForm" action="${phoneNumberModify}" method="post">
                     <div class="mb-3">
                         <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                             핸드폰 번호

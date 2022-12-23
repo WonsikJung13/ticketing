@@ -60,6 +60,7 @@
             Reply r LEFT OUTER JOIN Customer c ON r.replyName = c.customerId
         WHERE
             contentId = #{contentId}
+        ORDER BY r.replyInserted DESC
     </select>
 
     <insert id="addReply">
