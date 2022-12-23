@@ -91,7 +91,8 @@
     <%--    JWS--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
-            <img src="/JWS.png" width="200" height="300" class="img-fluid" style="margin-left: 0">
+            <c:url value="/static/JWS.png" var="jws"/>
+            <img src="${jws}" width="200" height="300" class="img-fluid" style="margin-left: 0">
         </div>
         <div class="media-body">
             <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Jung Won Sik</h2>
@@ -107,7 +108,8 @@
     <%--    LSG--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
-            <img src="/LSG.png" width="230" height="330" class="img-fluid">
+            <c:url value="/static/LSG.png" var="lsg"/>
+            <img src="${lsg}" width="230" height="330" class="img-fluid">
         </div>
         <div class="media-body">
             <h2 class="tm-color-primary tm-post-title mb-2">Lim Seong Gyu</h2>
@@ -122,7 +124,8 @@
     <%--    LCE--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
-            <img src="/LCE.png" width="200" height="300" class="img-fluid mr-4">
+            <c:url value="/static/LCE.png" var="lce"/>
+            <img src="${lce}" width="200" height="300" class="img-fluid mr-4">
         </div>
         <div class="media-body">
             <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Lim Chae Eun</h2>
@@ -138,7 +141,8 @@
     <%--    HHJ--%>
     <div class="col-lg-6 tm-mb-60 tm-person-col">
         <div class="media tm-person">
-            <img src="/HHJ.png" width="150" height="240" class="img-fluid mr-3 ml-5">
+            <c:url value="/static/HHJ.png" var="hhj"/>
+            <img src="${hhj}" width="150" height="240" class="img-fluid mr-3 ml-5">
         </div>
         <div class="media-body ml-4">
             <h2 style="margin-top: 30px" class="tm-color-primary tm-post-title mb-2">Ha Hyeon Jong</h2>

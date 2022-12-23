@@ -30,11 +30,11 @@
             display: block;
         }
 
-        .replyIcon{
+        .replyIcon {
             color: #099;
         }
 
-        .replyIcon:hover{
+        .replyIcon:hover {
             color: #5aa3a3 !important;
         }
 
@@ -358,176 +358,177 @@
 <my:sideBar/>
 
 <div>
-    <div class="container-fluid" >
-        <main class="tm-main" >
+    <div class="container-fluid">
+        <main class="tm-main">
             <div class="tm-row" style="min-width:300px;max-width: 720px;">
-            <h1 class="pt-2 tm-color-primary tm-post-title" style="margin-bottom:0px; font-family: LINESeedKR-Bd">${content.contentName}</h1>
+                <h1 class="pt-2 tm-color-primary tm-post-title"
+                    style="margin-bottom:0px; font-family: LINESeedKR-Bd">${content.contentName}</h1>
 
-                    <div style="max-width: 700px;height:30px;margin-bottom: 10px;">
-                        <div style="display:inline-block;float:left;">
-                            <span class="tm-mb-40" >${content.time}</span>
+                <div style="max-width: 700px;height:30px;margin-bottom: 10px;">
+                    <div style="display:inline-block;float:left;">
+                        <span class="tm-mb-40">${content.time}</span>
 
+                    </div>
+
+                    <!-- three dot menu -->
+
+                    <sec:authentication property="name" var="username"/>
+                    <c:if test="${username == 'admin'}">
+                        <div class="TreeDotDropdown" style="display: inline-block">
+                            <!-- three dots -->
+                            <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <!-- menu dropDown -->
+                            <div id="myDropdown" class="dropdown-content">
+                                    <%--    수정버튼--%>
+                                <c:url value="/content/modify" var="modifyLink">
+                                    <c:param name="contentId" value="${content.contentId}"/>
+                                </c:url>
+                                <a style="font-family: LINESeedKR-Bd" class="modifyPost" href="${modifyLink}">
+                                    수정하기
+                                    <i class="fa-regular fa-pen-to-square" style="margin-left:38px;"></i>
+                                </a>
+                                    <%--    삭제버튼--%>
+                                <c:url value="/content/remove" var="removeLink"/>
+                                <form id="removeForm" action="${removeLink }" method="post">
+                                    <input type="hidden" name="contentId" value="${content.contentId }">
+                                </form>
+                                <a style="font-family: LINESeedKR-Bd" class="removePost" href="${removeLink }"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#removeModal">
+                                    삭제하기
+                                    <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i>
+                                    <ion-icon name="trash"></ion-icon>
+                                </a>
+                            </div>
                         </div>
+                    </c:if>
 
-            <!-- three dot menu -->
 
-            <sec:authentication property="name" var="username"/>
-            <c:if test="${username == 'admin'}">
-                <div class="TreeDotDropdown" style="display: inline-block">
-                    <!-- three dots -->
-                    <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                    <!-- menu dropDown -->
-                    <div id="myDropdown" class="dropdown-content">
-                            <%--    수정버튼--%>
-                        <c:url value="/content/modify" var="modifyLink">
-                            <c:param name="contentId" value="${content.contentId}"/>
-                        </c:url>
-                        <a style="font-family: LINESeedKR-Bd" class="modifyPost" href="${modifyLink}">
-                            수정하기
-                            <i class="fa-regular fa-pen-to-square" style="margin-left:38px;"></i>
-                        </a>
-                            <%--    삭제버튼--%>
-                        <c:url value="/content/remove" var="removeLink"/>
-                        <form id="removeForm" action="${removeLink }" method="post">
-                            <input type="hidden" name="contentId" value="${content.contentId }">
-                        </form>
-                        <a style="font-family: LINESeedKR-Bd" class="removePost" href="${removeLink }" data-bs-toggle="modal"
-                           data-bs-target="#removeModal">
-                            삭제하기
-                            <i class="fa-regular fa-trash-can" style="margin-left:38px;"></i>
-                            <ion-icon name="trash"></ion-icon>
-                        </a>
+                </div>
+
+                <div>
+                    <!-- 포스터 및 기본 정보 -->
+                    <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
+                    <div class="row" style="display: block;width:720px;">
+                        <div class="col-12"
+                             style="display:inline-block;min-width:50%;max-width:50%;height:400px;overflow: hidden">
+                            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image"
+                                 class="img-fluid" style="max-width: 370px;">
+                        </div>
+                        <aside class="col-lg-4 tm-aside-col"
+                               style="display: inline-block;vertical-align: top;width:20rem;margin-top: 0.4rem;">
+                            <div class="tm-post-sidebar">
+                                <%-- <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>--%>
+                                <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">장소</figcaption>
+                                <p><a href="#popup-info-place" role="button" type="text" value="" class="mapPopup"
+                                      readonly style="color: #999;">${content.contentRegion} <i
+                                        class="fa-regular fa-map"></i></a></p>
+                                <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">기간</figcaption>
+                                <p>${content.contentStartDate} ~ ${content.contentEndDate}</p>
+                                <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">시간</figcaption>
+                                <p>${content.startTime}:00 ~ ${content.endTime}:00</p>
+                                <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">가격</figcaption>
+                                <p>${content.contentPrice}원</p>
+                                <sec:authorize access="isAuthenticated()">
+                                    <c:url value="/content/reservation" var="reservLink">
+                                        <c:param name="contentId" value="${content.contentId}"></c:param>
+                                    </c:url>
+                                    <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger"
+                                            value=""
+                                            onclick="location.href='${reservLink}'">예매하기
+                                    </button>
+                                    <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-danger"
+                                            value=""
+                                            onclick="location.href='#replySection'">후기보기
+                                    </button>
+
+                                </sec:authorize>
+                            </div>
+                        </aside>
                     </div>
                 </div>
-            </c:if>
 
+                <input type="hidden" readonly value="${content.contentMapEntX }" id="entX">
+                <input type="hidden" readonly value="${content.contentMapEntY }" id="entY">
+                <input type="hidden" readonly value="${content.contentAddress}" id='address'>
 
-                    </div>
+                <!-- 본문 및 디테일 이미지 -->
+                <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
 
-            <div>
-            <!-- 포스터 및 기본 정보 -->
-            <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
-            <div class="row" style="display: block;width:720px;">
-                <div class="col-12" style="display:inline-block;min-width:50%;max-width:50%;height:400px;overflow: hidden">
-                    <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image"
-                         class="img-fluid" style="max-width: 370px;">
-                </div>
-                <aside class="col-lg-4 tm-aside-col"
-                       style="display: inline-block;vertical-align: top;width:20rem;margin-top: 0.4rem;">
-                    <div class="tm-post-sidebar">
-                        <%-- <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>--%>
-                        <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">장소</figcaption>
-                        <p><a href="#popup-info-place" role="button" type="text" value="" class="mapPopup"
-                              readonly style="color: #999;">${content.contentRegion} <i
-                                class="fa-regular fa-map"></i></a></p>
-                        <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">기간</figcaption>
-                        <p>${content.contentStartDate} ~ ${content.contentEndDate}</p>
-                        <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">시간</figcaption>
-                        <p>${content.startTime}:00 ~ ${content.endTime}:00</p>
-                        <figcaption style="font-family: LINESeedKR-Bd" class="tm-color-primary">가격</figcaption>
-                        <p>${content.contentPrice}원</p>
-                        <sec:authorize access="isAuthenticated()">
-                            <c:url value="/content/reservation" var="reservLink">
-                                <c:param name="contentId" value="${content.contentId}"></c:param>
-                            </c:url>
-                            <button style="font-family: LINESeedKR-Bd" type="submit" class="btn btn-danger" value=""
-                                    onclick="location.href='${reservLink}'">예매하기
-                            </button>
-                            <button style="font-family: LINESeedKR-Bd" type="button" class="btn btn-danger" value=""
-                                    onclick="location.href='#replySection'">후기보기
-                            </button>
-
-                        </sec:authorize>
-                    </div>
-                </aside>
-            </div>
-            </div>
-
-            <input type="hidden" readonly value="${content.contentMapEntX }" id="entX">
-            <input type="hidden" readonly value="${content.contentMapEntY }" id="entY">
-            <input type="hidden" readonly value="${content.contentAddress}" id='address'>
-
-            <!-- 본문 및 디테일 이미지 -->
-            <hr class="tm-hr-primary tm-mb-45" style="width:720px;margin-top:45px;">
-
-            <div class="row tm-row" style="width:720px;">
-                <div class="tm-post-col" style="">
-                    <div class="tm-post-full" style="max-width: 720px">
-                        <div class="mb-4">
-                            <p style="">
-                                ${content.contentBoard}
-                            </p>
-                            <c:forEach items="${content.contentDetailName}" var="contentDetailName"
-                                       varStatus="status">
-                                <div class="row">
-                                    <div class="col-10">
-                                        <img class="img-fluid img-thumbnail" style="width:720px !important;"
-                                             src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
-                                             alt="">
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </div>
-                        <div>
-                            <c:url value="/reply/register" var="registerLink">
-                                <c:param name="contentId" value="${content.contentId}" />
-                            </c:url>
-                            <h2 style="font-family: LINESeedKR-Bd" class="tm-color-primary tm-post-title">후기
-                            <a href="${registerLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
-                                <i class="fa-solid fa-plus replyIcon"></i>
-                            </a>
-                            </h2>
-
-                            <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
-
-                            <section id="replySection">
-                            <c:forEach items="${replyy}" var="reply">
-                                <div class="tm-comment tm-mb-45">
-                                    <input type="hidden" id="replyId" value="${reply.replyId}" >
-                                    <figure class="tm-comment-figure">
-                                        <figcaption class="tm-color-primary text-center">
-                                            <c:url value="/reply/get" var="getLink">
-                                                <c:param name="replyId" value="${reply.replyId}" />
-                                            </c:url>
-                                            <c:if test="${reply.customerName != null}">
-                                            <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
-                                                    ${reply.customerName}
-                                            </a>
-                                            </c:if>
-                                            <c:if test="${reply.customerName == null}">
-                                                <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
-                                                        ${reply.replyName}
-                                                </a>
-                                            </c:if>
-                                        </figcaption>
-                                    </figure>
-                                    <div>
-                                        <a href="${getLink}" onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
-                                                ${reply.replyContent}
-                                        </a>
-                                        <div class="d-flex justify-content-between">
-                                            <span class="tm-color-primary">${reply.time}</span>
+                <div class="row tm-row" style="width:720px;">
+                    <div class="tm-post-col" style="">
+                        <div class="tm-post-full" style="max-width: 720px">
+                            <div class="mb-4">
+                                <p style="">
+                                    ${content.contentBoard}
+                                </p>
+                                <c:forEach items="${content.contentDetailName}" var="contentDetailName"
+                                           varStatus="status">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <img class="img-fluid img-thumbnail" style="width:720px !important;"
+                                                 src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
+                                                 alt="">
                                         </div>
                                     </div>
-                                </div>
-                            </c:forEach>
-                            </section>
+                                </c:forEach>
+                            </div>
+                            <div>
+                                <c:url value="/reply/register" var="registerLink">
+                                    <c:param name="contentId" value="${content.contentId}"/>
+                                </c:url>
+                                <h2 style="font-family: LINESeedKR-Bd" class="tm-color-primary tm-post-title">후기
+                                    <a href="${registerLink}"
+                                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                        <i class="fa-solid fa-plus replyIcon"></i>
+                                    </a>
+                                </h2>
+
+                                <hr class="tm-hr-primary tm-mb-45" style="width:720px;">
+
+                                <section id="replySection">
+                                    <c:forEach items="${replyy}" var="reply">
+                                        <div class="tm-comment tm-mb-45">
+                                            <input type="hidden" id="replyId" value="${reply.replyId}">
+                                            <figure class="tm-comment-figure">
+                                                <figcaption class="tm-color-primary text-center">
+                                                    <c:url value="/reply/get" var="getLink">
+                                                        <c:param name="replyId" value="${reply.replyId}"/>
+                                                    </c:url>
+                                                    <c:if test="${reply.customerName != null}">
+                                                        <a href="${getLink}"
+                                                           onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                                                ${reply.customerName}
+                                                        </a>
+                                                    </c:if>
+                                                    <c:if test="${reply.customerName == null}">
+                                                        <a href="${getLink}"
+                                                           onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                                                ${reply.replyName}
+                                                        </a>
+                                                    </c:if>
+                                                </figcaption>
+                                            </figure>
+                                            <div>
+                                                <a href="${getLink}"
+                                                   onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;">
+                                                        ${reply.replyContent}
+                                                </a>
+                                                <div class="d-flex justify-content-between">
+                                                    <span class="tm-color-primary">${reply.time}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </section>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-<%--            <footer class="row tm-row">--%>
-<%--                <div class="col-md-6 col-12 tm-color-gray">--%>
-<%--                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">TemplateMo</a>--%>
-<%--                </div>--%>
-<%--                <div class="col-md-6 col-12 tm-color-gray tm-copyright">--%>
-<%--                    Copyright 2020 Xtra Blog Company Co. Ltd.--%>
-<%--                </div>--%>
-<%--            </footer>--%>
             </div>
         </main>
     </div>

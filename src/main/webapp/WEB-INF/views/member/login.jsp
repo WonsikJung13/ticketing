@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
     <style>
         body {
-            background-image: url("/back.jpg");
+            background-image: url("/static/back.jpg");
         }
 
         /*글씨체*/
@@ -64,7 +64,7 @@
             <%--                        로그아웃 되었습니다--%>
             <%--                </div>--%>
             <%--            </c:if>--%>
-            <form id="registerForm" action="/member/login" method="post">
+            <form id="registerForm" method="post">
                 <div class="input-group mb-3">
                     <span style="border-color: #0cc" class="input-group-text">
                         <i class="fa-solid fa-user"></i>
@@ -86,23 +86,24 @@
                 </div>
                 <div>
                     <a href="/oauth2/authorization/kakao" style="text-decoration: none; margin-left: 22px;">
-                        <c:url value="/kakaoLogo.png" var="kakaoLogoLink"/>
+                        <c:url value="/static/kakaoLogo.png" var="kakaoLogoLink"/>
                         <img src="${kakaoLogoLink}" alt="">
                     </a>
 
                     <a href="/oauth2/authorization/google" style="text-decoration: none; margin-left: 22px;">
-                        <c:url value="/googleLogo.png" var="googleLogoLink"/>
+                        <c:url value="/static/googleLogo.png" var="googleLogoLink"/>
                         <img src="${googleLogoLink}" alt="">
                     </a>
 
                     <a href="/oauth2/authorization/naver">
-                        <c:url value="/naverLogo.png" var="naverLogoLink"/>
+                        <c:url value="/static/naverLogo.png" var="naverLogoLink"/>
                         <img src="${naverLogoLink}" alt="" style="height: 48px; margin-left: 22px;">
                     </a>
                 </div>
                 <div class="my-4">
                     <div style="font-family: 'LINESeedKR-Bd'; text-align: center" class="float-first">
-                        회원이 아니신가요? <a href="/customer/signup">회원가입</a>
+                        <c:url value="/customer/signup" var="signup"/>
+                        회원이 아니신가요? <a href="${signup}">회원가입</a>
                     </div>
                     <br>
                     <div class="float-end">

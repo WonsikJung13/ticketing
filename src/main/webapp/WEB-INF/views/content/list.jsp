@@ -23,11 +23,10 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+  <link rel="stylesheet" href="/static/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
   <!-- https://fonts.google.com/ -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
+
 </head>
 <body>
 <my:sideBar active="contentList"/>
@@ -49,15 +48,11 @@
         <div class="tm-post-link-inner" style="">
           <a href="${getLink}" class="effect-lily tm-post-link tm-pt-60" style="max-height: 626px;">
               <%-- 이미지 --%>
-            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" onerror="this.src='/oo.ico'" alt="Image" class="img-fluid" style="max-width:470px">
+            <img src="${imgUrl}/${content.contentId}/${content.contentPosterName}" alt="Image" class="img-fluid" style="max-width:470px">
           </a>
         </div>
               <%-- 제목 --%>
             <h2 class="tm-pt-30 tm-color-primary tm-post-title">"${content.contentName}"</h2>
-          <%--                    &lt;%&ndash; 내용 &ndash;%&gt;--%>
-          <%--                <p class="tm-pt-30">--%>
-          <%--                        ${content.contentBoard}--%>
-          <%--                </p>--%>
 
           <%-- 날짜 --%>
         <div class="d-flex justify-content-between tm-pt-45">
@@ -79,7 +74,5 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-<script src="src/main/resources/static/js/jquery.min.js"></script>
-<script src="src/main/resources/static/js/templatemo-script.js"></script>
 </body>
 </html>

@@ -198,7 +198,6 @@
         let realYear = date.getFullYear();
         let realMonth = date.getMonth() + 1;
         let realToDay = date.getDate();
-        console.log("realMonth: " + realMonth + "realToDay: " + realToDay);
         // 사용자가 클릭한 월, 일 객체
         let selectedMonth = null;
         let selectedDate = null;
@@ -231,12 +230,9 @@
 
             //이번달이면 0 리턴, 다음달이면 1 리턴
             function thisMonth(todayMonth, dateMonth) {
-                console.log("todayMonth : " + todayMonth + ", dateMonth : " + dateMonth);
                 if (todayMonth * 1 == dateMonth * 1) {
-                    console.log("이번달 이구요")
                     return 0;
                 }
-                console.log("다음달 이구요")
                 return 1;
             }
 
@@ -315,8 +311,6 @@
                 let endMonth = "<%=endMonth%>";
                 let endDay = "<%=endDay%>";
                 let endDate = "<%=endDate%>";
-
-                // console.log(endDate);
 
                 // 예약불가일 색상변경 및 사용자가 직접 지정한 경우------------------------
                 let etp = exchangeToPossibleDay(cnt) * 1; // etp의 값 범위: 0 ~ 6 (0일...6토)
@@ -525,8 +519,6 @@
           let month = selectedMonth;
           date = selectedDate;
           const timeTable = document.getElementById("timeTable");
-          console.log("selectedMonth: " + selectedMonth);
-          console.log("selectedDate: " + selectedDate);
           //테이블 초기화
           while(timeTable.rows.length > 0){
             timeTable.deleteRow(timeTable.rows.length-1);
@@ -559,7 +551,6 @@
                   cellTime = this.getAttribute('id');
                   cellTime = cellTime * 1;
 
-                  console.log("first : " + selectedFirstTime + ", selectedFinalTime : " + selectedFinalTime + ", selected : " + cellTime);
                   //예약일시 입력처리
                   // if (selectedFirstTime != 24 && selectedFinalTime != 0){
                   //   if(cellTime < selectedFirstTime - 1){
@@ -618,7 +609,6 @@
               for(j = 0; j < jsonObject.startNum.length; j++){
                 startNum = jsonObject.startNum[j];
                 shareTime = jsonObject.shareTime[j];
-                console.log("startNum: " + startNum + ", shareTime : " + shareTime);
                 for(k = startNum; k < startNum*1 + shareTime; k++){
                   cell = timeTable.rows[k].cells[0];
                   cell.style.backgroundColor = "#E0E0E0";

@@ -24,15 +24,15 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"
             integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- 네이버 스마트에디터  -->
-    <script type="text/javascript" src="../libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-    <script type="application/json" src="/code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="application/json" src="/static/code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
     <link rel="shortcut icon" href="#">
 
     <title>전시회 수정</title>
@@ -243,7 +243,10 @@
             <h1 style="font-family: 'LINESeedKR-Bd'">
                 <%--                ${content.contentName}--%>
                 전시회 정보 수정
-                <button type="button" class="btn" id="outButton" onclick="location.href='/content/get?contentId=${content.contentId}'" style="float:right;font-family: LINESeedKR-Bd;background-color: #ff4a46 !important; border-color:#FF4A46 !important;">
+                    <c:url value="/content/get" var="get">
+                        <c:param name="contentId" value="${content.contentId}"/>
+                    </c:url>
+                <button type="button" class="btn" id="outButton" onclick="location.href='${get}'" style="float:right;font-family: LINESeedKR-Bd;background-color: #ff4a46 !important; border-color:#FF4A46 !important;">
                     나가기
                 </button>
                 <button style="font-family: 'LINESeedKR-Bd';float:right; border-color: #0cc" type="submit" class="btn btn-ico"
@@ -381,7 +384,7 @@
                         nhn.husky.EZCreator.createInIFrame({
                             oAppRef: oEditors,
                             elPlaceHolder: "txtContent",  //textarea ID 입력
-                            sSkinURI: "../libs/smarteditor/SmartEditor2Skin.html",  //martEditor2Skin.html 경로 입력
+                            sSkinURI: "/static/libs/smarteditor/SmartEditor2Skin.html",  //martEditor2Skin.html 경로 입력
                             fCreator: "createSEditor2",
                             htParams : {
                                 // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
