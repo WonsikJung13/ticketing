@@ -57,7 +57,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
             case "Google":
                 email = getGoogleEmail(paramMap);
-                name = getGoogleName(paramMap);
                 break;
 
             case "Naver":
@@ -167,12 +166,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         String email = (String) paramMap.get("email");
 
         return email;
-    }
-
-    private String getGoogleName(Map<String, Object> paramMap) {
-        String name = (String) paramMap.get("name");
-
-        return name;
     }
 
     // 네이버 이메일 추출
