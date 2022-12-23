@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/templatemo-xtra-blog.css" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'LINESeedKR-Bd';
@@ -36,9 +36,8 @@
             border-color: #5aa3a3 !important;
         }
 
-        table,th,td,tr,thead
-        {
-            border:2px solid #0CC;
+        table, th, td, tr, thead {
+            border: 2px solid #0CC;
             border-left: none;
             border-right: none;
 
@@ -52,7 +51,7 @@
 
 <div class="tm-main">
     <div class="container-md" style="width: 900px">
-        <div class="row mt-5" >
+        <div class="row mt-5">
             <div class="col" style="border: 30px solid #c6f1f1; padding: 90px">
                 <h1 style="font-family: 'LINESeedKR-Bd'">회원 목록</h1>
                 <!-- table.table>thead>tr>th*4^^tbody -->
@@ -66,7 +65,7 @@
                         <th>등급</th>
                     </tr>
                     <c:forEach items="${customerList }" var="customer">
-                        <tr >
+                        <tr>
                             <td id="id">
                                 <c:url value="/admin/customerManage" var="infoLink">
                                     <c:param value="${customer.customerId }" name="customerId"/>

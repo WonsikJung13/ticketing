@@ -24,15 +24,15 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/templatemo-xtra-blog.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"
             integrity="sha512-ha3Is9IgbEyIInSb+4S6IlEwpimz00N5J/dVLQFKhePkZ/HywIbxLeEu5w+hRjVBpbujTogNyT311tluwemy9w=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- 네이버 스마트에디터  -->
-    <script type="text/javascript" src="/static/libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-    <script type="application/json" src="/static/code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="application/json" src="../static/code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
     <link rel="shortcut icon" href="#">
 
     <title>전시회 수정</title>
@@ -40,7 +40,7 @@
     <!-- textEditor -->
     <script>
 
-        function save(){
+        function save() {
             oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
             //스마트 에디터 값을 텍스트컨텐츠로 전달
             // var content = document.getElementById("smartEditor").value;
@@ -112,20 +112,21 @@
             border: 1px solid #79dfdf;
             border-radius: .25em;
         }
+
         .detailBox label:hover {
             background-color: #5aa3a3 !important;
             border-color: #5aa3a3 !important;
         }
 
 
-        input[type="file"] {  /* 파일 필드 숨기기 */
+        input[type="file"] { /* 파일 필드 숨기기 */
             position: absolute;
             width: 1px;
             height: 1px;
             padding: 0;
             margin: -1px;
             overflow: hidden;
-            clip:rect(0,0,0,0);
+            clip: rect(0, 0, 0, 0);
             border: 0;
         }
 
@@ -137,9 +138,9 @@
         }
 
         /* named upload */
-        .posterBox .file1-name .file2-name{
+        .posterBox .file1-name .file2-name {
             display: inline-block;
-            padding: .5em .75em;  /* label의 패딩값과 일치 */
+            padding: .5em .75em; /* label의 패딩값과 일치 */
             font-size: inherit;
             font-family: inherit;
             line-height: normal;
@@ -154,11 +155,11 @@
         }
 
         /* imaged preview */
-        .posterBox .upload-display {  /* 이미지가 표시될 지역 */
+        .posterBox .upload-display { /* 이미지가 표시될 지역 */
             margin-bottom: 5px;
         }
 
-        @media(min-width: 768px) {
+        @media (min-width: 768px) {
             .posterBox .upload-display {
                 display: inline-block;
                 margin-right: 5px;
@@ -166,7 +167,7 @@
             }
         }
 
-        .posterBox .upload-thumb-wrap {  /* 추가될 이미지를 감싸는 요소 */
+        .posterBox .upload-thumb-wrap { /* 추가될 이미지를 감싸는 요소 */
             display: inline-block;
             width: 54px;
             padding: 2px;
@@ -176,7 +177,7 @@
             background-color: #fff;
         }
 
-        .posterBox .upload-display img {  /* 추가될 이미지 */
+        .posterBox .upload-display img { /* 추가될 이미지 */
             display: block;
             max-width: 100%;
             width: 100% \9;
@@ -190,11 +191,12 @@
         #preview1,
         #preview1 li,
         #preview2,
-        #preview2 li{
-            float:left;
+        #preview2 li {
+            float: left;
             margin-bottom: 16px;
 
         }
+
         /*.addImgBtn{*/
         /*    width: 80px !important;*/
         /*    height: 80px !important;*/
@@ -205,19 +207,21 @@
         /*}*/
 
         #preview1,
-        #preview2{
+        #preview2 {
             width: 660px;
         }
+
         #preview1 li,
-        #preview2 li{
+        #preview2 li {
             margin-left: 10px;
             margin-bottom: 10px;
             position: relative;
             border: 1px solid #ececec;
-            cursor:move;
+            cursor: move;
             vertical-align: middle;
         }
-        .delBtn{
+
+        .delBtn {
             position: absolute;
             top: 0;
             right: 0;
@@ -231,6 +235,7 @@
             text-align: center;
             cursor: pointer;
         }
+
         ul {
             list-style: none;
         }
@@ -243,13 +248,15 @@
             <h1 style="font-family: 'LINESeedKR-Bd'">
                 <%--                ${content.contentName}--%>
                 전시회 정보 수정
-                    <c:url value="/content/get" var="get">
-                        <c:param name="contentId" value="${content.contentId}"/>
-                    </c:url>
-                <button type="button" class="btn" id="outButton" onclick="location.href='${get}'" style="float:right;font-family: LINESeedKR-Bd;background-color: #ff4a46 !important; border-color:#FF4A46 !important;">
+                <c:url value="/content/get" var="get">
+                    <c:param name="contentId" value="${content.contentId}"/>
+                </c:url>
+                <button type="button" class="btn" id="outButton" onclick="location.href='${get}'"
+                        style="float:right;font-family: LINESeedKR-Bd;background-color: #ff4a46 !important; border-color:#FF4A46 !important;">
                     나가기
                 </button>
-                <button style="font-family: 'LINESeedKR-Bd';float:right; border-color: #0cc" type="submit" class="btn btn-ico"
+                <button style="font-family: 'LINESeedKR-Bd';float:right; border-color: #0cc" type="submit"
+                        class="btn btn-ico"
                         data-bs-toggle="modal" data-bs-target="#modifyModal">
                     수정하기
                 </button>
@@ -268,7 +275,8 @@
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         장소명
                     </label>
-                    <input class="form-control" required="required" type="text" name="contentRegion" value="${content.contentRegion}">
+                    <input class="form-control" required="required" type="text" name="contentRegion"
+                           value="${content.contentRegion}">
                 </div>
 
                 <div class="mb-3">
@@ -276,28 +284,35 @@
                         주소
                     </label>
                     <%--      주소 검색  --%>
-                    <table >
+                    <table>
                         <colgroup>
-                            <col style="width:20%"><col>
+                            <col style="width:20%">
+                            <col>
                         </colgroup>
                         <tbody>
                         <tr>
                             <%--            도로명주소--%>
                             <div class="input-group">
-                                <button type="button" class="MapBtn btn btn-outline-secondary " onclick="goPopup();" style="background-color: #79dfdf;color: #ffffff; border-color:#00CCCC">
+                                <button type="button" class="MapBtn btn btn-outline-secondary " onclick="goPopup();"
+                                        style="background-color: #79dfdf;color: #ffffff; border-color:#00CCCC">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
-                                <input type="text" id="contentAddress" class="form-control" name="contentAddress"  value="${content.contentAddress}" required="required" readonly style="background-color: transparent;">
-                                <input type="hidden" id="confmKey" name="confmKey" value=""  >
+                                <input type="text" id="contentAddress" class="form-control" name="contentAddress"
+                                       value="${content.contentAddress}" required="required" readonly
+                                       style="background-color: transparent;">
+                                <input type="hidden" id="confmKey" name="confmKey" value="">
                                 <%--                    상세정보--%>
-                                <input type="text" id="contentAddrDetail" class="form-control" name="contentAddrDetail" style="margin-left:4px" value="${content.contentAddrDetail}" placeholder="상세주소">
+                                <input type="text" id="contentAddrDetail" class="form-control" name="contentAddrDetail"
+                                       style="margin-left:4px" value="${content.contentAddrDetail}" placeholder="상세주소">
                             </div>
                         </tr>
                         <tr>
                             <td>
                                 <%--             경위도--%>
-                                <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%" value="${content.contentMapEntX}">
-                                <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%" value="${content.contentMapEntY}">
+                                <input type="hidden" id="contentMapEntX" name="contentMapEntX" style="width:40%"
+                                       value="${content.contentMapEntX}">
+                                <input type="hidden" id="contentMapEntY" name="contentMapEntY" style="width:40%"
+                                       value="${content.contentMapEntY}">
                             </td>
                         </tr>
                         </tbody>
@@ -309,9 +324,11 @@
                         기간
                     </label>
                 </div>
-                <div  class="mb-3 input-group" style="">
-                    <input class="form-control" style="display:inline-block;margin-right: 4px" required="required" type="date" name="contentStartDate" value="${content.contentStartDate}">
-                    ~ <input class="form-control" style="display: inline-block;margin-left: 4px" required="required" type="date" name="contentEndDate" value="${content.contentEndDate}">
+                <div class="mb-3 input-group" style="">
+                    <input class="form-control" style="display:inline-block;margin-right: 4px" required="required"
+                           type="date" name="contentStartDate" value="${content.contentStartDate}">
+                    ~ <input class="form-control" style="display: inline-block;margin-left: 4px" required="required"
+                             type="date" name="contentEndDate" value="${content.contentEndDate}">
                 </div>
 
                 <div style="">
@@ -321,9 +338,13 @@
                         </label>
                     </div>
                     <div class="input-group">
-                        <input style="display: inline-block;width:50%;margin-right: 4px;" class="form-control" required="required" type="number" name="startTime" min="0" max="24" placeholder="시작 (시)" value="${content.startTime}">
+                        <input style="display: inline-block;width:50%;margin-right: 4px;" class="form-control"
+                               required="required" type="number" name="startTime" min="0" max="24" placeholder="시작 (시)"
+                               value="${content.startTime}">
                         ~
-                        <input style="display: inline-block;margin-left: 4px" class="form-control mb-3" required="required" type="number" name="endTime" min="0" max="24" placeholder="종료 (시)" value="${content.endTime}">
+                        <input style="display: inline-block;margin-left: 4px" class="form-control mb-3"
+                               required="required" type="number" name="endTime" min="0" max="24" placeholder="종료 (시)"
+                               value="${content.endTime}">
                     </div>
                 </div>
 
@@ -376,23 +397,24 @@
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
                         정보
                     </label>
-                <!-- textEditor -->
-                    <textarea class="form-control mb-3" name="contentBoard" id="txtContent" value="" rows="10" cols="100" style="width: 100%; ">${content.contentBoard}</textarea>
+                    <!-- textEditor -->
+                    <textarea class="form-control mb-3" name="contentBoard" id="txtContent" value="" rows="10"
+                              cols="100" style="width: 100%; ">${content.contentBoard}</textarea>
                     <!-- textarea 밑에 script 작성하기 -->
                     <script id="smartEditor" type="text/javascript">
                         var oEditors = [];
                         nhn.husky.EZCreator.createInIFrame({
                             oAppRef: oEditors,
                             elPlaceHolder: "txtContent",  //textarea ID 입력
-                            sSkinURI: "/static/libs/smarteditor/SmartEditor2Skin.html",  //martEditor2Skin.html 경로 입력
+                            sSkinURI: "../static/libs/smarteditor/SmartEditor2Skin.html",  //martEditor2Skin.html 경로 입력
                             fCreator: "createSEditor2",
-                            htParams : {
+                            htParams: {
                                 // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                bUseToolbar : true,
+                                bUseToolbar: true,
                                 // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                bUseVerticalResizer : false,
+                                bUseVerticalResizer: false,
                                 // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                bUseModeChanger : false
+                                bUseModeChanger: false
                             }
                         });
                     </script>
@@ -406,9 +428,11 @@
                     <div class="posterBox preview-image">
                         <div class="input-group">
                             <label for="addPosterFile" style="height: 45px;border-color: #0ccccc;">업로드</label>
-                            <input class="addPosterFile-name form-control mb-3"  value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
+                            <input class="addPosterFile-name form-control mb-3" value="파일선택" disabled="disabled"
+                                   style="height: 45px;border-color: #0ccccc;border-radius: 0;">
                         </div>
-                        <input type="file" accept="image/*" class="addPosterFile-hidden form-control mb-3" name="addPosterFile" id="addPosterFile" style="padding-bottom: 0">
+                        <input type="file" accept="image/*" class="addPosterFile-hidden form-control mb-3"
+                               name="addPosterFile" id="addPosterFile" style="padding-bottom: 0">
                         <div>
                             <ul id="preview1" class="sortable"></ul>
                         </div>
@@ -416,23 +440,24 @@
 
                     <div>
                         <c:forEach items="${content.contentPosterName}" var="contentPosterName" varStatus="status">
-                        <ul id="posterPreview">
-                            <li class="ui-state-default">
-                                <div class="col-2 d-flex justify-content-center align-items-baseline">
-                                    <%-- 삭제여부 체크박스 --%>
-                                    <div class="custom-check form-check form-switch text-danger">
-                                        <input name="removePosterName" value="${contentPosterName}" class="form-check-input"
-                                               type="checkbox" role="switch" id="flexSwitchCheckChecked">
-                                        <label class="form-check-label" for="flexSwitchCheckChecked"><i
-                                                class="fa-regular fa-trash-can"></i></label>
+                            <ul id="posterPreview">
+                                <li class="ui-state-default">
+                                    <div class="col-2 d-flex justify-content-center align-items-baseline">
+                                            <%-- 삭제여부 체크박스 --%>
+                                        <div class="custom-check form-check form-switch text-danger">
+                                            <input name="removePosterName" value="${contentPosterName}"
+                                                   class="form-check-input"
+                                                   type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                            <label class="form-check-label" for="flexSwitchCheckChecked"><i
+                                                    class="fa-regular fa-trash-can"></i></label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-10">
-                                    <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentPosterName, 'utf-8')}"
-                                         alt="" style="height: 120px; width: 120px">
-                                </div>
-                            </li>
-                        </ul>
+                                    <div class="col-10">
+                                        <img src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentPosterName, 'utf-8')}"
+                                             alt="" style="height: 120px; width: 120px">
+                                    </div>
+                                </li>
+                            </ul>
                         </c:forEach>
                     </div>
                 </div>
@@ -445,34 +470,38 @@
                 <div class="DetailBox preview-image">
                     <div class="input-group">
                         <label for="addDetailFiles" style="height: 45px;border-color: #0ccccc;">업로드</label>
-                        <input class="addDetailFiles-name form-control mb-3"  value="파일선택" disabled="disabled" style="height: 45px;border-color: #0ccccc;border-radius: 0;">
+                        <input class="addDetailFiles-name form-control mb-3" value="파일선택" disabled="disabled"
+                               style="height: 45px;border-color: #0ccccc;border-radius: 0;">
                     </div>
-                    <input multiple type="file" id="addDetailFiles" accept="image/*" class="addDetailFiles-hidden form-control mb-3" name="addDetailFiles" style="padding-bottom: 0">
+                    <input multiple type="file" id="addDetailFiles" accept="image/*"
+                           class="addDetailFiles-hidden form-control mb-3" name="addDetailFiles"
+                           style="padding-bottom: 0">
                     <div>
                         <ul id="preview2" class="sortable"></ul>
                     </div>
                 </div>
-                
+
                 <%-- Detail 이미지 출력 --%>
                 <div>
                     <c:forEach items="${content.contentDetailName}" var="contentDetailName" varStatus="status">
                         <ul id="detailPreview" style="float:left">
                             <li class="ui-state-default">
-                            <div class="col-2 d-flex justify-content-center align-items-baseline" style="max-width: none !important;">
-                                    <%-- 삭제여부 체크박스 --%>
-                                <div class="custom-check form-check form-switch text-danger" >
-                                    <input name="removeDetailNames" value="${contentDetailName}"
-                                           class="form-check-input" type="checkbox" role="switch"
-                                           id="flexSwitchCheckChecked${status.count}">
-                                    <label class="form-check-label" for="flexSwitchCheckChecked${status.count}"><i
-                                            class="fa-regular fa-trash-can"></i></label>
+                                <div class="col-2 d-flex justify-content-center align-items-baseline"
+                                     style="max-width: none !important;">
+                                        <%-- 삭제여부 체크박스 --%>
+                                    <div class="custom-check form-check form-switch text-danger">
+                                        <input name="removeDetailNames" value="${contentDetailName}"
+                                               class="form-check-input" type="checkbox" role="switch"
+                                               id="flexSwitchCheckChecked${status.count}">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked${status.count}"><i
+                                                class="fa-regular fa-trash-can"></i></label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-10">
-                                <img class="img-fluid img-thumbnail"
-                                     src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
-                                     alt="" style="width: 120px;height: 120px">
-                            </div>
+                                <div class="col-10">
+                                    <img class="img-fluid img-thumbnail"
+                                         src="${imgUrl}/${content.contentId}/${URLEncoder.encode(contentDetailName, 'utf-8')}"
+                                         alt="" style="width: 120px;height: 120px">
+                                </div>
                             </li>
                         </ul>
                     </c:forEach>
@@ -507,14 +536,14 @@
 
 <script>
     // 포스터 이미지 미리보기
-    $(document).ready(function (e){
-        $("#addPosterFile").change(function(e){
+    $(document).ready(function (e) {
+        $("#addPosterFile").change(function (e) {
 
             //div 내용 비워주기
             $('#preview1').empty();
 
             var files = e.target.files;
-            var arr =Array.prototype.slice.call(files);
+            var arr = Array.prototype.slice.call(files);
 
 
             preview(arr);
@@ -523,13 +552,13 @@
         });//file change
 
 
-        function preview(arr){
-            arr.forEach(function(f){
+        function preview(arr) {
+            arr.forEach(function (f) {
 
                 //파일명이 길면 파일명...으로 처리
                 var fileName = f.name;
-                if(fileName.length > 10){
-                    fileName = fileName.substring(0,7)+"...";
+                if (fileName.length > 10) {
+                    fileName = fileName.substring(0, 7) + "...";
                 }
 
                 //div에 이미지 추가
@@ -537,11 +566,11 @@
                 // str += '<span>'+fileName+'</span><br>';
 
                 //이미지 파일 미리보기
-                if(f.type.match('image.*')){
+                if (f.type.match('image.*')) {
                     var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
                     reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
                         //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
-                        str += '<img src="'+e.target.result+'" title="'+f.name+'" width=120 height=120 />';
+                        str += '<img src="' + e.target.result + '" title="' + f.name + '" width=120 height=120 />';
                         // str += '<span class="delBtn" onclick="delImg(this)">x</span>';
                         str += '</li>';
                         $(str).appendTo('#preview1');
@@ -556,14 +585,14 @@
 
 <script type="text/javascript">
     // 디테일 이미지 미리보기
-    $(document).ready(function (e){
-        $("#addDetailFiles").change(function(e){
+    $(document).ready(function (e) {
+        $("#addDetailFiles").change(function (e) {
 
             //div 내용 비워주기
             $('#preview2').empty();
 
             var files = e.target.files;
-            var arr =Array.prototype.slice.call(files);
+            var arr = Array.prototype.slice.call(files);
 
 
             preview(arr);
@@ -572,13 +601,13 @@
         });//file change
 
 
-        function preview(arr){
-            arr.forEach(function(f){
+        function preview(arr) {
+            arr.forEach(function (f) {
 
                 //파일명이 길면 파일명...으로 처리
                 var fileName = f.name;
-                if(fileName.length > 10){
-                    fileName = fileName.substring(0,7)+"...";
+                if (fileName.length > 10) {
+                    fileName = fileName.substring(0, 7) + "...";
                 }
 
                 //div에 이미지 추가
@@ -586,11 +615,11 @@
                 // str += '<span>'+fileName+'</span><br>';
 
                 //이미지 파일 미리보기
-                if(f.type.match('image.*')){
+                if (f.type.match('image.*')) {
                     var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
                     reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
                         //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
-                        str += '<img src="'+e.target.result+'" title="'+f.name+'" width=120 height=120 />';
+                        str += '<img src="' + e.target.result + '" title="' + f.name + '" width=120 height=120 />';
                         // str += '<span class="delBtn" onclick="delImg(this)">x</span>';
                         str += '</li>';
                         $(str).appendTo('#preview2');
@@ -610,13 +639,13 @@
         var extName = obj.val().substring(obj.val().lastIndexOf(".") + 1).toUpperCase();
         var str = ext.split(",");
 
-        for ( var i = 0; i < str.length; i++ ) {
+        for (var i = 0; i < str.length; i++) {
             if (extName == str[i].trim()) {
                 check = true;
                 break;
             } else check = false;
         }
-        if ( !check ) {
+        if (!check) {
             alert(ext + " 파일만 업로드 가능합니다.");
         }
         return check;
@@ -673,6 +702,7 @@
 <script>
     // 휴관일 선택 함수
     checkFun();
+
     function checkFun() {
         // 1이면 휴관일, 0이면 오픈
         let dayLimit = "";
@@ -706,13 +736,14 @@
 
 <script>
     // 지도 팝업창으로 여는 함수
-    function goPopup(){
+    function goPopup() {
         // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrCoordUrl.do)를 호출하게 됩니다.
-        var pop = window.open("/content/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+        var pop = window.open("/content/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
     }
-    function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
+
+    function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
         , detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno
-        , emdNo, entX, entY){
+        , emdNo, entX, entY) {
         // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
         document.querySelector('#contentAddress').value = roadAddrPart1;
         document.querySelector('#contentAddrDetail').value = addrDetail;
@@ -737,6 +768,7 @@
     document.addEventListener("DOMContentLoaded", function ready() {
         var fileTarget = document.querySelector(".posterBox .addPosterFile-hidden");
         fileTarget.addEventListener("change", handleFiles, false);
+
         function handleFiles() {
             const fileList = this.files;
             var filename = fileList[0].name;
@@ -747,7 +779,7 @@
 
     function readImage(input) {
         // 인풋 태그에 파일이 있는 경우
-        if(input.files && input.files[0]) {
+        if (input.files && input.files[0]) {
             // 이미지 파일인지 검사 (생략)
             // FileReader 인스턴스 생성
             const reader = new FileReader()
@@ -760,6 +792,7 @@
             reader.readAsDataURL(input.files[0])
         }
     }
+
     // input file에 change 이벤트 부여
     const inputImage = document.getElementById("addPosterFile")
     inputImage.addEventListener("change", e => {
@@ -772,6 +805,7 @@
         var fileTarget = document.querySelector(".detailBox .addDetailFiles-hidden");
 
         fileTarget.addEventListener("change", handleFiles, false);
+
         function handleFiles() {
             const fileList = this.files;
             var file2Length = document.getElementById("addDetailFiles").files.length;
@@ -782,8 +816,7 @@
                 console.log(fileList.length);
                 var filename = fileList[0].name;
                 document.querySelector('.addDetailFiles-name').value = filename;
-            }
-            else if (fileList.length != 1) {
+            } else if (fileList.length != 1) {
                 var filename = "파일 " + fileList.length + "개";
                 document.querySelector('.addDetailFiles-name').value = filename;
             }
@@ -794,7 +827,7 @@
         const multipleContainer = document.getElementById("multiple-container")
 
         // 인풋 태그에 파일들이 있는 경우
-        if(input.files) {
+        if (input.files) {
             // 이미지 파일 검사 (생략)
             console.log(input.files)
             // 유사배열을 배열로 변환 (forEach문으로 처리하기 위해)
@@ -821,7 +854,7 @@
                 }
 
                 console.log(file.name)
-                if(index % 2 == 0) {
+                if (index % 2 == 0) {
                     $colDiv1.appendChild($imgDiv)
                 } else {
                     $colDiv2.appendChild($imgDiv)
@@ -833,6 +866,7 @@
             multipleContainer.appendChild($colDiv2)
         }
     }
+
     const inputMultipleImage = document.getElementById("file2")
     inputMultipleImage.addEventListener("change", e => {
         readMultipleImage(e.target)

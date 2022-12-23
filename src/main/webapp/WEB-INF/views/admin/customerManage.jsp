@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/templatemo-xtra-blog.css" rel="stylesheet">
 
     <style>
         /*글씨체*/
@@ -87,7 +87,8 @@
                         비밀번호
                     </label>
                     <input class="form-control" type="password" value="****" readonly>
-                    <button style="font-family: 'LINESeedKR-Bd'; margin-top: 20px" id="resetPasswordButton" type="button" class="btn btn-ico">
+                    <button style="font-family: 'LINESeedKR-Bd'; margin-top: 20px" id="resetPasswordButton"
+                            type="button" class="btn btn-ico">
                         비밀번호 초기화
                     </button>
                     <div id="passwordResult" class="form-text"></div>
@@ -115,22 +116,25 @@
                     <input class="form-control" type="text" value="${customer.customerAddress}" readonly>
                 </div>
                 <form action="updateGrade" method="post" id="customerGradeSelect" name="customerGradeSelect">
-                <div class="mb-3">
-                    <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
-                        등급
-                    </label>
-                    <input class="form-control" type="text" value="${customer.customerGrade}" readonly>
-                    <div class="input-group" style="margin-top: 20px">
-                        <select id="customerGrade" name="customerGrade" style="width:40%">
-                            <c:forEach items="${gradeList}" var="grade">
-                                <option value="${grade.customerGrade}"><c:out value="${grade.customerGrade}"/></option>
-                            </c:forEach>
-                        </select>
-                        <input type="hidden" id="customerId" name="customerId" value="${customer.customerId}">
-                        <button style="background-color: #79dfdf;color: #ffffff; border-color:#00CCCC" id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영</button>
+                    <div class="mb-3">
+                        <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
+                            등급
+                        </label>
+                        <input class="form-control" type="text" value="${customer.customerGrade}" readonly>
+                        <div class="input-group" style="margin-top: 20px">
+                            <select id="customerGrade" name="customerGrade" style="width:40%">
+                                <c:forEach items="${gradeList}" var="grade">
+                                    <option value="${grade.customerGrade}"><c:out
+                                            value="${grade.customerGrade}"/></option>
+                                </c:forEach>
+                            </select>
+                            <input type="hidden" id="customerId" name="customerId" value="${customer.customerId}">
+                            <button style="background-color: #79dfdf;color: #ffffff; border-color:#00CCCC"
+                                    id="gradeUpdate" type="button" class="btn btn-outline-secondary">반영
+                            </button>
+                        </div>
+                        <div id="gradeUpdateResult" class="form-text"></div>
                     </div>
-                    <div id="gradeUpdateResult" class="form-text"></div>
-                </div>
                 </form>
                 <div class="mb-3">
                     <label style="font-family: 'LINESeedKR-Bd'" for="" class="form-label">
@@ -139,42 +143,42 @@
                     <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
                 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous">
-</script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+                        crossorigin="anonymous">
+                </script>
 
-<script>
+                <script>
 
-    const ctx = "${pageContext.request.contextPath}";
-    document.querySelector("#gradeUpdate").addEventListener("click", function () {
-        const customerId = document.querySelector("#customerId").value;
-        const customerGrade = document.querySelector("#customerGrade option:checked").value;
+                    const ctx = "${pageContext.request.contextPath}";
+                    document.querySelector("#gradeUpdate").addEventListener("click", function () {
+                        const customerId = document.querySelector("#customerId").value;
+                        const customerGrade = document.querySelector("#customerGrade option:checked").value;
 
-        document.querySelector("#customerGradeSelect").submit();
-    })
+                        document.querySelector("#customerGradeSelect").submit();
+                    })
 
-    document.querySelector("#resetPasswordButton").addEventListener("click", function () {
-        const customerId = document.querySelector("#customerId").value;
-        const data = {customerId}
+                    document.querySelector("#resetPasswordButton").addEventListener("click", function () {
+                        const customerId = document.querySelector("#customerId").value;
+                        const data = {customerId}
 
-        fetch(`\${ctx}/admin/resetPassword`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                document.querySelector("#passwordResult").innerText = data.message;
-            })
-    })
+                        fetch(`\${ctx}/admin/resetPassword`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(data)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                document.querySelector("#passwordResult").innerText = data.message;
+                            })
+                    })
 
-    document.querySelector("#searchButton").addEventListener("click", function() {
-        document.querySelector("#customerSearch").submit();
-    })
-</script>
+                    document.querySelector("#searchButton").addEventListener("click", function () {
+                        document.querySelector("#customerSearch").submit();
+                    })
+                </script>
 
 
 </body>

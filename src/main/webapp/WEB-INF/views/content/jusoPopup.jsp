@@ -30,43 +30,43 @@
         String jibunAddr = request.getParameter("jibunAddr");
         String zipNo = request.getParameter("zipNo");
         String addrDetail = request.getParameter("addrDetail");
-        String admCd    = request.getParameter("admCd");
+        String admCd = request.getParameter("admCd");
         String rnMgtSn = request.getParameter("rnMgtSn");
-        String bdMgtSn  = request.getParameter("bdMgtSn");
-        String detBdNmList  = request.getParameter("detBdNmList");
-        String bdNm  = request.getParameter("bdNm");
-        String bdKdcd  = request.getParameter("bdKdcd");
-        String siNm  = request.getParameter("siNm");
-        String sggNm  = request.getParameter("sggNm");
-        String emdNm  = request.getParameter("emdNm");
-        String liNm  = request.getParameter("liNm");
-        String rn  = request.getParameter("rn");
-        String udrtYn  = request.getParameter("udrtYn");
-        String buldMnnm  = request.getParameter("buldMnnm");
-        String buldSlno  = request.getParameter("buldSlno");
-        String mtYn  = request.getParameter("mtYn");
-        String lnbrMnnm  = request.getParameter("lnbrMnnm");
-        String lnbrSlno  = request.getParameter("lnbrSlno");
-        String emdNo  = request.getParameter("emdNo");
-        String entX  = request.getParameter("entX");
-        String entY  = request.getParameter("entY");
+        String bdMgtSn = request.getParameter("bdMgtSn");
+        String detBdNmList = request.getParameter("detBdNmList");
+        String bdNm = request.getParameter("bdNm");
+        String bdKdcd = request.getParameter("bdKdcd");
+        String siNm = request.getParameter("siNm");
+        String sggNm = request.getParameter("sggNm");
+        String emdNm = request.getParameter("emdNm");
+        String liNm = request.getParameter("liNm");
+        String rn = request.getParameter("rn");
+        String udrtYn = request.getParameter("udrtYn");
+        String buldMnnm = request.getParameter("buldMnnm");
+        String buldSlno = request.getParameter("buldSlno");
+        String mtYn = request.getParameter("mtYn");
+        String lnbrMnnm = request.getParameter("lnbrMnnm");
+        String lnbrSlno = request.getParameter("lnbrSlno");
+        String emdNo = request.getParameter("emdNo");
+        String entX = request.getParameter("entX");
+        String entY = request.getParameter("entY");
     %>
 </head>
 <script language="javascript">
-    function init(){
+    function init() {
         var url = location.href;
         var confmKey = "U01TX0FVVEgyMDIyMTIwMTEyMDg1NzExMzI4NDY=";//승인키
         var resultType = "4"; // 도로명주소 검색결과 화면 출력유형, 1 : 도로명, 2 : 도로명+지번, 3 : 도로명+상세건물명, 4 : 도로명+지번+상세건물명
-        var inputYn= "<%=inputYn%>";
-        if(inputYn != "Y"){
+        var inputYn = "<%=inputYn%>";
+        if (inputYn != "Y") {
             document.form.confmKey.value = confmKey;
             document.form.returnUrl.value = url;
             document.form.resultType.value = resultType;
-            document.form.action="https://business.juso.go.kr/addrlink/addrCoordUrl.do"; // 인터넷망
+            document.form.action = "https://business.juso.go.kr/addrlink/addrCoordUrl.do"; // 인터넷망
             document.form.submit();
-        }else{
-            opener.jusoCallBack("<%=roadFullAddr%>","<%=roadAddrPart1%>","<%=addrDetail%>", "<%=roadAddrPart2%>","<%=engAddr%>"
-                , "<%=jibunAddr%>","<%=zipNo%>", "<%=admCd%>", "<%=rnMgtSn%>", "<%=bdMgtSn%>", "<%=detBdNmList%>"
+        } else {
+            opener.jusoCallBack("<%=roadFullAddr%>", "<%=roadAddrPart1%>", "<%=addrDetail%>", "<%=roadAddrPart2%>", "<%=engAddr%>"
+                , "<%=jibunAddr%>", "<%=zipNo%>", "<%=admCd%>", "<%=rnMgtSn%>", "<%=bdMgtSn%>", "<%=detBdNmList%>"
                 , "<%=bdNm%>", "<%=bdKdcd%>", "<%=siNm%>", "<%=sggNm%>", "<%=emdNm%>", "<%=liNm%>", "<%=rn%>", "<%=udrtYn%>"
                 , "<%=buldMnnm%>", "<%=buldSlno%>", "<%=mtYn%>", "<%=lnbrMnnm%>", "<%=lnbrSlno%>", "<%=emdNo%>", "<%=entX%>", "<%=entY%>");
             window.close();

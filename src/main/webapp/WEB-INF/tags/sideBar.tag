@@ -7,8 +7,8 @@
 <!-- https://fontawesome.com/ -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <!-- https://fonts.google.com/ -->
-<link href="/static/css/bootstrap.min.css" rel="stylesheet">
-<link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
+<link href="/prj2/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="/prj2/static/css/templatemo-xtra-blog.css" rel="stylesheet">
 
 <style>
     .effect-lily img {
@@ -72,20 +72,20 @@
             <div style="margin-bottom: 30px" class="tm-mb-65">
                 <div>
                     <sec:authentication property="name" var="username"/>
-                        <p style="color:white; margin-bottom: 0px; margin-top: 30px">
-                            <i class="fa-regular fa-face-grin-wide"></i>
-                            ${username}님
-                        </p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <div style="width: auto">
-                                <c:url value="/customer/get" var="get">
-                                    <c:param name="customerId" value="${username}"/>
-                                </c:url>
-                                <c:url value="/logout" var="logout"/>
-                                <a style="color: white" class="font-weight-light" href="${get}">내정보</a> |
-                                <a style="color: white" href="${logout}">로그아웃</a>
-                            </div>
+                    <p style="color:white; margin-bottom: 0px; margin-top: 30px">
+                        <i class="fa-regular fa-face-grin-wide"></i>
+                        ${username}님
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <div style="width: auto">
+                            <c:url value="/customer/get" var="get">
+                                <c:param name="customerId" value="${username}"/>
+                            </c:url>
+                            <c:url value="/logout" var="logout"/>
+                            <a style="color: white" class="font-weight-light" href="${get}">내정보</a> |
+                            <a style="color: white" href="${logout}">로그아웃</a>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -193,7 +193,7 @@
     function hiddenFunction() {
         if (document.body.scrollLeft > 1300 || document.documentElement.scrollTop > 1300) {
             mybutton.style.display = "block";
-        } else{
+        } else {
             mybutton.style.display = "none";
         }
     }
@@ -201,7 +201,7 @@
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             mybutton.style.display = "block";
-        } else{
+        } else {
             mybutton.style.display = "none";
         }
     }
@@ -214,5 +214,5 @@
 
 </script>
 
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/templatemo-script.js"></script>
+<script src="/prj2/static/js/jquery.min.js"></script>
+<script src="/prj2/static/js/templatemo-script.js"></script>

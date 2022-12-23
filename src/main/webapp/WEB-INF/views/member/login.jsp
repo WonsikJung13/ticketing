@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="/prj2/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/prj2/static/css/templatemo-xtra-blog.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('/static/back.jpg');
+            background-image: url('/prj2/static/back.jpg');
         }
 
         /*글씨체*/
@@ -80,17 +80,20 @@
                     </label>
                 </div>
                 <div>
-                    <a href="/oauth2/authorization/kakao" style="text-decoration: none; margin-left: 22px;">
+                    <c:url value="/oauth2/authorization/kakao" var="kakao"/>
+                    <a href="${kakao}" style="text-decoration: none; margin-left: 22px;">
                         <c:url value="/static/kakaoLogo.png" var="kakaoLogoLink"/>
                         <img src="${kakaoLogoLink}" alt="">
                     </a>
 
-                    <a href="/oauth2/authorization/google" style="text-decoration: none; margin-left: 22px;">
+                    <c:url value="/oauth2/authorization/google" var="google"/>
+                    <a href="${google}" style="text-decoration: none; margin-left: 22px;">
                         <c:url value="/static/googleLogo.png" var="googleLogoLink"/>
                         <img src="${googleLogoLink}" alt="">
                     </a>
 
-                    <a href="/oauth2/authorization/naver">
+                    <c:url value="/oauth2/authorization/naver" var="naver"/>
+                    <a href="${naver}">
                         <c:url value="/static/naverLogo.png" var="naverLogoLink"/>
                         <img src="${naverLogoLink}" alt="" style="height: 48px; margin-left: 22px;">
                     </a>

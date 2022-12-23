@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="/static/css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="../static/css/templatemo-xtra-blog.css" rel="stylesheet">
     <style>
         /*글씨체*/
         @font-face {
@@ -152,7 +152,10 @@
                 <input class="form-control" type="datetime-local" value="${customer.customerInserted}" readonly>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute"
+                <c:url value="/customer/get" var="get">
+                    <c:param name="customerId" value="${customer.customerId}"/>
+                </c:url>
+                <button onclick="location.href='${get}'" style="font-family: 'LINESeedKR-Bd'; background-color: #0CC; color: white; margin-top: 17px; position: absolute"
                         id="exitButton" type="button" class="btn btn-ico">
                     나가기
                 </button>
@@ -384,9 +387,9 @@
 
     })
 
-    document.querySelector("#exitButton").addEventListener("click", function () {
-        window.location.href = "/customer/get?customerId=" + document.querySelector("#customerId").value;
-    })
+    // document.querySelector("#exitButton").addEventListener("click", function () {
+    //     window.location.href = "/customer/get?customerId=" + document.querySelector("#customerId").value;
+    // })
 
 
     // input 값이 모두 입력되었는지 확인

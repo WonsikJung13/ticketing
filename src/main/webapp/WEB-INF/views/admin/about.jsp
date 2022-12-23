@@ -27,60 +27,62 @@
     <h2 style="font-family: 'LINESeedKR-Bd'">통합 개발 환경</h2>
     <table class="table">
         <thead>
-            <tr style="font-family: 'LINESeedKR-Bd'">
-                <th>항목</th>
-                <th>세부내용</th>
-            </tr>
+        <tr style="font-family: 'LINESeedKR-Bd'">
+            <th>항목</th>
+            <th>세부내용</th>
+        </tr>
         </thead>
-        <tbody >
-            <tr class="tm-h3 mb-3">
-                <th>Cloud Service Provider</th>
-                <th>AWS</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>Cloud Native</th>
-                <th>EC2 / S3 / RDS</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>Database</th>
-                <th>MariaDB / MySQL</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>Front-end</th>
-                <th>HTML / CSS / Javascript / JSP / JSTL / AJAX / JSON / EL</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>Back-end</th>
-                <th>Java / Spring Boot</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>Build Tool</th>
-                <th>Gradle</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>Library</th>
-                <th>Springboot-mail / springboot-security / OAuth2 / springboot-web / lombok / log4j2 / springboot-Devtools / </th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>VCS</th>
-                <th>git / github</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>IDE</th>
-                <th>Intellij / Visual Studio Code</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>Server</th>
-                <th>Apache Tomcat</th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>O/S</th>
-                <th>MS Windows 10 / MAC </th>
-            </tr>
-            <tr class="tm-h3 mb-3">
-                <th>Test Browser</th>
-                <th>Explorer / Chrome / Firefox / Safari</th>
-            </tr>
+        <tbody>
+        <tr class="tm-h3 mb-3">
+            <th>Cloud Service Provider</th>
+            <th>AWS</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>Cloud Native</th>
+            <th>EC2 / S3 / RDS</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>Database</th>
+            <th>MariaDB / MySQL</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>Front-end</th>
+            <th>HTML / CSS / Javascript / JSP / JSTL / AJAX / JSON / EL</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>Back-end</th>
+            <th>Java / Spring Boot</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>Build Tool</th>
+            <th>Gradle</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>Library</th>
+            <th>Springboot-mail / springboot-security / OAuth2 / springboot-web / lombok / log4j2 / springboot-Devtools
+                /
+            </th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>VCS</th>
+            <th>git / github</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>IDE</th>
+            <th>Intellij / Visual Studio Code</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>Server</th>
+            <th>Apache Tomcat</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>O/S</th>
+            <th>MS Windows 10 / MAC</th>
+        </tr>
+        <tr class="tm-h3 mb-3">
+            <th>Test Browser</th>
+            <th>Explorer / Chrome / Firefox / Safari</th>
+        </tr>
         </tbody>
     </table>
 
