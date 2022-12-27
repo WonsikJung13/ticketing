@@ -1,6 +1,5 @@
 package com.limdaram.ticketing.config;
 
-import lombok.Setter;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +17,7 @@ import javax.servlet.ServletContext;
 
 @Configuration
 @MapperScan(value = "com.limdaram.ticketing.mapper")
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 
 public class CustomConfig {
 
@@ -28,7 +28,7 @@ public class CustomConfig {
     @Value("${aws.s3.file.url.prefix}")
     private String imgUrl;
 
-    @Setter(onMethod_ = @Autowired)
+    @Autowired
     private ServletContext servletContext;
 
     @PostConstruct

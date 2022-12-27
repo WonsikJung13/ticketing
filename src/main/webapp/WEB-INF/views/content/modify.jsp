@@ -738,7 +738,7 @@
     // 지도 팝업창으로 여는 함수
     function goPopup() {
         // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrCoordUrl.do)를 호출하게 됩니다.
-        var pop = window.open("/content/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+        var pop = window.open("/prj2/content/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
     }
 
     function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
